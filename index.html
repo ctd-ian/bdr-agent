@@ -312,6 +312,87 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .pager .p{width:32px;height:32px;border-radius:var(--r-md);display:grid;place-items:center;font-weight:500;color:var(--gray-600)}
 .pager .p.on{background:var(--blue-50);color:var(--blue-700)}
 
+/* ===================== Task execute screen ===================== */
+
+/* Stepper — the chain a task belongs to, always visible */
+.steps{display:flex;align-items:stretch;gap:0;border:1px solid var(--gray-200);border-radius:var(--r-xl);background:#fff;overflow:hidden;box-shadow:var(--sh-sm)}
+.step{flex:1;padding:var(--s6) var(--s7);border-right:1px solid var(--gray-200);min-width:0}
+.step:last-child{border-right:none}
+.step.now{background:var(--blue-25)}
+.step .top{display:flex;align-items:center;gap:var(--s4);margin-bottom:var(--s3)}
+.step .mark{width:20px;height:20px;flex:0 0 20px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:600;
+  background:var(--gray-100);color:var(--gray-500)}
+.step.done .mark{background:var(--success-50);color:var(--success-700)}
+.step.now .mark{background:var(--blue-600);color:#fff}
+.step .nm{font-size:14px;font-weight:600;color:var(--gray-900)}
+.step.todo .nm{color:var(--gray-500);font-weight:500}
+.step .by{font-size:12px;line-height:18px;color:var(--gray-500);display:flex;align-items:center;gap:var(--s3);flex-wrap:wrap}
+
+/* Relay — who sends what to whom */
+.relay{display:flex;align-items:center;gap:var(--s5);flex-wrap:wrap}
+.relay .node{display:flex;align-items:center;gap:var(--s4);background:#fff;border:1px solid var(--gray-200);border-radius:var(--r-2xl);padding:4px 12px 4px 4px}
+.relay .node.you{border-color:var(--blue-300);background:var(--blue-25)}
+.relay .node .nm{font-size:13px;font-weight:600;color:var(--gray-900);white-space:nowrap}
+.relay .node .rl{font-size:11px;color:var(--gray-500);white-space:nowrap}
+.relay .leg{display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--gray-400);padding:0 var(--s2)}
+.relay .leg span{font-family:var(--font-label);font-size:10px;letter-spacing:.01em;text-transform:uppercase;color:var(--gray-500);white-space:nowrap}
+
+/* Delivery method — explained radio cards */
+.delivery{display:grid;grid-template-columns:1fr 1fr;gap:var(--s5)}
+.dopt{display:flex;gap:var(--s5);padding:var(--s6);border:1px solid var(--gray-300);border-radius:var(--r-lg);background:#fff;text-align:left;align-items:flex-start}
+.dopt:hover{background:var(--gray-50)}
+.dopt.on{border-color:var(--blue-600);background:var(--blue-25);box-shadow:0 0 0 3px var(--blue-50)}
+.dopt .rad{width:18px;height:18px;flex:0 0 18px;border-radius:50%;border:1px solid var(--gray-300);background:#fff;margin-top:2px;display:grid;place-items:center}
+.dopt.on .rad{border-color:var(--blue-600);border-width:5px}
+.dopt h5{font-size:14px;line-height:20px;font-weight:600;color:var(--gray-900);margin-bottom:2px}
+.dopt p{font-size:13px;line-height:19px;color:var(--gray-600)}
+
+/* Message cards — each one names its sender and recipient */
+.msg{border:1px solid var(--gray-200);border-radius:var(--r-xl);background:#fff;overflow:hidden;box-shadow:var(--sh-sm)}
+.msg + .msg{margin-top:var(--s6)}
+.msg-head{padding:var(--s6) var(--s7);border-bottom:1px solid var(--gray-200);background:var(--gray-25);display:flex;align-items:center;gap:var(--s5);flex-wrap:wrap}
+.msg-head .idx{width:22px;height:22px;flex:0 0 22px;border-radius:50%;background:var(--gray-800);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:600}
+.msg-head h4{font-size:14px;line-height:20px;font-weight:600;color:var(--gray-900)}
+.msg-head .sub{font-size:12px;line-height:18px;color:var(--gray-500)}
+.msg-fields{padding:var(--s5) var(--s7);border-bottom:1px solid var(--gray-200);display:flex;flex-direction:column;gap:var(--s3)}
+.msg-field{display:flex;gap:var(--s6);font-size:14px}
+.msg-field .k{width:64px;flex:0 0 64px;color:var(--gray-500)}
+.msg-body{padding:var(--s7);font-size:14px;line-height:22px;color:var(--gray-700);display:flex;flex-direction:column;gap:var(--s6)}
+.msg-foot{padding:var(--s5) var(--s7);border-top:1px solid var(--gray-200);background:var(--gray-25);display:flex;align-items:center;gap:var(--s5);flex-wrap:wrap}
+.msg.handoff{border-style:dashed;border-color:var(--gray-300);box-shadow:none}
+.msg.handoff .msg-head{background:var(--warning-50);border-bottom-color:var(--warning-200)}
+.msg.handoff .msg-head .idx{background:var(--warning-700)}
+
+/* Action bar */
+.actionbar{position:sticky;bottom:0;background:#fff;border:1px solid var(--gray-200);border-radius:var(--r-xl);
+  box-shadow:var(--sh-lg);padding:var(--s6) var(--s7);display:flex;align-items:center;gap:var(--s6);flex-wrap:wrap;margin-top:var(--s7)}
+.actionbar .what{flex:1;min-width:220px;font-size:13px;line-height:19px;color:var(--gray-600)}
+
+/* Modal / wizard */
+.scrim{position:fixed;inset:0;background:rgba(16,24,40,.45);z-index:80;display:none;align-items:flex-start;justify-content:center;padding:var(--s10) var(--s6);overflow:auto}
+.scrim.open{display:flex}
+.modal{width:100%;max-width:720px;background:#fff;border-radius:var(--r-2xl);box-shadow:var(--sh-2xl);overflow:hidden}
+.modal-head{padding:var(--s7);border-bottom:1px solid var(--gray-200);display:flex;align-items:flex-start;gap:var(--s6)}
+.modal-head h3{font-family:var(--font-display);font-size:20px;line-height:28px;font-weight:600;letter-spacing:-.02em;color:var(--gray-900)}
+.modal-body{padding:var(--s7);display:flex;flex-direction:column;gap:var(--s7)}
+.modal-foot{padding:var(--s6) var(--s7);border-top:1px solid var(--gray-200);background:var(--gray-25);display:flex;align-items:center;gap:var(--s5)}
+.wsteps{display:flex;align-items:center;gap:var(--s4);flex-wrap:wrap}
+.wstep{display:flex;align-items:center;gap:var(--s4);font-size:13px;font-weight:500;color:var(--gray-400)}
+.wstep .n{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;background:var(--gray-100);color:var(--gray-500)}
+.wstep.on{color:var(--gray-900)}
+.wstep.on .n{background:var(--blue-600);color:#fff}
+.wstep.ok .n{background:var(--success-50);color:var(--success-700)}
+.wsep{width:16px;height:1px;background:var(--gray-300)}
+.pick{display:flex;gap:var(--s5);padding:var(--s6);border:1px solid var(--gray-300);border-radius:var(--r-lg);background:#fff;text-align:left;align-items:flex-start;width:100%}
+.pick:hover{background:var(--gray-50)}
+.pick.on{border-color:var(--blue-600);background:var(--blue-25);box-shadow:0 0 0 3px var(--blue-50)}
+.pick h5{font-size:14px;line-height:20px;font-weight:600;color:var(--gray-900);display:flex;align-items:center;gap:var(--s5);flex-wrap:wrap;margin-bottom:2px}
+.pick p{font-size:13px;line-height:19px;color:var(--gray-600)}
+.chainprev{border:1px solid var(--gray-200);border-radius:var(--r-lg);background:var(--gray-25);padding:var(--s6);display:flex;flex-direction:column;gap:var(--s5)}
+.chainrow{display:flex;align-items:center;gap:var(--s5);font-size:13px}
+.chainrow .n{width:20px;height:20px;flex:0 0 20px;border-radius:50%;background:var(--gray-200);color:var(--gray-600);display:grid;place-items:center;font-size:11px;font-weight:600}
+.chainrow.mine .n{background:var(--blue-600);color:#fff}
+
 /* Design notes */
 .notes-toggle{position:fixed;right:var(--s8);bottom:var(--s8);z-index:60;background:var(--gray-900);color:#fff;border-radius:var(--r-2xl);height:44px;padding:0 var(--s7);display:inline-flex;align-items:center;gap:var(--s4);box-shadow:var(--sh-2xl);font-weight:500}
 .notes{position:fixed;top:0;right:0;bottom:0;width:470px;max-width:94vw;z-index:70;background:#fff;border-left:1px solid var(--gray-200);box-shadow:var(--sh-2xl);transform:translateX(100%);transition:transform .22s ease;display:flex;flex-direction:column}
@@ -710,6 +791,171 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           <div><span class="strong">2 tasks could not be sent.</span> Both hit a bounced address. Fix the contact record and they'll retry automatically.</div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- ==================================================================
+       VIEW: TASK — execute screen
+       ================================================================== -->
+  <div class="page" id="view-task" hidden>
+
+    <div class="crumb">
+      <a href="#" data-view="tasks">Tasks</a><span class="sep">/</span>
+      <a href="#" data-view="account">Copperline</a><span class="sep">/</span>
+      <span class="dim">Send intro</span>
+    </div>
+
+    <div class="pagehead">
+      <div class="grow">
+        <div class="row" style="gap:var(--s5);margin-bottom:var(--s3)">
+          <span class="badge badge-sky badge-sq">Warm intro</span>
+          <span class="badge badge-blue"><span class="dot"></span>Your turn</span>
+          <span class="t-sm muted">Step 3 of 4</span>
+        </div>
+        <h1 style="font-size:24px;line-height:32px">Warm introduction to the CEO, anchored on the combined-network build-out</h1>
+        <div class="meta-row">
+          <div class="meta"><span class="label">Account</span><span class="avatar avatar-sm avatar-co">Cp</span><a href="#" data-view="account" class="t-sm">Copperline</a></div>
+          <div class="meta"><span class="label">Account owner</span><span class="avatar avatar-sm">MD</span><span class="t-sm dim">Marco Devlin</span></div>
+          <div class="meta"><span class="label">Created</span><span class="t-sm dim">16 Jun 2026 · 2 days ago</span></div>
+        </div>
+      </div>
+      <div class="row" style="gap:var(--s4)">
+        <button class="btn btn-secondary btn-icon" aria-label="Previous task"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="m12 5-5 5 5 5"/></svg></button>
+        <button class="btn btn-secondary">Next task<svg class="icon icon-sm" viewBox="0 0 20 20"><path d="m8 5 5 5-5 5"/></svg></button>
+      </div>
+    </div>
+
+    <!-- The chain this task belongs to -->
+    <div class="sec-title"><h2>Where this task came from</h2><span class="t-sm muted">The whole play, not just your step</span></div>
+    <div class="steps">
+      <div class="step done">
+        <div class="top"><span class="mark"><svg class="icon icon-xs" viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg></span><span class="nm">Pick the path</span></div>
+        <div class="by"><span class="avatar avatar-sm">AT</span>Alex Tanaka · 11 Jun</div>
+        <div class="t-xs muted" style="margin-top:var(--s3)">Chose Nathan Pike over 3 other routes</div>
+      </div>
+      <div class="step done">
+        <div class="top"><span class="mark"><svg class="icon icon-xs" viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg></span><span class="nm">Draft the intro</span></div>
+        <div class="by"><span class="avatar avatar-sm">MD</span>Marco Devlin · 12 Jun</div>
+        <div class="t-xs muted" style="margin-top:var(--s3)">Wrote both messages below</div>
+      </div>
+      <div class="step now">
+        <div class="top"><span class="mark">3</span><span class="nm">Send the intro</span></div>
+        <div class="by"><span class="avatar avatar-sm">SE</span>You · now</div>
+        <div class="t-xs" style="margin-top:var(--s3);color:var(--blue-700);font-weight:500">Review and send to Nathan</div>
+      </div>
+      <div class="step todo">
+        <div class="top"><span class="mark">4</span><span class="nm">Nathan forwards</span></div>
+        <div class="by"><span class="avatar avatar-sm">NP</span>Nathan Pike · after you send</div>
+        <div class="t-xs muted" style="margin-top:var(--s3)">Out of your hands — we'll track the reply</div>
+      </div>
+    </div>
+
+    <!-- Who does what -->
+    <div class="sec-title"><h2>Who sends what</h2></div>
+    <div class="card card-pad">
+      <div class="relay">
+        <span class="node you"><span class="avatar avatar-sm">SE</span><span><span class="nm">You</span> <span class="rl">Sam Ellis</span></span></span>
+        <span class="leg"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 10h12M12 6l4 4-4 4"/></svg><span>Message 1</span></span>
+        <span class="node"><span class="avatar avatar-sm">NP</span><span><span class="nm">Nathan Pike</span> <span class="rl">Connector · Meridian Advisory</span></span></span>
+        <span class="leg"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 10h12M12 6l4 4-4 4"/></svg><span>Message 2</span></span>
+        <span class="node"><span class="avatar avatar-sm">DW</span><span><span class="nm">Dean Whitlock</span> <span class="rl">CEO · Copperline</span></span></span>
+      </div>
+      <div class="banner" style="margin-top:var(--s6)">
+        <svg class="icon icon-sm" style="color:var(--blue-700);margin-top:2px" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 6h.01"/></svg>
+        <div><span class="strong">You only send message 1.</span> Message 2 is written for Nathan to forward on to Dean in his own name — you never send it, and Dean never sees anything from you.</div>
+      </div>
+    </div>
+
+    <!-- Delivery -->
+    <div class="sec-title"><h2>How message 1 reaches Nathan</h2></div>
+    <div class="delivery">
+      <button class="dopt on" data-dopt>
+        <span class="rad"></span>
+        <span>
+          <h5>From your inbox</h5>
+          <p>Sends now from sam@ctd.ai straight to Nathan. Lands like a normal email. Nathan replies to you directly.</p>
+        </span>
+      </button>
+      <button class="dopt" data-dopt>
+        <span class="rad"></span>
+        <span>
+          <h5>As a ghost mail in CTD.ai</h5>
+          <p>Nathan gets a CTD notification and approves the note before anything is sent. Slower, but he keeps control of what goes out under his name.</p>
+        </span>
+      </button>
+    </div>
+
+    <!-- Messages -->
+    <div class="sec-title"><h2>The two messages</h2><span class="t-sm muted">Drafted by Marco — edit before you send</span></div>
+
+    <div class="msg">
+      <div class="msg-head">
+        <span class="idx">1</span>
+        <div class="grow" style="flex:1;min-width:0">
+          <h4>Your ask to Nathan</h4>
+          <div class="sub">You send this. It goes out now.</div>
+        </div>
+        <div class="seg">
+          <button class="is-active" data-seg="m1">Edit</button>
+          <button data-seg="m1">Preview</button>
+        </div>
+      </div>
+      <div class="msg-fields">
+        <div class="msg-field"><span class="k">From</span><span><span class="strong">You</span> <span class="muted">sam@ctd.ai</span></span></div>
+        <div class="msg-field"><span class="k">To</span><span class="row" style="gap:var(--s4)"><span class="avatar avatar-sm">NP</span><span class="strong">Nathan Pike</span><span class="muted">nathan@meridianadvisory.com</span></span></div>
+        <div class="msg-field"><span class="k">Subject</span><span class="strong">Dean Whitlock at Copperline</span></div>
+      </div>
+      <div class="msg-body">
+        <p>Hi Nathan,</p>
+        <p>Quick one: you know Dean Whitlock (<a href="#">LinkedIn</a>), right? I'm trying to reach him — he's CEO at Copperline, and you came up as the natural person to ask given you two overlapped there at the C-level last year.</p>
+        <p>Copperline is scaling a partner-and-MSP motion across two networks they've merged since the Halstead acquisition, and as that grows, who-knows-whom across the combined ecosystem becomes the real bottleneck. That's exactly what CTD maps and activates.</p>
+        <p>Would you be open to checking whether Dean is up for a short intro? I've put a short note below you can copy and paste straight to him, if that's easier.</p>
+        <p>Best,<br>Sam</p>
+      </div>
+      <div class="msg-foot">
+        <button class="btn btn-secondary btn-sm"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 13V16h3l8-8-3-3z"/></svg>Edit text</button>
+        <button class="btn btn-tertiary btn-sm">Regenerate</button>
+        <span class="t-xs muted" style="margin-left:auto">Drafted by Marco Devlin · 12 Jun</span>
+      </div>
+    </div>
+
+    <div class="msg handoff">
+      <div class="msg-head">
+        <span class="idx">2</span>
+        <div style="flex:1;min-width:0">
+          <h4>The note Nathan forwards to Dean</h4>
+          <div class="sub">Nathan sends this, in his own words. Nothing happens when you click send.</div>
+        </div>
+        <span class="badge badge-warning"><span class="dot"></span>Not sent by you</span>
+      </div>
+      <div class="msg-fields">
+        <div class="msg-field"><span class="k">From</span><span class="row" style="gap:var(--s4)"><span class="avatar avatar-sm">NP</span><span class="strong">Nathan Pike</span></span></div>
+        <div class="msg-field"><span class="k">To</span><span class="row" style="gap:var(--s4)"><span class="avatar avatar-sm">DW</span><span class="strong">Dean Whitlock</span><span class="muted">CEO · Copperline</span></span></div>
+      </div>
+      <div class="msg-body">
+        <p>Hey Dean,</p>
+        <p>Hope all is well. Have you heard of Connect The Dots? I just caught up with Sam, one of their team, and thought what they're building could be relevant for you.</p>
+        <p>CTD uses relationship signals to show who actually knows who, and how well, across a firm and its trusted externals — then makes intros easy to action. Given how network-driven your world is at Copperline, especially as you scale the partner and MSP motion across the combined network, this felt particularly applicable.</p>
+        <p>No pressure at all, but if you're open, happy to connect you with Sam for a quick conversation.</p>
+        <p>Best,<br>Nathan</p>
+      </div>
+      <div class="msg-foot">
+        <span class="t-xs muted">Nathan can send it however he likes — the note is included in message 1 so he can copy it out.</span>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="actionbar">
+      <div class="what">
+        <span class="strong">Sending now:</span> message 1, from sam@ctd.ai to Nathan Pike. Dean is not contacted at this step.
+      </div>
+      <button class="btn btn-tertiary">Decline</button>
+      <button class="btn btn-secondary">Wrong connector</button>
+      <button class="btn btn-secondary">Snooze</button>
+      <button class="btn btn-secondary">Save draft</button>
+      <button class="btn btn-primary">
+        <svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M3 10h14M12 5l5 5-5 5"/></svg>Send to Nathan Pike
+      </button>
     </div>
   </div>
 
@@ -1385,6 +1631,109 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
   </main>
 </div>
 
+<!-- ==================== Create & route a task ==================== -->
+<div class="scrim" id="newTask">
+  <div class="modal" role="dialog" aria-label="Create a task">
+    <div class="modal-head">
+      <div style="flex:1;min-width:0">
+        <h3>New task · Copperline</h3>
+        <div class="wsteps" style="margin-top:var(--s5)">
+          <span class="wstep ok" data-w="1"><span class="n"><svg class="icon icon-xs" viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg></span>Play</span>
+          <span class="wsep"></span>
+          <span class="wstep on" data-w="2"><span class="n">2</span>Path</span>
+          <span class="wsep"></span>
+          <span class="wstep" data-w="3"><span class="n">3</span>Delivery</span>
+          <span class="wsep"></span>
+          <span class="wstep" data-w="4"><span class="n">4</span>Who does it</span>
+        </div>
+      </div>
+      <button class="btn btn-tertiary btn-sm" data-close>Cancel</button>
+    </div>
+
+    <!-- 1 · Play -->
+    <div class="modal-body" id="w-1" hidden>
+      <p class="t-sm dim">What are you trying to make happen? This sets the steps CTD creates for you.</p>
+      <button class="pick on"><span class="rad" style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;border:5px solid var(--blue-600);margin-top:2px"></span>
+        <span><h5>Warm intro <span class="badge badge-sky badge-sq">3 steps</span></h5><p>Reach the target through someone who knows them. Creates pick path → draft → send.</p></span></button>
+      <button class="pick"><span class="rad" style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;border:1px solid var(--gray-300);margin-top:2px"></span>
+        <span><h5>Direct email <span class="badge badge-gray badge-sq">2 steps</span></h5><p>No connector. You write and send to the target yourself.</p></span></button>
+      <button class="pick"><span class="rad" style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;border:1px solid var(--gray-300);margin-top:2px"></span>
+        <span><h5>Re-engage a stalled account <span class="badge badge-gray badge-sq">2 steps</span></h5><p>Pick a fresh angle from recent signals, then send.</p></span></button>
+    </div>
+
+    <!-- 2 · Path -->
+    <div class="modal-body" id="w-2">
+      <div>
+        <p class="t-sm dim" style="margin-bottom:var(--s3)">Who should open the door to <span class="strong">Dean Whitlock</span>, CEO at Copperline?</p>
+        <p class="t-xs muted">14 paths available. Ranked by strength of the final hop.</p>
+      </div>
+      <button class="pick on">
+        <span class="rad" style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;border:5px solid var(--blue-600);margin-top:2px"></span>
+        <span style="flex:1;min-width:0">
+          <h5>Nathan Pike <span class="badge badge-success"><span class="dot"></span>Strong</span> <span class="badge badge-gray badge-sq">1 hop</span></h5>
+          <p>Fractional Operating Partner · Meridian Advisory. Overlapped with Dean at the C-level last year. LinkedIn, messaged 3 weeks ago.</p>
+        </span>
+      </button>
+      <button class="pick">
+        <span class="rad" style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;border:1px solid var(--gray-300);margin-top:2px"></span>
+        <span style="flex:1;min-width:0">
+          <h5>Helen Ward → Priya Raman <span class="badge badge-warning"><span class="dot"></span>Familiar</span> <span class="badge badge-gray badge-sq">2 hops</span></h5>
+          <p>Board Observer · Fernwood Capital. Slower, but Helen has made 6 intros this quarter.</p>
+        </span>
+      </button>
+      <button class="pick">
+        <span class="rad" style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;border:1px solid var(--gray-300);margin-top:2px"></span>
+        <span style="flex:1;min-width:0">
+          <h5>Marco Devlin <span class="badge badge-gray"><span class="dot"></span>Weak</span> <span class="badge badge-gray badge-sq">1 hop</span></h5>
+          <p>Account owner. 1st-degree on LinkedIn but no message history — likely to go unanswered.</p>
+        </span>
+      </button>
+      <button class="btn btn-tertiary btn-sm" style="align-self:flex-start">Show all 14 paths<svg class="icon icon-sm" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
+    </div>
+
+    <!-- 3 · Delivery -->
+    <div class="modal-body" id="w-3" hidden>
+      <p class="t-sm dim">How should the ask reach <span class="strong">Nathan Pike</span>?</p>
+      <div class="delivery">
+        <button class="dopt on" data-dopt><span class="rad"></span>
+          <span><h5>From your inbox</h5><p>Sends from sam@ctd.ai. Fastest, and Nathan replies straight to you.</p></span></button>
+        <button class="dopt" data-dopt><span class="rad"></span>
+          <span><h5>Ghost mail in CTD.ai</h5><p>Nathan approves the note in CTD before anything goes out under his name.</p></span></button>
+      </div>
+      <div class="banner">
+        <svg class="icon icon-sm" style="color:var(--blue-700);margin-top:2px" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 6h.01"/></svg>
+        <div>Either way, CTD drafts <span class="strong">two</span> messages: your ask to Nathan, and a note Nathan can forward to Dean in his own name.</div>
+      </div>
+    </div>
+
+    <!-- 4 · Who does it -->
+    <div class="modal-body" id="w-4" hidden>
+      <p class="t-sm dim">Who sends the final message? The drafting step stays with you either way.</p>
+      <button class="pick on"><span class="rad" style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;border:5px solid var(--blue-600);margin-top:2px"></span>
+        <span><h5>You <span class="badge badge-blue badge-sq">Recommended</span></h5><p>You have no relationship with Nathan, but the ask is on CTD letterhead either way.</p></span></button>
+      <button class="pick"><span class="rad" style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;border:1px solid var(--gray-300);margin-top:2px"></span>
+        <span><h5>Marco Devlin <span class="badge badge-gray badge-sq">Account owner</span></h5><p>Hands the send step to Marco. He'll get it in his queue and you'll see it as waiting on him.</p></span></button>
+
+      <div class="chainprev">
+        <span class="label">What gets created</span>
+        <div class="chainrow"><span class="n">1</span><span class="strong">Pick the path</span><span class="muted">— done now, Nathan Pike</span></div>
+        <div class="chainrow mine"><span class="n">2</span><span class="strong">Draft the intro</span><span class="muted">— you, next</span></div>
+        <div class="chainrow mine"><span class="n">3</span><span class="strong">Send the intro</span><span class="muted">— you, after drafting</span></div>
+        <div class="chainrow"><span class="n">4</span><span class="strong">Nathan forwards</span><span class="muted">— tracked, no action from you</span></div>
+      </div>
+    </div>
+
+    <div class="modal-foot">
+      <button class="btn btn-secondary" data-wback>Back</button>
+      <span class="t-xs muted" id="wcount">Step 2 of 4</span>
+      <div class="row" style="margin-left:auto;gap:var(--s4)">
+        <button class="btn btn-tertiary" data-close>Cancel</button>
+        <button class="btn btn-primary" data-wnext>Continue</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ==================== Design notes ==================== -->
 <button class="notes-toggle" id="notesToggle">
   <svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 6h.01"/></svg>
@@ -1485,6 +1834,30 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     </div>
 
     <div class="note-block">
+      <h4>11 · The Tasks workflow</h4>
+      <p>The four things AEs get stuck on, and what the execute screen does about each:</p>
+      <ul>
+        <li><span class="strong">"What step am I at?"</span> — the chain (<span class="mono">pick_play_path → execute_warm_intro → send_warm_intro</span>) was only visible on a third tab called Activities, and two of the three steps shared the same title. It's now a stepper at the top of the task showing all four steps, who did each, when, and what they decided.</li>
+        <li><span class="strong">"Who is sending the email?"</span> — the old screen stacked <span class="strong">two different messages for three different people</span> in one panel with no labels: your ask to the connector, and a pre-written note from the connector to the target. Each message is now its own card with an explicit From and To, and the second is visually marked as a handoff — dashed border, "Not sent by you".</li>
+        <li><span class="strong">"What does delivery method mean?"</span> — <span class="mono">Email</span> vs <span class="mono">CTD.ai</span> was a bare radio pair that silently changed the primary button from "Send Email" to "Create &amp; Share Ghost Mail". They're now labelled cards that state the consequence: sends from your inbox now, versus the connector approves it in CTD first.</li>
+        <li><span class="strong">Edit vs Preview</span> — a global toggle that sat next to the delivery radio and applied ambiguously. It's now per-message, on the message it affects.</li>
+      </ul>
+      <p style="margin-top:var(--s5)">Two other changes. <span class="strong">Send Email and Next task were both dark primaries</span> — Next task is now secondary, so there's one obvious action. And the only exits were Send or Decline, with Decline buried under an unlabelled textarea; the action bar now offers Snooze, Save draft and Wrong connector, and states in words exactly what the primary will do.</p>
+    </div>
+
+    <div class="note-block">
+      <h4>12 · Simplified task taxonomy</h4>
+      <p>Eight types, six statuses, and overlap between the two. <span class="mono">on_hold</span> was both a type and a status; <span class="mono">manual_flow</span> was a type while <span class="mono">in_manual_flow</span> was a status; <span class="mono">send_warm_intro</span> and <span class="mono">execute_warm_intro</span> read as synonyms but are different stages.</p>
+      <div class="kv"><span class="k">outreach_plan · pick_play_path · decide_next_step</span><span class="v">Pick the path</span></div>
+      <div class="kv"><span class="k">execute_warm_intro</span><span class="v">Draft</span></div>
+      <div class="kv"><span class="k">send_warm_intro · send_email</span><span class="v">Send</span></div>
+      <div class="kv"><span class="k">manual_flow</span><span class="v">Manual step</span></div>
+      <div class="kv"><span class="k">on_hold <span class="t-xs">(as a type)</span></span><span class="v">Deleted — it's a status</span></div>
+      <p style="margin-top:var(--s5)">Statuses become <span class="strong">Your turn · Waiting on connector · Snoozed · Done · Declined · Cancelled</span>. <span class="mono">in_manual_flow</span> disappears, since the step already says so.</p>
+      <p style="margin-top:var(--s5)">Worth noting against the Analytics tab: 516 tasks, 178 open, 100 cancelled, 25 overdue — and <span class="strong">zero intros sent across every connector</span>. A quarter of everything created gets cancelled. That's the number to watch after this ships.</p>
+    </div>
+
+    <div class="note-block">
       <h4>Where each old view went</h4>
       <div class="kv"><span class="k">Overview</span><span class="v">Brief — header, The call, Why</span></div>
       <div class="kv"><span class="k">Strategy → Summary</span><span class="v">Brief — The call</span></div>
@@ -1508,16 +1881,15 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
 <script>
 /* ---------------- View routing ---------------- */
-const views = ['accounts','tasks','account','network','inbox'];
+const views = ['accounts','tasks','task','account','network','inbox'];
+const NAV_OF = {account:'accounts', task:'tasks'};
 function showView(name){
   views.forEach(v=>{
     const el=document.getElementById('view-'+v);
     if(el) el.hidden = (v!==name);
   });
-  document.querySelectorAll('.nav-item').forEach(n=>{
-    const target = name==='account' ? 'accounts' : name;
-    n.classList.toggle('is-active', n.dataset.view===target);
-  });
+  const target = NAV_OF[name] || name;
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.toggle('is-active', n.dataset.view===target));
   window.scrollTo({top:0});
 }
 document.querySelectorAll('[data-view]').forEach(el=>{
@@ -1613,11 +1985,62 @@ document.querySelectorAll('[data-tlx]').forEach(b=>{
   });
 });
 
+/* ---------------- Task rows open the execute screen ---------------- */
+document.querySelectorAll('#view-tasks tbody tr.rowlink').forEach(tr=>{
+  tr.addEventListener('click',e=>{
+    if(e.target.closest('button')) return;
+    showView('task');
+  });
+});
+
+/* ---------------- Delivery method + pick lists ---------------- */
+function radioGroup(sel, cls){
+  document.querySelectorAll(sel).forEach(b=>{
+    b.addEventListener('click',()=>{
+      b.parentElement.querySelectorAll(sel.split(' ').pop()).forEach(x=>x.classList.toggle(cls,x===b));
+      b.parentElement.querySelectorAll('.pick .rad, .dopt .rad').forEach(r=>{
+        const on=r.closest('.pick,.dopt').classList.contains(cls);
+        if(r.closest('.pick')) r.style.border = on ? '5px solid var(--blue-600)' : '1px solid var(--gray-300)';
+      });
+    });
+  });
+}
+radioGroup('.delivery .dopt','on');
+radioGroup('.modal-body .pick','on');
+
+/* ---------------- New task wizard ---------------- */
+const nt=document.getElementById('newTask');
+let wstep=2;
+function renderWizard(){
+  [1,2,3,4].forEach(i=>{document.getElementById('w-'+i).hidden = i!==wstep;});
+  document.querySelectorAll('.wstep').forEach(s=>{
+    const i=+s.dataset.w;
+    s.classList.toggle('on', i===wstep);
+    s.classList.toggle('ok', i<wstep);
+    if(i>=wstep) s.querySelector('.n').textContent = i;
+  });
+  document.getElementById('wcount').textContent = 'Step '+wstep+' of 4';
+  document.querySelector('[data-wback]').disabled = wstep===1;
+  document.querySelector('[data-wnext]').textContent = wstep===4 ? 'Create task' : 'Continue';
+}
+function openWizard(){ wstep=1; renderWizard(); nt.classList.add('open'); }
+function closeWizard(){ nt.classList.remove('open'); }
+document.querySelectorAll('#view-tasks .btn-primary').forEach(b=>{
+  if(b.textContent.trim().startsWith('New task')) b.addEventListener('click',openWizard);
+});
+document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',closeWizard));
+document.querySelector('[data-wback]').addEventListener('click',()=>{ if(wstep>1){wstep--;renderWizard();} });
+document.querySelector('[data-wnext]').addEventListener('click',()=>{
+  if(wstep<4){wstep++;renderWizard();} else {closeWizard();showView('task');}
+});
+document.querySelectorAll('.wstep').forEach(s=>s.addEventListener('click',()=>{wstep=+s.dataset.w;renderWizard();}));
+nt.addEventListener('click',e=>{ if(e.target===nt) closeWizard(); });
+
 /* ---------------- Design notes ---------------- */
 const panel=document.getElementById('notesPanel');
 document.getElementById('notesToggle').addEventListener('click',()=>panel.classList.toggle('open'));
 document.getElementById('notesClose').addEventListener('click',()=>panel.classList.remove('open'));
-document.addEventListener('keydown',e=>{if(e.key==='Escape')panel.classList.remove('open');});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){panel.classList.remove('open');closeWizard();}});
 </script>
 </body>
 </html>
