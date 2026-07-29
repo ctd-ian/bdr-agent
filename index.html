@@ -845,6 +845,41 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       </div>
     </div>
 
+    <!-- Why this play — the old Strategy Brief tab, in place and deduplicated -->
+    <div class="pillar" style="margin-top:var(--s6)">
+      <div class="body">
+        <span class="label">Why this play</span>
+        <p class="t-md" style="color:var(--gray-800);margin-top:var(--s4)">
+          Copperline has merged two partner networks since the Halstead acquisition and has no map of who knows whom across the combined ecosystem. Dean owns that problem. Going through Nathan is the difference between a cold CEO email and a peer vouching for you.
+        </p>
+      </div>
+      <button class="disclose" data-drawer="d-play" aria-expanded="false">
+        Full brief<svg class="icon icon-sm chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg>
+      </button>
+      <div class="drawer" id="d-play">
+        <div class="grid g2" style="gap:var(--s7)">
+          <div>
+            <span class="label">Why Dean Whitlock</span>
+            <p class="t-sm dim" style="margin-top:var(--s3)">CEO, and the partner-and-MSP motion is his call. The VP Partnerships role has been open since the acquisition, so there is no obvious deputy to route around him.</p>
+            <span class="label" style="display:block;margin-top:var(--s6)">Why Nathan Pike</span>
+            <p class="t-sm dim" style="margin-top:var(--s3)">Overlapped with Dean at the C-level last year and messaged him three weeks ago. Strongest of 14 connectors, and the only one with recent contact.</p>
+          </div>
+          <div>
+            <span class="label">Why now</span>
+            <p class="t-sm dim" style="margin-top:var(--s3)">The Halstead integration is live and the combined reseller base is the stated growth lever this year. The relationship-mapping problem is at its most acute in the first two quarters after a merge.</p>
+            <span class="label" style="display:block;margin-top:var(--s6)">The risk</span>
+            <p class="t-sm dim" style="margin-top:var(--s3)">Ask for a conversation, not a demo. Integration years freeze discretionary tooling spend, so a purchase ask this early reads as tone-deaf and burns Nathan's goodwill.</p>
+          </div>
+        </div>
+        <div class="row" style="margin-top:var(--s7);gap:var(--s5);flex-wrap:wrap">
+          <a href="#" data-goto="brief" class="btn btn-secondary btn-sm">
+            <svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 4h12v12H4z"/><path d="M7 8h6M7 11h4"/></svg>Open the account brief
+          </a>
+          <span class="t-xs muted">Written once on the account — this is the same brief, not a second copy.</span>
+        </div>
+      </div>
+    </div>
+
     <!-- Who does what -->
     <div class="sec-title"><h2>Who sends what</h2></div>
     <div class="card card-pad">
@@ -1831,6 +1866,15 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <li><span class="strong">Edit vs Preview</span> — a global toggle that sat next to the delivery radio and applied ambiguously. It's now per-message, on the message it affects.</li>
       </ul>
       <p style="margin-top:var(--s5)">Two other changes. <span class="strong">Send Email and Next task were both dark primaries</span> — Next task is now secondary, so there's one obvious action. And the only exits were Send or Decline, with Decline buried under an unlabelled textarea; the action bar now offers Snooze, Save draft and Wrong connector, and states in words exactly what the primary will do.</p>
+    </div>
+
+    <div class="note-block">
+      <h4>11b · What happened to the task page's three tabs</h4>
+      <div class="kv"><span class="k">Execute task</span><span class="v">The page itself</span></div>
+      <div class="kv"><span class="k">Activities</span><span class="v">The stepper at the top</span></div>
+      <div class="kv"><span class="k">Strategy brief</span><span class="v">"Why this play", collapsed in place</span></div>
+      <p style="margin-top:var(--s5)"><span class="strong">Activities</span> was the only place the chain was visible, and it shared a name with the unrelated Activities concept on the account page. It is now the stepper — same information, not behind a tab.</p>
+      <p style="margin-top:var(--s5)"><span class="strong">Strategy brief</span> repeated the account's Verdict, Executive Summary, Strategic Goal and Why This Strategy — the eighth copy of the same narrative. Deleting the copy was right; deleting the AE's access to it mid-task was not. A "Why this play" panel now sits under the stepper with a one-paragraph summary always visible and the full reasoning one click away, split into why this person, why this connector, why now, and the risk. It links through to the account brief rather than restating it, so there is still one source.</p>
     </div>
 
     <div class="note-block">
