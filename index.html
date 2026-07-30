@@ -414,6 +414,16 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .pstep .pgrow{flex:1;min-width:0}
 .pstep.todo .pgrow .strong{color:var(--gray-500);font-weight:500}
 
+
+/* Notes list */
+.notei{padding:var(--s6) var(--s7);border-bottom:1px solid var(--gray-200)}
+.notei:last-child{border-bottom:none}
+.notei .meta{display:flex;align-items:center;gap:var(--s4);margin-bottom:var(--s4)}
+.notei .body{color:var(--gray-700)}
+.doci{display:flex;align-items:center;gap:var(--s5);padding:var(--s5) var(--s7);border-bottom:1px solid var(--gray-200)}
+.doci:last-child{border-bottom:none}
+.doci:hover{background:var(--gray-50)}
+
 /* Design notes */
 .notes-toggle{position:fixed;right:var(--s8);bottom:var(--s8);z-index:60;background:var(--gray-900);color:#fff;border-radius:var(--r-2xl);height:44px;padding:0 var(--s7);display:inline-flex;align-items:center;gap:var(--s4);box-shadow:var(--sh-2xl);font-weight:500}
 .notes{position:fixed;top:0;right:0;bottom:0;width:470px;max-width:94vw;z-index:70;background:#fff;border-left:1px solid var(--gray-200);box-shadow:var(--sh-2xl);transform:translateX(100%);transition:transform .22s ease;display:flex;flex-direction:column}
@@ -1511,50 +1521,34 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <!-- Timeline -->
         <div id="h-timeline">
           <div class="toolbar" style="gap:var(--s4)">
-            <button class="chipfilt on" data-chip>All <span>8</span></button>
-            <button class="chipfilt" data-chip>Outbound <span>6</span></button>
-            <button class="chipfilt" data-chip>Replies <span>1</span></button>
+            <button class="chipfilt on" data-chip>All <span>6</span></button>
             <button class="chipfilt" data-chip>Meetings <span>0</span></button>
-            <button class="chipfilt" data-chip>External <span>2</span></button>
-            <button class="chipfilt" data-chip>Product <span>2</span></button>
-            <button class="chipfilt" data-chip>Notes <span>0</span></button>
+            <button class="chipfilt" data-chip>Emails <span>3</span></button>
+            <button class="chipfilt" data-chip>Signals <span>1</span></button>
+            <button class="chipfilt" data-chip>External <span>1</span></button>
+            <button class="chipfilt" data-chip>Notes <span>1</span></button>
           </div>
           <div class="card-pad">
             <ul class="tl">
               <li>
                 <span class="pin p-ext"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 16V8M10 16V4M16 16v-6"/></svg></span>
                 <div class="when"><span class="badge badge-warning badge-sq">External</span>Jul 2026</div>
-                <div class="what">Broad GTM hiring surge across US, Europe, Japan and UAE, plus India commercial expansion</div>
-                <button class="btn btn-tertiary btn-sm" data-tlx="t1" style="margin-top:var(--s3);padding-left:0">Details<svg class="icon icon-xs chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
-                <div class="expand" id="t1">
-                  <div class="kv"><span class="k">Source</span><span class="v">Sonnar external signals</span></div>
-                  <div class="kv"><span class="k">Signal types</span><span class="v">GTM team growth · Market expansion</span></div>
-                  <div class="kv"><span class="k">Corroborated by a contact</span><span class="v">No</span></div>
-                  <p class="t-sm dim" style="margin-top:var(--s5)">A wide, multi-region GTM scaling effort is exactly the pain CTD's network intelligence addresses, and it is a legitimate external buying trigger.</p>
-                </div>
+                <div class="what"><span class="strong">Broad GTM hiring surge</span> across US, Europe, Japan and UAE, plus India commercial expansion</div>
+                <div class="note">A legitimate external buying trigger. Not yet corroborated by anything a Kestrel contact has said.</div>
               </li>
-
               <li>
-                <span class="pin p-in"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7"/><path d="M10 6v4l3 2"/></svg></span>
-                <div class="when"><span class="badge badge-success badge-sq">Engagement</span>18 Jun 2026</div>
-                <div class="what">Elena Roche attended the Industrial GTM Summit webinar on AI-driven GTM engineering</div>
-                <div class="note">The only concrete prospect-initiated action in the entire history.</div>
-                <button class="btn btn-tertiary btn-sm" data-tlx="t2" style="margin-top:var(--s3);padding-left:0">Details<svg class="icon icon-xs chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
-                <div class="expand" id="t2">
-                  <div class="kv"><span class="k">Confirmed by</span><span class="v">Transcript and guest list</span></div>
-                  <div class="kv"><span class="k">Topic</span><span class="v">Agentic GTM workflows across CRM, Slack and APIs</span></div>
-                  <div class="kv"><span class="k">Weight</span><span class="v">Limited — passive attendance, not a conversation</span></div>
-                  <p class="t-sm dim" style="margin-top:var(--s5)">CTD API (Mar 2026) and CTD MCP (Jun 2026) speak directly to this agenda and both launched after most of CTD's outreach — a credible, non-generic reason to reconnect.</p>
-                </div>
+                <span class="pin p-in"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 3v7M6.5 6.5 10 3l3.5 3.5"/><path d="M4 13v3h12v-3"/></svg></span>
+                <div class="when"><span class="badge badge-success badge-sq">Signal</span>18 Jun 2026</div>
+                <div class="what">Elena Roche attended the Industrial GTM Summit webinar</div>
+                <div class="note">Confirmed by transcript and guest list. The only concrete prospect-initiated action in the entire history.</div>
               </li>
-
               <li>
                 <span class="pin p-out"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M3 5h14v10H3z"/><path d="m3 6 7 5 7-5"/></svg></span>
-                <div class="when"><span class="badge badge-blue badge-sq">Outbound</span>9 Jun 2026<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">RA</span>Renee Alvarez</span></div>
+                <div class="when"><span class="badge badge-gray badge-sq">Email</span>9 Jun 2026<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">RA</span>Renee Alvarez</span></div>
                 <div class="what">Webinar invite to Priya Raman (CMO) — reply received</div>
                 <button class="btn btn-tertiary btn-sm" data-tlx="t3" style="margin-top:var(--s3);padding-left:0">Details<svg class="icon icon-xs chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
                 <div class="expand" id="t3">
-                  <div class="kv"><span class="k">Subject</span><span class="v">You're invited: Industrial GTM Summit webinar</span></div>
+                  <div class="kv"><span class="k">Subject</span><span class="v">You're invited: Industrial GTM Summit</span></div>
                   <div class="kv"><span class="k">Reply received</span><span class="v">9 Jun, 14 seconds later</span></div>
                   <div class="kv"><span class="k">Reply body</span><span class="v">Empty</span></div>
                   <div class="banner warn" style="margin-top:var(--s5)">
@@ -1563,28 +1557,261 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
                   </div>
                 </div>
               </li>
-
               <li>
                 <span class="pin p-out"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M3 5h14v10H3z"/><path d="m3 6 7 5 7-5"/></svg></span>
-                <div class="when"><span class="badge badge-blue badge-sq">Outbound</span>5 Jun 2026<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">MD</span>Marco Devlin</span></div>
+                <div class="when"><span class="badge badge-gray badge-sq">Email</span>5 Jun 2026<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">MD</span>Marco Devlin</span></div>
                 <div class="what">Near-identical webinar invite to Tomas Berg (Bid Manager) — no reply</div>
                 <div class="note">Sent four days before Renee's invite to a different contact, with no shared account plan.</div>
               </li>
-
               <li>
-                <span class="pin"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 10h12M12 6l4 4-4 4"/></svg></span>
-                <div class="when"><span class="badge badge-gray badge-sq">Product</span>Mar–Jun 2026</div>
-                <div class="what">CTD API and CTD MCP shipped</div>
-                <div class="note">Both launched after most of CTD's outreach to this account.</div>
+                <span class="pin"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M5 3h7l3 3v11H5z"/><path d="M12 3v3h3"/></svg></span>
+                <div class="when"><span class="badge badge-gray badge-sq">Note</span>2 Jun 2026<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">AT</span>Alex Tanaka</span></div>
+                <div class="what">Alex Tanaka — met Elena briefly at the summit</div>
+                <div class="note">She said their partner motion has outgrown the spreadsheet they use to track who knows whom. Did not pitch. Worth leading with that when we finally reach out. Also: CTD API and MCP both shipped after most of our outreach, so there is a credible, non-generic reason to reconnect.</div>
               </li>
-
               <li>
                 <span class="pin p-out"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M3 5h14v10H3z"/><path d="m3 6 7 5 7-5"/></svg></span>
-                <div class="when"><span class="badge badge-blue badge-sq">Outbound</span>13 Nov 2025<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">RA</span>Renee Alvarez</span></div>
+                <div class="when"><span class="badge badge-gray badge-sq">Email</span>13 Nov 2025<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">RA</span>Renee Alvarez</span></div>
                 <div class="what">Two event invites to Tomas Berg — no response</div>
                 <div class="note">Account went silent for roughly four months afterwards.</div>
               </li>
             </ul>
+          </div>
+          <div class="legend">
+            <span><b>Meeting</b> a call — opens to its summary</span>
+            <span><b>Email</b> sent or received</span>
+            <span><b>Signal</b> something they did that we did not cause</span>
+            <span><b>Milestone</b> a change in deal state</span>
+            <span><b>External</b> a market event about them</span>
+            <span><b>Note</b> recorded by a person</span>
+          </div>
+        </div>
+
+        <!-- By rep -->
+        <div id="h-byrep" hidden>
+          <div class="card-pad">
+            <div class="banner warn" style="margin-bottom:var(--s7)">
+              <svg class="icon icon-sm" style="color:var(--warning-700);margin-top:2px" viewBox="0 0 20 20"><path d="M10 7v4M10 14h.01"/><circle cx="10" cy="10" r="7.5"/></svg>
+              <div><span class="strong">Two reps worked this account without coordinating.</span> Renee Alvarez and Marco Devlin sent near-identical invites to different contacts within four days of each other in June 2026. Neither logged a plan.</div>
+            </div>
+
+            <div class="grid g2">
+              <div class="card">
+                <div class="card-head">
+                  <span class="avatar">RA</span>
+                  <div><h3>Renee Alvarez</h3><div class="t-xs muted">AE · 5 touches · 1 reply</div></div>
+                  <span class="badge badge-gray" style="margin-left:auto">Nov 2025 – Jun 2026</span>
+                </div>
+                <div class="card-pad">
+                  <ul class="bul">
+                    <li><span class="strong">9 Jun 2026</span> — webinar invite to <span class="strong">Priya Raman</span> (CMO). Auto-reply.</li>
+                    <li><span class="strong">13 Nov 2025</span> — two event invites to <span class="strong">Tomas Berg</span> (Bid Manager). No response.</li>
+                    <li>Two further invites, both cold, both to contacts with no buying authority.</li>
+                  </ul>
+                  <div class="kv" style="margin-top:var(--s6)"><span class="k">Contacts touched</span><span class="v">Priya Raman, Tomas Berg</span></div>
+                  <div class="kv"><span class="k">Warm paths used</span><span class="v">0 of 109 available</span></div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-head">
+                  <span class="avatar">MD</span>
+                  <div><h3>Marco Devlin</h3><div class="t-xs muted">Global Sales Director · 1 touch · 0 replies · owner</div></div>
+                  <span class="badge badge-gray" style="margin-left:auto">Jun 2026</span>
+                </div>
+                <div class="card-pad">
+                  <ul class="bul">
+                    <li><span class="strong">5 Jun 2026</span> — near-identical webinar invite to <span class="strong">Tomas Berg</span>, four days before Renee emailed Priya Raman.</li>
+                  </ul>
+                  <div class="kv" style="margin-top:var(--s6)"><span class="k">Contacts touched</span><span class="v">Tomas Berg</span></div>
+                  <div class="kv"><span class="k">Warm paths used</span><span class="v">0 of 14 available</span></div>
+                  <div class="banner" style="margin-top:var(--s6)">
+                    <svg class="icon icon-sm" style="color:var(--blue-700);margin-top:2px" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 6h.01"/></svg>
+                    <div>Marco owns the account but has a Weak path to Elena. <span class="strong">Alex Tanaka</span> has the Strong one — route through him.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" style="margin-top:var(--s6)">
+              <div class="card-head"><h3>Contact coverage</h3><span class="t-sm muted" style="margin-left:auto">Who has been touched, by whom</span></div>
+              <div style="overflow-x:auto">
+              <table>
+                <thead><tr><th>Contact</th><th>Role</th><th>Touched by</th><th>Touches</th><th>Outcome</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td class="strong">Tomas Berg</td><td class="t-sm dim">Bid Manager</td>
+                    <td><div class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">RA</span><span class="avatar avatar-sm">MD</span><span class="t-xs muted">2 reps</span></div></td>
+                    <td class="num">3</td><td><span class="badge badge-error"><span class="dot"></span>No response</span></td>
+                  </tr>
+                  <tr>
+                    <td class="strong">Priya Raman</td><td class="t-sm dim">CMO</td>
+                    <td><div class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">RA</span></div></td>
+                    <td class="num">2</td><td><span class="badge badge-warning"><span class="dot"></span>Auto-reply</span></td>
+                  </tr>
+                  <tr>
+                    <td class="strong">Victor Hale</td><td class="t-sm dim">President &amp; CRO</td>
+                    <td><div class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">RA</span></div></td>
+                    <td class="num">2</td><td><span class="badge badge-error"><span class="dot"></span>No response</span></td>
+                  </tr>
+                  <tr>
+                    <td class="strong">Elena Roche</td><td class="t-sm dim">Head of Growth</td>
+                    <td><span class="t-xs muted">Never contacted directly</span></td>
+                    <td class="num">1</td><td><span class="badge badge-success"><span class="dot"></span>Attended webinar</span></td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+              <div class="legend"><span>The only person who showed intent is the only one nobody targeted.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notes & docs -->
+        <div id="h-notes" hidden>
+          <div class="card-pad">
+            <div class="grid g2">
+              <div class="card">
+                <div class="card-head"><h3>Notes</h3><span class="badge badge-gray">1</span><button class="btn btn-secondary btn-sm" style="margin-left:auto">Add note</button></div>
+        <div class="notei">
+          <div class="meta"><span class="avatar avatar-sm">AT</span><span class="t-sm strong">Alex Tanaka</span><span class="t-xs muted">2 Jun 2026</span></div>
+          <div class="t-sm strong" style="margin-bottom:var(--s2)">Met Elena briefly at the summit</div>
+          <div class="body t-sm">She said their partner motion has outgrown the spreadsheet they use to track who knows whom. Did not pitch. Worth leading with that when we finally reach out. Also worth knowing: CTD API and MCP both shipped after most of our outreach, so there is a credible, non-generic reason to reconnect.</div>
+        </div>
+              </div>
+              <div class="card">
+                <div class="card-head"><h3>Documents</h3><button class="btn btn-secondary btn-sm" style="margin-left:auto">New doc</button></div>
+                <div class="empty">
+                  <div class="ico"><svg class="icon" viewBox="0 0 20 20"><path d="M4 3h8l4 4v10H4z"/><path d="M12 3v4h4"/></svg></div>
+                  <div class="t-sm strong" style="color:var(--gray-700)">No documents yet</div>
+                  <div class="t-sm">Account plans and call notes live here.</div>
+                  <button class="btn btn-secondary btn-sm" style="margin-top:var(--s6)">Create an account plan</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="tab-tasks" hidden>
+      <div class="between" style="margin-bottom:var(--s7);flex-wrap:wrap">
+        <div class="row" style="gap:var(--s5);flex-wrap:wrap"><span class="badge badge-blue"><span class="dot"></span>1 waiting on you</span><span class="badge badge-gray">0 done</span></div>
+        <button class="btn btn-primary"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12"/></svg>New task</button>
+      </div>
+      <div class="playcard is-mine">
+        <div class="playcard-head">
+          <span class="badge badge-sky badge-sq">Warm intro</span>
+          <h3>Reach Elena Roche via Alex Tanaka</h3>
+          <span class="badge badge-blue" style="margin-left:auto"><span class="dot"></span>Your turn</span>
+        </div>
+        <div class="pstep done"><span class="pmark"><svg class="icon icon-xs" viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg></span>
+          <div class="pgrow"><div class="strong t-sm">Path picked &amp; drafted</div><div class="t-xs muted">Marco Devlin · 12 Jun · chose Alex over 13 other connectors</div></div>
+          <span class="badge badge-gray">Done</span></div>
+        <div class="pstep now"><span class="pmark">2</span>
+          <div class="pgrow"><div class="strong t-sm">You send the ask to Alex</div><div class="t-xs muted">Waiting on you · 2 days</div></div>
+          <button class="btn btn-primary btn-sm" data-view="task">Open task</button></div>
+        <div class="pstep todo"><span class="pmark">3</span>
+          <div class="pgrow"><div class="strong t-sm">Alex intros you to Elena</div><div class="t-xs muted">Tracked once you send</div></div></div>
+      </div>
+
+      <div class="card" style="margin-top:var(--s6)">
+        <div class="empty" style="padding:var(--s8)">
+          <div class="ico"><svg class="icon" viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg></div>
+          <div class="t-sm strong" style="color:var(--gray-700)">Nothing completed yet</div>
+          <div class="t-sm">Six touches went out before CTD started tracking plays. None used a warm path.</div>
+        </div>
+      </div>
+      <p class="t-sm muted" style="margin-top:var(--s7)">Everything here also appears in <a href="#" data-view="tasks">Tasks</a>, alongside your other accounts. This view is the same work, scoped to one account.</p>
+    </section>
+
+    <!-- ------------------------- HISTORY ------------------------- -->
+    <section id="tab-history" hidden>
+      <div class="grid g3" style="margin-bottom:var(--s7)">
+        <div class="card card-pad"><span class="label">Interactions</span><div class="d-md" style="margin-top:var(--s3)">8</div><div class="t-sm muted">6 outbound · 1 reply · 1 attendance</div></div>
+        <div class="card card-pad"><span class="label">Engagement span</span><div class="d-md" style="margin-top:var(--s3)">217d</div><div class="t-sm muted">13 Nov 2025 → 18 Jun 2026</div></div>
+        <div class="card card-pad"><span class="label">Response ratio</span><div class="d-md" style="margin-top:var(--s3)">1 / 6</div><div class="t-sm muted">And the one reply was automated</div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="seg">
+            <button class="is-active" data-hist="timeline">Timeline</button>
+            <button data-hist="byrep">By rep</button>
+            <button data-hist="notes">Notes &amp; docs</button>
+          </div>
+          <div class="row" style="margin-left:auto;gap:var(--s4)">
+            <button class="btn btn-secondary btn-sm"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12"/></svg>Add note</button>
+          </div>
+        </div>
+
+        <!-- Timeline -->
+        <div id="h-timeline">
+          <div class="toolbar" style="gap:var(--s4)">
+            <button class="chipfilt on" data-chip>All <span>6</span></button>
+            <button class="chipfilt" data-chip>Meetings <span>0</span></button>
+            <button class="chipfilt" data-chip>Emails <span>3</span></button>
+            <button class="chipfilt" data-chip>Signals <span>1</span></button>
+            <button class="chipfilt" data-chip>External <span>1</span></button>
+            <button class="chipfilt" data-chip>Notes <span>1</span></button>
+          </div>
+          <div class="card-pad">
+            <ul class="tl">
+              <li>
+                <span class="pin p-ext"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 16V8M10 16V4M16 16v-6"/></svg></span>
+                <div class="when"><span class="badge badge-warning badge-sq">External</span>Jul 2026</div>
+                <div class="what"><span class="strong">Broad GTM hiring surge</span> across US, Europe, Japan and UAE, plus India commercial expansion</div>
+                <div class="note">A legitimate external buying trigger. Not yet corroborated by anything a Kestrel contact has said.</div>
+              </li>
+              <li>
+                <span class="pin p-in"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 3v7M6.5 6.5 10 3l3.5 3.5"/><path d="M4 13v3h12v-3"/></svg></span>
+                <div class="when"><span class="badge badge-success badge-sq">Signal</span>18 Jun 2026</div>
+                <div class="what">Elena Roche attended the Industrial GTM Summit webinar</div>
+                <div class="note">Confirmed by transcript and guest list. The only concrete prospect-initiated action in the entire history.</div>
+              </li>
+              <li>
+                <span class="pin p-out"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M3 5h14v10H3z"/><path d="m3 6 7 5 7-5"/></svg></span>
+                <div class="when"><span class="badge badge-gray badge-sq">Email</span>9 Jun 2026<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">RA</span>Renee Alvarez</span></div>
+                <div class="what">Webinar invite to Priya Raman (CMO) — reply received</div>
+                <button class="btn btn-tertiary btn-sm" data-tlx="t3" style="margin-top:var(--s3);padding-left:0">Details<svg class="icon icon-xs chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
+                <div class="expand" id="t3">
+                  <div class="kv"><span class="k">Subject</span><span class="v">You're invited: Industrial GTM Summit</span></div>
+                  <div class="kv"><span class="k">Reply received</span><span class="v">9 Jun, 14 seconds later</span></div>
+                  <div class="kv"><span class="k">Reply body</span><span class="v">Empty</span></div>
+                  <div class="banner warn" style="margin-top:var(--s5)">
+                    <svg class="icon icon-sm" style="color:var(--warning-700);margin-top:2px" viewBox="0 0 20 20"><path d="M10 7v4M10 14h.01"/><circle cx="10" cy="10" r="7.5"/></svg>
+                    <div>Classified as an auto-reply, not engagement. It should not be counted as intent.</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="pin p-out"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M3 5h14v10H3z"/><path d="m3 6 7 5 7-5"/></svg></span>
+                <div class="when"><span class="badge badge-gray badge-sq">Email</span>5 Jun 2026<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">MD</span>Marco Devlin</span></div>
+                <div class="what">Near-identical webinar invite to Tomas Berg (Bid Manager) — no reply</div>
+                <div class="note">Sent four days before Renee's invite to a different contact, with no shared account plan.</div>
+              </li>
+              <li>
+                <span class="pin"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M5 3h7l3 3v11H5z"/><path d="M12 3v3h3"/></svg></span>
+                <div class="when"><span class="badge badge-gray badge-sq">Note</span>2 Jun 2026<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">AT</span>Alex Tanaka</span></div>
+                <div class="what">Alex Tanaka — met Elena briefly at the summit</div>
+                <div class="note">She said their partner motion has outgrown the spreadsheet they use to track who knows whom. Did not pitch. Worth leading with that when we finally reach out. Also: CTD API and MCP both shipped after most of our outreach, so there is a credible, non-generic reason to reconnect.</div>
+              </li>
+              <li>
+                <span class="pin p-out"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M3 5h14v10H3z"/><path d="m3 6 7 5 7-5"/></svg></span>
+                <div class="when"><span class="badge badge-gray badge-sq">Email</span>13 Nov 2025<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">RA</span>Renee Alvarez</span></div>
+                <div class="what">Two event invites to Tomas Berg — no response</div>
+                <div class="note">Account went silent for roughly four months afterwards.</div>
+              </li>
+            </ul>
+          </div>
+          <div class="legend">
+            <span><b>Meeting</b> a call — opens to its summary</span>
+            <span><b>Email</b> sent or received</span>
+            <span><b>Signal</b> something they did that we did not cause</span>
+            <span><b>Milestone</b> a change in deal state</span>
+            <span><b>External</b> a market event about them</span>
+            <span><b>Note</b> recorded by a person</span>
           </div>
         </div>
 
@@ -1992,19 +2219,37 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
         <div id="h2-timeline">
           <div class="toolbar" style="gap:var(--s4)">
-            <button class="chipfilt on" data-chip>All <span>7</span></button>
-            <button class="chipfilt" data-chip>Meetings <span>3</span></button>
-            <button class="chipfilt" data-chip>Outbound <span>5</span></button>
-            <button class="chipfilt" data-chip>Replies <span>4</span></button>
-            <button class="chipfilt" data-chip>Pricing <span>1</span></button>
-            <button class="chipfilt" data-chip>Notes <span>0</span></button>
+            <button class="chipfilt on" data-chip>All <span>9</span></button>
+            <button class="chipfilt" data-chip>Meetings <span>4</span></button>
+            <button class="chipfilt" data-chip>Emails <span>2</span></button>
+            <button class="chipfilt" data-chip>Signals <span>1</span></button>
+            <button class="chipfilt" data-chip>Milestones <span>1</span></button>
+            <button class="chipfilt" data-chip>Notes <span>2</span></button>
           </div>
           <div class="card-pad">
             <ul class="tl">
+
               <li>
-                <span class="pin p-out"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 16V8M10 16V4M16 16v-6"/></svg></span>
-                <div class="when"><span class="badge badge-success badge-sq">Pricing</span>20 Jul 2026<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">MD</span>Marco Devlin</span></div>
-                <div class="what">Budgetary pricing sent to unblock procurement</div>
+                <span class="pin p-in"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M5 4h10v13H5z"/><path d="M8 2v3M12 2v3M5 8h10"/></svg></span>
+                <div class="when"><span class="badge badge-blue badge-sq">Meeting</span>Fri 24 Jul 2026 · 30 min<span class="badge badge-warning"><span class="dot"></span>Upcoming</span></div>
+                <div class="what">Security review kickoff — Marcus Webb, Cara Nunes and Marco Devlin</div>
+                <div class="mtg">
+                  <button class="mtg-head" data-mtg="m0">
+                    <span class="avatar avatar-sm avatar-mono">CN</span>
+                    <span class="who"><span class="strong t-sm">Not held yet</span><span class="t-xs muted" style="display:block">Agenda drafted · no summary until it happens</span></span>
+                    <svg class="icon icon-sm chev muted" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg>
+                  </button>
+                  <div class="mtg-body" id="m0">
+                    <div><h6>Agenda</h6><ul class="bul"><li>Walk Cara through the MNDA and what CTD needs signed.</li><li>Scope the security questionnaire — pen test and SOC 2 evidence.</li><li>Agree who owns legal review, since it rotates through inside counsel.</li></ul></div>
+                    <div><h6>Prepare</h6><ul class="bul warn"><li>This is their first ever procurement run. Expect process questions, not product questions.</li></ul></div>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <span class="pin p-in"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg></span>
+                <div class="when"><span class="badge badge-success badge-sq">Milestone</span>20 Jul 2026<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">MD</span>Marco Devlin</span></div>
+                <div class="what">Budgetary pricing delivered — procurement unblocked</div>
                 <div class="note">3-month POC at $15,000 — $11,250 indexing plus $3,750 for ~15 seats — converting to $60,000/year, with POC payments credited. Reaction not yet captured.</div>
               </li>
 
@@ -2029,6 +2274,13 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
               </li>
 
               <li>
+                <span class="pin"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M5 3h7l3 3v11H5z"/><path d="M12 3v3h3"/></svg></span>
+                <div class="when"><span class="badge badge-gray badge-sq">Note</span>18 Jul 2026<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">MD</span>Marco Devlin</span></div>
+                <div class="what">Marcus is measured on pipeline, not tooling spend</div>
+                <div class="note">Off the record after the Jul 17 call: his own bonus is tied to sourced pipeline, which is why he is pushing indexing at org level rather than a small pilot. Frame the POC success metrics around pipeline influence and he will defend the budget himself.</div>
+              </li>
+
+              <li>
                 <span class="pin p-in"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M5 4h10v13H5z"/><path d="M8 2v3M12 2v3M5 8h10"/></svg></span>
                 <div class="when"><span class="badge badge-blue badge-sq">Meeting</span>17 Jul 2026 · 60 min</div>
                 <div class="what">Marcus Webb and Bill Schafer with Dana, Marco and Alex</div>
@@ -2045,6 +2297,13 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
                     <div><h6>Risks</h6><ul class="bul warn"><li>RVP buy-in across the other regions still unsecured.</li></ul></div>
                   </div>
                 </div>
+              </li>
+
+              <li>
+                <span class="pin p-in"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 3v7M6.5 6.5 10 3l3.5 3.5"/><path d="M4 13v3h12v-3"/></svg></span>
+                <div class="when"><span class="badge badge-success badge-sq">Signal</span>15 Jul 2026</div>
+                <div class="what">Marcus Webb read the paths API documentation three times in two days</div>
+                <div class="note">Prospect-initiated and unprompted. He is scoping the build himself, which is why the ask arrived as an integration question rather than a pricing one.</div>
               </li>
 
               <li>
@@ -2066,12 +2325,28 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
               </li>
 
               <li>
-                <span class="pin"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 10h12M12 6l4 4-4 4"/></svg></span>
-                <div class="when"><span class="badge badge-gray badge-sq">Origin</span>Jun 2026</div>
+                <span class="pin"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M5 3h7l3 3v11H5z"/><path d="M12 3v3h3"/></svg></span>
+                <div class="when"><span class="badge badge-gray badge-sq">Note</span>Jun 2026<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">DS</span>Dana Sackett</span></div>
+                <div class="what">Do not go over Marcus's head without telling him first</div>
+                <div class="note">I have known Adam Kessler for years and can open that door any time. But Marcus is doing the internal selling for us and would read a direct exec approach as being cut out. Use it only if procurement stalls, and give him warning.</div>
+              </li>
+
+              <li>
+                <span class="pin p-in"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg></span>
+                <div class="when"><span class="badge badge-success badge-sq">Milestone</span>Jun 2026</div>
                 <div class="what">Cal Stern introduced Marcus Webb to CTD</div>
                 <div class="note">Reinforced by Dana Sackett's existing direct relationship with CEO Adam Kessler.</div>
               </li>
+
             </ul>
+          </div>
+          <div class="legend">
+            <span><b>Meeting</b> a call — opens to its summary</span>
+            <span><b>Email</b> sent or received</span>
+            <span><b>Signal</b> something they did that we did not cause</span>
+            <span><b>Milestone</b> a change in deal state</span>
+            <span><b>External</b> a market event about them</span>
+            <span><b>Note</b> recorded by a person</span>
           </div>
         </div>
 
@@ -2094,12 +2369,33 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <div id="h2-notes" hidden>
           <div class="card-pad">
             <div class="grid g2">
-              <div class="card"><div class="card-head"><h3>Notes</h3><button class="btn btn-secondary btn-sm" style="margin-left:auto">Add note</button></div>
-                <div class="empty"><div class="ico"><svg class="icon" viewBox="0 0 20 20"><path d="M5 3h7l3 3v11H5z"/><path d="M12 3v3h3"/></svg></div>
-                <div class="t-sm strong" style="color:var(--gray-700)">No notes yet</div><div class="t-sm">Add what you know that the meetings did not capture.</div></div></div>
-              <div class="card"><div class="card-head"><h3>Documents</h3><button class="btn btn-secondary btn-sm" style="margin-left:auto">New doc</button></div>
-                <div class="empty"><div class="ico"><svg class="icon" viewBox="0 0 20 20"><path d="M4 3h8l4 4v10H4z"/><path d="M12 3v4h4"/></svg></div>
-                <div class="t-sm strong" style="color:var(--gray-700)">No documents yet</div><div class="t-sm">The MNDA and security questionnaire will land here.</div></div></div>
+              <div class="card">
+                <div class="card-head"><h3>Notes</h3><span class="badge badge-gray">2</span><button class="btn btn-secondary btn-sm" style="margin-left:auto">Add note</button></div>
+        <div class="notei">
+          <div class="meta"><span class="avatar avatar-sm">MD</span><span class="t-sm strong">Marco Devlin</span><span class="t-xs muted">18 Jul 2026</span></div>
+          <div class="t-sm strong" style="margin-bottom:var(--s2)">Marcus is measured on pipeline, not tooling spend</div>
+          <div class="body t-sm">Off the record after the Jul 17 call: his own bonus is tied to sourced pipeline, which is why he is pushing indexing at org level rather than a small pilot. Frame the POC success metrics around pipeline influence and he will defend the budget himself.</div>
+        </div>
+        <div class="notei">
+          <div class="meta"><span class="avatar avatar-sm">DS</span><span class="t-sm strong">Dana Sackett</span><span class="t-xs muted">Jun 2026</span></div>
+          <div class="t-sm strong" style="margin-bottom:var(--s2)">Do not go over Marcus's head without telling him first</div>
+          <div class="body t-sm">I have known Adam Kessler for years and can open that door any time. But Marcus is doing the internal selling for us and would read a direct exec approach as being cut out. Use it only if procurement stalls, and give him warning.</div>
+        </div>
+              </div>
+              <div class="card">
+                <div class="card-head"><h3>Documents</h3><span class="badge badge-gray">2</span><button class="btn btn-secondary btn-sm" style="margin-left:auto">New doc</button></div>
+        <a class="doci" href="#">
+          <svg class="icon" style="color:var(--gray-500)" viewBox="0 0 20 20"><path d="M4 3h8l4 4v10H4z"/><path d="M12 3v4h4"/></svg>
+          <span style="flex:1;min-width:0"><span class="t-sm strong" style="display:block">Pilot scope and success metrics</span><span class="t-xs muted">Marco Devlin · 20 Jul · shared with Marcus Webb</span></span>
+          <svg class="icon icon-sm muted" viewBox="0 0 20 20"><path d="m8 5 5 5-5 5"/></svg>
+        </a>
+        <a class="doci" href="#">
+          <svg class="icon" style="color:var(--gray-500)" viewBox="0 0 20 20"><path d="M4 3h8l4 4v10H4z"/><path d="M12 3v4h4"/></svg>
+          <span style="flex:1;min-width:0"><span class="t-sm strong" style="display:block">Budgetary pricing — 15 seats, 90 days</span><span class="t-xs muted">Marco Devlin · 20 Jul · sent</span></span>
+          <svg class="icon icon-sm muted" viewBox="0 0 20 20"><path d="m8 5 5 5-5 5"/></svg>
+        </a>
+                <div class="card-foot"><span class="t-xs muted">The MNDA and security questionnaire will land here once procurement opens.</span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -2386,6 +2682,19 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       <p>The global <span class="strong">Tasks</span> queue answers "what should I do next across everything I own" — that is the morning workflow and it stays. The account's <span class="strong">Tasks</span> tab answers "what is in flight here" — that is the account-review workflow. Same records, two entry points, because those are two genuinely different jobs.</p>
       <p style="margin-top:var(--s5)">Scoped to one account, tasks are grouped by the <span class="strong">play</span> they belong to rather than listed flat, which is what the old Progress tab was reaching for. Each play shows its steps with state, who is holding it, and how long it has been sitting. A play waiting on the prospect looks different from one waiting on you.</p>
       <p style="margin-top:var(--s5)">That also absorbs the last orphan: Progress was a dense indented wall covering every account at once. Per-account it is legible, and the cross-account roll-up is what the Tasks queue already does.</p>
+    </div>
+
+    <div class="note-block">
+      <h4>15 · Timeline event types</h4>
+      <p>The first pass invented labels ad hoc — "Engagement", "Outbound", "Product", "Origin" — and the two accounts did not even use the same set. Six types now, on one axis: <span class="strong">who did it, and did we cause it</span>.</p>
+      <div class="kv"><span class="k">Meeting</span><span class="v">A call — expands to its summary</span></div>
+      <div class="kv"><span class="k">Email</span><span class="v">Sent or received</span></div>
+      <div class="kv"><span class="k">Signal</span><span class="v">They did something we did not cause</span></div>
+      <div class="kv"><span class="k">Milestone</span><span class="v">A change in deal state</span></div>
+      <div class="kv"><span class="k">External</span><span class="v">A market event about them</span></div>
+      <div class="kv"><span class="k">Note</span><span class="v">Recorded by a person</span></div>
+      <p style="margin-top:var(--s5)"><span class="strong">Signal</span> is the one that earns its place. A webinar attendance or three reads of the API docs is prospect-initiated intent — categorically different from an email we sent, and the thing an AE most wants to spot. "Engagement" blurred it with replies to our own outreach, which is exactly the mistake the Kestrel account was making.</p>
+      <p style="margin-top:var(--s5)">A legend sits under every timeline, because six colour-coded chips with no key is how you get a vocabulary nobody learns. Note that <span class="strong">play types</span> on the Tasks tab — warm intro, intro, follow-up, pricing — are a separate vocabulary on purpose: one describes what happened, the other describes what you are trying to do.</p>
     </div>
 
     <div class="note-block">
