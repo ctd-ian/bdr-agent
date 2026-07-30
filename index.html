@@ -314,20 +314,6 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
 /* ===================== Task execute screen ===================== */
 
-/* Stepper — the chain a task belongs to, always visible */
-.steps{display:flex;align-items:stretch;gap:0;border:1px solid var(--gray-200);border-radius:var(--r-xl);background:#fff;overflow:hidden;box-shadow:var(--sh-sm)}
-.step{flex:1;padding:var(--s6) var(--s7);border-right:1px solid var(--gray-200);min-width:0}
-.step:last-child{border-right:none}
-.step.now{background:var(--blue-25)}
-.step .top{display:flex;align-items:center;gap:var(--s4);margin-bottom:var(--s3)}
-.step .mark{width:20px;height:20px;flex:0 0 20px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:600;
-  background:var(--gray-100);color:var(--gray-500)}
-.step.done .mark{background:var(--success-50);color:var(--success-700)}
-.step.now .mark{background:var(--blue-600);color:#fff}
-.step .nm{font-size:14px;font-weight:600;color:var(--gray-900)}
-.step.todo .nm{color:var(--gray-500);font-weight:500}
-.step .by{font-size:12px;line-height:18px;color:var(--gray-500);display:flex;align-items:center;gap:var(--s3);flex-wrap:wrap}
-
 /* Relay — who sends what to whom */
 .relay{display:flex;align-items:center;gap:var(--s5);flex-wrap:wrap}
 .relay .node{display:flex;align-items:center;gap:var(--s4);background:#fff;border:1px solid var(--gray-200);border-radius:var(--r-2xl);padding:4px 12px 4px 4px}
@@ -825,28 +811,8 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       </div>
     </div>
 
-    <!-- The chain this task belongs to -->
-    <div class="sec-title"><h2>The play</h2><span class="t-sm muted">Two steps for CTD, then it is with Nathan</span></div>
-    <div class="steps">
-      <div class="step done">
-        <div class="top"><span class="mark"><svg class="icon icon-xs" viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg></span><span class="nm">Path picked &amp; drafted</span></div>
-        <div class="by"><span class="avatar avatar-sm">MD</span>Marco Devlin · 12 Jun</div>
-        <div class="t-xs muted" style="margin-top:var(--s3)">Chose Nathan Pike over 13 other connectors, then wrote both messages</div>
-      </div>
-      <div class="step now">
-        <div class="top"><span class="mark">2</span><span class="nm">You send to Nathan</span></div>
-        <div class="by"><span class="avatar avatar-sm">SE</span>You · now</div>
-        <div class="t-xs" style="margin-top:var(--s3);color:var(--blue-700);font-weight:500">Review and send</div>
-      </div>
-      <div class="step todo">
-        <div class="top"><span class="mark">3</span><span class="nm">Nathan intros you to Dean</span></div>
-        <div class="by"><span class="avatar avatar-sm">NP</span>Nathan Pike → <span class="avatar avatar-sm">DW</span>Dean Whitlock</div>
-        <div class="t-xs muted" style="margin-top:var(--s3)">Out of your hands — we'll track Dean's reply</div>
-      </div>
-    </div>
-
     <!-- Strategy brief — same content as the old tab, in place, collapsed -->
-    <div class="pillar" style="margin-top:var(--s6)">
+    <div class="pillar" style="margin-top:var(--s7)">
       <div class="body">
         <span class="label">Strategy brief</span>
         <p class="t-md" style="color:var(--gray-800);margin-top:var(--s4)">
@@ -890,39 +856,58 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       </div>
     </div>
 
-    <!-- Who does what -->
-    <div class="sec-title"><h2>Who sends what</h2></div>
-    <div class="card card-pad">
-      <div class="relay">
-        <span class="node you"><span class="avatar avatar-sm">SE</span><span><span class="nm">You</span> <span class="rl">Sam Ellis</span></span></span>
-        <span class="leg"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 10h12M12 6l4 4-4 4"/></svg><span>Message 1</span></span>
-        <span class="node"><span class="avatar avatar-sm">NP</span><span><span class="nm">Nathan Pike</span> <span class="rl">Connector · Meridian Advisory</span></span></span>
-        <span class="leg"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 10h12M12 6l4 4-4 4"/></svg><span>Message 2</span></span>
-        <span class="node"><span class="avatar avatar-sm">DW</span><span><span class="nm">Dean Whitlock</span> <span class="rl">CEO · Copperline</span></span></span>
-      </div>
-      <div class="banner" style="margin-top:var(--s6)">
-        <svg class="icon icon-sm" style="color:var(--blue-700);margin-top:2px" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 6h.01"/></svg>
-        <div><span class="strong">You only send message 1.</span> Message 2 is written for Nathan to forward on to Dean in his own name — you never send it, and Dean never sees anything from you. If Dean bites, the goal is a hand-off to CCO Ruth Calder.</div>
-      </div>
+    <!-- The play — relay, state and sender choice in one component -->
+    <div class="sec-title">
+      <h2>The play</h2>
+      <span class="t-sm muted">Warm intro to Dean Whitlock via Nathan Pike</span>
+      <a href="#" style="margin-left:auto;font-weight:500;font-size:14px">Change connector</a>
     </div>
 
-    <!-- Delivery -->
-    <div class="sec-title"><h2>How message 1 reaches Nathan</h2></div>
-    <div class="delivery">
-      <button class="dopt on" data-dopt>
-        <span class="rad"></span>
-        <span>
-          <h5>From your inbox</h5>
-          <p>Sends now from sam@ctd.ai straight to Nathan. Lands like a normal email. Nathan replies to you directly.</p>
-        </span>
-      </button>
-      <button class="dopt" data-dopt>
-        <span class="rad"></span>
-        <span>
-          <h5>As a ghost mail in CTD.ai</h5>
-          <p>Nathan gets a CTD notification and approves the note before anything is sent. Slower, but he keeps control of what goes out under his name.</p>
-        </span>
-      </button>
+    <div class="card">
+      <div class="card-pad">
+        <span class="label">Who sends your ask to Nathan</span>
+        <div class="delivery" style="margin-top:var(--s5)">
+          <button class="dopt on" data-dopt>
+            <span class="rad"></span>
+            <span>
+              <h5>You send it</h5>
+              <p>Goes now from sam@ctd.ai. Nathan replies straight to you.</p>
+            </span>
+          </button>
+          <button class="dopt" data-dopt>
+            <span class="rad"></span>
+            <span>
+              <h5>Marco sends it for you <span class="badge badge-gray badge-sq">Ghost</span></h5>
+              <p>You wrote it, it goes out under Marco Devlin's name. He has worked with Nathan before, so it is likelier to get opened. Marco approves in CTD first, which adds about a day.</p>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--gray-200);padding:var(--s7)">
+        <div class="relay">
+          <span class="node you">
+            <span class="avatar avatar-sm">SE</span>
+            <span><span class="nm">You</span> <span class="rl">Sam Ellis</span></span>
+            <span class="badge badge-blue" style="margin-left:var(--s4)"><span class="dot"></span>Your turn</span>
+          </span>
+          <span class="leg"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 10h12M12 6l4 4-4 4"/></svg><span>Message 1</span></span>
+          <span class="node">
+            <span class="avatar avatar-sm">NP</span>
+            <span><span class="nm">Nathan Pike</span> <span class="rl">Connector · Meridian Advisory</span></span>
+          </span>
+          <span class="leg"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 10h12M12 6l4 4-4 4"/></svg><span>Message 2</span></span>
+          <span class="node">
+            <span class="avatar avatar-sm">DW</span>
+            <span><span class="nm">Dean Whitlock</span> <span class="rl">CEO · Copperline</span></span>
+          </span>
+        </div>
+
+        <div class="banner" style="margin-top:var(--s6)">
+          <svg class="icon icon-sm" style="color:var(--blue-700);margin-top:2px" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 6h.01"/></svg>
+          <div><span class="strong">You only send message 1.</span> Message 2 is written for Nathan to forward on to Dean in his own name — you never send it, and Dean never sees anything from you. If Dean bites, the goal is a hand-off to CCO Ruth Calder.</div>
+        </div>
+      </div>
     </div>
 
     <!-- Messages -->
@@ -1881,9 +1866,10 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     <div class="note-block">
       <h4>11b · What happened to the task page's three tabs</h4>
       <div class="kv"><span class="k">Execute task</span><span class="v">The page itself</span></div>
-      <div class="kv"><span class="k">Activities</span><span class="v">The stepper at the top</span></div>
+      <div class="kv"><span class="k">Activities</span><span class="v">Folded into "The play" relay</span></div>
       <div class="kv"><span class="k">Strategy brief</span><span class="v">Same name, collapsed in place</span></div>
-      <p style="margin-top:var(--s5)"><span class="strong">Activities</span> was the only place the chain was visible, and it shared a name with the unrelated Activities concept on the account page. It is now the stepper — same information, not behind a tab.</p>
+      <p style="margin-top:var(--s5)"><span class="strong">Activities</span> was the only place the chain was visible, and it shared a name with the unrelated Activities concept on the account page.</p>
+      <p style="margin-top:var(--s5)">It first became a four-step stepper, which then turned out to be redundant: a stepper, a "who sends what" relay and a delivery radio were three renderings of one thing. There are only ever two plays — you ask the connector yourself, or you write the ask and a more senior or better-connected colleague sends it under their name. So it is now a single <span class="strong">The play</span> card: pick the sender, see the relay, done. Three sections became one.</p>
       <p style="margin-top:var(--s5)"><span class="strong">Strategy brief</span> repeated the account's Verdict, Executive Summary, Strategic Goal and Why This Strategy — the eighth copy of the same narrative. Deleting the copy was right; deleting the AE's access to it mid-task was not. A panel keeping the same name now sits under the stepper with a one-paragraph summary always visible and the full reasoning one click away, split into why this person, why this connector, why now, and the risk. It links through to the account brief rather than restating it, so there is still one source.</p>
     </div>
 
