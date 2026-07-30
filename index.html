@@ -1065,7 +1065,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       <button class="tab is-active" data-tab="brief">Brief</button>
       <button class="tab" data-tab="people">People <span class="count">4</span></button>
       <button class="tab" data-tab="tasks">Tasks <span class="count">1</span></button>
-        <button class="tab" data-tab="history">History <span class="count">8</span></button>
+        <button class="tab" data-tab="history">History <span class="count">7</span></button>
     </div>
 
     <!-- ------------------------- BRIEF ------------------------- -->
@@ -1501,7 +1501,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     <!-- ------------------------- HISTORY ------------------------- -->
     <section id="tab-history" hidden>
       <div class="grid g3" style="margin-bottom:var(--s7)">
-        <div class="card card-pad"><span class="label">Interactions</span><div class="d-md" style="margin-top:var(--s3)">8</div><div class="t-sm muted">6 outbound · 1 reply · 1 attendance</div></div>
+        <div class="card card-pad"><span class="label">Interactions</span><div class="d-md" style="margin-top:var(--s3)">8</div><div class="t-sm muted">6 outbound · 1 reply · 1 webinar</div></div>
         <div class="card card-pad"><span class="label">Engagement span</span><div class="d-md" style="margin-top:var(--s3)">217d</div><div class="t-sm muted">13 Nov 2025 → 18 Jun 2026</div></div>
         <div class="card card-pad"><span class="label">Response ratio</span><div class="d-md" style="margin-top:var(--s3)">1 / 6</div><div class="t-sm muted">And the one reply was automated</div></div>
       </div>
@@ -1521,8 +1521,8 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <!-- Timeline -->
         <div id="h-timeline">
           <div class="toolbar" style="gap:var(--s4)">
-            <button class="chipfilt on" data-chip>All <span>6</span></button>
-            <button class="chipfilt" data-chip>Meetings <span>0</span></button>
+            <button class="chipfilt on" data-chip>All <span>7</span></button>
+            <button class="chipfilt" data-chip>Meetings <span>1</span></button>
             <button class="chipfilt" data-chip>Emails <span>3</span></button>
             <button class="chipfilt" data-chip>Signals <span>1</span></button>
             <button class="chipfilt" data-chip>External <span>1</span></button>
@@ -1537,11 +1537,32 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
                 <div class="note">A legitimate external buying trigger. Not yet corroborated by anything a Kestrel contact has said.</div>
               </li>
               <li>
-                <span class="pin p-in"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 3v7M6.5 6.5 10 3l3.5 3.5"/><path d="M4 13v3h12v-3"/></svg></span>
-                <div class="when"><span class="badge badge-success badge-sq">Signal</span>18 Jun 2026</div>
-                <div class="what">Elena Roche attended the Industrial GTM Summit webinar</div>
-                <div class="note">Confirmed by transcript and guest list. The only concrete prospect-initiated action in the entire history.</div>
+                <span class="pin p-in"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M5 4h10v13H5z"/><path d="M8 2v3M12 2v3M5 8h10"/></svg></span>
+                <div class="when"><span class="badge badge-blue badge-sq">Meeting</span>18 Jun 2026 · 45 min<span class="badge badge-gray">Group webinar</span></div>
+                <div class="what">Industrial GTM Summit — hosted by CTD, Elena Roche attended</div>
+                <div class="mtg">
+                  <button class="mtg-head" data-mtg="k1">
+                    <span class="avatar avatar-sm">ER</span>
+                    <span class="who"><span class="strong t-sm">Attended, but never spoke</span><span class="t-xs muted" style="display:block">Transcript and attendance log captured</span></span>
+                    <span class="badge badge-success">1 positive</span><span class="badge badge-warning">2 risks</span>
+                    <svg class="icon icon-sm chev muted" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg>
+                  </button>
+                  <div class="mtg-body" id="k1">
+                    <div><h6>Summary</h6><p class="t-sm dim">A 45-minute CTD-hosted session on AI-driven GTM engineering, with 60-odd attendees. Elena registered herself rather than being invited, and stayed 41 of the 45 minutes. She asked no questions, did not unmute, and did not respond to the follow-up. This is the single interaction the account's whole "engaged" reading rests on.</p></div>
+                    <div><h6>What is working</h6><ul class="bul"><li>Self-registered and stayed to the end, on a topic that maps exactly to what CTD sells. Topic relevance is real even if the engagement is not.</li></ul></div>
+                    <div><h6>Risks</h6><ul class="bul warn"><li>Passive attendance is not a conversation. Treating it as intent is what produced four months of misdirected webinar invites.</li><li>No one from CTD followed up with her personally afterwards — the one moment of genuine interest went unworked for six weeks.</li></ul></div>
+                    <div><h6>What to do with it</h6><p class="t-sm dim">Use the topic as the pretext, not the attendance as the proof. She turned up for agentic GTM workflows; CTD API and MCP both shipped after this session.</p></div>
+                  </div>
+                </div>
               </li>
+
+              <li>
+                <span class="pin p-in"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 3v7M6.5 6.5 10 3l3.5 3.5"/><path d="M4 13v3h12v-3"/></svg></span>
+                <div class="when"><span class="badge badge-success badge-sq">Signal</span>Apr 2026</div>
+                <div class="what">Elena Roche's title changed to Head of Growth</div>
+                <div class="note">Promoted from Director of Demand Generation. New scope covers the partner motion — which is why she is now the right target and Tomas Berg never was.</div>
+              </li>
+
               <li>
                 <span class="pin p-out"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M3 5h14v10H3z"/><path d="m3 6 7 5 7-5"/></svg></span>
                 <div class="when"><span class="badge badge-gray badge-sq">Email</span>9 Jun 2026<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">RA</span>Renee Alvarez</span></div>
@@ -1729,7 +1750,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     <!-- ------------------------- HISTORY ------------------------- -->
     <section id="tab-history" hidden>
       <div class="grid g3" style="margin-bottom:var(--s7)">
-        <div class="card card-pad"><span class="label">Interactions</span><div class="d-md" style="margin-top:var(--s3)">8</div><div class="t-sm muted">6 outbound · 1 reply · 1 attendance</div></div>
+        <div class="card card-pad"><span class="label">Interactions</span><div class="d-md" style="margin-top:var(--s3)">8</div><div class="t-sm muted">6 outbound · 1 reply · 1 webinar</div></div>
         <div class="card card-pad"><span class="label">Engagement span</span><div class="d-md" style="margin-top:var(--s3)">217d</div><div class="t-sm muted">13 Nov 2025 → 18 Jun 2026</div></div>
         <div class="card card-pad"><span class="label">Response ratio</span><div class="d-md" style="margin-top:var(--s3)">1 / 6</div><div class="t-sm muted">And the one reply was automated</div></div>
       </div>
@@ -1749,8 +1770,8 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <!-- Timeline -->
         <div id="h-timeline">
           <div class="toolbar" style="gap:var(--s4)">
-            <button class="chipfilt on" data-chip>All <span>6</span></button>
-            <button class="chipfilt" data-chip>Meetings <span>0</span></button>
+            <button class="chipfilt on" data-chip>All <span>7</span></button>
+            <button class="chipfilt" data-chip>Meetings <span>1</span></button>
             <button class="chipfilt" data-chip>Emails <span>3</span></button>
             <button class="chipfilt" data-chip>Signals <span>1</span></button>
             <button class="chipfilt" data-chip>External <span>1</span></button>
