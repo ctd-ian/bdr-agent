@@ -432,6 +432,23 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .load.l4 i:nth-child(-n+4){background:var(--warning)}
 .load.l5 i{background:var(--error)}
 
+
+/* Help affordance + tooltip */
+.helpbtn{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:var(--gray-500);flex:0 0 28px}
+.helpbtn:hover{background:var(--gray-100);color:var(--gray-700)}
+.helpbtn:focus-visible{outline:none;box-shadow:var(--focus)}
+[data-tip]{cursor:help}
+#tipbox{position:fixed;z-index:200;max-width:260px;background:var(--gray-900);color:#fff;font-family:var(--font-ui);
+  font-size:12px;line-height:18px;font-weight:400;padding:7px 10px;border-radius:var(--r-md);
+  box-shadow:var(--sh-lg);pointer-events:none;opacity:0;transition:opacity .12s ease}
+#tipbox.on{opacity:1}
+.helppanel{display:none}
+.helppanel.on{display:block}
+.helprow{display:flex;gap:var(--s6);padding:var(--s5) 0;border-bottom:1px solid var(--gray-200)}
+.helprow:last-child{border-bottom:none}
+.helprow .k{width:150px;flex:0 0 150px;font-weight:600;color:var(--gray-900);font-size:14px}
+.helprow .v{color:var(--gray-600);font-size:14px;line-height:20px}
+
 /* Design notes */
 .notes-toggle{position:fixed;right:var(--s8);bottom:var(--s8);z-index:60;background:var(--gray-900);color:#fff;border-radius:var(--r-2xl);height:44px;padding:0 var(--s7);display:inline-flex;align-items:center;gap:var(--s4);box-shadow:var(--sh-2xl);font-weight:500}
 .notes{position:fixed;top:0;right:0;bottom:0;width:470px;max-width:94vw;z-index:70;background:#fff;border-left:1px solid var(--gray-200);box-shadow:var(--sh-2xl);transform:translateX(100%);transition:transform .22s ease;display:flex;flex-direction:column}
@@ -539,6 +556,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <button class="filt" data-filt>Work status<svg class="icon icon-xs chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
         <button class="btn btn-tertiary btn-sm">Clear</button>
         <div class="row" style="margin-left:auto;gap:var(--s4)">
+          <button class="helpbtn" data-help="accounts" aria-label="What do these columns mean?"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M8.2 7.8a1.9 1.9 0 1 1 2.3 2.4c-.4.2-.5.5-.5.9v.3"/><path d="M10 14.6h.01"/></svg></button>
           <span class="t-sm muted nowrap">Sort</span>
           <button class="filt">Rank, high to low<svg class="icon icon-xs chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
         </div>
@@ -569,12 +587,12 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
             </td>
             <td><span class="badge badge-gray"><span class="dot"></span>Nurture</span></td>
             <td><span class="badge badge-warning"><span class="dot"></span>Re-triggered</span></td>
-            <td><span class="strong num">97</span></td>
-            <td><span class="score s4" title="Strong"><i></i><i></i><i></i></span></td>
+            <td><span class="strong num" data-tip="Firmographic fit, 0–100. 97 puts Kestrel in the top tier of accounts CTD sells to.">97</span></td>
+            <td><span class="score s4" data-tip="Strong — someone in your network knows a target here well and has spoken to them recently."><i></i><i></i><i></i></span></td>
             <td><div class="t-sm dim nowrap">In progress</div><div class="t-xs muted">Waiting on reply</div></td>
             <td><span class="badge badge-blue"><svg class="icon icon-xs" viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg>Ready</span></td>
             <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm">MD</span><span class="t-sm dim nowrap">Marco Devlin</span></div></td>
-            <td style="text-align:right"><span class="strong num">9,820</span></td>
+            <td style="text-align:right"><span class="strong num" data-tip="Composite priority — fit, signal strength and reachability combined. Highest rank is where to start.">9,820</span></td>
           </tr>
 
           <tr class="rowlink">
@@ -697,14 +715,6 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           </tr>
         </tbody>
       </table>
-      </div>
-
-      <div class="legend">
-        <span><b>Fit</b> firmographic score, 0–100</span>
-        <span><b>Access</b> strength of your best warm path</span>
-        <span><b>Signal</b> what changed at the account most recently</span>
-        <span><b>Work status</b> where CTD's own outreach stands</span>
-        <span><b>Rank</b> composite priority — fit × signal × access</span>
       </div>
 
       <div class="card-foot">
@@ -1254,6 +1264,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <div class="card-head">
           <h3>Target personas</h3>
           <span class="badge badge-gray">4</span>
+          <button class="helpbtn" data-help="people" aria-label="What do these columns mean?"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M8.2 7.8a1.9 1.9 0 1 1 2.3 2.4c-.4.2-.5.5-.5.9v.3"/><path d="M10 14.6h.01"/></svg></button>
           <div class="row" style="margin-left:auto;gap:var(--s4)">
             <span class="t-sm muted nowrap">Rank paths by</span>
             <div class="seg">
@@ -1434,11 +1445,6 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           </tbody>
         </table>
         </div>
-        <div class="legend">
-          <span><b>Relationship</b> strength of the connector's link to the target</span>
-          <span><b>Every path is one connector</b> — CTD sends 2nd-degree intros only</span>
-          <span><b>Source</b> where CTD observed the relationship</span>
-        </div>
       </div>
 
       <div class="card" style="margin-top:var(--s7)">
@@ -1521,6 +1527,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
             <button data-hist="byrep">By rep</button>
             <button data-hist="notes">Notes &amp; docs</button>
           </div>
+          <button class="helpbtn" data-help="timeline" aria-label="What do these columns mean?"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M8.2 7.8a1.9 1.9 0 1 1 2.3 2.4c-.4.2-.5.5-.5.9v.3"/><path d="M10 14.6h.01"/></svg></button>
           <div class="row" style="margin-left:auto;gap:var(--s4)">
             <button class="btn btn-secondary btn-sm"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12"/></svg>Add note</button>
           </div>
@@ -1606,14 +1613,6 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
               </li>
             </ul>
           </div>
-          <div class="legend">
-            <span><b>Meeting</b> a call — opens to its summary</span>
-            <span><b>Email</b> sent or received</span>
-            <span><b>Signal</b> something they did that we did not cause</span>
-            <span><b>Milestone</b> a change in deal state</span>
-            <span><b>External</b> a market event about them</span>
-            <span><b>Note</b> recorded by a person</span>
-          </div>
         </div>
 
         <!-- By rep -->
@@ -1691,7 +1690,6 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
                 </tbody>
               </table>
               </div>
-              <div class="legend"><span>The only person who showed intent is the only one nobody targeted.</span></div>
             </div>
           </div>
         </div>
@@ -1834,14 +1832,6 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
               </li>
             </ul>
           </div>
-          <div class="legend">
-            <span><b>Meeting</b> a call — opens to its summary</span>
-            <span><b>Email</b> sent or received</span>
-            <span><b>Signal</b> something they did that we did not cause</span>
-            <span><b>Milestone</b> a change in deal state</span>
-            <span><b>External</b> a market event about them</span>
-            <span><b>Note</b> recorded by a person</span>
-          </div>
         </div>
 
         <!-- By rep -->
@@ -1919,7 +1909,6 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
                 </tbody>
               </table>
               </div>
-              <div class="legend"><span>The only person who showed intent is the only one nobody targeted.</span></div>
             </div>
           </div>
         </div>
@@ -2124,7 +2113,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <div><span class="strong">The buying group is mapped but the top of it is untouched.</span> Champion and functional buyer are active; both budget owners have never been contacted.</div>
       </div>
       <div class="card">
-        <div class="card-head"><h3>Buying group</h3><span class="badge badge-gray">5</span></div>
+        <div class="card-head"><h3>Buying group</h3><span class="badge badge-gray">5</span><button class="helpbtn" data-help="people" aria-label="What do these columns mean?"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M8.2 7.8a1.9 1.9 0 1 1 2.3 2.4c-.4.2-.5.5-.5.9v.3"/><path d="M10 14.6h.01"/></svg></button></div>
         <div style="overflow-x:auto">
         <table>
           <thead><tr><th style="width:26%">Person</th><th>Role in the deal</th><th>Relationship</th><th>Last touch</th><th></th></tr></thead>
@@ -2152,7 +2141,6 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           </tbody>
         </table>
         </div>
-        <div class="legend"><span><b>Role in the deal</b> replaces persona fit once an account is active — who blocks, who signs, who champions</span></div>
       </div>
 
       <div class="card" style="margin-top:var(--s7)">
@@ -2243,6 +2231,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
             <button data-hist2="byrep">By rep</button>
             <button data-hist2="notes">Notes &amp; docs</button>
           </div>
+          <button class="helpbtn" data-help="timeline" aria-label="What do these columns mean?"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M8.2 7.8a1.9 1.9 0 1 1 2.3 2.4c-.4.2-.5.5-.5.9v.3"/><path d="M10 14.6h.01"/></svg></button>
           <button class="btn btn-secondary btn-sm" style="margin-left:auto"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12"/></svg>Add note</button>
         </div>
 
@@ -2369,14 +2358,6 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
             </ul>
           </div>
-          <div class="legend">
-            <span><b>Meeting</b> a call — opens to its summary</span>
-            <span><b>Email</b> sent or received</span>
-            <span><b>Signal</b> something they did that we did not cause</span>
-            <span><b>Milestone</b> a change in deal state</span>
-            <span><b>External</b> a market event about them</span>
-            <span><b>Note</b> recorded by a person</span>
-          </div>
         </div>
 
         <div id="h2-byrep" hidden>
@@ -2468,7 +2449,8 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <label class="tb-search"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="9" cy="9" r="6"/><path d="m17 17-3.5-3.5"/></svg><input placeholder="Search connectors…"></label>
         <button class="filt" data-filt>Source<svg class="icon icon-xs chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
         <button class="filt" data-filt>Strength<svg class="icon icon-xs chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
-        <div class="row" style="margin-left:auto;gap:var(--s4)"><span class="t-sm muted nowrap">Sort</span>
+        <div class="row" style="margin-left:auto;gap:var(--s4)"><button class="helpbtn" data-help="network" aria-label="What do these columns mean?"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M8.2 7.8a1.9 1.9 0 1 1 2.3 2.4c-.4.2-.5.5-.5.9v.3"/><path d="M10 14.6h.01"/></svg></button>
+          <span class="t-sm muted nowrap">Sort</span>
           <button class="filt">Most useful<svg class="icon icon-xs chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button></div>
       </div>
 
@@ -2480,83 +2462,76 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <tbody>
           <tr class="rowlink">
             <td><div class="row" style="gap:var(--s5)"><span class="avatar">HW</span><div><div class="strong">Helen Ward</div><div class="t-xs muted">Board Observer · Fernwood Capital</div></div></div></td>
-            <td><span class="badge badge-gray">9 accounts</span></td>
+            <td><span class="badge badge-gray" data-tip="Helen can reach someone in the buying group at 9 of your accounts.">9 accounts</span></td>
             <td><div class="row" style="gap:var(--s4)"><span class="score s4" title="Strong"><i></i><i></i><i></i></span><span class="t-sm dim">Priya Raman</span></div></td>
-            <td><div class="row" style="gap:var(--s4)"><span class="load l5"><i></i><i></i><i></i><i></i><i></i></span><span class="t-sm strong num">7</span></div></td>
+            <td><div class="row" style="gap:var(--s4)"><span class="load l5" data-tip="7 open intro requests, and 3 were sent in the last month. Well past the point where asking again risks the relationship."><i></i><i></i><i></i><i></i><i></i></span><span class="t-sm strong num">7</span></div></td>
             <td class="t-sm dim num">6</td>
             <td class="t-sm dim nowrap">2 days ago</td>
-            <td><span class="badge badge-error"><span class="dot"></span>Over-asked</span></td>
+            <td><span class="badge badge-error" data-tip="More than 4 open asks, or 3 in the last 30 days. Give them a rest before asking again."><span class="dot"></span>Over-asked</span></td>
             <td style="text-align:right"><button class="btn btn-secondary btn-sm">View asks</button></td>
           </tr>
           <tr class="rowlink">
             <td><div class="row" style="gap:var(--s5)"><span class="avatar">DS</span><div><div class="strong">Dana Sackett</div><div class="t-xs muted">Co-Founder &amp; CEO · CTD</div></div></div></td>
-            <td><span class="badge badge-gray">14 accounts</span></td>
+            <td><span class="badge badge-gray" data-tip="Dana can reach someone in the buying group at 14 of your accounts — the widest reach on your team.">14 accounts</span></td>
             <td><div class="row" style="gap:var(--s4)"><span class="score s4" title="Strong"><i></i><i></i><i></i></span><span class="t-sm dim">Adam Kessler</span></div></td>
             <td><div class="row" style="gap:var(--s4)"><span class="load l1"><i></i><i></i><i></i><i></i><i></i></span><span class="t-sm strong num">1</span></div></td>
             <td class="t-sm dim num">3</td>
             <td class="t-sm dim nowrap">3 weeks ago</td>
-            <td><span class="badge badge-success"><span class="dot"></span>Ready</span></td>
+            <td><span class="badge badge-success" data-tip="Has capacity and responds. Safe to ask."><span class="dot"></span>Ready</span></td>
             <td style="text-align:right"><button class="btn btn-primary btn-sm">Ask Dana</button></td>
           </tr>
           <tr class="rowlink">
             <td><div class="row" style="gap:var(--s5)"><span class="avatar">AT</span><div><div class="strong">Alex Tanaka</div><div class="t-xs muted">Director, Strategic Accounts · CTD</div></div></div></td>
-            <td><span class="badge badge-gray">6 accounts</span></td>
+            <td><span class="badge badge-gray" data-tip="Alex can reach someone in the buying group at 6 of your accounts.">6 accounts</span></td>
             <td><div class="row" style="gap:var(--s4)"><span class="score s4" title="Strong"><i></i><i></i><i></i></span><span class="t-sm dim">Elena Roche</span></div></td>
-            <td><div class="row" style="gap:var(--s4)"><span class="load l2"><i></i><i></i><i></i><i></i><i></i></span><span class="t-sm strong num">2</span></div></td>
+            <td><div class="row" style="gap:var(--s4)"><span class="load l2" data-tip="2 open intro requests. Comfortable — you can ask Alex again."><i></i><i></i><i></i><i></i><i></i></span><span class="t-sm strong num">2</span></div></td>
             <td class="t-sm dim num">2</td>
             <td class="t-sm dim nowrap">6 days ago</td>
-            <td><span class="badge badge-success"><span class="dot"></span>Ready</span></td>
+            <td><span class="badge badge-success" data-tip="Has capacity and responds. Safe to ask."><span class="dot"></span>Ready</span></td>
             <td style="text-align:right"><button class="btn btn-primary btn-sm">Ask Alex</button></td>
           </tr>
           <tr class="rowlink">
             <td><div class="row" style="gap:var(--s5)"><span class="avatar">NP</span><div><div class="strong">Nathan Pike</div><div class="t-xs muted">Fractional Operating Partner · Meridian Advisory</div></div></div></td>
-            <td><span class="badge badge-gray">3 accounts</span></td>
+            <td><span class="badge badge-gray" data-tip="Nathan can reach someone in the buying group at 3 of your accounts.">3 accounts</span></td>
             <td><div class="row" style="gap:var(--s4)"><span class="score s4" title="Strong"><i></i><i></i><i></i></span><span class="t-sm dim">Dean Whitlock</span></div></td>
             <td><div class="row" style="gap:var(--s4)"><span class="load l1"><i></i><i></i><i></i><i></i><i></i></span><span class="t-sm strong num">1</span></div></td>
             <td class="t-sm dim num">0</td>
             <td class="t-sm muted nowrap">Never</td>
-            <td><span class="badge badge-blue"><span class="dot"></span>Unused</span></td>
+            <td><span class="badge badge-blue" data-tip="A strong path nobody has ever asked. The cheapest opportunity on this page."><span class="dot"></span>Unused</span></td>
             <td style="text-align:right"><button class="btn btn-primary btn-sm" data-view="task">Open task</button></td>
           </tr>
           <tr class="rowlink">
             <td><div class="row" style="gap:var(--s5)"><span class="avatar">OB</span><div><div class="strong">Owen Brandt</div><div class="t-xs muted">EIR · Larkspur Ventures</div></div></div></td>
-            <td><span class="badge badge-gray">11 accounts</span></td>
+            <td><span class="badge badge-gray" data-tip="Owen can reach someone in the buying group at 11 of your accounts.">11 accounts</span></td>
             <td><div class="row" style="gap:var(--s4)"><span class="score s3" title="Familiar"><i></i><i></i><i></i></span><span class="t-sm dim">Marcus Webb</span></div></td>
-            <td><div class="row" style="gap:var(--s4)"><span class="load l4"><i></i><i></i><i></i><i></i><i></i></span><span class="t-sm strong num">5</span></div></td>
+            <td><div class="row" style="gap:var(--s4)"><span class="load l4" data-tip="5 open intro requests, the oldest sent 41 days ago with no reply. Nudge before adding more."><i></i><i></i><i></i><i></i><i></i></span><span class="t-sm strong num">5</span></div></td>
             <td class="t-sm dim num">2</td>
             <td class="t-sm dim nowrap">41 days ago</td>
-            <td><span class="badge badge-warning"><span class="dot"></span>Gone quiet</span></td>
+            <td><span class="badge badge-warning" data-tip="Asked more than 14 days ago with no response. Nudge, or route around them."><span class="dot"></span>Gone quiet</span></td>
             <td style="text-align:right"><button class="btn btn-secondary btn-sm">Nudge</button></td>
           </tr>
           <tr class="rowlink">
             <td><div class="row" style="gap:var(--s5)"><span class="avatar">MD</span><div><div class="strong">Marco Devlin</div><div class="t-xs muted">Global Sales Director · CTD</div></div></div></td>
-            <td><span class="badge badge-gray">8 accounts</span></td>
+            <td><span class="badge badge-gray" data-tip="Marco appears at 8 accounts, but only through weak links with no message history.">8 accounts</span></td>
             <td><div class="row" style="gap:var(--s4)"><span class="score s2" title="Weak"><i></i><i></i><i></i></span><span class="t-sm dim">Elena Roche</span></div></td>
             <td><div class="row" style="gap:var(--s4)"><span class="load l1"><i></i><i></i><i></i><i></i><i></i></span><span class="t-sm strong num">0</span></div></td>
             <td class="t-sm dim num">0</td>
             <td class="t-sm muted nowrap">Never</td>
-            <td><span class="badge badge-gray"><span class="dot"></span>Weak links only</span></td>
+            <td><span class="badge badge-gray" data-tip="Appears in the graph but has no meaningful relationship — first-degree connections with no message history."><span class="dot"></span>Weak links only</span></td>
             <td style="text-align:right"><button class="btn btn-secondary btn-sm">View</button></td>
           </tr>
           <tr class="rowlink">
             <td><div class="row" style="gap:var(--s5)"><span class="avatar">NF</span><div><div class="strong">Nora Feld</div><div class="t-xs muted">Advisor · independent</div></div></div></td>
-            <td><span class="badge badge-gray">4 accounts</span></td>
+            <td><span class="badge badge-gray" data-tip="Nora can reach someone in the buying group at 4 of your accounts.">4 accounts</span></td>
             <td><div class="row" style="gap:var(--s4)"><span class="score s4" title="Strong"><i></i><i></i><i></i></span><span class="t-sm dim">Ruth Calder</span></div></td>
             <td><div class="row" style="gap:var(--s4)"><span class="load l1"><i></i><i></i><i></i><i></i><i></i></span><span class="t-sm strong num">1</span></div></td>
             <td class="t-sm dim num">0</td>
             <td class="t-sm dim nowrap">2 days ago</td>
-            <td><span class="badge badge-success"><span class="dot"></span>Ready</span></td>
+            <td><span class="badge badge-success" data-tip="Has capacity and responds. Safe to ask."><span class="dot"></span>Ready</span></td>
             <td style="text-align:right"><button class="btn btn-secondary btn-sm">View asks</button></td>
           </tr>
         </tbody>
       </table>
-      </div>
-
-      <div class="legend">
-        <span><b>Reaches</b> accounts where this person has a path to someone you want</span>
-        <span><b>Asks in flight</b> intro requests they have not yet acted on</span>
-        <span><b>Over-asked</b> more than 4 open asks, or 3 in the last 30 days</span>
-        <span><b>Gone quiet</b> asked more than 14 days ago with no response</span>
       </div>
 
       <div class="card-foot">
@@ -2599,7 +2574,6 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         </tbody>
       </table>
       </div>
-      <div class="legend"><span>123 of your open tasks have no connector attached. This is where they come from.</span></div>
     </div>
   </div>
 
@@ -2716,6 +2690,65 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     </div>
   </div>
 </div>
+
+<!-- ==================== Column help ==================== -->
+<div class="scrim" id="helpModal">
+  <div class="modal" role="dialog" aria-label="What the columns mean">
+    <div class="modal-head">
+      <div style="flex:1;min-width:0"><h3 id="helpTitle">What the columns mean</h3></div>
+      <button class="btn btn-tertiary btn-sm" data-helpclose>Close</button>
+    </div>
+    <div class="modal-body" style="gap:0">
+
+      <div class="helppanel" data-helppanel="accounts">
+          <div class="helprow"><span class="k">Fit</span><span class="v">Firmographic score out of 100 — how closely the company matches the profile CTD sells to. Above 85 is top tier.</span></div>
+          <div class="helprow"><span class="k">Access</span><span class="v">Strength of your best warm path in. Four bars means someone in your network knows a target well and has spoken to them recently.</span></div>
+          <div class="helprow"><span class="k">Signal</span><span class="v">What changed at the account most recently. Dancing means active back-and-forth, Re-triggered means a dormant account has new activity, Warm watch means monitoring without outreach.</span></div>
+          <div class="helprow"><span class="k">Funnel</span><span class="v">Where the deal sits in your own process.</span></div>
+          <div class="helprow"><span class="k">Work status</span><span class="v">Where CTD's outreach stands, not where the account stands. In progress, on hold, or cancelled.</span></div>
+          <div class="helprow"><span class="k">Strategy</span><span class="v">Whether the agent has finished generating a plan for this account.</span></div>
+          <div class="helprow"><span class="k">Rank</span><span class="v">Composite priority — fit combined with signal strength and how reachable the account is. Use it to decide what to open first.</span></div>
+      </div>
+
+      <div class="helppanel" data-helppanel="network">
+          <div class="helprow"><span class="k">Reaches</span><span class="v">How many of your accounts this person can get you into. They have a path to at least one person in the buying group.</span></div>
+          <div class="helprow"><span class="k">Strongest link</span><span class="v">The person they know best across those accounts, and how well they know them.</span></div>
+          <div class="helprow"><span class="k">Asks in flight</span><span class="v">Intro requests your team has sent them that they have not yet acted on. The bar fills as the load grows.</span></div>
+          <div class="helprow"><span class="k">Intros made</span><span class="v">Completed introductions this quarter. A high number with low asks in flight means a reliable connector.</span></div>
+          <div class="helprow"><span class="k">Last asked</span><span class="v">When anyone on your team last sent this person a request. Useful for spacing asks out.</span></div>
+          <div class="helprow"><span class="k">Ready</span><span class="v">Has capacity and responds. Safe to ask.</span></div>
+          <div class="helprow"><span class="k">Over-asked</span><span class="v">More than four open asks, or three in the last thirty days. Give them a rest before asking again.</span></div>
+          <div class="helprow"><span class="k">Gone quiet</span><span class="v">Asked more than fourteen days ago with no response. Nudge or route around them.</span></div>
+          <div class="helprow"><span class="k">Unused</span><span class="v">A strong path that nobody has ever asked. The cheapest opportunity on the page.</span></div>
+          <div class="helprow"><span class="k">Weak links only</span><span class="v">They appear in the graph but have no meaningful relationship — a first-degree connection with no history.</span></div>
+      </div>
+
+      <div class="helppanel" data-helppanel="people">
+          <div class="helprow"><span class="k">Relationship</span><span class="v">How well the connector knows this person. Strong means recent two-way contact, Familiar means a real but older relationship, Weak means a connection with no history, Unknown means no path at all.</span></div>
+          <div class="helprow"><span class="k">Best path</span><span class="v">The single connector most likely to get you in. Every path is you to one connector to the target — CTD only sends second-degree intros.</span></div>
+          <div class="helprow"><span class="k">Paths</span><span class="v">How many different people could reach this target. More paths means more resilience if your first choice declines.</span></div>
+          <div class="helprow"><span class="k">Role in the deal</span><span class="v">On an active deal this replaces persona fit. Champion sells internally, functional buyer evaluates, exec sponsor and budget owner sign, gatekeeper controls process.</span></div>
+          <div class="helprow"><span class="k">Last touch</span><span class="v">The most recent contact with this person, and what kind. Never contacted is worth noticing on anyone senior.</span></div>
+      </div>
+
+      <div class="helppanel" data-helppanel="timeline">
+          <div class="helprow"><span class="k">Meeting</span><span class="v">A call. Opens to its summary, what is working, pain points raised and risks. Upcoming meetings show an agenda instead.</span></div>
+          <div class="helprow"><span class="k">Email</span><span class="v">Something sent or received. Expand for the subject, timing and body.</span></div>
+          <div class="helprow"><span class="k">Signal</span><span class="v">Something they did that you did not cause — attending a webinar, reading documentation, changing job title. This is prospect-initiated intent, and it is the type worth watching for.</span></div>
+          <div class="helprow"><span class="k">Milestone</span><span class="v">A change in the state of the deal, such as pricing delivered or an intro made.</span></div>
+          <div class="helprow"><span class="k">External</span><span class="v">A market event about them — an acquisition, a hiring surge, a funding round.</span></div>
+          <div class="helprow"><span class="k">Note</span><span class="v">Something a person recorded by hand. Usually the context no data source can give you.</span></div>
+      </div>
+
+    </div>
+    <div class="modal-foot">
+      <span class="t-xs muted">Hover any value in the table for an explanation in context.</span>
+      <button class="btn btn-secondary" style="margin-left:auto" data-helpclose>Got it</button>
+    </div>
+  </div>
+</div>
+
+<div id="tipbox" role="tooltip"></div>
 
 <!-- ==================== Design notes ==================== -->
 <button class="notes-toggle" id="notesToggle">
@@ -3094,11 +3127,52 @@ document.querySelectorAll('[data-mtg]').forEach(b=>{
   });
 });
 
+
+/* ---------------- Column help modal ---------------- */
+const helpModal=document.getElementById('helpModal');
+const HELP_TITLE={accounts:'Accounts — what the columns mean',network:'My network — what the columns mean',
+                  people:'People — what the columns mean',timeline:'Timeline — the six event types'};
+document.querySelectorAll('[data-help]').forEach(b=>{
+  b.addEventListener('click',e=>{
+    e.stopPropagation();
+    const k=b.dataset.help;
+    document.querySelectorAll('.helppanel').forEach(p=>p.classList.toggle('on',p.dataset.helppanel===k));
+    document.getElementById('helpTitle').textContent=HELP_TITLE[k]||'What the columns mean';
+    helpModal.classList.add('open');
+  });
+});
+document.querySelectorAll('[data-helpclose]').forEach(b=>b.addEventListener('click',()=>helpModal.classList.remove('open')));
+helpModal.addEventListener('click',e=>{if(e.target===helpModal)helpModal.classList.remove('open');});
+
+/* ---------------- Hover tooltips (fixed position, never clipped) ---------------- */
+const tipbox=document.getElementById('tipbox');
+let tipFor=null;
+function placeTip(el){
+  const t=el.dataset.tip; if(!t) return;
+  tipbox.textContent=t; tipbox.classList.add('on');
+  const r=el.getBoundingClientRect(), b=tipbox.getBoundingClientRect();
+  let left=r.left+r.width/2-b.width/2;
+  left=Math.max(8,Math.min(left,window.innerWidth-b.width-8));
+  let top=r.top-b.height-8;
+  if(top<8) top=r.bottom+8;
+  tipbox.style.left=left+'px'; tipbox.style.top=top+'px';
+}
+document.addEventListener('mouseover',e=>{
+  const el=e.target.closest('[data-tip]');
+  if(el===tipFor) return;
+  tipFor=el;
+  if(el) placeTip(el); else tipbox.classList.remove('on');
+});
+document.addEventListener('mouseout',e=>{
+  if(!e.relatedTarget || !e.relatedTarget.closest || !e.relatedTarget.closest('[data-tip]')){tipFor=null;tipbox.classList.remove('on');}
+});
+window.addEventListener('scroll',()=>{tipFor=null;tipbox.classList.remove('on');},true);
+
 /* ---------------- Design notes ---------------- */
 const panel=document.getElementById('notesPanel');
 document.getElementById('notesToggle').addEventListener('click',()=>panel.classList.toggle('open'));
 document.getElementById('notesClose').addEventListener('click',()=>panel.classList.remove('open'));
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){panel.classList.remove('open');closeWizard();}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){panel.classList.remove('open');closeWizard();helpModal.classList.remove('open');}});
 </script>
 </body>
 </html>
