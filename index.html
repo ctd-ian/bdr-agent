@@ -261,17 +261,17 @@ a{color:var(--blue-600);text-decoration:none}
    eyebrow row is given the pin's height so label and icon share a centre. */
 .tl{list-style:none;position:relative;padding-left:48px}
 .tl::before{content:"";position:absolute;left:15px;top:6px;bottom:6px;width:1px;background:var(--gray-200)}
-.tl li{position:relative;padding:0 0 var(--s7) 0}
-.tl li:last-child{padding-bottom:0}
-.tl .pin{position:absolute;left:-48px;top:0;width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid var(--gray-200);display:grid;place-items:center;color:var(--gray-500)}
-.tl .pin.p-out{color:var(--blue-600);border-color:var(--blue-200);background:var(--blue-50)}
-.tl .pin.p-in{color:var(--success-700);border-color:#A6F4C5;background:var(--success-50)}
-.tl .pin.p-ext{color:var(--warning-700);border-color:var(--warning-200);background:var(--warning-50)}
-.tl .when{color:var(--gray-500);font-size:12px;line-height:18px;display:flex;align-items:center;gap:var(--s4);flex-wrap:wrap;min-height:32px}
-.tl .what{margin-top:2px;color:var(--gray-800)}
-.tl .note{margin-top:var(--s2);color:var(--gray-600)}
-.tl .expand{margin-top:var(--s4);display:none;border:1px solid var(--gray-200);border-radius:var(--r-md);background:var(--gray-25);padding:var(--s5) var(--s6)}
-.tl .expand.open{display:block}
+.tl>li{position:relative;padding:0 0 var(--s7) 0}
+.tl>li:last-child{padding-bottom:0}
+.tl>li>.pin{position:absolute;left:-48px;top:0;width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid var(--gray-200);display:grid;place-items:center;color:var(--gray-500)}
+.tl>li>.pin.p-out{color:var(--blue-600);border-color:var(--blue-200);background:var(--blue-50)}
+.tl>li>.pin.p-in{color:var(--success-700);border-color:#A6F4C5;background:var(--success-50)}
+.tl>li>.pin.p-ext{color:var(--warning-700);border-color:var(--warning-200);background:var(--warning-50)}
+.tl>li>.when{color:var(--gray-500);font-size:12px;line-height:18px;display:flex;align-items:center;gap:var(--s4);flex-wrap:wrap;min-height:32px}
+.tl>li>.what{margin-top:2px;color:var(--gray-800)}
+.tl>li>.note{margin-top:var(--s2);color:var(--gray-600)}
+.tl>li>.expand{margin-top:var(--s4);display:none;border:1px solid var(--gray-200);border-radius:var(--r-md);background:var(--gray-25);padding:var(--s5) var(--s6)}
+.tl>li>.expand.open{display:block}
 
 /* Tables */
 table{width:100%;border-collapse:collapse}
