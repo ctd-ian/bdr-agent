@@ -379,6 +379,25 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .chainrow .n{width:20px;height:20px;flex:0 0 20px;border-radius:50%;background:var(--gray-200);color:var(--gray-600);display:grid;place-items:center;font-size:11px;font-weight:600}
 .chainrow.mine .n{background:var(--blue-600);color:#fff}
 
+
+/* Deal assessment strip — the Activities "Deal Assessment" row, made legible */
+.deal{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--gray-200);border-radius:var(--r-xl);background:#fff;box-shadow:var(--sh-sm);overflow:hidden}
+.deal .cell{padding:var(--s6) var(--s7);border-right:1px solid var(--gray-200)}
+.deal .cell:last-child{border-right:none}
+.deal .cell .v{margin-top:var(--s4);font-size:16px;line-height:22px;font-weight:600;color:var(--gray-900);display:flex;align-items:center;gap:var(--s4)}
+.deal .cell .v .dotv{width:8px;height:8px;border-radius:50%;flex:0 0 8px}
+.deal .cell .sub{margin-top:2px;font-size:12px;line-height:18px;color:var(--gray-500)}
+@media (max-width:1080px){.deal{grid-template-columns:repeat(2,1fr)}}
+
+/* Meeting entry inside the timeline */
+.mtg{border:1px solid var(--gray-200);border-radius:var(--r-lg);background:#fff;margin-top:var(--s5);overflow:hidden}
+.mtg-head{display:flex;align-items:center;gap:var(--s5);padding:var(--s5) var(--s6);width:100%;text-align:left}
+.mtg-head:hover{background:var(--gray-50)}
+.mtg-head .who{flex:1;min-width:0}
+.mtg-body{display:none;border-top:1px solid var(--gray-200);padding:var(--s6);background:var(--gray-25);flex-direction:column;gap:var(--s6)}
+.mtg-body.open{display:flex}
+.mtg-body h6{font-family:var(--font-label);font-size:11px;letter-spacing:.01em;text-transform:uppercase;font-weight:500;color:var(--gray-500);margin-bottom:var(--s4)}
+
 /* Design notes */
 .notes-toggle{position:fixed;right:var(--s8);bottom:var(--s8);z-index:60;background:var(--gray-900);color:#fff;border-radius:var(--r-2xl);height:44px;padding:0 var(--s7);display:inline-flex;align-items:center;gap:var(--s4);box-shadow:var(--sh-2xl);font-weight:500}
 .notes{position:fixed;top:0;right:0;bottom:0;width:470px;max-width:94vw;z-index:70;background:#fff;border-left:1px solid var(--gray-200);box-shadow:var(--sh-2xl);transform:translateX(100%);transition:transform .22s ease;display:flex;flex-direction:column}
@@ -541,7 +560,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
             <td style="text-align:right"><span class="strong num">9,790</span></td>
           </tr>
 
-          <tr class="rowlink">
+          <tr class="rowlink" data-acct="account2">
             <td>
               <div class="row" style="gap:var(--s5)">
                 <span class="avatar avatar-co">Ba</span>
@@ -1629,6 +1648,355 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     </section>
   </div>
 
+
+  <!-- ==================================================================
+       VIEW: ACCOUNT DETAIL 2 — live deal (Meetings + Activities folded in)
+       ================================================================== -->
+  <div class="page" id="view-account2" hidden>
+    <div class="crumb"><a href="#" data-view="accounts">Accounts</a><span class="sep">/</span><span class="dim">Baseline Data</span></div>
+
+    <div class="pagehead">
+      <div class="avatar avatar-lg avatar-co" style="width:48px;height:48px;flex:0 0 48px;font-size:16px;border-radius:var(--r-lg)">Ba</div>
+      <div class="grow">
+        <h1>Baseline Data</h1>
+        <div class="sub">Real-time analytics database for large-scale data teams · <a href="#">baselinedata.io</a></div>
+        <div class="meta-row">
+          <div class="meta"><span class="label">Funnel</span>
+            <span class="stage" title="Meet → Discovery → Manage"><span class="done"></span><span class="now"></span><span></span></span>
+            <span class="t-sm dim">Discovery</span></div>
+          <div class="meta"><span class="label">Signal</span><span class="badge badge-success"><span class="dot"></span>Dancing</span></div>
+          <div class="meta"><span class="label">Owner</span><span class="avatar avatar-sm">MD</span><span class="t-sm dim">Marco Devlin</span></div>
+          <div class="meta"><span class="label">Last touch</span><span class="t-sm dim">20 Jul 2026 · today</span></div>
+        </div>
+      </div>
+      <div class="row" style="gap:var(--s4)">
+        <button class="btn btn-secondary"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 4h12v9H8l-4 3z"/></svg>Ask CTD</button>
+        <button class="btn btn-secondary btn-icon" aria-label="More actions"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="4" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="10" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="16" cy="10" r="1.2" fill="currentColor" stroke="none"/></svg></button>
+      </div>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button class="tab is-active" data-tab2="brief">Brief</button>
+      <button class="tab" data-tab2="people">People <span class="count">10</span></button>
+      <button class="tab" data-tab2="history">History <span class="count">7</span></button>
+    </div>
+
+    <!-- ---------------- BRIEF ---------------- -->
+    <section id="tab2-brief">
+      <div class="rec">
+        <div class="left">
+          <span class="label">The call</span>
+          <h2>Highly winnable, and accelerating.</h2>
+          <p>Three meetings in seven days, a champion driving procurement himself, and budgetary pricing already delivered. The close now depends on two things: clearing the pricing, MNDA and security gate on schedule so the pilot kicks off, and securing top-down budget blessing from Adam Kessler and Karl Egan.</p>
+          <p style="margin-top:var(--s5)"><span class="strong">Near-term goal:</span> signed MNDA and a locked POC team by the 29th.</p>
+        </div>
+        <div class="right">
+          <span class="label">Next action</span>
+          <div class="t-md strong" style="margin:var(--s4) 0 var(--s3)">Introduce Cara Nunes to procurement</div>
+          <p class="t-sm dim">Marcus asked for this by Wednesday. It is the only thing standing between you and the MNDA.</p>
+          <button class="btn btn-primary" style="margin-top:var(--s6);width:100%;justify-content:center">
+            <svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M3 10h14M12 5l5 5-5 5"/></svg>Draft the intro
+          </button>
+          <button class="btn btn-tertiary btn-sm" style="margin-top:var(--s4);width:100%;justify-content:center" data-goto2="history">See the last meeting</button>
+        </div>
+      </div>
+
+      <div class="sec-title"><h2>Deal assessment</h2><span class="t-sm muted">From the last 7 interactions</span></div>
+      <div class="deal">
+        <div class="cell"><span class="label">Status</span><div class="v"><span class="dotv" style="background:var(--success)"></span>Active</div><div class="sub">Since 13 Jul</div></div>
+        <div class="cell"><span class="label">Momentum</span><div class="v"><span class="dotv" style="background:var(--success)"></span>Accelerating</div><div class="sub">3 meetings in 7 days</div></div>
+        <div class="cell"><span class="label">Buyer intent</span><div class="v"><span class="dotv" style="background:var(--success)"></span>High</div><div class="sub">Procurement opened</div></div>
+        <div class="cell"><span class="label">Our position</span><div class="v"><span class="dotv" style="background:var(--success)"></span>Strong</div><div class="sub">Direct CEO relationship</div></div>
+        <div class="cell"><span class="label">Champion</span><div class="v"><span class="dotv" style="background:var(--success)"></span>Active</div><div class="sub">Marcus Webb</div></div>
+        <div class="cell"><span class="label">Pricing</span><div class="v"><span class="dotv" style="background:var(--success)"></span>Delivered</div><div class="sub">$15k POC · $60k/yr</div></div>
+      </div>
+
+      <div class="sec-title"><h2>What is blocking</h2><span class="t-sm muted">Three gates, in order</span></div>
+      <div class="card">
+        <div class="risk">
+          <span class="risk-ico" style="color:var(--warning-700)"><svg class="icon" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 6.5v4M10 13.5h.01"/></svg></span>
+          <div class="risk-tx">
+            <h4>Procurement will not open the MNDA without a cost estimate <span class="badge badge-success badge-sq">Cleared 20 Jul</span></h4>
+            <p>Budgetary pricing went out the same day Marcus asked. Reaction not yet captured — confirm he has what he needs before Wednesday.</p>
+          </div>
+        </div>
+        <div class="risk">
+          <span class="risk-ico" style="color:var(--warning-700)"><svg class="icon" viewBox="0 0 20 20"><circle cx="7.5" cy="7" r="2.6"/><path d="M2.5 16.5c0-2.6 2.2-4.4 5-4.4s5 1.8 5 4.4"/><path d="M13.6 5c1.4 0 2.5 1.1 2.5 2.5S15 10 13.6 10M14.5 12.4c1.8.4 3 1.9 3 4.1"/></svg></span>
+          <div class="risk-tx">
+            <h4>POC team and RVP buy-in not locked <span class="badge badge-warning badge-sq">Open</span></h4>
+            <p>Three names against a target spanning several regions. Miles Hayden, Arno Vos and Ed Lentz all need to agree before the seat count is real.</p>
+          </div>
+        </div>
+        <div class="risk">
+          <span class="risk-ico" style="color:var(--error-700)"><svg class="icon" viewBox="0 0 20 20"><path d="M10 2.8 18 16.5H2z"/><path d="M10 8v3.4M10 14h.01"/></svg></span>
+          <div class="risk-tx">
+            <h4>Executive approvers never engaged <span class="badge badge-error badge-sq">Not started</span></h4>
+            <p>Adam Kessler and Karl Egan hold the budget and have not been contacted. Outreach was deliberately deferred until after the reviews — but the deal cannot close without them.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec-title"><h2>Why</h2><span class="t-sm muted">Three reads</span></div>
+      <div class="grid g3">
+        <div class="pillar">
+          <div class="body"><span class="label">Fit</span><div class="figure"><span class="n">91</span><span class="badge badge-success"><span class="dot"></span>Top tier</span></div>
+          <p>~630 employees, enterprise ICP, and the target is the field sales org rather than the inside team. Custom pricing and a multi-stakeholder review — a Business Edition shape.</p></div>
+          <button class="disclose" data-drawer="d2-fit" aria-expanded="false">View evidence<svg class="icon icon-sm chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
+          <div class="drawer" id="d2-fit">
+            <div class="kv"><span class="k">Segment</span><span class="v">Large · $1B+ funding</span></div>
+            <div class="kv"><span class="k">Buyer profile</span><span class="v">Operating company</span></div>
+            <div class="kv"><span class="k">Edition</span><span class="v">Business · sales-led</span></div>
+            <div class="kv"><span class="k">Deal size</span><span class="v">$15k POC → $60k/yr</span></div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="body"><span class="label">Timing</span><div class="figure"><span class="n">Now</span></div>
+          <p>Procurement is open, pricing is in, and the champion has set his own deadline: commercials by the 29th, kickoff on the 3rd.</p></div>
+          <button class="disclose" data-drawer="d2-time" aria-expanded="false">View evidence<svg class="icon icon-sm chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
+          <div class="drawer" id="d2-time">
+            <ul class="bul">
+              <li>15 seats, 90-day pilot agreed, indexing at org level across ~85 target accounts.</li>
+              <li>MNDA to be initiated as soon as procurement has the estimate.</li>
+              <li>Security review — pen test and SOC 2 — sits behind the MNDA.</li>
+            </ul>
+            <div class="banner warn" style="margin-top:var(--s6)">
+              <svg class="icon icon-sm" style="color:var(--warning-700);margin-top:2px" viewBox="0 0 20 20"><path d="M10 7v4M10 14h.01"/><circle cx="10" cy="10" r="7.5"/></svg>
+              <div>This is their <span class="strong">first ever procurement run</span>, so MNDA, security and legal timelines are unknown. Legal rotates through inside counsel with no clear owner.</div>
+            </div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="body"><span class="label">Access</span><div class="figure"><span class="n">Direct</span></div>
+          <p>Dana Sackett has a direct relationship with CEO Adam Kessler, and Karl Egan is reachable the same way. No connector needed.</p></div>
+          <button class="disclose" data-drawer="d2-acc" aria-expanded="false">View evidence<svg class="icon icon-sm chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
+          <div class="drawer" id="d2-acc">
+            <div class="kv"><span class="k">Warm origin</span><span class="v">Cal Stern intro, Jun 2026</span></div>
+            <div class="kv"><span class="k">Champion</span><span class="v">Marcus Webb · Principal GTM Engineer</span></div>
+            <div class="kv"><span class="k">Functional buyer</span><span class="v">Bill Schafer · VP Sales</span></div>
+            <div class="kv"><span class="k">Budget owner</span><span class="v">Karl Egan or Miles Hayden</span></div>
+            <p class="t-sm dim" style="margin-top:var(--s5)">Full map on the <a href="#" data-goto2="people">People</a> tab.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid g-23" style="margin-top:var(--s8)">
+        <div class="card">
+          <div class="card-head"><h3>Your move</h3><span class="badge badge-gray" style="margin-left:auto">1 play</span></div>
+          <div class="card-pad">
+            <div class="t-md strong">Clear the gate, then go up</div>
+            <p class="dim" style="margin-top:var(--s4)">Get Cara Nunes introduced to procurement by Wednesday so the MNDA opens. In parallel, have Marcus lock the POC roster across the three RVP teams. Hold executive outreach to Adam and Karl until the security review is underway — then use Dana's direct line.</p>
+          </div>
+          <div style="border-top:1px solid var(--gray-200)">
+            <div class="acc-item"><button class="acc-btn" data-acc="b1"><span>If pricing is accepted</span><svg class="icon icon-sm chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
+              <div class="acc-body" id="b1">Move straight to the MNDA and start the security questionnaire in parallel. Do not wait for the POC roster to be final.</div></div>
+            <div class="acc-item"><button class="acc-btn" data-acc="b2"><span>If procurement stalls past the 29th</span><svg class="icon icon-sm chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
+              <div class="acc-body" id="b2">Escalate through Dana to Adam Kessler. A first-ever procurement run with no named legal owner is exactly the case where top-down pressure unblocks a queue.</div></div>
+            <div class="acc-item"><button class="acc-btn" data-acc="b3"><span>If the seat count drops below 15</span><svg class="icon icon-sm chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
+              <div class="acc-body" id="b3">Re-scope to a single RVP team rather than discounting. Org-level indexing is what makes the network data rich enough to prove value.</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Watch for</h3><span class="badge badge-gray" style="margin-left:auto">2</span></div>
+          <div class="risk">
+            <span class="risk-ico" style="color:var(--warning-700)"><svg class="icon" viewBox="0 0 20 20"><path d="M4 16V8M10 16V4M16 16v-6"/></svg></span>
+            <div class="risk-tx"><h4>ROI will be hard to prove <span class="badge badge-warning badge-sq">Expectation</span></h4>
+            <p>Reps will act on relationships outside ghost-email tracking, and cycles in this segment exceed 90 days. Set pipeline influence, not closed revenue, as the pilot outcome now.</p></div>
+          </div>
+          <div class="risk">
+            <span class="risk-ico" style="color:var(--blue-700)"><svg class="icon" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 6h.01"/></svg></span>
+            <div class="risk-tx"><h4>No transcript for two meetings <span class="badge badge-blue badge-sq">Data gap</span></h4>
+            <p>17 Jul and 20 Jul rely on email follow-ups rather than recorded detail. Anything quoted from those is second-hand.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------- PEOPLE ---------------- -->
+    <section id="tab2-people" hidden>
+      <div class="banner" style="margin-bottom:var(--s7)">
+        <svg class="icon icon-sm" style="color:var(--blue-700);margin-top:2px" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 6h.01"/></svg>
+        <div><span class="strong">The buying group is mapped but the top of it is untouched.</span> Champion and functional buyer are active; both budget owners have never been contacted.</div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Buying group</h3><span class="badge badge-gray">5</span></div>
+        <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th style="width:26%">Person</th><th>Role in the deal</th><th>Relationship</th><th>Last touch</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><div class="row" style="gap:var(--s5)"><span class="avatar">MW</span><div><div class="strong">Marcus Webb</div><div class="t-xs muted">Principal GTM Engineer</div></div></div></td>
+              <td><span class="badge badge-success"><span class="dot"></span>Champion</span></td>
+              <td><div class="row" style="gap:var(--s4)"><span class="score s4" title="Strong"><i></i><i></i><i></i></span><span class="t-sm dim">Strong</span></div></td>
+              <td class="t-sm dim nowrap">20 Jul · email</td><td style="text-align:right"><button class="btn btn-secondary btn-sm">Message</button></td></tr>
+            <tr><td><div class="row" style="gap:var(--s5)"><span class="avatar">BS</span><div><div class="strong">Bill Schafer</div><div class="t-xs muted">VP Sales, Strategic Accounts</div></div></div></td>
+              <td><span class="badge badge-blue"><span class="dot"></span>Functional buyer</span></td>
+              <td><div class="row" style="gap:var(--s4)"><span class="score s3" title="Familiar"><i></i><i></i><i></i></span><span class="t-sm dim">Familiar</span></div></td>
+              <td class="t-sm dim nowrap">17 Jul · meeting</td><td style="text-align:right"><button class="btn btn-secondary btn-sm">Message</button></td></tr>
+            <tr><td><div class="row" style="gap:var(--s5)"><span class="avatar">AK</span><div><div class="strong">Adam Kessler</div><div class="t-xs muted">Co-Founder &amp; CEO</div></div></div></td>
+              <td><span class="badge badge-warning"><span class="dot"></span>Exec sponsor</span></td>
+              <td><div class="row" style="gap:var(--s4)"><span class="score s4" title="Strong"><i></i><i></i><i></i></span><span class="t-sm dim">Direct · Dana</span></div></td>
+              <td class="t-sm muted nowrap">Never contacted</td><td style="text-align:right"><button class="btn btn-primary btn-sm">Ask Dana</button></td></tr>
+            <tr><td><div class="row" style="gap:var(--s5)"><span class="avatar">KE</span><div><div class="strong">Karl Egan</div><div class="t-xs muted">Chief Revenue Officer</div></div></div></td>
+              <td><span class="badge badge-warning"><span class="dot"></span>Budget owner</span></td>
+              <td><div class="row" style="gap:var(--s4)"><span class="score s4" title="Strong"><i></i><i></i><i></i></span><span class="t-sm dim">Direct · Dana</span></div></td>
+              <td class="t-sm muted nowrap">Never contacted</td><td style="text-align:right"><button class="btn btn-primary btn-sm">Ask Dana</button></td></tr>
+            <tr><td><div class="row" style="gap:var(--s5)"><span class="avatar avatar-mono">CN</span><div><div class="strong">Cara Nunes</div><div class="t-xs muted">Procurement</div></div></div></td>
+              <td><span class="badge badge-gray"><span class="dot"></span>Gatekeeper</span></td>
+              <td><div class="row" style="gap:var(--s4)"><span class="score s0" title="Unknown"><i></i><i></i><i></i></span><span class="t-sm muted">Unknown</span></div></td>
+              <td class="t-sm muted nowrap">Intro due Wed</td><td style="text-align:right"><button class="btn btn-secondary btn-sm">Message</button></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="legend"><span><b>Role in the deal</b> replaces persona fit once an account is active — who blocks, who signs, who champions</span></div>
+      </div>
+
+      <div class="card" style="margin-top:var(--s7)">
+        <div class="card-head"><h3>Who is on this from our side</h3><span class="badge badge-gray">5</span></div>
+        <div class="card-pad">
+          <div class="row" style="gap:var(--s8);flex-wrap:wrap">
+            <div class="row" style="gap:var(--s5)"><span class="avatar">MD</span><div><div class="strong">Marco Devlin</div><div class="t-xs muted">Account owner · 5 meetings</div></div></div>
+            <div class="row" style="gap:var(--s5)"><span class="avatar">DS</span><div><div class="strong">Dana Sackett</div><div class="t-xs muted">Co-Founder &amp; CEO · exec cover</div></div></div>
+            <div class="row" style="gap:var(--s5)"><span class="avatar">AT</span><div><div class="strong">Alex Tanaka</div><div class="t-xs muted">Strategic Accounts · 3 meetings</div></div></div>
+            <div class="row" style="gap:var(--s5)"><span class="avatar">RA</span><div><div class="strong">Renee Alvarez</div><div class="t-xs muted">Solutions · 2 meetings</div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------- HISTORY ---------------- -->
+    <section id="tab2-history" hidden>
+      <div class="grid g3" style="margin-bottom:var(--s7)">
+        <div class="card card-pad"><span class="label">Interactions</span><div class="d-md" style="margin-top:var(--s3)">7</div><div class="t-sm muted">3 meetings · 5 outbound · 4 replies</div></div>
+        <div class="card card-pad"><span class="label">Engagement span</span><div class="d-md" style="margin-top:var(--s3)">7d</div><div class="t-sm muted">13 Jul → 20 Jul · trend increasing</div></div>
+        <div class="card card-pad"><span class="label">Response ratio</span><div class="d-md" style="margin-top:var(--s3)">4 / 5</div><div class="t-sm muted">They reply within hours</div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="seg">
+            <button class="is-active" data-hist2="timeline">Timeline</button>
+            <button data-hist2="byrep">By rep</button>
+            <button data-hist2="notes">Notes &amp; docs</button>
+          </div>
+          <button class="btn btn-secondary btn-sm" style="margin-left:auto"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12"/></svg>Add note</button>
+        </div>
+
+        <div id="h2-timeline">
+          <div class="toolbar" style="gap:var(--s4)">
+            <button class="chipfilt on" data-chip>All <span>7</span></button>
+            <button class="chipfilt" data-chip>Meetings <span>3</span></button>
+            <button class="chipfilt" data-chip>Outbound <span>5</span></button>
+            <button class="chipfilt" data-chip>Replies <span>4</span></button>
+            <button class="chipfilt" data-chip>Pricing <span>1</span></button>
+            <button class="chipfilt" data-chip>Notes <span>0</span></button>
+          </div>
+          <div class="card-pad">
+            <ul class="tl">
+              <li>
+                <span class="pin p-out"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 16V8M10 16V4M16 16v-6"/></svg></span>
+                <div class="when"><span class="badge badge-success badge-sq">Pricing</span>20 Jul 2026<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">MD</span>Marco Devlin</span></div>
+                <div class="what">Budgetary pricing sent to unblock procurement</div>
+                <div class="note">3-month POC at $15,000 — $11,250 indexing plus $3,750 for ~15 seats — converting to $60,000/year, with POC payments credited. Reaction not yet captured.</div>
+              </li>
+
+              <li>
+                <span class="pin p-in"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M5 4h10v13H5z"/><path d="M8 2v3M12 2v3M5 8h10"/></svg></span>
+                <div class="when"><span class="badge badge-blue badge-sq">Meeting</span>20 Jul 2026 · 45 min</div>
+                <div class="what">Marcus Webb with Dana Sackett and Marco Devlin</div>
+                <div class="mtg">
+                  <button class="mtg-head" data-mtg="m1">
+                    <span class="avatar avatar-sm">MW</span>
+                    <span class="who"><span class="strong t-sm">Pilot planning and procurement path</span><span class="t-xs muted" style="display:block">No transcript · summary from follow-up email</span></span>
+                    <span class="badge badge-success">3 positives</span><span class="badge badge-warning">2 risks</span>
+                    <svg class="icon icon-sm chev muted" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg>
+                  </button>
+                  <div class="mtg-body" id="m1">
+                    <div><h6>Summary</h6><p class="t-sm dim">Late-stage pilot planning. 15-seat, 90-day pilot agreed with budgetary pricing set, MNDA to be initiated, procurement and legal contacts identified, and a target of commercials by the 29th and kickoff on the 3rd.</p></div>
+                    <div><h6>What is working</h6><ul class="bul"><li>Committed to a 15-seat, 90-day pilot with the MNDA to be initiated same day.</li><li>Marcus is pulling reps across several regions rather than a single team, to secure broad buy-in.</li><li>Clear owners and dates agreed: procurement intro by Wednesday, weekly health checks, kickoff on the 3rd.</li></ul></div>
+                    <div><h6>Pain points they raised</h6><ul class="bul warn"><li>Their exec EA manages intros and the network manually, via spreadsheets and copy-pasted email.</li><li>Board members and investors risk being flooded with intro requests with no approval step.</li></ul></div>
+                    <div><h6>Risks</h6><ul class="bul warn"><li>First ever procurement run — MNDA, security and legal timelines unknown.</li><li>Senior decision-makers deliberately not engaged until after reviews.</li></ul></div>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <span class="pin p-in"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M5 4h10v13H5z"/><path d="M8 2v3M12 2v3M5 8h10"/></svg></span>
+                <div class="when"><span class="badge badge-blue badge-sq">Meeting</span>17 Jul 2026 · 60 min</div>
+                <div class="what">Marcus Webb and Bill Schafer with Dana, Marco and Alex</div>
+                <div class="mtg">
+                  <button class="mtg-head" data-mtg="m2">
+                    <span class="avatar avatar-sm">BS</span>
+                    <span class="who"><span class="strong t-sm">Team lead brought in — functional buyer identified</span><span class="t-xs muted" style="display:block">No transcript · summary from follow-up email</span></span>
+                    <span class="badge badge-success">2 positives</span><span class="badge badge-warning">1 risk</span>
+                    <svg class="icon icon-sm chev muted" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg>
+                  </button>
+                  <div class="mtg-body" id="m2">
+                    <div><h6>Summary</h6><p class="t-sm dim">Marcus brought in Bill Schafer, who owns 6–7 reps and roughly 15 seats, identifying the functional buyer for the evaluation. Both sides aligned on indexing at org level so the network data is rich enough.</p></div>
+                    <div><h6>What is working</h6><ul class="bul"><li>Functional buyer now named and in the room.</li><li>Agreement to index at org level across ~85 target accounts, not a narrow pilot.</li></ul></div>
+                    <div><h6>Risks</h6><ul class="bul warn"><li>RVP buy-in across the other regions still unsecured.</li></ul></div>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <span class="pin p-in"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M5 4h10v13H5z"/><path d="M8 2v3M12 2v3M5 8h10"/></svg></span>
+                <div class="when"><span class="badge badge-blue badge-sq">Meeting</span>13 Jul 2026 · 30 min</div>
+                <div class="what">Marcus Webb with Alex Tanaka, Renee Alvarez and Marco Devlin</div>
+                <div class="mtg">
+                  <button class="mtg-head" data-mtg="m3">
+                    <span class="avatar avatar-sm">MW</span>
+                    <span class="who"><span class="strong t-sm">First working session — use case confirmed</span><span class="t-xs muted" style="display:block">Transcript captured</span></span>
+                    <span class="badge badge-success">2 positives</span>
+                    <svg class="icon icon-sm chev muted" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg>
+                  </button>
+                  <div class="mtg-body" id="m3">
+                    <div><h6>Summary</h6><p class="t-sm dim">Marcus laid out the need: surface warm paths and prioritise accounts for the enterprise sales team, including into Meridian Trust and roughly 85 target accounts. He is building a GTM tool where CTD's paths API would supply the warm-path data layer.</p></div>
+                    <div><h6>What is working</h6><ul class="bul"><li>Concrete use case, named target accounts, and a build they want us inside.</li><li>Deals stall when reps are single-threaded and anchored too low — exactly our pitch.</li></ul></div>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <span class="pin"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 10h12M12 6l4 4-4 4"/></svg></span>
+                <div class="when"><span class="badge badge-gray badge-sq">Origin</span>Jun 2026</div>
+                <div class="what">Cal Stern introduced Marcus Webb to CTD</div>
+                <div class="note">Reinforced by Dana Sackett's existing direct relationship with CEO Adam Kessler.</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="h2-byrep" hidden>
+          <div class="card-pad">
+            <div class="banner" style="margin-bottom:var(--s7)">
+              <svg class="icon icon-sm" style="color:var(--blue-700);margin-top:2px" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 6h.01"/></svg>
+              <div><span class="strong">Four people from our side, coordinated.</span> Contrast with a cold account — here everyone is in the same meetings, and Dana is held in reserve for the executive step.</div>
+            </div>
+            <div class="grid g2">
+              <div class="card"><div class="card-head"><span class="avatar">MD</span><div><h3>Marco Devlin</h3><div class="t-xs muted">Account owner · 5 touches · 3 meetings</div></div></div>
+                <div class="card-pad"><ul class="bul"><li><span class="strong">20 Jul</span> — sent budgetary pricing within hours of Marcus asking.</li><li>In all three meetings. Owns the procurement intro due Wednesday.</li></ul></div></div>
+              <div class="card"><div class="card-head"><span class="avatar">DS</span><div><h3>Dana Sackett</h3><div class="t-xs muted">Co-Founder &amp; CEO · 2 meetings · exec cover</div></div></div>
+                <div class="card-pad"><ul class="bul"><li>Direct relationship with CEO Adam Kessler, unused so far.</li><li>Deliberately held back until the security review is underway.</li></ul>
+                <div class="banner" style="margin-top:var(--s6)"><svg class="icon icon-sm" style="color:var(--blue-700);margin-top:2px" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 6h.01"/></svg><div>This is the escalation path if procurement stalls past the 29th.</div></div></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="h2-notes" hidden>
+          <div class="card-pad">
+            <div class="grid g2">
+              <div class="card"><div class="card-head"><h3>Notes</h3><button class="btn btn-secondary btn-sm" style="margin-left:auto">Add note</button></div>
+                <div class="empty"><div class="ico"><svg class="icon" viewBox="0 0 20 20"><path d="M5 3h7l3 3v11H5z"/><path d="M12 3v3h3"/></svg></div>
+                <div class="t-sm strong" style="color:var(--gray-700)">No notes yet</div><div class="t-sm">Add what you know that the meetings did not capture.</div></div></div>
+              <div class="card"><div class="card-head"><h3>Documents</h3><button class="btn btn-secondary btn-sm" style="margin-left:auto">New doc</button></div>
+                <div class="empty"><div class="ico"><svg class="icon" viewBox="0 0 20 20"><path d="M4 3h8l4 4v10H4z"/><path d="M12 3v4h4"/></svg></div>
+                <div class="t-sm strong" style="color:var(--gray-700)">No documents yet</div><div class="t-sm">The MNDA and security questionnaire will land here.</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
   <!-- Placeholder views -->
   <div class="page" id="view-network" hidden>
     <h1 class="d-sm">My network</h1>
@@ -1887,6 +2255,23 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     </div>
 
     <div class="note-block">
+      <h4>13 · Meetings and Activities, folded in</h4>
+      <p>Both carried real substance, so neither was cut — they were merged, which is what you get when you stop treating "a meeting" and "an interaction" as different objects.</p>
+      <div class="kv"><span class="k">Meetings → list</span><span class="v">History timeline, Meetings filter</span></div>
+      <div class="kv"><span class="k">Meetings → per-meeting summary</span><span class="v">Expandable inside the timeline entry</span></div>
+      <div class="kv"><span class="k">Activities → Deal Assessment</span><span class="v">Brief — Deal assessment strip</span></div>
+      <div class="kv"><span class="k">Activities → Objections / Blockers</span><span class="v">Brief — What is blocking</span></div>
+      <div class="kv"><span class="k">Activities → Key signals / concerns</span><span class="v">Brief — Why drawers, Watch for</span></div>
+      <div class="kv"><span class="k">Activities → Contacts</span><span class="v">People — Buying group</span></div>
+      <div class="kv"><span class="k">Activities → CTD Team</span><span class="v">History — By rep</span></div>
+      <p style="margin-top:var(--s5)">A meeting is now a timeline entry that opens into its summary, what is working, pain points and risks. Nothing is lost, and you stop having to reconcile two separate chronologies.</p>
+      <p style="margin-top:var(--s5)"><span class="strong">Deal assessment</span> was six pink chips reading <span class="mono">ACTIVE</span>, <span class="mono">ACCELERATING</span>, <span class="mono">HIGH</span>, <span class="mono">STRONG</span>, <span class="mono">IDENTIFIED_AND_ACTIVE</span>, <span class="mono">YES</span> — colour that implied error where it meant "good". It is now six labelled cells with a status dot and a supporting fact, so <span class="strong">Champion · Active · Marcus Webb</span> reads as a sentence.</p>
+      <p style="margin-top:var(--s5)"><span class="strong">Blockers got promoted.</span> Objections and blockers were the seventh block down on a tab nobody opened, yet they are the only thing standing between this deal and a pilot. They now sit directly under the deal assessment as three ordered gates with state — cleared, open, not started.</p>
+      <p style="margin-top:var(--s5)"><span class="strong">People adapts to the stage.</span> On a cold account the table asks who can open a door. On a live deal it asks who blocks, who signs and who champions — same component, different column.</p>
+      <p style="margin-top:var(--s5)"><span class="strong">Human Inputs and Docs stay merged into History.</span> Both were empty even on your most active account, which is the argument against giving either its own nav item.</p>
+    </div>
+
+    <div class="note-block">
       <h4>Where each old view went</h4>
       <div class="kv"><span class="k">Overview</span><span class="v">Brief — header, The call, Why</span></div>
       <div class="kv"><span class="k">Strategy → Summary</span><span class="v">Brief — The call</span></div>
@@ -1896,6 +2281,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       <div class="kv"><span class="k">Strategy → Tasks</span><span class="v">Global Tasks + Next action</span></div>
       <div class="kv"><span class="k">Network Score</span><span class="v">People — stats + path explorer</span></div>
       <div class="kv"><span class="k">Activities → Summary</span><span class="v">Deleted (duplicate)</span></div>
+      <div class="kv"><span class="k">Meetings</span><span class="v">History — Timeline, expandable</span></div>
       <div class="kv"><span class="k">Activities → Timeline</span><span class="v">History — Timeline</span></div>
       <div class="kv"><span class="k">Activities → Contacts</span><span class="v">People</span></div>
       <div class="kv"><span class="k">Activities → CTD Team</span><span class="v">History — By rep</span></div>
@@ -1910,8 +2296,8 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
 <script>
 /* ---------------- View routing ---------------- */
-const views = ['accounts','tasks','task','account','network','inbox'];
-const NAV_OF = {account:'accounts', task:'tasks'};
+const views = ['accounts','tasks','task','account','account2','network','inbox'];
+const NAV_OF = {account:'accounts', account2:'accounts', task:'tasks'};
 function showView(name){
   views.forEach(v=>{
     const el=document.getElementById('view-'+v);
@@ -1928,7 +2314,8 @@ document.querySelectorAll('[data-view]').forEach(el=>{
 document.querySelectorAll('#view-accounts tbody tr.rowlink').forEach(el=>{
   el.addEventListener('click',e=>{
     if(e.target.closest('button')) return;
-    showView('account');showTab('brief');
+    if(el.dataset.acct==='account2'){ showView('account2'); showTab2('brief'); }
+    else { showView('account'); showTab('brief'); }
   });
 });
 
@@ -2064,6 +2451,30 @@ document.querySelector('[data-wnext]').addEventListener('click',()=>{
 });
 document.querySelectorAll('.wstep').forEach(s=>s.addEventListener('click',()=>{wstep=+s.dataset.w;renderWizard();}));
 nt.addEventListener('click',e=>{ if(e.target===nt) closeWizard(); });
+
+
+/* ---------------- Live-deal account: tabs and meeting expanders ---------------- */
+const panes2={brief:'tab2-brief',people:'tab2-people',history:'tab2-history'};
+function showTab2(name){
+  document.querySelectorAll('[data-tab2]').forEach(t=>t.classList.toggle('is-active',t.dataset.tab2===name));
+  Object.entries(panes2).forEach(([k,id])=>{document.getElementById(id).hidden = k!==name;});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('[data-tab2]').forEach(t=>t.addEventListener('click',()=>showTab2(t.dataset.tab2)));
+document.querySelectorAll('[data-goto2]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();showView('account2');showTab2(a.dataset.goto2);}));
+document.querySelectorAll('[data-hist2]').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('[data-hist2]').forEach(x=>x.classList.toggle('is-active',x===b));
+    ['timeline','byrep','notes'].forEach(k=>{document.getElementById('h2-'+k).hidden = k!==b.dataset.hist2;});
+  });
+});
+document.querySelectorAll('[data-mtg]').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const body=document.getElementById(b.dataset.mtg);
+    const open=body.classList.toggle('open');
+    b.querySelector('.chev').style.transform = open ? 'rotate(180deg)' : '';
+  });
+});
 
 /* ---------------- Design notes ---------------- */
 const panel=document.getElementById('notesPanel');
