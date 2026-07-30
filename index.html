@@ -424,6 +424,14 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .doci:last-child{border-bottom:none}
 .doci:hover{background:var(--gray-50)}
 
+
+/* Connector load meter — how much you are leaning on someone */
+.load{display:inline-flex;align-items:center;gap:3px}
+.load i{width:14px;height:6px;border-radius:2px;background:var(--gray-200);display:block}
+.load.l1 i:nth-child(1),.load.l2 i:nth-child(-n+2),.load.l3 i:nth-child(-n+3){background:var(--success)}
+.load.l4 i:nth-child(-n+4){background:var(--warning)}
+.load.l5 i{background:var(--error)}
+
 /* Design notes */
 .notes-toggle{position:fixed;right:var(--s8);bottom:var(--s8);z-index:60;background:var(--gray-900);color:#fff;border-radius:var(--r-2xl);height:44px;padding:0 var(--s7);display:inline-flex;align-items:center;gap:var(--s4);box-shadow:var(--sh-2xl);font-weight:500}
 .notes{position:fixed;top:0;right:0;bottom:0;width:470px;max-width:94vw;z-index:70;background:#fff;border-left:1px solid var(--gray-200);box-shadow:var(--sh-2xl);transform:translateX(100%);transition:transform .22s ease;display:flex;flex-direction:column}
@@ -2425,14 +2433,176 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
   </div>
 
   <!-- Placeholder views -->
-  <div class="page" id="view-network" hidden>
-    <h1 class="d-sm">My network</h1>
-    <div class="card" style="margin-top:var(--s7)"><div class="empty">
-      <div class="ico"><svg class="icon" viewBox="0 0 20 20"><circle cx="10" cy="5" r="2.2"/><circle cx="5" cy="14" r="2.2"/><circle cx="15" cy="14" r="2.2"/><path d="M8.4 6.6 6.3 12M11.6 6.6 13.7 12M7.2 14h5.6"/></svg></div>
-      <div class="t-sm strong" style="color:var(--gray-700)">Out of scope for this prototype</div>
-      <div class="t-sm">This redesign covers Accounts, Tasks and the account detail page.</div>
-    </div></div>
+  <div class="page wide" id="view-network" hidden>
+    <div class="between" style="align-items:flex-start">
+      <div>
+        <h1 class="d-sm">My network</h1>
+        <p class="dim" style="margin-top:var(--s2)">The people who can open doors for you, and how hard you are leaning on each of them</p>
+      </div>
+      <button class="btn btn-secondary"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 3v10M6.5 9.5 10 13l3.5-3.5"/><path d="M4 16h12"/></svg>Import connections</button>
+    </div>
+
+    <div class="banner warn" style="margin-top:var(--s7)">
+      <svg class="icon icon-sm" style="color:var(--warning-700);margin-top:2px" viewBox="0 0 20 20"><path d="M10 7v4M10 14h.01"/><circle cx="10" cy="10" r="7.5"/></svg>
+      <div><span class="strong">38 asks are queued across 14 connectors, and none has been sent this quarter.</span> Four connectors are carrying more than they should. The bottleneck is not finding paths — it is asking.</div>
+    </div>
+
+    <div class="grid g3" style="margin-top:var(--s7);grid-template-columns:repeat(4,1fr)">
+      <div class="card card-pad"><span class="label">Connectors</span><div class="d-md" style="margin-top:var(--s3)">14</div><div class="t-sm muted">Can reach 62 of your accounts</div></div>
+      <div class="card card-pad"><span class="label">Asks in flight</span><div class="d-md" style="margin-top:var(--s3)">38</div><div class="t-sm muted">Oldest is 41 days</div></div>
+      <div class="card card-pad"><span class="label">Intros made</span><div class="d-md" style="margin-top:var(--s3)">11</div><div class="t-sm muted">This quarter, all via 3 people</div></div>
+      <div class="card card-pad"><span class="label">Accounts with no path</span><div class="d-md" style="margin-top:var(--s3)">47</div><div class="t-sm muted">Of 109 you own</div></div>
+    </div>
+
+    <div class="row" style="margin:var(--s8) 0 var(--s6)">
+      <div class="seg">
+        <button class="is-active" data-seg="net">All <span class="t-xs" style="opacity:.7">14</span></button>
+        <button data-seg="net">Ready to ask <span class="t-xs" style="opacity:.7">6</span></button>
+        <button data-seg="net">Over-asked <span class="t-xs" style="opacity:.7">4</span></button>
+        <button data-seg="net">Gone quiet <span class="t-xs" style="opacity:.7">2</span></button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="toolbar">
+        <label class="tb-search"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="9" cy="9" r="6"/><path d="m17 17-3.5-3.5"/></svg><input placeholder="Search connectors…"></label>
+        <button class="filt" data-filt>Source<svg class="icon icon-xs chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
+        <button class="filt" data-filt>Strength<svg class="icon icon-xs chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
+        <div class="row" style="margin-left:auto;gap:var(--s4)"><span class="t-sm muted nowrap">Sort</span>
+          <button class="filt">Most useful<svg class="icon icon-xs chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button></div>
+      </div>
+
+      <div style="overflow-x:auto">
+      <table>
+        <thead><tr>
+          <th style="width:24%">Connector</th><th>Reaches</th><th>Strongest link</th><th>Asks in flight</th><th>Intros made</th><th>Last asked</th><th>Status</th><th></th>
+        </tr></thead>
+        <tbody>
+          <tr class="rowlink">
+            <td><div class="row" style="gap:var(--s5)"><span class="avatar">HW</span><div><div class="strong">Helen Ward</div><div class="t-xs muted">Board Observer · Fernwood Capital</div></div></div></td>
+            <td><span class="badge badge-gray">9 accounts</span></td>
+            <td><div class="row" style="gap:var(--s4)"><span class="score s4" title="Strong"><i></i><i></i><i></i></span><span class="t-sm dim">Priya Raman</span></div></td>
+            <td><div class="row" style="gap:var(--s4)"><span class="load l5"><i></i><i></i><i></i><i></i><i></i></span><span class="t-sm strong num">7</span></div></td>
+            <td class="t-sm dim num">6</td>
+            <td class="t-sm dim nowrap">2 days ago</td>
+            <td><span class="badge badge-error"><span class="dot"></span>Over-asked</span></td>
+            <td style="text-align:right"><button class="btn btn-secondary btn-sm">View asks</button></td>
+          </tr>
+          <tr class="rowlink">
+            <td><div class="row" style="gap:var(--s5)"><span class="avatar">DS</span><div><div class="strong">Dana Sackett</div><div class="t-xs muted">Co-Founder &amp; CEO · CTD</div></div></div></td>
+            <td><span class="badge badge-gray">14 accounts</span></td>
+            <td><div class="row" style="gap:var(--s4)"><span class="score s4" title="Strong"><i></i><i></i><i></i></span><span class="t-sm dim">Adam Kessler</span></div></td>
+            <td><div class="row" style="gap:var(--s4)"><span class="load l1"><i></i><i></i><i></i><i></i><i></i></span><span class="t-sm strong num">1</span></div></td>
+            <td class="t-sm dim num">3</td>
+            <td class="t-sm dim nowrap">3 weeks ago</td>
+            <td><span class="badge badge-success"><span class="dot"></span>Ready</span></td>
+            <td style="text-align:right"><button class="btn btn-primary btn-sm">Ask Dana</button></td>
+          </tr>
+          <tr class="rowlink">
+            <td><div class="row" style="gap:var(--s5)"><span class="avatar">AT</span><div><div class="strong">Alex Tanaka</div><div class="t-xs muted">Director, Strategic Accounts · CTD</div></div></div></td>
+            <td><span class="badge badge-gray">6 accounts</span></td>
+            <td><div class="row" style="gap:var(--s4)"><span class="score s4" title="Strong"><i></i><i></i><i></i></span><span class="t-sm dim">Elena Roche</span></div></td>
+            <td><div class="row" style="gap:var(--s4)"><span class="load l2"><i></i><i></i><i></i><i></i><i></i></span><span class="t-sm strong num">2</span></div></td>
+            <td class="t-sm dim num">2</td>
+            <td class="t-sm dim nowrap">6 days ago</td>
+            <td><span class="badge badge-success"><span class="dot"></span>Ready</span></td>
+            <td style="text-align:right"><button class="btn btn-primary btn-sm">Ask Alex</button></td>
+          </tr>
+          <tr class="rowlink">
+            <td><div class="row" style="gap:var(--s5)"><span class="avatar">NP</span><div><div class="strong">Nathan Pike</div><div class="t-xs muted">Fractional Operating Partner · Meridian Advisory</div></div></div></td>
+            <td><span class="badge badge-gray">3 accounts</span></td>
+            <td><div class="row" style="gap:var(--s4)"><span class="score s4" title="Strong"><i></i><i></i><i></i></span><span class="t-sm dim">Dean Whitlock</span></div></td>
+            <td><div class="row" style="gap:var(--s4)"><span class="load l1"><i></i><i></i><i></i><i></i><i></i></span><span class="t-sm strong num">1</span></div></td>
+            <td class="t-sm dim num">0</td>
+            <td class="t-sm muted nowrap">Never</td>
+            <td><span class="badge badge-blue"><span class="dot"></span>Unused</span></td>
+            <td style="text-align:right"><button class="btn btn-primary btn-sm" data-view="task">Open task</button></td>
+          </tr>
+          <tr class="rowlink">
+            <td><div class="row" style="gap:var(--s5)"><span class="avatar">OB</span><div><div class="strong">Owen Brandt</div><div class="t-xs muted">EIR · Larkspur Ventures</div></div></div></td>
+            <td><span class="badge badge-gray">11 accounts</span></td>
+            <td><div class="row" style="gap:var(--s4)"><span class="score s3" title="Familiar"><i></i><i></i><i></i></span><span class="t-sm dim">Marcus Webb</span></div></td>
+            <td><div class="row" style="gap:var(--s4)"><span class="load l4"><i></i><i></i><i></i><i></i><i></i></span><span class="t-sm strong num">5</span></div></td>
+            <td class="t-sm dim num">2</td>
+            <td class="t-sm dim nowrap">41 days ago</td>
+            <td><span class="badge badge-warning"><span class="dot"></span>Gone quiet</span></td>
+            <td style="text-align:right"><button class="btn btn-secondary btn-sm">Nudge</button></td>
+          </tr>
+          <tr class="rowlink">
+            <td><div class="row" style="gap:var(--s5)"><span class="avatar">MD</span><div><div class="strong">Marco Devlin</div><div class="t-xs muted">Global Sales Director · CTD</div></div></div></td>
+            <td><span class="badge badge-gray">8 accounts</span></td>
+            <td><div class="row" style="gap:var(--s4)"><span class="score s2" title="Weak"><i></i><i></i><i></i></span><span class="t-sm dim">Elena Roche</span></div></td>
+            <td><div class="row" style="gap:var(--s4)"><span class="load l1"><i></i><i></i><i></i><i></i><i></i></span><span class="t-sm strong num">0</span></div></td>
+            <td class="t-sm dim num">0</td>
+            <td class="t-sm muted nowrap">Never</td>
+            <td><span class="badge badge-gray"><span class="dot"></span>Weak links only</span></td>
+            <td style="text-align:right"><button class="btn btn-secondary btn-sm">View</button></td>
+          </tr>
+          <tr class="rowlink">
+            <td><div class="row" style="gap:var(--s5)"><span class="avatar">NF</span><div><div class="strong">Nora Feld</div><div class="t-xs muted">Advisor · independent</div></div></div></td>
+            <td><span class="badge badge-gray">4 accounts</span></td>
+            <td><div class="row" style="gap:var(--s4)"><span class="score s4" title="Strong"><i></i><i></i><i></i></span><span class="t-sm dim">Ruth Calder</span></div></td>
+            <td><div class="row" style="gap:var(--s4)"><span class="load l1"><i></i><i></i><i></i><i></i><i></i></span><span class="t-sm strong num">1</span></div></td>
+            <td class="t-sm dim num">0</td>
+            <td class="t-sm dim nowrap">2 days ago</td>
+            <td><span class="badge badge-success"><span class="dot"></span>Ready</span></td>
+            <td style="text-align:right"><button class="btn btn-secondary btn-sm">View asks</button></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="legend">
+        <span><b>Reaches</b> accounts where this person has a path to someone you want</span>
+        <span><b>Asks in flight</b> intro requests they have not yet acted on</span>
+        <span><b>Over-asked</b> more than 4 open asks, or 3 in the last 30 days</span>
+        <span><b>Gone quiet</b> asked more than 14 days ago with no response</span>
+      </div>
+
+      <div class="card-foot">
+        <span class="t-sm muted">Showing 7 of 14</span>
+        <div class="pager"><span class="p on">1</span><span class="p">2</span></div>
+      </div>
+    </div>
+
+    <div class="sec-title" style="margin-top:var(--s9)">
+      <h2>Accounts with no path</h2>
+      <span class="t-sm muted">47 of the 109 you own — nobody in your network reaches them</span>
+      <a href="#" style="margin-left:auto;font-weight:500;font-size:14px">See all 47</a>
+    </div>
+    <div class="card">
+      <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th style="width:30%">Account</th><th>Fit</th><th>Signal</th><th>Closest miss</th><th></th></tr></thead>
+        <tbody>
+          <tr class="rowlink">
+            <td><div class="row" style="gap:var(--s5)"><span class="avatar avatar-co">Fo</span><div><div class="strong">Formwork</div><div class="t-xs muted">formwork.dev</div></div></div></td>
+            <td><span class="strong num">89</span></td>
+            <td><span class="badge badge-warning"><span class="dot"></span>Re-triggered</span></td>
+            <td class="t-sm dim">2 colleagues follow their VP Eng but have never messaged</td>
+            <td style="text-align:right"><button class="btn btn-secondary btn-sm">Find a path</button></td>
+          </tr>
+          <tr class="rowlink">
+            <td><div class="row" style="gap:var(--s5)"><span class="avatar avatar-co">Ca</span><div><div class="strong">Cascade Robotics</div><div class="t-xs muted">cascaderobotics.com</div></div></div></td>
+            <td><span class="strong num">86</span></td>
+            <td><span class="badge badge-success"><span class="dot"></span>Dancing</span></td>
+            <td class="t-sm dim">Nobody in the graph — try importing Renee's connections</td>
+            <td style="text-align:right"><button class="btn btn-secondary btn-sm">Find a path</button></td>
+          </tr>
+          <tr class="rowlink">
+            <td><div class="row" style="gap:var(--s5)"><span class="avatar avatar-co">Ri</span><div><div class="strong">Ridgeline Ops</div><div class="t-xs muted">ridgelineops.com</div></div></div></td>
+            <td><span class="strong num">78</span></td>
+            <td><span class="badge badge-success"><span class="dot"></span>Dancing</span></td>
+            <td class="t-sm dim">Owen Brandt reaches their board, but not the buying group</td>
+            <td style="text-align:right"><button class="btn btn-secondary btn-sm">Find a path</button></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="legend"><span>123 of your open tasks have no connector attached. This is where they come from.</span></div>
+    </div>
   </div>
+
   <div class="page" id="view-inbox" hidden>
     <h1 class="d-sm">Inbox</h1>
     <div class="card" style="margin-top:var(--s7)"><div class="empty">
