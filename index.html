@@ -458,6 +458,13 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .growrow:first-of-type{border-top:none}
 .growrow .g{flex:1;min-width:0}
 
+
+/* Relay nodes carry the role each person plays */
+.relay .node{flex-direction:column;align-items:flex-start;gap:2px;padding:var(--s4) var(--s5)}
+.relay .node .top{display:flex;align-items:center;gap:var(--s4)}
+.relay .node .role{font-size:11px;line-height:16px;color:var(--gray-500);white-space:nowrap}
+.relay .node.done{background:var(--gray-50);border-color:var(--gray-200)}
+
 /* Design notes */
 .notes-toggle{position:fixed;right:var(--s8);bottom:var(--s8);z-index:60;background:var(--gray-900);color:#fff;border-radius:var(--r-2xl);height:44px;padding:0 var(--s7);display:inline-flex;align-items:center;gap:var(--s4);box-shadow:var(--sh-2xl);font-weight:500}
 .notes{position:fixed;top:0;right:0;bottom:0;width:470px;max-width:94vw;z-index:70;background:#fff;border-left:1px solid var(--gray-200);box-shadow:var(--sh-2xl);transform:translateX(100%);transition:transform .22s ease;display:flex;flex-direction:column}
@@ -937,57 +944,59 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
     <div class="card">
       <div class="card-pad">
-        <div class="row" style="gap:var(--s5);margin-bottom:var(--s6);flex-wrap:wrap">
-          <span class="avatar avatar-sm">MD</span>
-          <span class="t-sm dim"><span class="strong">Marco Devlin</span> picked Nathan and wrote both messages on 12 Jun. He is the account owner — his job on this play is done.</span>
-        </div>
-        <span class="label">Whose name does the ask go out under?</span>
-        <div class="delivery" style="margin-top:var(--s5)">
-          <button class="dopt on" data-dopt data-send="you">
-            <span class="rad"></span>
-            <span>
-              <h5>Yours</h5>
-              <p>Sends now from sam@ctd.ai. Nathan replies straight to you.</p>
-            </span>
-          </button>
-          <button class="dopt" data-dopt data-send="ghost">
-            <span class="rad"></span>
-            <span>
-              <h5>Dana Sackett's <span class="badge badge-gray badge-sq">Ghost</span></h5>
-              <p>You keep the draft as written; it goes out under Dana's name. She has met Nathan twice at CxO events, and a note from a founder gets opened more often than one from an AE. She approves it in CTD first, which adds about a day.</p>
-            </span>
-          </button>
-        </div>
-      </div>
-
-      <div style="border-top:1px solid var(--gray-200);padding:var(--s7)">
         <div class="relay">
-          <span class="node you" id="senderNode">
-            <span class="avatar avatar-sm" id="senderAv">SE</span>
-            <span><span class="nm" id="senderNm">You</span> <span class="rl" id="senderRl">Sam Ellis</span></span>
-            <span class="badge badge-blue" style="margin-left:var(--s4)"><span class="dot"></span>Your turn</span>
+          <span class="node done">
+            <span class="top"><span class="avatar avatar-sm">MD</span><span class="nm">Marco Devlin</span>
+              <span class="badge badge-gray"><svg class="icon icon-xs" viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg>Done</span></span>
+            <span class="role">AE · found the path through you and wrote the draft</span>
+          </span>
+          <span class="leg"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 10h12M12 6l4 4-4 4"/></svg><span>Handed to you</span></span>
+          <span class="node you">
+            <span class="top"><span class="avatar avatar-sm">SE</span><span class="nm">You</span>
+              <span class="badge badge-blue"><span class="dot"></span>Your turn</span></span>
+            <span class="role">You know Nathan — the ask goes out from you</span>
           </span>
           <span class="leg"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 10h12M12 6l4 4-4 4"/></svg><span>Message 1</span></span>
           <span class="node">
-            <span class="avatar avatar-sm">NP</span>
-            <span><span class="nm">Nathan Pike</span> <span class="rl">Connector · Meridian Advisory</span></span>
+            <span class="top"><span class="avatar avatar-sm">NP</span><span class="nm">Nathan Pike</span></span>
+            <span class="role">Connector · Meridian Advisory</span>
           </span>
           <span class="leg"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 10h12M12 6l4 4-4 4"/></svg><span>Message 2</span></span>
           <span class="node">
-            <span class="avatar avatar-sm">DW</span>
-            <span><span class="nm">Dean Whitlock</span> <span class="rl">CEO · Copperline</span></span>
+            <span class="top"><span class="avatar avatar-sm">DW</span><span class="nm">Dean Whitlock</span></span>
+            <span class="role">Target · CEO, Copperline</span>
           </span>
         </div>
 
         <div class="banner" style="margin-top:var(--s6)">
           <svg class="icon icon-sm" style="color:var(--blue-700);margin-top:2px" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 6h.01"/></svg>
-          <div id="relayNote"><span class="strong">Only message 1 gets sent.</span> Message 2 is written for Nathan to forward on to Dean in his own name — nobody at CTD sends it, and Dean never sees anything from you directly. If Dean bites, the goal is a hand-off to CCO Ruth Calder.</div>
+          <div id="relayNote"><span class="strong">Only message 1 gets sent, and it goes out from you.</span> Message 2 is written for Nathan to forward on to Dean in his own name — nobody at CTD sends it, and Dean never hears from you directly. If Dean bites, the goal is a hand-off to CCO Ruth Calder.</div>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--gray-200);padding:var(--s7)">
+        <span class="label">How do you want to send it?</span>
+        <div class="delivery" style="margin-top:var(--s5)">
+          <button class="dopt on" data-dopt data-send="inbox">
+            <span class="rad"></span>
+            <span>
+              <h5>From your inbox</h5>
+              <p>Goes out now from sam@ctd.ai. Nathan replies straight to you. CTD cannot see the reply, so this intro will not show up in your numbers.</p>
+            </span>
+          </button>
+          <button class="dopt" data-dopt data-send="ctd">
+            <span class="rad"></span>
+            <span>
+              <h5>Through CTD <span class="badge badge-gray badge-sq">Tracked</span></h5>
+              <p>Same message, same address, still from you — but CTD sends it and watches for Nathan's reply, so the intro is counted and the task closes itself.</p>
+            </span>
+          </button>
         </div>
       </div>
     </div>
 
     <!-- Messages -->
-    <div class="sec-title"><h2>The two messages</h2><span class="t-sm muted">Drafted by Marco — edit before you send</span></div>
+    <div class="sec-title"><h2>The two messages</h2><span class="t-sm muted">Marco wrote both — edit before you send</span></div>
 
     <div class="msg">
       <div class="msg-head">
@@ -1002,7 +1011,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         </div>
       </div>
       <div class="msg-fields">
-        <div class="msg-field"><span class="k">From</span><span id="msgFrom"><span class="strong">You</span> <span class="muted">sam@ctd.ai</span> <span class="t-xs muted">· drafted by Marco Devlin</span></span></div>
+        <div class="msg-field"><span class="k">From</span><span id="msgFrom"><span class="strong">You</span> <span class="muted">sam@ctd.ai</span> <span class="t-xs muted">· written by Marco Devlin for you to send</span></span></div>
         <div class="msg-field"><span class="k">To</span><span class="row" style="gap:var(--s4)"><span class="avatar avatar-sm">NP</span><span class="strong">Nathan Pike</span><span class="muted">nathan@meridianadvisory.com</span></span></div>
         <div class="msg-field"><span class="k">Subject</span><span class="strong">Dean Whitlock at Copperline</span></div>
       </div>
@@ -1055,7 +1064,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       <button class="btn btn-secondary">Snooze</button>
       <button class="btn btn-secondary">Save draft</button>
       <button class="btn btn-primary" id="sendBtn">
-        <svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M3 10h14M12 5l5 5-5 5"/></svg><span id="sendLbl">Send to Nathan Pike</span>
+        <svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M3 10h14M12 5l5 5-5 5"/></svg><span id="sendLbl">Send from your inbox</span>
       </button>
     </div>
   </div>
@@ -2996,10 +3005,11 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     </div>
 
     <div class="note-block">
-      <h4>16 · Author is not sender</h4>
-      <p>An earlier pass had the ghost option read "Marco sends it for you" — which was wrong, and confusing, because Marco had already <span class="strong">written</span> the draft. A ghost email has two distinct roles: the <span class="strong">author</span> writes it, and a different person <span class="strong">approves and sends</span> it under their own name. CTD's own API enforces this — send can only be called from the sender's session, never the author's.</p>
-      <p style="margin-top:var(--s5)">On this task Marco is the author and you are the sender. The ghost option is therefore not "Marco sends it" but "someone closer to the connector puts their name on it" — here Dana Sackett, who has met Nathan twice and is a founder. The play card now says outright what Marco did and that his part is finished, because "who is this person" should never be a question the screen leaves open.</p>
-      <p style="margin-top:var(--s5)">Choosing the sender now rewrites the relay, the From line, the confirmation text and the button: <span class="strong">Send to Nathan Pike</span> becomes <span class="strong">Send to Dana for approval</span>, and the note explains that nothing reaches Nathan until she approves. Seeing the consequence change is the fastest way to understand a two-role flow.</p>
+      <h4>16 · Everyone in the play belongs in the play</h4>
+      <p>Two wrong turns, both worth recording. First the ghost option read "Marco sends it for you" — but Marco had <span class="strong">written</span> the draft, and an author is not a sender. Then the fix introduced a more senior colleague as the ghost sender, which invented a person nobody in the story knew.</p>
+      <p style="margin-top:var(--s5)">The actual shape is simpler and has four people: <span class="strong">Marco</span>, the AE, found that <span class="strong">you</span> have a path to <span class="strong">Nathan</span>, who can reach <span class="strong">Dean</span>. Marco wrote the ask; you send it because you are the one Nathan knows. All four are now in one relay, each labelled with the part they play, and Marco is marked done rather than floating above the diagram as an unexplained name.</p>
+      <p style="margin-top:var(--s5)">Which also resolved the choice on offer. The sender is not variable — it has to be you, because the relationship is yours. What varies is <span class="strong">how</span> it goes: straight from your inbox, or through CTD under the same address. The second is worth its extra step because CTD then sees the reply, and the Baseline Data pilot notes flag exactly this as a measurement problem: reps act on relationships outside the tracking, so nobody can prove the ROI.</p>
+      <p style="margin-top:var(--s5)">The general lesson: if a name appears on a screen, the screen should say what that person did. Both errors here were versions of failing that test.</p>
     </div>
 
     <div class="note-block">
@@ -3210,26 +3220,18 @@ document.querySelectorAll('[data-mtg]').forEach(b=>{
 
 
 
-/* ---------------- Sender choice drives the whole play card ---------------- */
-const SENDERS={
-  you:{av:'SE',nm:'You',rl:'Sam Ellis',
-       what:'<span class="strong">Sending now:</span> message 1, from sam@ctd.ai to Nathan Pike. Dean is not contacted at this step.',
-       lbl:'Send to Nathan Pike',
-       from:'<span class="strong">You</span> <span class="muted">sam@ctd.ai</span> <span class="t-xs muted">· drafted by Marco Devlin</span>'},
-  ghost:{av:'DS',nm:'Dana Sackett',rl:'Co-Founder &amp; CEO · CTD',
-       what:'<span class="strong">Sending for approval:</span> message 1 goes to Dana Sackett. Once she approves, it sends to Nathan under her name. Nothing reaches Nathan until she does.',
-       lbl:'Send to Dana for approval',
-       from:'<span class="strong">Dana Sackett</span> <span class="muted">dana@ctd.ai</span> <span class="t-xs muted">· drafted by Marco Devlin, sent by you</span>'}
+/* ---------------- Delivery choice updates the confirmation ---------------- */
+const DELIVERY={
+  inbox:{what:'<span class="strong">Sending now:</span> message 1, from sam@ctd.ai to Nathan Pike. Dean is not contacted at this step, and CTD will not see the reply.',
+         lbl:'Send from your inbox'},
+  ctd:{what:'<span class="strong">Sending now:</span> message 1 goes to Nathan Pike from sam@ctd.ai via CTD, which watches for his reply and closes this task when it lands.',
+       lbl:'Send through CTD'}
 };
 document.querySelectorAll('[data-send]').forEach(b=>{
   b.addEventListener('click',()=>{
-    const cfg=SENDERS[b.dataset.send]; if(!cfg) return;
-    document.getElementById('senderAv').textContent=cfg.av;
-    document.getElementById('senderNm').textContent=cfg.nm;
-    document.getElementById('senderRl').innerHTML=cfg.rl;
+    const cfg=DELIVERY[b.dataset.send]; if(!cfg) return;
     document.getElementById('sendWhat').innerHTML=cfg.what;
     document.getElementById('sendLbl').textContent=cfg.lbl;
-    document.getElementById('msgFrom').innerHTML=cfg.from;
   });
 });
 
