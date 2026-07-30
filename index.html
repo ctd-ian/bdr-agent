@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CTD.ai — BDR tool redesign (sample data)</title>
+<title>CTD.ai BDR tool redesign (sample data)</title>
 <style>
 /* Fonts embedded as base64 woff2 (latin subset) so the prototype renders
    identically with no network access. Source: @fontsource, SIL Open Font License. */
@@ -17,7 +17,7 @@
 <style>
 /* ==============================================================
    CTD.ai design system tokens
-   Source: Claude Design — "CTD.ai Design System" (org default).
+   Source: Claude Design, "CTD.ai Design System" (org default).
    Colour ramps, type scale, 4px spacing, radius and elevation
    transcribed from the specimen cards.
    ============================================================== */
@@ -132,7 +132,7 @@ a{color:var(--blue-600);text-decoration:none}
 .avatar-mono{background:var(--gray-100);color:var(--gray-600);border-radius:var(--r-sm)}
 .avatar-co{border-radius:var(--r-sm);background:var(--gray-100);color:var(--gray-600)}
 
-/* Score — relationship strength. 3-bar meter in a 36x24 capsule.
+/* Score. Relationship strength. 3-bar meter in a 36x24 capsule.
    Geometry transcribed from the CTD score SVG: capsule rx 11.5 with a 1px
    #E3E8EF (--gray-200) stroke; bars 3.004w, rx 1.502, heights 7.54 / 10.77 / 14,
    bottom-aligned at y19, 5px pitch (= 2px gap). Strong fill #54B471. */
@@ -213,7 +213,7 @@ a{color:var(--blue-600);text-decoration:none}
 
 /* Pillars */
 /* Column layout so the "View evidence" footer pins to the bottom of every
-   card regardless of body length — the three Why cards share a baseline. */
+   card regardless of body length, so the three Why cards share a baseline. */
 .pillar{background:#fff;border:1px solid var(--gray-200);border-radius:var(--r-xl);box-shadow:var(--sh-sm);overflow:hidden;display:flex;flex-direction:column}
 .pillar .body{padding:var(--s7);flex:1 1 auto}
 .pillar .figure{display:flex;align-items:baseline;gap:var(--s4);margin:var(--s4) 0 var(--s3)}
@@ -230,14 +230,14 @@ a{color:var(--blue-600);text-decoration:none}
 .kv .v{font-weight:500;color:var(--gray-800);text-align:right}
 
 /* Bullets: the marker is an absolutely positioned pseudo-element, not a flex
-   item — a flex li turns every inline <span class="strong"> lead-in into its
+   item. A flex li turns every inline <span class="strong"> lead-in into its
    own column and columnises the sentence beside it. */
 .bul{list-style:none;display:flex;flex-direction:column;gap:var(--s5)}
 .bul li{position:relative;padding-left:18px;color:var(--gray-700)}
 .bul li::before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--brand-sky)}
 .bul.warn li::before{background:var(--warning)}
 
-/* Risk rows — typed advisory items: icon, claim + category pill, evidence. */
+/* Risk rows. Typed advisory items: icon, claim + category pill, evidence. */
 .risk{display:flex;gap:var(--s5);padding:var(--s6) var(--s7);border-bottom:1px solid var(--gray-200)}
 .risk:last-child{border-bottom:none}
 .risk-ico{flex:0 0 20px;margin-top:1px}
@@ -314,8 +314,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
 /* ===================== Task execute screen ===================== */
 
-/* Relay — who sends what to whom */
-/* Relay — always one line. Text wraps inside the nodes, the row never does. */
+/* Relay. Always one line. Text wraps inside the nodes, the row never does. */
 .relay{display:flex;align-items:stretch;gap:var(--s3);flex-wrap:nowrap}
 .relay .node{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:3px;
   background:#fff;border:1px solid var(--gray-200);border-radius:var(--r-xl);padding:var(--s5)}
@@ -332,7 +331,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .relay .leg span{font-family:var(--font-label);font-size:10px;line-height:13px;letter-spacing:.01em;
   text-transform:uppercase;color:var(--gray-500);text-align:center;max-width:56px}
 
-/* Delivery method — explained radio cards */
+/* Delivery method. Explained radio cards */
 .delivery{display:grid;grid-template-columns:1fr 1fr;gap:var(--s5)}
 .dopt{display:flex;gap:var(--s5);padding:var(--s6);border:1px solid var(--gray-300);border-radius:var(--r-lg);background:#fff;text-align:left;align-items:flex-start}
 .dopt:hover{background:var(--gray-50)}
@@ -342,7 +341,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .dopt h5{font-size:14px;line-height:20px;font-weight:600;color:var(--gray-900);margin-bottom:2px}
 .dopt p{font-size:13px;line-height:19px;color:var(--gray-600)}
 
-/* Message cards — each one names its sender and recipient */
+/* Message cards. Each one names its sender and recipient */
 .msg{border:1px solid var(--gray-200);border-radius:var(--r-xl);background:#fff;overflow:hidden;box-shadow:var(--sh-sm)}
 .msg + .msg{margin-top:var(--s6)}
 .msg-head{padding:var(--s6) var(--s7);border-bottom:1px solid var(--gray-200);background:var(--gray-25);display:flex;align-items:center;gap:var(--s5);flex-wrap:wrap}
@@ -389,7 +388,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .chainrow.mine .n{background:var(--blue-600);color:#fff}
 
 
-/* Deal assessment strip — the Activities "Deal Assessment" row, made legible */
+/* Deal assessment strip. The Activities "Deal Assessment" row, made legible */
 .deal{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--gray-200);border-radius:var(--r-xl);background:#fff;box-shadow:var(--sh-sm);overflow:hidden}
 .deal .cell{padding:var(--s6) var(--s7);border-right:1px solid var(--gray-200)}
 .deal .cell:last-child{border-right:none}
@@ -408,7 +407,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .mtg-body h6{font-family:var(--font-label);font-size:11px;letter-spacing:.01em;text-transform:uppercase;font-weight:500;color:var(--gray-500);margin-bottom:var(--s4)}
 
 
-/* Play cards — the account's tasks, grouped by the play they belong to */
+/* Play cards. The account's tasks, grouped by the play they belong to */
 .playcard{border:1px solid var(--gray-200);border-radius:var(--r-xl);background:#fff;box-shadow:var(--sh-sm);overflow:hidden}
 .playcard+.playcard{margin-top:var(--s6)}
 .playcard-head{padding:var(--s6) var(--s7);border-bottom:1px solid var(--gray-200);display:flex;align-items:center;gap:var(--s5);flex-wrap:wrap;background:var(--gray-25)}
@@ -434,7 +433,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .doci:hover{background:var(--gray-50)}
 
 
-/* Connector load meter — how much you are leaning on someone */
+/* Connector load meter. How much you are leaning on someone */
 .load{display:inline-flex;align-items:center;gap:3px}
 .load i{width:14px;height:6px;border-radius:2px;background:var(--gray-200);display:block}
 .load.l1 i:nth-child(1),.load.l2 i:nth-child(-n+2),.load.l3 i:nth-child(-n+3){background:var(--success)}
@@ -459,7 +458,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .helprow .v{color:var(--gray-600);font-size:14px;line-height:20px}
 
 
-/* Unlock estimate — how many unreachable accounts an invite would open up */
+/* Unlock estimate. How many unreachable accounts an invite would open up */
 .unlock{display:inline-flex;align-items:baseline;gap:var(--s3);white-space:nowrap}
 .unlock .n{font-family:var(--font-display);font-size:20px;line-height:26px;font-weight:600;color:var(--success-700);letter-spacing:-.02em}
 .unlock .u{font-size:12px;color:var(--gray-500)}
@@ -493,7 +492,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
   <!-- ============================ Sidebar ============================ -->
   <aside class="sidebar">
     <div class="side-top">
-      <a class="logo" href="#" data-view="accounts" aria-label="CTD.ai — home">
+      <a class="logo" href="#" data-view="accounts" aria-label="CTD.ai home">
         <svg viewBox="0 0 235 64" xmlns="http://www.w3.org/2000/svg" role="img">
           <title>CTD.ai</title>
           <path d="M36.2017 0C31.8704 0 24 0 24 0V32C24 25.196 29.4934 19.7209 36.2017 19.7209C42.9628 19.7209 48.4034 25.2492 48.4034 32C48.4034 38.7508 42.91 44.2791 36.2017 44.2791C29.4406 44.2791 24 38.7508 24 32V63.8937C24 63.8937 31.8704 64 36.2017 64C53.7911 64 68 49.6478 68 32C68 14.299 53.7911 0 36.2017 0Z" fill="#38B2E6"/>
@@ -608,11 +607,11 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
             <td><span class="badge badge-gray"><span class="dot"></span>Nurture</span></td>
             <td><span class="badge badge-warning"><span class="dot"></span>Re-triggered</span></td>
             <td><span class="strong num" data-tip="Firmographic fit, 0–100. 97 puts Kestrel in the top tier of accounts CTD sells to.">97</span></td>
-            <td><span class="score s4" data-tip="Strong — someone in your network knows a target here well and has spoken to them recently."><i></i><i></i><i></i></span></td>
+            <td><span class="score s4" data-tip="Strong. Someone in your network knows a target here well and has spoken to them recently."><i></i><i></i><i></i></span></td>
             <td><div class="t-sm dim nowrap">In progress</div><div class="t-xs muted">Waiting on reply</div></td>
             <td><span class="badge badge-blue"><svg class="icon icon-xs" viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg>Ready</span></td>
             <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm">MD</span><span class="t-sm dim nowrap">Marco Devlin</span></div></td>
-            <td style="text-align:right"><span class="strong num" data-tip="Composite priority — fit, signal strength and reachability combined. Highest rank is where to start.">9,820</span></td>
+            <td style="text-align:right"><span class="strong num" data-tip="Composite priority. Fit, signal strength and reachability combined. Highest rank is where to start.">9,820</span></td>
           </tr>
 
           <tr class="rowlink">
@@ -864,7 +863,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
   </div>
 
   <!-- ==================================================================
-       VIEW: TASK — execute screen
+       VIEW: TASK, execute screen
        ================================================================== -->
   <div class="page" id="view-task" hidden>
 
@@ -894,7 +893,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       </div>
     </div>
 
-    <!-- Strategy brief — same content as the old tab, in place, collapsed -->
+    <!-- Strategy brief. Same content as the old tab, in place, collapsed -->
     <div class="pillar" style="margin-top:var(--s7)">
       <div class="body">
         <span class="label">Strategy brief</span>
@@ -902,7 +901,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           <span class="strong">Worth opening, and well-positioned to open warm.</span> Copperline is a Strong-fit account whose partner-led, MSP-expanding GTM maps directly onto CTD's value, and CTD holds an unusually clean warm path to the CEO through a credible ex-Copperline peer.
         </p>
         <p class="t-sm dim" style="margin-top:var(--s5)">
-          The honest caveat is propensity: there is no active deal and no prior engagement, so a first meeting will hinge on the relevance of the pretext — the combined Halstead and partner network — rather than urgency. If Nathan cannot facilitate, the account drops to a signal-anchored nurture rather than a forced cold push.
+          The honest caveat is propensity: there is no active deal and no prior engagement, so a first meeting will hinge on the relevance of the pretext, the combined Halstead and partner network, rather than urgency. If Nathan cannot facilitate, the account drops to a signal-anchored nurture rather than a forced cold push.
         </p>
       </div>
       <button class="disclose" data-drawer="d-play" aria-expanded="false">
@@ -911,7 +910,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       <div class="drawer" id="d-play">
         <span class="label">Executive summary</span>
         <ul class="bul" style="margin-top:var(--s5)">
-          <li><span class="strong">Account:</span> mid-size (500–1000), PE-backed hosting software company. Strong firmographic fit (65), Tier 3, Business Edition — sales-led, and the goal is a first meeting.</li>
+          <li><span class="strong">Account:</span> mid-size (500–1000), PE-backed hosting software company. Strong firmographic fit (65), Tier 3, Business Edition. Sales-led, and the goal is a first meeting.</li>
           <li><span class="strong">Propensity Medium (23):</span> attractive but timing-driven, not deal-driven. No opportunity, and zero engagement ever.</li>
           <li><span class="strong">Network:</span> a Strong warm path to CEO Dean Whitlock via former peer Nathan Pike, who is direct to CTD.</li>
           <li><span class="strong">Signals:</span> Halstead acquisition, a new MSP AE hire and partner-led GTM add up to real relationship-mapping pain that fits CTD precisely.</li>
@@ -927,19 +926,19 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
         <span class="label" style="display:block;margin-top:var(--s7)">Why this strategy</span>
         <p class="t-sm dim" style="margin-top:var(--s3)">
-          Propensity is only Medium and engagement is zero, so a cold push would underperform. A Strong warm path to a budget-holding CEO is the highest-converting and most credible way in — and it doubles as a live demonstration of the product.
+          Propensity is only Medium and engagement is zero, so a cold push would underperform. A Strong warm path to a budget-holding CEO is the highest-converting and most credible way in, and it doubles as a live demonstration of the product.
         </p>
 
         <div class="row" style="margin-top:var(--s7);gap:var(--s5);flex-wrap:wrap">
           <a href="#" data-goto="brief" class="btn btn-secondary btn-sm">
             <svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 4h12v12H4z"/><path d="M7 8h6M7 11h4"/></svg>Open the account brief
           </a>
-          <span class="t-xs muted">Written once on the account — this is the same brief, not a second copy.</span>
+          <span class="t-xs muted">Written once on the account. This is the same brief, not a second copy.</span>
         </div>
       </div>
     </div>
 
-    <!-- The play — relay, state and sender choice in one component -->
+    <!-- The play. Relay, state and delivery choice in one component -->
     <div class="sec-title">
       <h2>The play</h2>
       <span class="t-sm muted">Warm intro to Dean Whitlock via Nathan Pike</span>
@@ -979,7 +978,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
         <div class="banner" style="margin-top:var(--s6)">
           <svg class="icon icon-sm" style="color:var(--blue-700);margin-top:2px" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 6h.01"/></svg>
-          <div id="relayNote"><span class="strong">You only send message 1.</span> Marco wrote both, but as requestor it goes out under your name. Message 2 is for Nathan to send on to Dean as the sender — nobody at CTD sends that one, and Dean never hears from you directly. If Dean bites, the goal is a hand-off to CCO Ruth Calder.</div>
+          <div id="relayNote"><span class="strong">You only send message 1.</span> Marco wrote both, but as requestor it goes out under your name. Message 2 is for Nathan to send on to Dean as the sender. Nobody at CTD sends that one, and Dean never hears from you directly. If Dean bites, the goal is a hand-off to CCO Ruth Calder.</div>
         </div>
       </div>
 
@@ -997,7 +996,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
             <span class="rad"></span>
             <span>
               <h5>From your inbox</h5>
-              <p>You send it yourself. Nathan still replies to you, but CTD cannot see the reply — the intro will not show in your numbers and you will have to close this task by hand.</p>
+              <p>You send it yourself. Nathan still replies to you, but CTD cannot see the reply, so the intro will not show in your numbers and you will have to close this task by hand.</p>
             </span>
           </button>
         </div>
@@ -1005,7 +1004,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     </div>
 
     <!-- Messages -->
-    <div class="sec-title"><h2>The two messages</h2><span class="t-sm muted">Marco wrote both — edit before you send</span></div>
+    <div class="sec-title"><h2>The two messages</h2><span class="t-sm muted">Marco wrote both. Edit before you send</span></div>
 
     <div class="msg">
       <div class="msg-head">
@@ -1026,7 +1025,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       </div>
       <div class="msg-body">
         <p>Hi Nathan,</p>
-        <p>Quick one: you know Dean Whitlock (<a href="#">LinkedIn</a>), right? I'm trying to reach him — he's CEO at Copperline, and you came up as the natural person to ask given you two overlapped there at the C-level last year.</p>
+        <p>Quick one: you know Dean Whitlock (<a href="#">LinkedIn</a>), right? I'm trying to reach him. He's CEO at Copperline, and you came up as the natural person to ask given you two overlapped there at the C-level last year.</p>
         <p>Copperline is scaling a partner-and-MSP motion across two networks they've merged since the Halstead acquisition, and as that grows, who-knows-whom across the combined ecosystem becomes the real bottleneck. That's exactly what CTD maps and activates.</p>
         <p>Would you be open to checking whether Dean is up for a short intro? I've put a short note below you can copy and paste straight to him, if that's easier.</p>
         <p>Best,<br>Sam</p>
@@ -1043,7 +1042,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <span class="idx">2</span>
         <div style="flex:1;min-width:0">
           <h4>The note Nathan forwards to Dean</h4>
-          <div class="sub">Sender → Target. Nathan sends this in his own words — nothing happens when you click send.</div>
+          <div class="sub">Sender → Target. Nathan sends this in his own words. Nothing happens when you click send.</div>
         </div>
         <span class="badge badge-warning"><span class="dot"></span>Not sent by you</span>
       </div>
@@ -1054,12 +1053,12 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       <div class="msg-body">
         <p>Hey Dean,</p>
         <p>Hope all is well. Have you heard of Connect The Dots? I just caught up with Sam, one of their team, and thought what they're building could be relevant for you.</p>
-        <p>CTD uses relationship signals to show who actually knows who, and how well, across a firm and its trusted externals — then makes intros easy to action. Given how network-driven your world is at Copperline, especially as you scale the partner and MSP motion across the combined network, this felt particularly applicable.</p>
+        <p>CTD uses relationship signals to show who actually knows who, and how well, across a firm and its trusted externals, then makes intros easy to action. Given how network-driven your world is at Copperline, especially as you scale the partner and MSP motion across the combined network, this felt particularly applicable.</p>
         <p>No pressure at all, but if you're open, happy to connect you with Sam for a quick conversation.</p>
         <p>Best,<br>Nathan</p>
       </div>
       <div class="msg-foot">
-        <span class="t-xs muted">Nathan can send it however he likes — the note is included in message 1 so he can copy it out.</span>
+        <span class="t-xs muted">Nathan can send it however he likes. The note is included in message 1 so he can copy it out.</span>
       </div>
     </div>
 
@@ -1123,13 +1122,13 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <div class="left">
           <span class="label">The call</span>
           <h2>Winnable, but genuinely early.</h2>
-          <p>Kestrel Dynamics has never had a real conversation — 6 touches in 217 days, all cold webinar invites to weakly-qualified contacts. It becomes winnable only if CTD stops the marketing motion and runs a seller-led, warm re-approach anchored on the Meridian Grid acquisition.</p>
+          <p>Kestrel Dynamics has never had a real conversation. Six touches in 217 days, all cold webinar invites to weakly-qualified contacts. It becomes winnable only if CTD stops the marketing motion and runs a seller-led, warm re-approach anchored on the Meridian Grid acquisition.</p>
           <p style="margin-top:var(--s5)"><span class="strong">Near-term goal:</span> a real discovery meeting, not a forecasted close.</p>
         </div>
         <div class="right">
           <span class="label">Next action</span>
           <div class="t-md strong" style="margin:var(--s4) 0 var(--s3)">Ask Alex Tanaka for an intro to Elena Roche</div>
-          <p class="t-sm dim">Strong path through one connector, never used. Head of Growth — the one contact who showed real intent.</p>
+          <p class="t-sm dim">Strong path through one connector, never used. Head of Growth, the one contact who showed real intent.</p>
           <button class="btn btn-primary" style="margin-top:var(--s6);width:100%;justify-content:center">
             <svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M3 10h14M12 5l5 5-5 5"/></svg>Request intro
           </button>
@@ -1161,14 +1160,14 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           <div class="body">
             <span class="label">Timing</span>
             <div class="figure"><span class="n">Fresh</span></div>
-            <p>The $3.1B Meridian Grid acquisition plus Palisade integration is reshaping a large web of relationships — exactly the problem CTD maps.</p>
+            <p>The $3.1B Meridian Grid acquisition plus Palisade integration is reshaping a large web of relationships, exactly the problem CTD maps.</p>
           </div>
           <button class="disclose" data-drawer="d-time" aria-expanded="false">View evidence<svg class="icon icon-sm chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
           <div class="drawer" id="d-time">
             <ul class="bul">
               <li>$3.1B Meridian Grid acquisition; Palisade integration underway.</li>
               <li>Broad GTM hiring surge across US, Europe, Japan and UAE, plus India commercial expansion.</li>
-              <li>Elena Roche attended the 18 Jun Industrial GTM Summit webinar on AI-driven GTM engineering — confirmed by transcript and guest list.</li>
+              <li>Elena Roche attended the 18 Jun Industrial GTM Summit webinar on AI-driven GTM engineering. Confirmed by transcript and guest list.</li>
             </ul>
             <div class="banner warn" style="margin-top:var(--s6)">
               <svg class="icon icon-sm" style="color:var(--warning-700);margin-top:2px" viewBox="0 0 20 20"><path d="M10 7v4M10 14h.01"/><circle cx="10" cy="10" r="7.5"/></svg>
@@ -1181,7 +1180,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           <div class="body">
             <span class="label">Access</span>
             <div class="figure"><span class="n">3</span><span class="t-sm dim">of 4 personas</span></div>
-            <p>Strong single-connector paths exist to the two people who matter — and not one of them has ever been used.</p>
+            <p>Strong single-connector paths exist to the two people who matter, and not one of them has ever been used.</p>
           </div>
           <button class="disclose" data-drawer="d-access" aria-expanded="false">View evidence<svg class="icon icon-sm chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
           <div class="drawer" id="d-access">
@@ -1272,7 +1271,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           <li><span class="pin p-out"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M3 5h14v10H3z"/><path d="m3 6 7 5 7-5"/></svg></span>
             <div class="when">9 Jun 2026 · Outbound</div>
             <div class="what">Priya Raman (CMO) replied to a webinar invite</div>
-            <div class="note">Empty body, timestamped seconds after send — an auto-reply or out-of-office, not interest.</div>
+            <div class="note">Empty body, timestamped seconds after send. An auto-reply or out-of-office, not interest.</div>
           </li>
         </ul>
       </div>
@@ -1282,7 +1281,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     <section id="tab-people" hidden>
       <div class="banner" style="margin-bottom:var(--s7)">
         <svg class="icon icon-sm" style="color:var(--blue-700);margin-top:2px" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 6h.01"/></svg>
-        <div><span class="strong">3 of 4 target personas have a warm path — none has ever been used.</span> Every touch so far went out cold.</div>
+        <div><span class="strong">3 of 4 target personas have a warm path, and none has ever been used.</span> Every touch so far went out cold.</div>
       </div>
 
       <div class="grid g3" style="margin-bottom:var(--s7)">
@@ -1468,7 +1467,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
                   <div class="empty" style="padding:var(--s8)">
                     <div class="ico"><svg class="icon" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7"/><path d="M7 13 13 7"/></svg></div>
                     <div class="t-sm strong" style="color:var(--gray-700)">No warm path, and no reason to build one</div>
-                    <div class="t-sm">Bid Manager is not a buying role for CTD. He received two invites in Nov 2025 and never responded — targeting him was the original mistake on this account.</div>
+                    <div class="t-sm">Bid Manager is not a buying role for CTD. He received two invites in Nov 2025 and never responded. Targeting him was the original mistake on this account.</div>
                   </div>
                 </div>
               </td>
@@ -1585,7 +1584,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
               <li>
                 <span class="pin p-in"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M5 4h10v13H5z"/><path d="M8 2v3M12 2v3M5 8h10"/></svg></span>
                 <div class="when"><span class="badge badge-blue badge-sq">Meeting</span>18 Jun 2026 · 45 min<span class="badge badge-gray">Group webinar</span></div>
-                <div class="what">Industrial GTM Summit — hosted by CTD, Elena Roche attended</div>
+                <div class="what">Industrial GTM Summit, hosted by CTD. Elena Roche attended</div>
                 <div class="mtg">
                   <button class="mtg-head" data-mtg="k1">
                     <span class="avatar avatar-sm">ER</span>
@@ -1596,7 +1595,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
                   <div class="mtg-body" id="k1">
                     <div><h6>Summary</h6><p class="t-sm dim">A 45-minute CTD-hosted session on AI-driven GTM engineering, with 60-odd attendees. Elena registered herself rather than being invited, and stayed 41 of the 45 minutes. She asked no questions, did not unmute, and did not respond to the follow-up. This is the single interaction the account's whole "engaged" reading rests on.</p></div>
                     <div><h6>What is working</h6><ul class="bul"><li>Self-registered and stayed to the end, on a topic that maps exactly to what CTD sells. Topic relevance is real even if the engagement is not.</li></ul></div>
-                    <div><h6>Risks</h6><ul class="bul warn"><li>Passive attendance is not a conversation. Treating it as intent is what produced four months of misdirected webinar invites.</li><li>No one from CTD followed up with her personally afterwards — the one moment of genuine interest went unworked for six weeks.</li></ul></div>
+                    <div><h6>Risks</h6><ul class="bul warn"><li>Passive attendance is not a conversation. Treating it as intent is what produced four months of misdirected webinar invites.</li><li>No one from CTD followed up with her personally afterwards, so the one moment of genuine interest went unworked for six weeks.</li></ul></div>
                     <div><h6>What to do with it</h6><p class="t-sm dim">Use the topic as the pretext, not the attendance as the proof. She turned up for agentic GTM workflows; CTD API and MCP both shipped after this session.</p></div>
                   </div>
                 </div>
@@ -1606,13 +1605,13 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
                 <span class="pin p-in"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 3v7M6.5 6.5 10 3l3.5 3.5"/><path d="M4 13v3h12v-3"/></svg></span>
                 <div class="when"><span class="badge badge-success badge-sq">Signal</span>Apr 2026</div>
                 <div class="what">Elena Roche's title changed to Head of Growth</div>
-                <div class="note">Promoted from Director of Demand Generation. New scope covers the partner motion — which is why she is now the right target and Tomas Berg never was.</div>
+                <div class="note">Promoted from Director of Demand Generation. New scope covers the partner motion, which is why she is now the right target and Tomas Berg never was.</div>
               </li>
 
               <li>
                 <span class="pin p-out"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M3 5h14v10H3z"/><path d="m3 6 7 5 7-5"/></svg></span>
                 <div class="when"><span class="badge badge-gray badge-sq">Email</span>9 Jun 2026<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">RA</span>Renee Alvarez</span></div>
-                <div class="what">Webinar invite to Priya Raman (CMO) — reply received</div>
+                <div class="what">Webinar invite to Priya Raman (CMO), reply received</div>
                 <button class="btn btn-tertiary btn-sm" data-tlx="t3" style="margin-top:var(--s3);padding-left:0">Details<svg class="icon icon-xs chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
                 <div class="expand" id="t3">
                   <div class="kv"><span class="k">Subject</span><span class="v">You're invited: Industrial GTM Summit</span></div>
@@ -1627,19 +1626,19 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
               <li>
                 <span class="pin p-out"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M3 5h14v10H3z"/><path d="m3 6 7 5 7-5"/></svg></span>
                 <div class="when"><span class="badge badge-gray badge-sq">Email</span>5 Jun 2026<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">MD</span>Marco Devlin</span></div>
-                <div class="what">Near-identical webinar invite to Tomas Berg (Bid Manager) — no reply</div>
+                <div class="what">Near-identical webinar invite to Tomas Berg (Bid Manager), no reply</div>
                 <div class="note">Sent four days before Renee's invite to a different contact, with no shared account plan.</div>
               </li>
               <li>
                 <span class="pin"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M5 3h7l3 3v11H5z"/><path d="M12 3v3h3"/></svg></span>
                 <div class="when"><span class="badge badge-gray badge-sq">Note</span>2 Jun 2026<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">AT</span>Alex Tanaka</span></div>
-                <div class="what">Alex Tanaka — met Elena briefly at the summit</div>
+                <div class="what">Alex Tanaka met Elena briefly at the summit</div>
                 <div class="note">She said their partner motion has outgrown the spreadsheet they use to track who knows whom. Did not pitch. Worth leading with that when we finally reach out. Also: CTD API and MCP both shipped after most of our outreach, so there is a credible, non-generic reason to reconnect.</div>
               </li>
               <li>
                 <span class="pin p-out"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M3 5h14v10H3z"/><path d="m3 6 7 5 7-5"/></svg></span>
                 <div class="when"><span class="badge badge-gray badge-sq">Email</span>13 Nov 2025<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">RA</span>Renee Alvarez</span></div>
-                <div class="what">Two event invites to Tomas Berg — no response</div>
+                <div class="what">Two event invites to Tomas Berg, no response</div>
                 <div class="note">Account went silent for roughly four months afterwards.</div>
               </li>
             </ul>
@@ -1663,8 +1662,8 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
                 </div>
                 <div class="card-pad">
                   <ul class="bul">
-                    <li><span class="strong">9 Jun 2026</span> — webinar invite to <span class="strong">Priya Raman</span> (CMO). Auto-reply.</li>
-                    <li><span class="strong">13 Nov 2025</span> — two event invites to <span class="strong">Tomas Berg</span> (Bid Manager). No response.</li>
+                    <li><span class="strong">9 Jun 2026</span>, webinar invite to <span class="strong">Priya Raman</span> (CMO). Auto-reply.</li>
+                    <li><span class="strong">13 Nov 2025</span>, two event invites to <span class="strong">Tomas Berg</span> (Bid Manager). No response.</li>
                     <li>Two further invites, both cold, both to contacts with no buying authority.</li>
                   </ul>
                   <div class="kv" style="margin-top:var(--s6)"><span class="k">Contacts touched</span><span class="v">Priya Raman, Tomas Berg</span></div>
@@ -1680,13 +1679,13 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
                 </div>
                 <div class="card-pad">
                   <ul class="bul">
-                    <li><span class="strong">5 Jun 2026</span> — near-identical webinar invite to <span class="strong">Tomas Berg</span>, four days before Renee emailed Priya Raman.</li>
+                    <li><span class="strong">5 Jun 2026</span>, near-identical webinar invite to <span class="strong">Tomas Berg</span>, four days before Renee emailed Priya Raman.</li>
                   </ul>
                   <div class="kv" style="margin-top:var(--s6)"><span class="k">Contacts touched</span><span class="v">Tomas Berg</span></div>
                   <div class="kv"><span class="k">Warm paths used</span><span class="v">0 of 14 available</span></div>
                   <div class="banner" style="margin-top:var(--s6)">
                     <svg class="icon icon-sm" style="color:var(--blue-700);margin-top:2px" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 6h.01"/></svg>
-                    <div>Marco owns the account but has a Weak path to Elena. <span class="strong">Alex Tanaka</span> has the Strong one — route through him.</div>
+                    <div>Marco owns the account but has a Weak path to Elena. <span class="strong">Alex Tanaka</span> has the Strong one. Route through him.</div>
                   </div>
                 </div>
               </div>
@@ -1831,7 +1830,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
               <li>
                 <span class="pin p-out"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M3 5h14v10H3z"/><path d="m3 6 7 5 7-5"/></svg></span>
                 <div class="when"><span class="badge badge-gray badge-sq">Email</span>9 Jun 2026<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">RA</span>Renee Alvarez</span></div>
-                <div class="what">Webinar invite to Priya Raman (CMO) — reply received</div>
+                <div class="what">Webinar invite to Priya Raman (CMO), reply received</div>
                 <button class="btn btn-tertiary btn-sm" data-tlx="t3" style="margin-top:var(--s3);padding-left:0">Details<svg class="icon icon-xs chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
                 <div class="expand" id="t3">
                   <div class="kv"><span class="k">Subject</span><span class="v">You're invited: Industrial GTM Summit</span></div>
@@ -1846,19 +1845,19 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
               <li>
                 <span class="pin p-out"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M3 5h14v10H3z"/><path d="m3 6 7 5 7-5"/></svg></span>
                 <div class="when"><span class="badge badge-gray badge-sq">Email</span>5 Jun 2026<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">MD</span>Marco Devlin</span></div>
-                <div class="what">Near-identical webinar invite to Tomas Berg (Bid Manager) — no reply</div>
+                <div class="what">Near-identical webinar invite to Tomas Berg (Bid Manager), no reply</div>
                 <div class="note">Sent four days before Renee's invite to a different contact, with no shared account plan.</div>
               </li>
               <li>
                 <span class="pin"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M5 3h7l3 3v11H5z"/><path d="M12 3v3h3"/></svg></span>
                 <div class="when"><span class="badge badge-gray badge-sq">Note</span>2 Jun 2026<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">AT</span>Alex Tanaka</span></div>
-                <div class="what">Alex Tanaka — met Elena briefly at the summit</div>
+                <div class="what">Alex Tanaka met Elena briefly at the summit</div>
                 <div class="note">She said their partner motion has outgrown the spreadsheet they use to track who knows whom. Did not pitch. Worth leading with that when we finally reach out. Also: CTD API and MCP both shipped after most of our outreach, so there is a credible, non-generic reason to reconnect.</div>
               </li>
               <li>
                 <span class="pin p-out"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M3 5h14v10H3z"/><path d="m3 6 7 5 7-5"/></svg></span>
                 <div class="when"><span class="badge badge-gray badge-sq">Email</span>13 Nov 2025<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">RA</span>Renee Alvarez</span></div>
-                <div class="what">Two event invites to Tomas Berg — no response</div>
+                <div class="what">Two event invites to Tomas Berg, no response</div>
                 <div class="note">Account went silent for roughly four months afterwards.</div>
               </li>
             </ul>
@@ -1882,8 +1881,8 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
                 </div>
                 <div class="card-pad">
                   <ul class="bul">
-                    <li><span class="strong">9 Jun 2026</span> — webinar invite to <span class="strong">Priya Raman</span> (CMO). Auto-reply.</li>
-                    <li><span class="strong">13 Nov 2025</span> — two event invites to <span class="strong">Tomas Berg</span> (Bid Manager). No response.</li>
+                    <li><span class="strong">9 Jun 2026</span>, webinar invite to <span class="strong">Priya Raman</span> (CMO). Auto-reply.</li>
+                    <li><span class="strong">13 Nov 2025</span>, two event invites to <span class="strong">Tomas Berg</span> (Bid Manager). No response.</li>
                     <li>Two further invites, both cold, both to contacts with no buying authority.</li>
                   </ul>
                   <div class="kv" style="margin-top:var(--s6)"><span class="k">Contacts touched</span><span class="v">Priya Raman, Tomas Berg</span></div>
@@ -1899,13 +1898,13 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
                 </div>
                 <div class="card-pad">
                   <ul class="bul">
-                    <li><span class="strong">5 Jun 2026</span> — near-identical webinar invite to <span class="strong">Tomas Berg</span>, four days before Renee emailed Priya Raman.</li>
+                    <li><span class="strong">5 Jun 2026</span>, near-identical webinar invite to <span class="strong">Tomas Berg</span>, four days before Renee emailed Priya Raman.</li>
                   </ul>
                   <div class="kv" style="margin-top:var(--s6)"><span class="k">Contacts touched</span><span class="v">Tomas Berg</span></div>
                   <div class="kv"><span class="k">Warm paths used</span><span class="v">0 of 14 available</span></div>
                   <div class="banner" style="margin-top:var(--s6)">
                     <svg class="icon icon-sm" style="color:var(--blue-700);margin-top:2px" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 6h.01"/></svg>
-                    <div>Marco owns the account but has a Weak path to Elena. <span class="strong">Alex Tanaka</span> has the Strong one — route through him.</div>
+                    <div>Marco owns the account but has a Weak path to Elena. <span class="strong">Alex Tanaka</span> has the Strong one. Route through him.</div>
                   </div>
                 </div>
               </div>
@@ -1953,7 +1952,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
                 <div class="empty">
                   <div class="ico"><svg class="icon" viewBox="0 0 20 20"><path d="M5 3h7l3 3v11H5z"/><path d="M12 3v3h3"/></svg></div>
                   <div class="t-sm strong" style="color:var(--gray-700)">No notes yet</div>
-                  <div class="t-sm">Add what you know that the data doesn't — a conversation at an event, a mutual contact, a budget rumour.</div>
+                  <div class="t-sm">Add what you know that the data doesn't. A conversation at an event, a mutual contact, a budget rumour.</div>
                   <button class="btn btn-secondary btn-sm" style="margin-top:var(--s6)">Add the first note</button>
                 </div>
               </div>
@@ -1975,7 +1974,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
 
   <!-- ==================================================================
-       VIEW: ACCOUNT DETAIL 2 — live deal (Meetings + Activities folded in)
+       VIEW: ACCOUNT DETAIL 2, live deal (Meetings + Activities folded in)
        ================================================================== -->
   <div class="page" id="view-account2" hidden>
     <div class="crumb"><a href="#" data-view="accounts">Accounts</a><span class="sep">/</span><span class="dim">Baseline Data</span></div>
@@ -2043,7 +2042,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           <span class="risk-ico" style="color:var(--warning-700)"><svg class="icon" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 6.5v4M10 13.5h.01"/></svg></span>
           <div class="risk-tx">
             <h4>Procurement will not open the MNDA without a cost estimate <span class="badge badge-success badge-sq">Cleared 20 Jul</span></h4>
-            <p>Budgetary pricing went out the same day Marcus asked. Reaction not yet captured — confirm he has what he needs before Wednesday.</p>
+            <p>Budgetary pricing went out the same day Marcus asked. Reaction not yet captured. Confirm he has what he needs before Wednesday.</p>
           </div>
         </div>
         <div class="risk">
@@ -2057,7 +2056,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           <span class="risk-ico" style="color:var(--error-700)"><svg class="icon" viewBox="0 0 20 20"><path d="M10 2.8 18 16.5H2z"/><path d="M10 8v3.4M10 14h.01"/></svg></span>
           <div class="risk-tx">
             <h4>Executive approvers never engaged <span class="badge badge-error badge-sq">Not started</span></h4>
-            <p>Adam Kessler and Karl Egan hold the budget and have not been contacted. Outreach was deliberately deferred until after the reviews — but the deal cannot close without them.</p>
+            <p>Adam Kessler and Karl Egan hold the budget and have not been contacted. Outreach was deliberately deferred until after the reviews, but the deal cannot close without them.</p>
           </div>
         </div>
       </div>
@@ -2066,7 +2065,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       <div class="grid g3">
         <div class="pillar">
           <div class="body"><span class="label">Fit</span><div class="figure"><span class="n">91</span><span class="badge badge-success"><span class="dot"></span>Top tier</span></div>
-          <p>~630 employees, enterprise ICP, and the target is the field sales org rather than the inside team. Custom pricing and a multi-stakeholder review — a Business Edition shape.</p></div>
+          <p>~630 employees, enterprise ICP, and the target is the field sales org rather than the inside team. Custom pricing and a multi-stakeholder review. A Business Edition shape.</p></div>
           <button class="disclose" data-drawer="d2-fit" aria-expanded="false">View evidence<svg class="icon icon-sm chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
           <div class="drawer" id="d2-fit">
             <div class="kv"><span class="k">Segment</span><span class="v">Large · $1B+ funding</span></div>
@@ -2083,7 +2082,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
             <ul class="bul">
               <li>15 seats, 90-day pilot agreed, indexing at org level across ~85 target accounts.</li>
               <li>MNDA to be initiated as soon as procurement has the estimate.</li>
-              <li>Security review — pen test and SOC 2 — sits behind the MNDA.</li>
+              <li>The security review, covering pen test and SOC 2, sits behind the MNDA.</li>
             </ul>
             <div class="banner warn" style="margin-top:var(--s6)">
               <svg class="icon icon-sm" style="color:var(--warning-700);margin-top:2px" viewBox="0 0 20 20"><path d="M10 7v4M10 14h.01"/><circle cx="10" cy="10" r="7.5"/></svg>
@@ -2110,7 +2109,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           <div class="card-head"><h3>Your move</h3><span class="badge badge-gray" style="margin-left:auto">1 play</span></div>
           <div class="card-pad">
             <div class="t-md strong">Clear the gate, then go up</div>
-            <p class="dim" style="margin-top:var(--s4)">Get Cara Nunes introduced to procurement by Wednesday so the MNDA opens. In parallel, have Marcus lock the POC roster across the three RVP teams. Hold executive outreach to Adam and Karl until the security review is underway — then use Dana's direct line.</p>
+            <p class="dim" style="margin-top:var(--s4)">Get Cara Nunes introduced to procurement by Wednesday so the MNDA opens. In parallel, have Marcus lock the POC roster across the three RVP teams. Hold executive outreach to Adam and Karl until the security review is underway, then use Dana's direct line.</p>
           </div>
           <div style="border-top:1px solid var(--gray-200)">
             <div class="acc-item"><button class="acc-btn" data-acc="b1"><span>If pricing is accepted</span><svg class="icon icon-sm chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
@@ -2226,7 +2225,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       <div class="playcard">
         <div class="playcard-head">
           <span class="badge badge-sky badge-sq">Warm intro</span>
-          <h3>Executive cover — Adam Kessler and Karl Egan</h3>
+          <h3>Executive cover for Adam Kessler and Karl Egan</h3>
           <span class="badge badge-gray" style="margin-left:auto"><span class="dot"></span>Held back</span>
         </div>
         <div class="pstep todo"><span class="pmark">1</span>
@@ -2281,7 +2280,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
               <li>
                 <span class="pin p-in"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M5 4h10v13H5z"/><path d="M8 2v3M12 2v3M5 8h10"/></svg></span>
                 <div class="when"><span class="badge badge-blue badge-sq">Meeting</span>Fri 24 Jul 2026 · 30 min<span class="badge badge-warning"><span class="dot"></span>Upcoming</span></div>
-                <div class="what">Security review kickoff — Marcus Webb, Cara Nunes and Marco Devlin</div>
+                <div class="what">Security review kickoff with Marcus Webb, Cara Nunes and Marco Devlin</div>
                 <div class="mtg">
                   <button class="mtg-head" data-mtg="m0">
                     <span class="avatar avatar-sm avatar-mono">CN</span>
@@ -2289,7 +2288,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
                     <svg class="icon icon-sm chev muted" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg>
                   </button>
                   <div class="mtg-body" id="m0">
-                    <div><h6>Agenda</h6><ul class="bul"><li>Walk Cara through the MNDA and what CTD needs signed.</li><li>Scope the security questionnaire — pen test and SOC 2 evidence.</li><li>Agree who owns legal review, since it rotates through inside counsel.</li></ul></div>
+                    <div><h6>Agenda</h6><ul class="bul"><li>Walk Cara through the MNDA and what CTD needs signed.</li><li>Scope the security questionnaire, covering pen test and SOC 2 evidence.</li><li>Agree who owns legal review, since it rotates through inside counsel.</li></ul></div>
                     <div><h6>Prepare</h6><ul class="bul warn"><li>This is their first ever procurement run. Expect process questions, not product questions.</li></ul></div>
                   </div>
                 </div>
@@ -2298,8 +2297,8 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
               <li>
                 <span class="pin p-in"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg></span>
                 <div class="when"><span class="badge badge-success badge-sq">Milestone</span>20 Jul 2026<span class="row" style="gap:var(--s3)"><span class="avatar avatar-sm">MD</span>Marco Devlin</span></div>
-                <div class="what">Budgetary pricing delivered — procurement unblocked</div>
-                <div class="note">3-month POC at $15,000 — $11,250 indexing plus $3,750 for ~15 seats — converting to $60,000/year, with POC payments credited. Reaction not yet captured.</div>
+                <div class="what">Budgetary pricing delivered, procurement unblocked</div>
+                <div class="note">3-month POC at $15,000, made up of $11,250 indexing plus $3,750 for ~15 seats, converting to $60,000/year, with POC payments credited. Reaction not yet captured.</div>
               </li>
 
               <li>
@@ -2317,7 +2316,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
                     <div><h6>Summary</h6><p class="t-sm dim">Late-stage pilot planning. 15-seat, 90-day pilot agreed with budgetary pricing set, MNDA to be initiated, procurement and legal contacts identified, and a target of commercials by the 29th and kickoff on the 3rd.</p></div>
                     <div><h6>What is working</h6><ul class="bul"><li>Committed to a 15-seat, 90-day pilot with the MNDA to be initiated same day.</li><li>Marcus is pulling reps across several regions rather than a single team, to secure broad buy-in.</li><li>Clear owners and dates agreed: procurement intro by Wednesday, weekly health checks, kickoff on the 3rd.</li></ul></div>
                     <div><h6>Pain points they raised</h6><ul class="bul warn"><li>Their exec EA manages intros and the network manually, via spreadsheets and copy-pasted email.</li><li>Board members and investors risk being flooded with intro requests with no approval step.</li></ul></div>
-                    <div><h6>Risks</h6><ul class="bul warn"><li>First ever procurement run — MNDA, security and legal timelines unknown.</li><li>Senior decision-makers deliberately not engaged until after reviews.</li></ul></div>
+                    <div><h6>Risks</h6><ul class="bul warn"><li>First ever procurement run, so MNDA, security and legal timelines are unknown.</li><li>Senior decision-makers deliberately not engaged until after reviews.</li></ul></div>
                   </div>
                 </div>
               </li>
@@ -2336,7 +2335,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
                 <div class="mtg">
                   <button class="mtg-head" data-mtg="m2">
                     <span class="avatar avatar-sm">BS</span>
-                    <span class="who"><span class="strong t-sm">Team lead brought in — functional buyer identified</span><span class="t-xs muted" style="display:block">No transcript · summary from follow-up email</span></span>
+                    <span class="who"><span class="strong t-sm">Team lead brought in, functional buyer identified</span><span class="t-xs muted" style="display:block">No transcript · summary from follow-up email</span></span>
                     <span class="badge badge-success">2 positives</span><span class="badge badge-warning">1 risk</span>
                     <svg class="icon icon-sm chev muted" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg>
                   </button>
@@ -2362,13 +2361,13 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
                 <div class="mtg">
                   <button class="mtg-head" data-mtg="m3">
                     <span class="avatar avatar-sm">MW</span>
-                    <span class="who"><span class="strong t-sm">First working session — use case confirmed</span><span class="t-xs muted" style="display:block">Transcript captured</span></span>
+                    <span class="who"><span class="strong t-sm">First working session, use case confirmed</span><span class="t-xs muted" style="display:block">Transcript captured</span></span>
                     <span class="badge badge-success">2 positives</span>
                     <svg class="icon icon-sm chev muted" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg>
                   </button>
                   <div class="mtg-body" id="m3">
                     <div><h6>Summary</h6><p class="t-sm dim">Marcus laid out the need: surface warm paths and prioritise accounts for the enterprise sales team, including into Meridian Trust and roughly 85 target accounts. He is building a GTM tool where CTD's paths API would supply the warm-path data layer.</p></div>
-                    <div><h6>What is working</h6><ul class="bul"><li>Concrete use case, named target accounts, and a build they want us inside.</li><li>Deals stall when reps are single-threaded and anchored too low — exactly our pitch.</li></ul></div>
+                    <div><h6>What is working</h6><ul class="bul"><li>Concrete use case, named target accounts, and a build they want us inside.</li><li>Deals stall when reps are single-threaded and anchored too low, exactly our pitch.</li></ul></div>
                   </div>
                 </div>
               </li>
@@ -2395,11 +2394,11 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           <div class="card-pad">
             <div class="banner" style="margin-bottom:var(--s7)">
               <svg class="icon icon-sm" style="color:var(--blue-700);margin-top:2px" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 6h.01"/></svg>
-              <div><span class="strong">Four people from our side, coordinated.</span> Contrast with a cold account — here everyone is in the same meetings, and Dana is held in reserve for the executive step.</div>
+              <div><span class="strong">Four people from our side, coordinated.</span> Contrast with a cold account. Here everyone is in the same meetings, and Dana is held in reserve for the executive step.</div>
             </div>
             <div class="grid g2">
               <div class="card"><div class="card-head"><span class="avatar">MD</span><div><h3>Marco Devlin</h3><div class="t-xs muted">Account owner · 5 touches · 3 meetings</div></div></div>
-                <div class="card-pad"><ul class="bul"><li><span class="strong">20 Jul</span> — sent budgetary pricing within hours of Marcus asking.</li><li>In all three meetings. Owns the procurement intro due Wednesday.</li></ul></div></div>
+                <div class="card-pad"><ul class="bul"><li><span class="strong">20 Jul</span>, sent budgetary pricing within hours of Marcus asking.</li><li>In all three meetings. Owns the procurement intro due Wednesday.</li></ul></div></div>
               <div class="card"><div class="card-head"><span class="avatar">DS</span><div><h3>Dana Sackett</h3><div class="t-xs muted">Co-Founder &amp; CEO · 2 meetings · exec cover</div></div></div>
                 <div class="card-pad"><ul class="bul"><li>Direct relationship with CEO Adam Kessler, unused so far.</li><li>Deliberately held back until the security review is underway.</li></ul>
                 <div class="banner" style="margin-top:var(--s6)"><svg class="icon icon-sm" style="color:var(--blue-700);margin-top:2px" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 6h.01"/></svg><div>This is the escalation path if procurement stalls past the 29th.</div></div></div></div>
@@ -2432,7 +2431,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         </a>
         <a class="doci" href="#">
           <svg class="icon" style="color:var(--gray-500)" viewBox="0 0 20 20"><path d="M4 3h8l4 4v10H4z"/><path d="M12 3v4h4"/></svg>
-          <span style="flex:1;min-width:0"><span class="t-sm strong" style="display:block">Budgetary pricing — 15 seats, 90 days</span><span class="t-xs muted">Marco Devlin · 20 Jul · sent</span></span>
+          <span style="flex:1;min-width:0"><span class="t-sm strong" style="display:block">Budgetary pricing for 15 seats, 90 days</span><span class="t-xs muted">Marco Devlin · 20 Jul · sent</span></span>
           <svg class="icon icon-sm muted" viewBox="0 0 20 20"><path d="m8 5 5 5-5 5"/></svg>
         </a>
                 <div class="card-foot"><span class="t-xs muted">The MNDA and security questionnaire will land here once procurement opens.</span></div>
@@ -2456,7 +2455,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
     <div class="banner warn" style="margin-top:var(--s7)">
       <svg class="icon icon-sm" style="color:var(--warning-700);margin-top:2px" viewBox="0 0 20 20"><path d="M10 7v4M10 14h.01"/><circle cx="10" cy="10" r="7.5"/></svg>
-      <div><span class="strong">38 asks are queued across 14 connectors, and none has been sent this quarter.</span> Four connectors are carrying more than they should. The bottleneck is not finding paths — it is asking.</div>
+      <div><span class="strong">38 asks are queued across 14 connectors, and none has been sent this quarter.</span> Four connectors are carrying more than they should. The bottleneck is not finding paths. It is asking.</div>
     </div>
 
     <div class="grid g3" style="margin-top:var(--s7);grid-template-columns:repeat(4,1fr)">
@@ -2503,7 +2502,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           </tr>
           <tr class="rowlink">
             <td><div class="row" style="gap:var(--s5)"><span class="avatar">DS</span><div><div class="strong">Dana Sackett</div><div class="t-xs muted">Co-Founder &amp; CEO · CTD</div></div></div></td>
-            <td><span class="badge badge-gray" data-tip="Dana can reach someone in the buying group at 14 of your accounts — the widest reach on your team.">14 accounts</span></td>
+            <td><span class="badge badge-gray" data-tip="Dana can reach someone in the buying group at 14 of your accounts, the widest reach on your team.">14 accounts</span></td>
             <td><div class="row" style="gap:var(--s4)"><span class="score s4" title="Strong"><i></i><i></i><i></i></span><span class="t-sm dim">Adam Kessler</span></div></td>
             <td><div class="row" style="gap:var(--s4)"><span class="load l1"><i></i><i></i><i></i><i></i><i></i></span><span class="t-sm strong num">1</span></div></td>
             <td class="t-sm dim num">3</td>
@@ -2515,7 +2514,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
             <td><div class="row" style="gap:var(--s5)"><span class="avatar">AT</span><div><div class="strong">Alex Tanaka</div><div class="t-xs muted">Director, Strategic Accounts · CTD</div></div></div></td>
             <td><span class="badge badge-gray" data-tip="Alex can reach someone in the buying group at 6 of your accounts.">6 accounts</span></td>
             <td><div class="row" style="gap:var(--s4)"><span class="score s4" title="Strong"><i></i><i></i><i></i></span><span class="t-sm dim">Elena Roche</span></div></td>
-            <td><div class="row" style="gap:var(--s4)"><span class="load l2" data-tip="2 open intro requests. Comfortable — you can ask Alex again."><i></i><i></i><i></i><i></i><i></i></span><span class="t-sm strong num">2</span></div></td>
+            <td><div class="row" style="gap:var(--s4)"><span class="load l2" data-tip="2 open intro requests. Comfortable, so you can ask Alex again."><i></i><i></i><i></i><i></i><i></i></span><span class="t-sm strong num">2</span></div></td>
             <td class="t-sm dim num">2</td>
             <td class="t-sm dim nowrap">6 days ago</td>
             <td><span class="badge badge-success" data-tip="Has capacity and responds. Safe to ask."><span class="dot"></span>Ready</span></td>
@@ -2548,7 +2547,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
             <td><div class="row" style="gap:var(--s4)"><span class="load l1"><i></i><i></i><i></i><i></i><i></i></span><span class="t-sm strong num">0</span></div></td>
             <td class="t-sm dim num">0</td>
             <td class="t-sm muted nowrap">Never</td>
-            <td><span class="badge badge-gray" data-tip="Appears in the graph but has no meaningful relationship — first-degree connections with no message history."><span class="dot"></span>Weak links only</span></td>
+            <td><span class="badge badge-gray" data-tip="Appears in the graph but has no meaningful relationship, just first-degree connections with no message history."><span class="dot"></span>Weak links only</span></td>
             <td style="text-align:right"><button class="btn btn-secondary btn-sm">View</button></td>
           </tr>
           <tr class="rowlink">
@@ -2573,7 +2572,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
     <div class="sec-title" style="margin-top:var(--s9)">
       <h2>47 accounts nobody can reach</h2>
-      <span class="t-sm muted">There is no path to find — the only fix is a bigger network</span>
+      <span class="t-sm muted">There is no path to find. The only fix is a bigger network</span>
     </div>
 
     <div class="grid g2">
@@ -2597,10 +2596,10 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <div class="growrow">
           <span class="avatar">RA</span>
           <div class="g"><div class="strong t-sm">Renee Alvarez</div><div class="t-xs muted">Your team · has not connected an inbox yet</div></div>
-          <span class="unlock" data-tip="A colleague who is already licensed but has not synced. No invite needed — just a nudge."><span class="n">+6</span><span class="u">accounts</span></span>
+          <span class="unlock" data-tip="A colleague who is already licensed but has not synced. No invite needed, just a nudge."><span class="n">+6</span><span class="u">accounts</span></span>
           <button class="btn btn-secondary btn-sm">Nudge</button>
         </div>
-        <div class="card-foot"><span class="t-xs muted">A super-connector is someone whose network overlaps many of your unreachable accounts at once — usually investors, advisors and operators, not customers.</span></div>
+        <div class="card-foot"><span class="t-xs muted">A super-connector is someone whose network overlaps many of your unreachable accounts at once, usually investors, advisors and operators, not customers.</span></div>
       </div>
 
       <div class="card">
@@ -2626,7 +2625,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           <span class="unlock" data-tip="Widest reach on the team already. Her peer network is the single biggest untapped source."><span class="n">+22</span><span class="u">accounts</span></span>
           <button class="btn btn-primary btn-sm">Ask Dana</button>
         </div>
-        <div class="card-foot"><span class="t-xs muted">Asking a connector to invite people is a smaller favour than asking for an intro, and it compounds — every person they bring extends the graph permanently.</span></div>
+        <div class="card-foot"><span class="t-xs muted">Asking a connector to invite people is a smaller favour than asking for an intro, and it compounds. Every person they bring extends the graph permanently.</span></div>
       </div>
     </div>
 
@@ -2644,7 +2643,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
             <td><div class="row" style="gap:var(--s5)"><span class="avatar avatar-co">Fo</span><div><div class="strong">Formwork</div><div class="t-xs muted">formwork.dev</div></div></div></td>
             <td><span class="strong num">89</span></td>
             <td><span class="badge badge-warning"><span class="dot"></span>Re-triggered</span></td>
-            <td class="t-sm dim">Two colleagues follow their VP Eng but have never messaged — following is not a relationship</td>
+            <td class="t-sm dim">Two colleagues follow their VP Eng but have never messaged, and following is not a relationship</td>
             <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm">IS</span><span class="t-sm dim nowrap">Ivy Sorensen</span></div></td>
           </tr>
           <tr class="rowlink">
@@ -2733,7 +2732,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <span class="rad" style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;border:1px solid var(--gray-300);margin-top:2px"></span>
         <span style="flex:1;min-width:0">
           <h5>Marco Devlin <span class="badge badge-gray"><span class="dot"></span>Weak</span></h5>
-          <p>Account owner. 1st-degree on LinkedIn but no message history — likely to go unanswered.</p>
+          <p>Account owner. 1st-degree on LinkedIn but no message history, likely to go unanswered.</p>
         </span>
       </button>
       <button class="btn btn-tertiary btn-sm" style="align-self:flex-start">Show all 14 paths<svg class="icon icon-sm" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
@@ -2756,17 +2755,17 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
     <!-- 4 · Who does it -->
     <div class="modal-body" id="w-4" hidden>
-      <p class="t-sm dim">You are the author — you found the path and CTD will draft both messages. Who should make the ask to Nathan?</p>
+      <p class="t-sm dim">You are the author. You found the path and CTD will draft both messages. Who should make the ask to Nathan?</p>
       <button class="pick on"><span class="rad" style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;border:5px solid var(--blue-600);margin-top:2px"></span>
         <span><h5>You <span class="badge badge-blue badge-sq">Recommended</span></h5><p>You know Nathan directly, so the ask carries on its own. You act as both author and requestor.</p></span></button>
       <button class="pick"><span class="rad" style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;border:1px solid var(--gray-300);margin-top:2px"></span>
-        <span><h5>Marco Devlin <span class="badge badge-gray badge-sq">More senior</span></h5><p>Marco becomes the requestor. You still wrote it, but it goes out under his name and lands in his queue first — worth it when the connector will take the ask more seriously from him.</p></span></button>
+        <span><h5>Marco Devlin <span class="badge badge-gray badge-sq">More senior</span></h5><p>Marco becomes the requestor. You still wrote it, but it goes out under his name and lands in his queue first. Worth it when the connector will take the ask more seriously from him.</p></span></button>
 
       <div class="chainprev">
         <span class="label">What gets created</span>
-        <div class="chainrow mine"><span class="n">1</span><span class="strong">Path picked &amp; drafted</span><span class="muted">— you, now · via Nathan Pike</span></div>
-        <div class="chainrow mine"><span class="n">2</span><span class="strong">You ask Nathan</span><span class="muted">— you as requestor, once the draft is ready</span></div>
-        <div class="chainrow"><span class="n">3</span><span class="strong">Nathan intros you to Dean Whitlock</span><span class="muted">— tracked, no action from you</span></div>
+        <div class="chainrow mine"><span class="n">1</span><span class="strong">Path picked &amp; drafted</span><span class="muted">you, now · via Nathan Pike</span></div>
+        <div class="chainrow mine"><span class="n">2</span><span class="strong">You ask Nathan</span><span class="muted">you as requestor, once the draft is ready</span></div>
+        <div class="chainrow"><span class="n">3</span><span class="strong">Nathan intros you to Dean Whitlock</span><span class="muted">tracked, no action from you</span></div>
       </div>
     </div>
 
@@ -2791,13 +2790,13 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     <div class="modal-body" style="gap:0">
 
       <div class="helppanel" data-helppanel="accounts">
-          <div class="helprow"><span class="k">Fit</span><span class="v">Firmographic score out of 100 — how closely the company matches the profile CTD sells to. Above 85 is top tier.</span></div>
+          <div class="helprow"><span class="k">Fit</span><span class="v">Firmographic score out of 100. How closely the company matches the profile CTD sells to. Above 85 is top tier.</span></div>
           <div class="helprow"><span class="k">Access</span><span class="v">Strength of your best warm path in. Four bars means someone in your network knows a target well and has spoken to them recently.</span></div>
           <div class="helprow"><span class="k">Signal</span><span class="v">What changed at the account most recently. Dancing means active back-and-forth, Re-triggered means a dormant account has new activity, Warm watch means monitoring without outreach.</span></div>
           <div class="helprow"><span class="k">Funnel</span><span class="v">Where the deal sits in your own process.</span></div>
           <div class="helprow"><span class="k">Work status</span><span class="v">Where CTD's outreach stands, not where the account stands. In progress, on hold, or cancelled.</span></div>
           <div class="helprow"><span class="k">Strategy</span><span class="v">Whether the agent has finished generating a plan for this account.</span></div>
-          <div class="helprow"><span class="k">Rank</span><span class="v">Composite priority — fit combined with signal strength and how reachable the account is. Use it to decide what to open first.</span></div>
+          <div class="helprow"><span class="k">Rank</span><span class="v">Composite priority. Fit combined with signal strength and how reachable the account is. Use it to decide what to open first.</span></div>
       </div>
 
       <div class="helppanel" data-helppanel="network">
@@ -2811,13 +2810,13 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           <div class="helprow"><span class="k">Gone quiet</span><span class="v">Asked more than fourteen days ago with no response. Nudge or route around them.</span></div>
           <div class="helprow"><span class="k">Unused</span><span class="v">A strong path that nobody has ever asked. The cheapest opportunity on the page.</span></div>
           <div class="helprow"><span class="k">Would unlock</span><span class="v">An estimate of how many currently unreachable accounts this person's network would open up. Calculated from public network overlap, and confirmed once they connect an inbox.</span></div>
-          <div class="helprow"><span class="k">Super-connector</span><span class="v">Someone whose network overlaps many of your unreachable accounts at once — usually investors, advisors and operators rather than customers. Inviting one is worth more than a dozen ordinary connections.</span></div>
-          <div class="helprow"><span class="k">Weak links only</span><span class="v">They appear in the graph but have no meaningful relationship — a first-degree connection with no history.</span></div>
+          <div class="helprow"><span class="k">Super-connector</span><span class="v">Someone whose network overlaps many of your unreachable accounts at once, usually investors, advisors and operators rather than customers. Inviting one is worth more than a dozen ordinary connections.</span></div>
+          <div class="helprow"><span class="k">Weak links only</span><span class="v">They appear in the graph but have no meaningful relationship, just a first-degree connection with no history.</span></div>
       </div>
 
       <div class="helppanel" data-helppanel="people">
           <div class="helprow"><span class="k">Relationship</span><span class="v">How well the connector knows this person. Strong means recent two-way contact, Familiar means a real but older relationship, Weak means a connection with no history, Unknown means no path at all.</span></div>
-          <div class="helprow"><span class="k">Best path</span><span class="v">The single connector most likely to get you in. Every path is you to one connector to the target — CTD only sends second-degree intros.</span></div>
+          <div class="helprow"><span class="k">Best path</span><span class="v">The single connector most likely to get you in. Every path is you to one connector to the target. CTD only sends second-degree intros.</span></div>
           <div class="helprow"><span class="k">Paths</span><span class="v">How many different people could reach this target. More paths means more resilience if your first choice declines.</span></div>
           <div class="helprow"><span class="k">Role in the deal</span><span class="v">On an active deal this replaces persona fit. Champion sells internally, functional buyer evaluates, exec sponsor and budget owner sign, gatekeeper controls process.</span></div>
           <div class="helprow"><span class="k">Last touch</span><span class="v">The most recent contact with this person, and what kind. Never contacted is worth noticing on anyone senior.</span></div>
@@ -2828,17 +2827,17 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           <div class="helprow"><span class="k">Requestor</span><span class="v">The person who actually makes the ask. Usually more senior than the author, and chosen because they have the relationship and the clout for the sender to say yes. The ask goes out under their name.</span></div>
           <div class="helprow"><span class="k">Sender</span><span class="v">The connector. They know the target, and they know the requestor. They send the second message to the target in their own words.</span></div>
           <div class="helprow"><span class="k">Target</span><span class="v">The person you want the meeting with. They only ever hear from the sender, never from CTD directly.</span></div>
-          <div class="helprow"><span class="k">Message 1</span><span class="v">Requestor to sender — the ask. This is the one that gets sent when you click send.</span></div>
-          <div class="helprow"><span class="k">Message 2</span><span class="v">Sender to target — the intro. Written for the sender to use, but sent by them, not by you.</span></div>
-          <div class="helprow"><span class="k">Author and requestor</span><span class="v">Often the same person. They separate when the connector would take the ask more seriously from someone senior — that is what a ghost email is for.</span></div>
+          <div class="helprow"><span class="k">Message 1</span><span class="v">Requestor to sender, the ask. This is the one that gets sent when you click send.</span></div>
+          <div class="helprow"><span class="k">Message 2</span><span class="v">Sender to target, the intro. Written for the sender to use, but sent by them, not by you.</span></div>
+          <div class="helprow"><span class="k">Author and requestor</span><span class="v">Often the same person. They separate when the connector would take the ask more seriously from someone senior. That is what a ghost email is for.</span></div>
       </div>
 
       <div class="helppanel" data-helppanel="timeline">
           <div class="helprow"><span class="k">Meeting</span><span class="v">A call. Opens to its summary, what is working, pain points raised and risks. Upcoming meetings show an agenda instead.</span></div>
           <div class="helprow"><span class="k">Email</span><span class="v">Something sent or received. Expand for the subject, timing and body.</span></div>
-          <div class="helprow"><span class="k">Signal</span><span class="v">Something they did that you did not cause — attending a webinar, reading documentation, changing job title. This is prospect-initiated intent, and it is the type worth watching for.</span></div>
+          <div class="helprow"><span class="k">Signal</span><span class="v">Something they did that you did not cause, such as attending a webinar, reading documentation or changing job title. This is prospect-initiated intent, and it is the type worth watching for.</span></div>
           <div class="helprow"><span class="k">Milestone</span><span class="v">A change in the state of the deal, such as pricing delivered or an intro made.</span></div>
-          <div class="helprow"><span class="k">External</span><span class="v">A market event about them — an acquisition, a hiring surge, a funding round.</span></div>
+          <div class="helprow"><span class="k">External</span><span class="v">A market event about them, such as an acquisition, a hiring surge or a funding round.</span></div>
           <div class="helprow"><span class="k">Note</span><span class="v">Something a person recorded by hand. Usually the context no data source can give you.</span></div>
       </div>
 
@@ -2860,7 +2859,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
 <aside class="notes" id="notesPanel" aria-hidden="true">
   <header>
-    <div><div class="t-md strong">What changed and why</div><div class="t-xs muted">Annotations — not part of the product</div></div>
+    <div><div class="t-md strong">What changed and why</div><div class="t-xs muted">Annotations, not part of the product</div></div>
     <button class="btn btn-tertiary btn-sm" id="notesClose">Close</button>
   </header>
   <div class="scroll">
@@ -2872,7 +2871,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
     <div class="note-block">
       <h4>1 · Too many views</h4>
-      <p>Nine left-nav items per account, five tabs inside Strategy, three sub-tabs inside those, plus separate tab rows on Activities, Network Score and Docs — roughly 22 panes, three levels deep, to read one account.</p>
+      <p>Nine left-nav items per account, five tabs inside Strategy, three sub-tabs inside those, plus separate tab rows on Activities, Network Score and Docs, roughly 22 panes, three levels deep, to read one account.</p>
       <div class="ba">
         <div><span class="chip-b">Before</span><div class="n">22</div><div class="t-xs muted">panes, 3 levels</div></div>
         <div><span class="chip-a">After</span><div class="n">3</div><div class="t-xs muted">tabs, 1 level</div></div>
@@ -2882,21 +2881,21 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
     <div class="note-block">
       <h4>2 · Redundant information</h4>
-      <p>The same narrative was written out <span class="strong">seven times</span> — Overview Verdict, Overview Executive Summary, Strategy Summary (Goal/How/Verdict, with Verdict a verbatim duplicate), Strategy Diagnosis, Activities Executive Summary, Propensity Rep Summary, Firmographic Summary. The Meridian Grid acquisition appears in 7 places, Elena's webinar in 7.</p>
+      <p>The same narrative was written out <span class="strong">seven times</span>, in Overview Verdict, Overview Executive Summary, Strategy Summary (Goal/How/Verdict, with Verdict a verbatim duplicate), Strategy Diagnosis, Activities Executive Summary, Propensity Rep Summary, Firmographic Summary. The Meridian Grid acquisition appears in 7 places, Elena's webinar in 7.</p>
       <p style="margin-top:var(--s5)">Each fact is now stated once at the level of detail it deserves: headline in <span class="strong">The call</span>, one sentence in <span class="strong">Why</span>, full detail behind a drawer.</p>
     </div>
 
     <div class="note-block">
       <h4>3 · Four competing scores</h4>
-      <p>Firmographic 97, Propensity 37, Network Score "Strong / 196 / 46 / 23%", Rank 9820 — four scales, four screens. Replaced with one read (<span class="strong">The call</span>) supported by exactly three components: <span class="strong">Fit</span>, <span class="strong">Timing</span>, <span class="strong">Access</span>. The same three become sortable columns on the Accounts list, so the list and the detail page finally agree.</p>
+      <p>Firmographic 97, Propensity 37, Network Score "Strong / 196 / 46 / 23%", Rank 9820, four scales, four screens. Replaced with one read (<span class="strong">The call</span>) supported by exactly three components: <span class="strong">Fit</span>, <span class="strong">Timing</span>, <span class="strong">Access</span>. The same three become sortable columns on the Accounts list, so the list and the detail page finally agree.</p>
     </div>
 
     <div class="note-block">
       <h4>4 · Typography</h4>
       <p>Measured on the live Overview page:</p>
       <ul>
-        <li><span class="strong">15 distinct font sizes</span> — 9, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.33, 13.5, 14, 15, 16, 17, 22px, including fractional sizes from an unintended <span class="mono">%</span> cascade.</li>
-        <li><span class="strong">Three font families</span> on the Tasks grid — Inter (58 nodes), IBM Plex Sans (53, shipped by the grid library), Arial (30, unstyled native selects).</li>
+        <li><span class="strong">15 distinct font sizes</span>, namely 9, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.33, 13.5, 14, 15, 16, 17, 22px, including fractional sizes from an unintended <span class="mono">%</span> cascade.</li>
+        <li><span class="strong">Three font families</span> on the Tasks grid, Inter (58 nodes), IBM Plex Sans (53, shipped by the grid library), Arial (30, unstyled native selects).</li>
         <li>Line-height mostly <span class="mono">normal</span>; grid rows render 14px text on a 39px line box.</li>
       </ul>
       <p style="margin-top:var(--s5)">Here: Inter at 12/14/16/20, Space Grotesk at 24/30/36, Rubik uppercase for eyebrow labels. Seven sizes, all on scale, all with defined line-heights.</p>
@@ -2904,31 +2903,31 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
     <div class="note-block">
       <h4>5 · Colour</h4>
-      <p>The tool's neutral ramp is <span class="strong">warm sepia</span> — body <span class="mono">#1A1612</span>, secondary <span class="mono">#3D3630</span>, muted <span class="mono">#7A7060</span>, canvas <span class="mono">#F8F6F1</span>. The CTD system's Gray Modern ramp is <span class="strong">cool</span> (<span class="mono">#121926 → #FCFCFD</span>). Opposite temperature — most of why the tool doesn't read as CTD.</p>
+      <p>The tool's neutral ramp is <span class="strong">warm sepia</span>, with body <span class="mono">#1A1612</span>, secondary <span class="mono">#3D3630</span>, muted <span class="mono">#7A7060</span>, canvas <span class="mono">#F8F6F1</span>. The CTD system's Gray Modern ramp is <span class="strong">cool</span> (<span class="mono">#121926 → #FCFCFD</span>). Opposite temperature, most of why the tool doesn't read as CTD.</p>
       <p style="margin-top:var(--s5)">Also found: five stray blues (<span class="mono">#1A1F5E</span>, <span class="mono">#2A3175</span>, <span class="mono">#2C4BB0</span>, <span class="mono">#2D35A0</span>, <span class="mono">#1A4FA8</span>), none of them <span class="mono">#18355E</span> or Blue-600 <span class="mono">#2868EE</span>; a goldenrod <span class="mono">#B7860B</span> funnel bar in no palette; and a purple gradient on Propensity, which the system explicitly forbids.</p>
     </div>
 
     <div class="note-block">
       <h4>6 · The four state columns</h4>
-      <p>You said all four carry meaning, so all four are on the Accounts list — but with different visual weight and plain English, so the eye knows which to read first:</p>
+      <p>You said all four carry meaning, so all four are on the Accounts list, but with different visual weight and plain English, so the eye knows which to read first:</p>
       <ul>
-        <li><span class="strong">Signal</span> (was Account State) — loudest. Semantic badge: Dancing, Re-triggered, Warm watch. This is what changed.</li>
-        <li><span class="strong">Funnel</span> — neutral badge. Where the deal sits.</li>
-        <li><span class="strong">Work status</span> (was Status) — quiet two-line text. <span class="mono">in_progress (waiting_on)</span> becomes "In progress / Waiting on reply"; <span class="mono">done (cancelled)</span> becomes "Cancelled / Closed by owner".</li>
-        <li><span class="strong">Strategy</span> — quietest, an icon badge: Ready or Generating… It's the machine's state, not the account's.</li>
+        <li><span class="strong">Signal</span> (was Account State), loudest. Semantic badge: Dancing, Re-triggered, Warm watch. This is what changed.</li>
+        <li><span class="strong">Funnel</span>, a neutral badge. Where the deal sits.</li>
+        <li><span class="strong">Work status</span> (was Status), quiet two-line text. <span class="mono">in_progress (waiting_on)</span> becomes "In progress / Waiting on reply"; <span class="mono">done (cancelled)</span> becomes "Cancelled / Closed by owner".</li>
+        <li><span class="strong">Strategy</span>, the quietest, an icon badge: Ready or Generating… It's the machine's state, not the account's.</li>
       </ul>
-      <p style="margin-top:var(--s5)">A legend under the table defines Fit, Access, Signal, Work status and Rank — the old list showed a "Rank" of 9820 with no explanation anywhere.</p>
+      <p style="margin-top:var(--s5)">A legend under the table defines Fit, Access, Signal, Work status and Rank, the old list showed a "Rank" of 9820 with no explanation anywhere.</p>
     </div>
 
     <div class="note-block">
       <h4>7 · Path explorer (People)</h4>
-      <p>"+101 more paths" was a dead end — CTD's core value, hidden behind a label. Expanding a person now ranks every path with the connector, the hop chain, the strength of the final hop, where CTD observed the relationship (LinkedIn, Gmail, internal), how recently, and a per-path <span class="strong">Ask for intro</span>. Sortable by strength, hops or recency.</p>
+      <p>"+101 more paths" was a dead end, CTD's core value, hidden behind a label. Expanding a person now ranks every path with the connector, the hop chain, the strength of the final hop, where CTD observed the relationship (LinkedIn, Gmail, internal), how recently, and a per-path <span class="strong">Ask for intro</span>. Sortable by strength, hops or recency.</p>
       <p style="margin-top:var(--s5)">A <span class="strong">Your connectors</span> table flips the view: who on your side can open a door, how many personas they reach, and how many intros they've actually made. That's what turns coverage into a decision.</p>
     </div>
 
     <div class="note-block">
       <h4>8 · Coordination view (History)</h4>
-      <p>The audit's sharpest finding was buried in prose: two reps hit different contacts with near-identical invites four days apart. <span class="strong">By rep</span> makes it structural — each rep's touches, contacts, and warm paths left unused, plus a coverage table showing that the only person who showed intent is the only one nobody targeted.</p>
+      <p>The audit's sharpest finding was buried in prose: two reps hit different contacts with near-identical invites four days apart. <span class="strong">By rep</span> makes it structural, each rep's touches, contacts, and warm paths left unused, plus a coverage table showing that the only person who showed intent is the only one nobody targeted.</p>
     </div>
 
     <div class="note-block">
@@ -2936,7 +2935,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       <ul>
         <li><span class="strong">Five tab patterns</span> existed side by side. Now one Tabs component, with SegmentedControl for view switching inside a card.</li>
         <li><span class="strong">Five button styles</span>, including a pure-black "Add Input". Now three hierarchies from the system.</li>
-        <li>Emoji in navigation (📋 🔍 👀 ♟️ 📊 🟢 ⚠️) — the system's content rules say emoji are never used in product UI. Replaced with the 24px line-icon set.</li>
+        <li>Emoji in navigation (📋 🔍 👀 ♟️ 📊 🟢 ⚠️), the system's content rules say emoji are never used in product UI. Replaced with the 24px line-icon set.</li>
         <li>Raw database values leaked into the UI: <span class="mono">in_progress (waiting_on)</span>, <span class="mono">none_identified</span>, <span class="mono">operating_company_v1</span>, <span class="mono">send_warm_i…</span>. All rewritten in sentence case.</li>
         <li>The unstyled data grid in Strategy → Tasks duplicated the global Tasks page and rendered a 400px empty void with no empty state. Removed; tasks live in one place.</li>
         <li>Every empty state now says what to do next instead of "No inputs yet. Click Add Input to add one."</li>
@@ -2955,12 +2954,12 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       <h4>11 · The Tasks workflow</h4>
       <p>The four things AEs get stuck on, and what the execute screen does about each:</p>
       <ul>
-        <li><span class="strong">"What step am I at?"</span> — the chain (<span class="mono">pick_play_path → execute_warm_intro → send_warm_intro</span>) was only visible on a third tab called Activities, and two of the three steps shared the same title. It's now a stepper at the top of the task showing all four steps, who did each, when, and what they decided.</li>
-        <li><span class="strong">"Who is sending the email?"</span> — the old screen stacked <span class="strong">two different messages for three different people</span> in one panel with no labels: your ask to the connector, and a pre-written note from the connector to the target. Each message is now its own card with an explicit From and To, and the second is visually marked as a handoff — dashed border, "Not sent by you".</li>
-        <li><span class="strong">"What does delivery method mean?"</span> — <span class="mono">Email</span> vs <span class="mono">CTD.ai</span> was a bare radio pair that silently changed the primary button from "Send Email" to "Create &amp; Share Ghost Mail". They're now labelled cards that state the consequence: sends from your inbox now, versus the connector approves it in CTD first.</li>
-        <li><span class="strong">Edit vs Preview</span> — a global toggle that sat next to the delivery radio and applied ambiguously. It's now per-message, on the message it affects.</li>
+        <li><span class="strong">"What step am I at?"</span> The chain (<span class="mono">pick_play_path → execute_warm_intro → send_warm_intro</span>) was only visible on a third tab called Activities, and two of the three steps shared the same title. It's now a stepper at the top of the task showing all four steps, who did each, when, and what they decided.</li>
+        <li><span class="strong">"Who is sending the email?"</span> The old screen stacked <span class="strong">two different messages for three different people</span> in one panel with no labels: your ask to the connector, and a pre-written note from the connector to the target. Each message is now its own card with an explicit From and To, and the second is visually marked as a handoff, dashed border, "Not sent by you".</li>
+        <li><span class="strong">"What does delivery method mean?"</span> <span class="mono">Email</span> vs <span class="mono">CTD.ai</span> was a bare radio pair that silently changed the primary button from "Send Email" to "Create &amp; Share Ghost Mail". They're now labelled cards that state the consequence: sends from your inbox now, versus the connector approves it in CTD first.</li>
+        <li><span class="strong">Edit vs Preview</span>, a global toggle that sat next to the delivery radio and applied ambiguously. It's now per-message, on the message it affects.</li>
       </ul>
-      <p style="margin-top:var(--s5)">Two other changes. <span class="strong">Send Email and Next task were both dark primaries</span> — Next task is now secondary, so there's one obvious action. And the only exits were Send or Decline, with Decline buried under an unlabelled textarea; the action bar now offers Snooze, Save draft and Wrong connector, and states in words exactly what the primary will do.</p>
+      <p style="margin-top:var(--s5)">Two other changes. <span class="strong">Send Email and Next task were both dark primaries</span>. Next task is now secondary, so there's one obvious action. And the only exits were Send or Decline, with Decline buried under an unlabelled textarea; the action bar now offers Snooze, Save draft and Wrong connector, and states in words exactly what the primary will do.</p>
     </div>
 
     <div class="note-block">
@@ -2969,8 +2968,8 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       <div class="kv"><span class="k">Activities</span><span class="v">Folded into "The play" relay</span></div>
       <div class="kv"><span class="k">Strategy brief</span><span class="v">Same name, collapsed in place</span></div>
       <p style="margin-top:var(--s5)"><span class="strong">Activities</span> was the only place the chain was visible, and it shared a name with the unrelated Activities concept on the account page.</p>
-      <p style="margin-top:var(--s5)">It first became a four-step stepper, which then turned out to be redundant: a stepper, a "who sends what" relay and a delivery radio were three renderings of one thing. There are only ever two plays — you ask the connector yourself, or you write the ask and a more senior or better-connected colleague sends it under their name. So it is now a single <span class="strong">The play</span> card: pick the sender, see the relay, done. Three sections became one.</p>
-      <p style="margin-top:var(--s5)"><span class="strong">Strategy brief</span> repeated the account's Verdict, Executive Summary, Strategic Goal and Why This Strategy — the eighth copy of the same narrative. Deleting the copy was right; deleting the AE's access to it mid-task was not. A panel keeping the same name now sits under the stepper with a one-paragraph summary always visible and the full reasoning one click away, split into why this person, why this connector, why now, and the risk. It links through to the account brief rather than restating it, so there is still one source.</p>
+      <p style="margin-top:var(--s5)">It first became a four-step stepper, which then turned out to be redundant: a stepper, a "who sends what" relay and a delivery radio were three renderings of one thing. There are only ever two plays, you ask the connector yourself, or you write the ask and a more senior or better-connected colleague sends it under their name. So it is now a single <span class="strong">The play</span> card: pick the sender, see the relay, done. Three sections became one.</p>
+      <p style="margin-top:var(--s5)"><span class="strong">Strategy brief</span> repeated the account's Verdict, Executive Summary, Strategic Goal and Why This Strategy, the eighth copy of the same narrative. Deleting the copy was right, but deleting the AE's access to it mid-task was not. A panel keeping the same name now sits under the stepper with a one-paragraph summary always visible and the full reasoning one click away, split into why this person, why this connector, why now, and the risk. It links through to the account brief rather than restating it, so there is still one source.</p>
     </div>
 
     <div class="note-block">
@@ -2979,81 +2978,81 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       <div class="kv"><span class="k">outreach_plan · pick_play_path · decide_next_step · execute_warm_intro</span><span class="v">Path &amp; draft</span></div>
       <div class="kv"><span class="k">send_warm_intro · send_email</span><span class="v">Send</span></div>
       <div class="kv"><span class="k">manual_flow</span><span class="v">Manual step</span></div>
-      <div class="kv"><span class="k">on_hold <span class="t-xs">(as a type)</span></span><span class="v">Deleted — it's a status</span></div>
-      <p style="margin-top:var(--s5)">Picking the connector and writing the first draft are one person's job, so they are one step — which drops the play from four CTD steps to two: <span class="strong">path &amp; draft</span>, then <span class="strong">send</span>. The third step on the stepper is Nathan reaching Dean, which CTD tracks rather than assigns.</p>
-      <p style="margin-top:var(--s5)"><span class="strong">2nd degree only.</span> Every path is you → one connector → the target, so hop counts are meaningless and have been removed everywhere. The People tab previously showed routes with two intermediaries — Alex Tanaka → Owen Brandt → Elena Roche — which the product cannot action. Those are now single-connector paths, and the Brief, the path explorer and Your connectors all name the same connector for a given target.</p>
+      <div class="kv"><span class="k">on_hold <span class="t-xs">(as a type)</span></span><span class="v">Deleted, it's a status</span></div>
+      <p style="margin-top:var(--s5)">Picking the connector and writing the first draft are one person's job, so they are one step, which drops the play from four CTD steps to two: <span class="strong">path &amp; draft</span>, then <span class="strong">send</span>. The third step on the stepper is Nathan reaching Dean, which CTD tracks rather than assigns.</p>
+      <p style="margin-top:var(--s5)"><span class="strong">2nd degree only.</span> Every path is you → one connector → the target, so hop counts are meaningless and have been removed everywhere. The People tab previously showed routes with two intermediaries, Alex Tanaka → Owen Brandt → Elena Roche, which the product cannot action. Those are now single-connector paths, and the Brief, the path explorer and Your connectors all name the same connector for a given target.</p>
       <p style="margin-top:var(--s5)">Statuses become <span class="strong">Your turn · Waiting on connector · Snoozed · Done · Declined · Cancelled</span>. <span class="mono">in_manual_flow</span> disappears, since the step already says so.</p>
-      <p style="margin-top:var(--s5)">Worth noting against the Analytics tab: 516 tasks, 178 open, 100 cancelled, 25 overdue — and <span class="strong">zero intros sent across every connector</span>. A quarter of everything created gets cancelled. That's the number to watch after this ships.</p>
+      <p style="margin-top:var(--s5)">Worth noting against the Analytics tab: 516 tasks, 178 open, 100 cancelled, 25 overdue, and <span class="strong">zero intros sent across every connector</span>. A quarter of everything created gets cancelled. That's the number to watch after this ships.</p>
     </div>
 
     <div class="note-block">
       <h4>13 · Meetings and Activities, folded in</h4>
-      <p>Both carried real substance, so neither was cut — they were merged, which is what you get when you stop treating "a meeting" and "an interaction" as different objects.</p>
+      <p>Both carried real substance, so neither was cut, they were merged, which is what you get when you stop treating "a meeting" and "an interaction" as different objects.</p>
       <div class="kv"><span class="k">Meetings → list</span><span class="v">History timeline, Meetings filter</span></div>
       <div class="kv"><span class="k">Meetings → per-meeting summary</span><span class="v">Expandable inside the timeline entry</span></div>
-      <div class="kv"><span class="k">Activities → Deal Assessment</span><span class="v">Brief — Deal assessment strip</span></div>
-      <div class="kv"><span class="k">Activities → Objections / Blockers</span><span class="v">Brief — What is blocking</span></div>
-      <div class="kv"><span class="k">Activities → Key signals / concerns</span><span class="v">Brief — Why drawers, Watch for</span></div>
-      <div class="kv"><span class="k">Activities → Contacts</span><span class="v">People — Buying group</span></div>
-      <div class="kv"><span class="k">Activities → CTD Team</span><span class="v">History — By rep</span></div>
+      <div class="kv"><span class="k">Activities → Deal Assessment</span><span class="v">Brief, Deal assessment strip</span></div>
+      <div class="kv"><span class="k">Activities → Objections / Blockers</span><span class="v">Brief, What is blocking</span></div>
+      <div class="kv"><span class="k">Activities → Key signals / concerns</span><span class="v">Brief, Why drawers, Watch for</span></div>
+      <div class="kv"><span class="k">Activities → Contacts</span><span class="v">People, Buying group</span></div>
+      <div class="kv"><span class="k">Activities → CTD Team</span><span class="v">History, By rep</span></div>
       <p style="margin-top:var(--s5)">A meeting is now a timeline entry that opens into its summary, what is working, pain points and risks. Nothing is lost, and you stop having to reconcile two separate chronologies.</p>
-      <p style="margin-top:var(--s5)"><span class="strong">Deal assessment</span> was six pink chips reading <span class="mono">ACTIVE</span>, <span class="mono">ACCELERATING</span>, <span class="mono">HIGH</span>, <span class="mono">STRONG</span>, <span class="mono">IDENTIFIED_AND_ACTIVE</span>, <span class="mono">YES</span> — colour that implied error where it meant "good". It is now six labelled cells with a status dot and a supporting fact, so <span class="strong">Champion · Active · Marcus Webb</span> reads as a sentence.</p>
-      <p style="margin-top:var(--s5)"><span class="strong">Blockers got promoted.</span> Objections and blockers were the seventh block down on a tab nobody opened, yet they are the only thing standing between this deal and a pilot. They now sit directly under the deal assessment as three ordered gates with state — cleared, open, not started.</p>
-      <p style="margin-top:var(--s5)"><span class="strong">People adapts to the stage.</span> On a cold account the table asks who can open a door. On a live deal it asks who blocks, who signs and who champions — same component, different column.</p>
+      <p style="margin-top:var(--s5)"><span class="strong">Deal assessment</span> was six pink chips reading <span class="mono">ACTIVE</span>, <span class="mono">ACCELERATING</span>, <span class="mono">HIGH</span>, <span class="mono">STRONG</span>, <span class="mono">IDENTIFIED_AND_ACTIVE</span>, <span class="mono">YES</span>, colour that implied error where it meant "good". It is now six labelled cells with a status dot and a supporting fact, so <span class="strong">Champion · Active · Marcus Webb</span> reads as a sentence.</p>
+      <p style="margin-top:var(--s5)"><span class="strong">Blockers got promoted.</span> Objections and blockers were the seventh block down on a tab nobody opened, yet they are the only thing standing between this deal and a pilot. They now sit directly under the deal assessment as three ordered gates with state, cleared, open, not started.</p>
+      <p style="margin-top:var(--s5)"><span class="strong">People adapts to the stage.</span> On a cold account the table asks who can open a door. On a live deal it asks who blocks, who signs and who champions, same component, different column.</p>
       <p style="margin-top:var(--s5)"><span class="strong">Human Inputs and Docs stay merged into History.</span> Both were empty even on your most active account, which is the argument against giving either its own nav item.</p>
     </div>
 
     <div class="note-block">
       <h4>14 · Tasks, in two places on purpose</h4>
-      <p>The global <span class="strong">Tasks</span> queue answers "what should I do next across everything I own" — that is the morning workflow and it stays. The account's <span class="strong">Tasks</span> tab answers "what is in flight here" — that is the account-review workflow. Same records, two entry points, because those are two genuinely different jobs.</p>
+      <p>The global <span class="strong">Tasks</span> queue answers "what should I do next across everything I own", that is the morning workflow and it stays. The account's <span class="strong">Tasks</span> tab answers "what is in flight here", that is the account-review workflow. Same records, two entry points, because those are two genuinely different jobs.</p>
       <p style="margin-top:var(--s5)">Scoped to one account, tasks are grouped by the <span class="strong">play</span> they belong to rather than listed flat, which is what the old Progress tab was reaching for. Each play shows its steps with state, who is holding it, and how long it has been sitting. A play waiting on the prospect looks different from one waiting on you.</p>
       <p style="margin-top:var(--s5)">That also absorbs the last orphan: Progress was a dense indented wall covering every account at once. Per-account it is legible, and the cross-account roll-up is what the Tasks queue already does.</p>
     </div>
 
     <div class="note-block">
       <h4>15 · Timeline event types</h4>
-      <p>The first pass invented labels ad hoc — "Engagement", "Outbound", "Product", "Origin" — and the two accounts did not even use the same set. Six types now, on one axis: <span class="strong">who did it, and did we cause it</span>.</p>
-      <div class="kv"><span class="k">Meeting</span><span class="v">A call — expands to its summary</span></div>
+      <p>The first pass invented labels ad hoc, "Engagement", "Outbound", "Product", "Origin", and the two accounts did not even use the same set. Six types now, on one axis: <span class="strong">who did it, and did we cause it</span>.</p>
+      <div class="kv"><span class="k">Meeting</span><span class="v">A call, expands to its summary</span></div>
       <div class="kv"><span class="k">Email</span><span class="v">Sent or received</span></div>
       <div class="kv"><span class="k">Signal</span><span class="v">They did something we did not cause</span></div>
       <div class="kv"><span class="k">Milestone</span><span class="v">A change in deal state</span></div>
       <div class="kv"><span class="k">External</span><span class="v">A market event about them</span></div>
       <div class="kv"><span class="k">Note</span><span class="v">Recorded by a person</span></div>
-      <p style="margin-top:var(--s5)"><span class="strong">Signal</span> is the one that earns its place. A webinar attendance or three reads of the API docs is prospect-initiated intent — categorically different from an email we sent, and the thing an AE most wants to spot. "Engagement" blurred it with replies to our own outreach, which is exactly the mistake the Kestrel account was making.</p>
-      <p style="margin-top:var(--s5)">A legend sits under every timeline, because six colour-coded chips with no key is how you get a vocabulary nobody learns. Note that <span class="strong">play types</span> on the Tasks tab — warm intro, intro, follow-up, pricing — are a separate vocabulary on purpose: one describes what happened, the other describes what you are trying to do.</p>
+      <p style="margin-top:var(--s5)"><span class="strong">Signal</span> is the one that earns its place. A webinar attendance or three reads of the API docs is prospect-initiated intent, categorically different from an email we sent, and the thing an AE most wants to spot. "Engagement" blurred it with replies to our own outreach, which is exactly the mistake the Kestrel account was making.</p>
+      <p style="margin-top:var(--s5)">A legend sits under every timeline, because six colour-coded chips with no key is how you get a vocabulary nobody learns. Note that <span class="strong">play types</span> on the Tasks tab, warm intro, intro, follow-up, pricing, are a separate vocabulary on purpose: one describes what happened, the other describes what you are trying to do.</p>
     </div>
 
     <div class="note-block">
       <h4>16 · The four roles</h4>
       <p>A play has exactly four participants, and naming them fixed a run of problems that kept resurfacing as layout questions.</p>
       <div class="kv"><span class="k">Author</span><span class="v">SDR or AE who found the path and wrote it</span></div>
-      <div class="kv"><span class="k">Requestor</span><span class="v">Makes the ask — has the relationship and the clout</span></div>
-      <div class="kv"><span class="k">Sender</span><span class="v">Knows the target and the requestor — makes the intro</span></div>
+      <div class="kv"><span class="k">Requestor</span><span class="v">Makes the ask, has the relationship and the clout</span></div>
+      <div class="kv"><span class="k">Sender</span><span class="v">Knows the target and the requestor, makes the intro</span></div>
       <div class="kv"><span class="k">Target</span><span class="v">The meeting you want</span></div>
-      <p style="margin-top:var(--s5)">Two wrong turns got here. The ghost option first read "Marco sends it for you" — but Marco was the <span class="strong">author</span>, and an author never sends. The fix then invented a senior colleague as the sender, which put a stranger on the screen. Both were the same mistake: a name with no stated role.</p>
+      <p style="margin-top:var(--s5)">Two wrong turns got here. The ghost option first read "Marco sends it for you", but Marco was the <span class="strong">author</span>, and an author never sends. The fix then invented a senior colleague as the sender, which put a stranger on the screen. Both were the same mistake: a name with no stated role.</p>
       <p style="margin-top:var(--s5)">The roles also explain what a ghost email is <span class="strong">for</span>. Author and requestor are usually the same person; they separate precisely when the connector would take the ask more seriously from someone senior. That is now the choice offered when creating a play, rather than a transport setting buried in a radio pair.</p>
-      <p style="margin-top:var(--s5)">And the messages fall out of the model. <span class="strong">Message 1</span> is requestor to sender and is the only one that gets sent from CTD. <span class="strong">Message 2</span> is sender to target, written for the sender to use in their own words. The target never hears from CTD at all — which is the whole point of a warm intro, and was the single most confusing thing about the original screen.</p>
+      <p style="margin-top:var(--s5)">And the messages fall out of the model. <span class="strong">Message 1</span> is requestor to sender and is the only one that gets sent from CTD. <span class="strong">Message 2</span> is sender to target, written for the sender to use in their own words. The target never hears from CTD at all, which is the whole point of a warm intro, and was the single most confusing thing about the original screen.</p>
     </div>
 
     <div class="note-block">
       <h4>Where each old view went</h4>
-      <div class="kv"><span class="k">Overview</span><span class="v">Brief — header, The call, Why</span></div>
-      <div class="kv"><span class="k">Strategy → Summary</span><span class="v">Brief — The call</span></div>
-      <div class="kv"><span class="k">Strategy → Diagnosis</span><span class="v">Brief — Why drawers</span></div>
-      <div class="kv"><span class="k">Strategy → Triggers</span><span class="v">Brief — Your move, if/then</span></div>
-      <div class="kv"><span class="k">Strategy → Playbook</span><span class="v">Brief — Your move</span></div>
+      <div class="kv"><span class="k">Overview</span><span class="v">Brief, header, The call, Why</span></div>
+      <div class="kv"><span class="k">Strategy → Summary</span><span class="v">Brief, The call</span></div>
+      <div class="kv"><span class="k">Strategy → Diagnosis</span><span class="v">Brief, Why drawers</span></div>
+      <div class="kv"><span class="k">Strategy → Triggers</span><span class="v">Brief, Your move, if/then</span></div>
+      <div class="kv"><span class="k">Strategy → Playbook</span><span class="v">Brief, Your move</span></div>
       <div class="kv"><span class="k">Strategy → Tasks</span><span class="v">Account → Tasks tab</span></div>
       <div class="kv"><span class="k">Tasks → Progress</span><span class="v">Account → Tasks tab, by play</span></div>
-      <div class="kv"><span class="k">Network Score</span><span class="v">People — stats + path explorer</span></div>
+      <div class="kv"><span class="k">Network Score</span><span class="v">People, stats + path explorer</span></div>
       <div class="kv"><span class="k">Activities → Summary</span><span class="v">Deleted (duplicate)</span></div>
-      <div class="kv"><span class="k">Meetings</span><span class="v">History — Timeline, expandable</span></div>
-      <div class="kv"><span class="k">Activities → Timeline</span><span class="v">History — Timeline</span></div>
+      <div class="kv"><span class="k">Meetings</span><span class="v">History, Timeline, expandable</span></div>
+      <div class="kv"><span class="k">Activities → Timeline</span><span class="v">History, Timeline</span></div>
       <div class="kv"><span class="k">Activities → Contacts</span><span class="v">People</span></div>
-      <div class="kv"><span class="k">Activities → CTD Team</span><span class="v">History — By rep</span></div>
-      <div class="kv"><span class="k">Firmographic</span><span class="v">Brief — Fit drawer</span></div>
-      <div class="kv"><span class="k">Propensity</span><span class="v">Brief — The call + Why</span></div>
-      <div class="kv"><span class="k">Human Inputs</span><span class="v">History — Notes</span></div>
-      <div class="kv"><span class="k">Docs</span><span class="v">History — Documents</span></div>
+      <div class="kv"><span class="k">Activities → CTD Team</span><span class="v">History, By rep</span></div>
+      <div class="kv"><span class="k">Firmographic</span><span class="v">Brief, Fit drawer</span></div>
+      <div class="kv"><span class="k">Propensity</span><span class="v">Brief, The call + Why</span></div>
+      <div class="kv"><span class="k">Human Inputs</span><span class="v">History, Notes</span></div>
+      <div class="kv"><span class="k">Docs</span><span class="v">History, Documents</span></div>
       <div class="kv"><span class="k">ctd.ai link</span><span class="v">Overflow menu</span></div>
     </div>
   </div>
@@ -3260,8 +3259,8 @@ document.querySelectorAll('[data-send]').forEach(b=>{
 
 /* ---------------- Column help modal ---------------- */
 const helpModal=document.getElementById('helpModal');
-const HELP_TITLE={accounts:'Accounts — what the columns mean',network:'My network — what the columns mean',
-                  people:'People — what the columns mean',roles:'The four roles in a play',timeline:'Timeline — the six event types'};
+const HELP_TITLE={accounts:'Accounts, what the columns mean',network:'My network, what the columns mean',
+                  people:'People, what the columns mean',roles:'The four roles in a play',timeline:'Timeline, the six event types'};
 document.querySelectorAll('[data-help]').forEach(b=>{
   b.addEventListener('click',e=>{
     e.stopPropagation();
