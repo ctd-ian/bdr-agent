@@ -321,6 +321,9 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
   background:#fff;border:1px solid var(--gray-200);border-radius:var(--r-xl);padding:var(--s5)}
 .relay .node.you{border-color:var(--blue-300);background:var(--blue-25)}
 .relay .node.done{background:var(--gray-50)}
+.relay .node .rolelabel{font-family:var(--font-label);font-size:10px;line-height:14px;font-weight:500;
+  letter-spacing:.01em;text-transform:uppercase;color:var(--gray-400);margin-bottom:1px}
+.relay .node.you .rolelabel{color:var(--blue-700)}
 .relay .node .top{display:flex;align-items:center;gap:var(--s4);flex-wrap:wrap;row-gap:3px}
 .relay .node .nm{font-size:13px;line-height:18px;font-weight:600;color:var(--gray-900)}
 .relay .node .role{font-size:11px;line-height:15px;color:var(--gray-500)}
@@ -940,6 +943,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     <div class="sec-title">
       <h2>The play</h2>
       <span class="t-sm muted">Warm intro to Dean Whitlock via Nathan Pike</span>
+      <button class="helpbtn" data-help="roles" aria-label="What do these roles mean?"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M8.2 7.8a1.9 1.9 0 1 1 2.3 2.4c-.4.2-.5.5-.5.9v.3"/><path d="M10 14.6h.01"/></svg></button>
       <a href="#" style="margin-left:auto;font-weight:500;font-size:14px">Change connector</a>
     </div>
 
@@ -947,31 +951,35 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       <div class="card-pad">
         <div class="relay">
           <span class="node done">
+            <span class="rolelabel">Author</span>
             <span class="top"><span class="avatar avatar-sm">MD</span><span class="nm">Marco Devlin</span>
               <span class="badge badge-gray"><svg class="icon icon-xs" viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg>Done</span></span>
-            <span class="role">AE · found the path through you and wrote the draft</span>
+            <span class="role">AE · found the path and wrote both messages</span>
           </span>
           <span class="leg"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 10h12M12 6l4 4-4 4"/></svg><span>Handed over</span></span>
           <span class="node you">
+            <span class="rolelabel">Requestor</span>
             <span class="top"><span class="avatar avatar-sm">SE</span><span class="nm">You</span>
               <span class="badge badge-blue"><span class="dot"></span>Your turn</span></span>
-            <span class="role">You know Nathan — the ask goes out from you</span>
+            <span class="role">Knows Nathan well enough to ask him for a favour</span>
           </span>
           <span class="leg"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 10h12M12 6l4 4-4 4"/></svg><span>Message 1</span></span>
           <span class="node">
+            <span class="rolelabel">Sender</span>
             <span class="top"><span class="avatar avatar-sm">NP</span><span class="nm">Nathan Pike</span></span>
-            <span class="role">Connector · Meridian Advisory</span>
+            <span class="role">Knows both you and Dean · makes the intro</span>
           </span>
           <span class="leg"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 10h12M12 6l4 4-4 4"/></svg><span>Message 2</span></span>
           <span class="node">
+            <span class="rolelabel">Target</span>
             <span class="top"><span class="avatar avatar-sm">DW</span><span class="nm">Dean Whitlock</span></span>
-            <span class="role">Target · CEO, Copperline</span>
+            <span class="role">CEO · Copperline · the meeting you want</span>
           </span>
         </div>
 
         <div class="banner" style="margin-top:var(--s6)">
           <svg class="icon icon-sm" style="color:var(--blue-700);margin-top:2px" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 6h.01"/></svg>
-          <div id="relayNote"><span class="strong">Only message 1 gets sent, and it goes out from you.</span> Message 2 is written for Nathan to forward on to Dean in his own name — nobody at CTD sends it, and Dean never hears from you directly. If Dean bites, the goal is a hand-off to CCO Ruth Calder.</div>
+          <div id="relayNote"><span class="strong">You only send message 1.</span> Marco wrote both, but as requestor it goes out under your name. Message 2 is for Nathan to send on to Dean as the sender — nobody at CTD sends that one, and Dean never hears from you directly. If Dean bites, the goal is a hand-off to CCO Ruth Calder.</div>
         </div>
       </div>
 
@@ -1004,7 +1012,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <span class="idx">1</span>
         <div class="grow" style="flex:1;min-width:0">
           <h4>Your ask to Nathan</h4>
-          <div class="sub">You send this. It goes out now.</div>
+          <div class="sub">Requestor → Sender. You send this, and it goes out now.</div>
         </div>
         <div class="seg">
           <button class="is-active" data-seg="m1">Edit</button>
@@ -1035,7 +1043,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <span class="idx">2</span>
         <div style="flex:1;min-width:0">
           <h4>The note Nathan forwards to Dean</h4>
-          <div class="sub">Nathan sends this, in his own words. Nothing happens when you click send.</div>
+          <div class="sub">Sender → Target. Nathan sends this in his own words — nothing happens when you click send.</div>
         </div>
         <span class="badge badge-warning"><span class="dot"></span>Not sent by you</span>
       </div>
@@ -2684,7 +2692,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           <span class="wsep"></span>
           <span class="wstep" data-w="3"><span class="n">3</span>Delivery</span>
           <span class="wsep"></span>
-          <span class="wstep" data-w="4"><span class="n">4</span>Who does it</span>
+          <span class="wstep" data-w="4"><span class="n">4</span>Requestor</span>
         </div>
       </div>
       <button class="btn btn-tertiary btn-sm" data-close>Cancel</button>
@@ -2748,16 +2756,16 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
     <!-- 4 · Who does it -->
     <div class="modal-body" id="w-4" hidden>
-      <p class="t-sm dim">You have picked the connector and CTD will draft both messages. Who sends the ask to Nathan?</p>
+      <p class="t-sm dim">You are the author — you found the path and CTD will draft both messages. Who should make the ask to Nathan?</p>
       <button class="pick on"><span class="rad" style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;border:5px solid var(--blue-600);margin-top:2px"></span>
-        <span><h5>You <span class="badge badge-blue badge-sq">Recommended</span></h5><p>You picked the path and wrote the draft, so you have the context if Nathan asks a question.</p></span></button>
+        <span><h5>You <span class="badge badge-blue badge-sq">Recommended</span></h5><p>You know Nathan directly, so the ask carries on its own. You act as both author and requestor.</p></span></button>
       <button class="pick"><span class="rad" style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;border:1px solid var(--gray-300);margin-top:2px"></span>
-        <span><h5>Marco Devlin <span class="badge badge-gray badge-sq">Account owner</span></h5><p>Hands the send to Marco. It lands in his queue and you will see this task as waiting on him.</p></span></button>
+        <span><h5>Marco Devlin <span class="badge badge-gray badge-sq">More senior</span></h5><p>Marco becomes the requestor. You still wrote it, but it goes out under his name and lands in his queue first — worth it when the connector will take the ask more seriously from him.</p></span></button>
 
       <div class="chainprev">
         <span class="label">What gets created</span>
         <div class="chainrow mine"><span class="n">1</span><span class="strong">Path picked &amp; drafted</span><span class="muted">— you, now · via Nathan Pike</span></div>
-        <div class="chainrow mine"><span class="n">2</span><span class="strong">You send to Nathan</span><span class="muted">— you, once the draft is ready</span></div>
+        <div class="chainrow mine"><span class="n">2</span><span class="strong">You ask Nathan</span><span class="muted">— you as requestor, once the draft is ready</span></div>
         <div class="chainrow"><span class="n">3</span><span class="strong">Nathan intros you to Dean Whitlock</span><span class="muted">— tracked, no action from you</span></div>
       </div>
     </div>
@@ -2813,6 +2821,16 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           <div class="helprow"><span class="k">Paths</span><span class="v">How many different people could reach this target. More paths means more resilience if your first choice declines.</span></div>
           <div class="helprow"><span class="k">Role in the deal</span><span class="v">On an active deal this replaces persona fit. Champion sells internally, functional buyer evaluates, exec sponsor and budget owner sign, gatekeeper controls process.</span></div>
           <div class="helprow"><span class="k">Last touch</span><span class="v">The most recent contact with this person, and what kind. Never contacted is worth noticing on anyone senior.</span></div>
+      </div>
+
+      <div class="helppanel" data-helppanel="roles">
+          <div class="helprow"><span class="k">Author</span><span class="v">The SDR or AE who found the path and wrote the messages. Their part ends when the draft is handed over.</span></div>
+          <div class="helprow"><span class="k">Requestor</span><span class="v">The person who actually makes the ask. Usually more senior than the author, and chosen because they have the relationship and the clout for the sender to say yes. The ask goes out under their name.</span></div>
+          <div class="helprow"><span class="k">Sender</span><span class="v">The connector. They know the target, and they know the requestor. They send the second message to the target in their own words.</span></div>
+          <div class="helprow"><span class="k">Target</span><span class="v">The person you want the meeting with. They only ever hear from the sender, never from CTD directly.</span></div>
+          <div class="helprow"><span class="k">Message 1</span><span class="v">Requestor to sender — the ask. This is the one that gets sent when you click send.</span></div>
+          <div class="helprow"><span class="k">Message 2</span><span class="v">Sender to target — the intro. Written for the sender to use, but sent by them, not by you.</span></div>
+          <div class="helprow"><span class="k">Author and requestor</span><span class="v">Often the same person. They separate when the connector would take the ask more seriously from someone senior — that is what a ghost email is for.</span></div>
       </div>
 
       <div class="helppanel" data-helppanel="timeline">
@@ -3006,11 +3024,15 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     </div>
 
     <div class="note-block">
-      <h4>16 · Everyone in the play belongs in the play</h4>
-      <p>Two wrong turns, both worth recording. First the ghost option read "Marco sends it for you" — but Marco had <span class="strong">written</span> the draft, and an author is not a sender. Then the fix introduced a more senior colleague as the ghost sender, which invented a person nobody in the story knew.</p>
-      <p style="margin-top:var(--s5)">The actual shape is simpler and has four people: <span class="strong">Marco</span>, the AE, found that <span class="strong">you</span> have a path to <span class="strong">Nathan</span>, who can reach <span class="strong">Dean</span>. Marco wrote the ask; you send it because you are the one Nathan knows. All four are now in one relay, each labelled with the part they play, and Marco is marked done rather than floating above the diagram as an unexplained name.</p>
-      <p style="margin-top:var(--s5)">Which also resolved the choice on offer. The sender is not variable — it has to be you, because the relationship is yours. What varies is <span class="strong">how</span> it goes: straight from your inbox, or through CTD under the same address. The second is worth its extra step because CTD then sees the reply, and the Baseline Data pilot notes flag exactly this as a measurement problem: reps act on relationships outside the tracking, so nobody can prove the ROI.</p>
-      <p style="margin-top:var(--s5)">The general lesson: if a name appears on a screen, the screen should say what that person did. Both errors here were versions of failing that test.</p>
+      <h4>16 · The four roles</h4>
+      <p>A play has exactly four participants, and naming them fixed a run of problems that kept resurfacing as layout questions.</p>
+      <div class="kv"><span class="k">Author</span><span class="v">SDR or AE who found the path and wrote it</span></div>
+      <div class="kv"><span class="k">Requestor</span><span class="v">Makes the ask — has the relationship and the clout</span></div>
+      <div class="kv"><span class="k">Sender</span><span class="v">Knows the target and the requestor — makes the intro</span></div>
+      <div class="kv"><span class="k">Target</span><span class="v">The meeting you want</span></div>
+      <p style="margin-top:var(--s5)">Two wrong turns got here. The ghost option first read "Marco sends it for you" — but Marco was the <span class="strong">author</span>, and an author never sends. The fix then invented a senior colleague as the sender, which put a stranger on the screen. Both were the same mistake: a name with no stated role.</p>
+      <p style="margin-top:var(--s5)">The roles also explain what a ghost email is <span class="strong">for</span>. Author and requestor are usually the same person; they separate precisely when the connector would take the ask more seriously from someone senior. That is now the choice offered when creating a play, rather than a transport setting buried in a radio pair.</p>
+      <p style="margin-top:var(--s5)">And the messages fall out of the model. <span class="strong">Message 1</span> is requestor to sender and is the only one that gets sent from CTD. <span class="strong">Message 2</span> is sender to target, written for the sender to use in their own words. The target never hears from CTD at all — which is the whole point of a warm intro, and was the single most confusing thing about the original screen.</p>
     </div>
 
     <div class="note-block">
@@ -3239,7 +3261,7 @@ document.querySelectorAll('[data-send]').forEach(b=>{
 /* ---------------- Column help modal ---------------- */
 const helpModal=document.getElementById('helpModal');
 const HELP_TITLE={accounts:'Accounts — what the columns mean',network:'My network — what the columns mean',
-                  people:'People — what the columns mean',timeline:'Timeline — the six event types'};
+                  people:'People — what the columns mean',roles:'The four roles in a play',timeline:'Timeline — the six event types'};
 document.querySelectorAll('[data-help]').forEach(b=>{
   b.addEventListener('click',e=>{
     e.stopPropagation();
