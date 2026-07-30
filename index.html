@@ -315,13 +315,19 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 /* ===================== Task execute screen ===================== */
 
 /* Relay — who sends what to whom */
-.relay{display:flex;align-items:center;gap:var(--s5);flex-wrap:wrap}
-.relay .node{display:flex;align-items:center;gap:var(--s4);background:#fff;border:1px solid var(--gray-200);border-radius:var(--r-2xl);padding:4px 12px 4px 4px}
+/* Relay — always one line. Text wraps inside the nodes, the row never does. */
+.relay{display:flex;align-items:stretch;gap:var(--s3);flex-wrap:nowrap}
+.relay .node{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:3px;
+  background:#fff;border:1px solid var(--gray-200);border-radius:var(--r-xl);padding:var(--s5)}
 .relay .node.you{border-color:var(--blue-300);background:var(--blue-25)}
-.relay .node .nm{font-size:13px;font-weight:600;color:var(--gray-900);white-space:nowrap}
-.relay .node .rl{font-size:11px;color:var(--gray-500);white-space:nowrap}
-.relay .leg{display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--gray-400);padding:0 var(--s2)}
-.relay .leg span{font-family:var(--font-label);font-size:10px;letter-spacing:.01em;text-transform:uppercase;color:var(--gray-500);white-space:nowrap}
+.relay .node.done{background:var(--gray-50)}
+.relay .node .top{display:flex;align-items:center;gap:var(--s4);flex-wrap:wrap;row-gap:3px}
+.relay .node .nm{font-size:13px;line-height:18px;font-weight:600;color:var(--gray-900)}
+.relay .node .role{font-size:11px;line-height:15px;color:var(--gray-500)}
+.relay .leg{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:2px;color:var(--gray-400);padding:0 var(--s2);align-self:center}
+.relay .leg span{font-family:var(--font-label);font-size:10px;line-height:13px;letter-spacing:.01em;
+  text-transform:uppercase;color:var(--gray-500);text-align:center;max-width:56px}
 
 /* Delivery method — explained radio cards */
 .delivery{display:grid;grid-template-columns:1fr 1fr;gap:var(--s5)}
@@ -459,11 +465,6 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .growrow .g{flex:1;min-width:0}
 
 
-/* Relay nodes carry the role each person plays */
-.relay .node{flex-direction:column;align-items:flex-start;gap:2px;padding:var(--s4) var(--s5)}
-.relay .node .top{display:flex;align-items:center;gap:var(--s4)}
-.relay .node .role{font-size:11px;line-height:16px;color:var(--gray-500);white-space:nowrap}
-.relay .node.done{background:var(--gray-50);border-color:var(--gray-200)}
 
 /* Design notes */
 .notes-toggle{position:fixed;right:var(--s8);bottom:var(--s8);z-index:60;background:var(--gray-900);color:#fff;border-radius:var(--r-2xl);height:44px;padding:0 var(--s7);display:inline-flex;align-items:center;gap:var(--s4);box-shadow:var(--sh-2xl);font-weight:500}
@@ -950,7 +951,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
               <span class="badge badge-gray"><svg class="icon icon-xs" viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg>Done</span></span>
             <span class="role">AE · found the path through you and wrote the draft</span>
           </span>
-          <span class="leg"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 10h12M12 6l4 4-4 4"/></svg><span>Handed to you</span></span>
+          <span class="leg"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 10h12M12 6l4 4-4 4"/></svg><span>Handed over</span></span>
           <span class="node you">
             <span class="top"><span class="avatar avatar-sm">SE</span><span class="nm">You</span>
               <span class="badge badge-blue"><span class="dot"></span>Your turn</span></span>
