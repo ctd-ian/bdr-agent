@@ -986,18 +986,18 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       <div style="border-top:1px solid var(--gray-200);padding:var(--s7)">
         <span class="label">How do you want to send it?</span>
         <div class="delivery" style="margin-top:var(--s5)">
-          <button class="dopt on" data-dopt data-send="inbox">
+          <button class="dopt on" data-dopt data-send="ctd">
+            <span class="rad"></span>
+            <span>
+              <h5>Through CTD <span class="badge badge-blue badge-sq">Recommended</span></h5>
+              <p>Goes out from sam@ctd.ai under your name, same as any other email. CTD sends it and watches for Nathan's reply, so the intro is counted and this task closes itself.</p>
+            </span>
+          </button>
+          <button class="dopt" data-dopt data-send="inbox">
             <span class="rad"></span>
             <span>
               <h5>From your inbox</h5>
-              <p>Goes out now from sam@ctd.ai. Nathan replies straight to you. CTD cannot see the reply, so this intro will not show up in your numbers.</p>
-            </span>
-          </button>
-          <button class="dopt" data-dopt data-send="ctd">
-            <span class="rad"></span>
-            <span>
-              <h5>Through CTD <span class="badge badge-gray badge-sq">Tracked</span></h5>
-              <p>Same message, same address, still from you — but CTD sends it and watches for Nathan's reply, so the intro is counted and the task closes itself.</p>
+              <p>You send it yourself. Nathan still replies to you, but CTD cannot see the reply — the intro will not show in your numbers and you will have to close this task by hand.</p>
             </span>
           </button>
         </div>
@@ -1066,14 +1066,14 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     <!-- Actions -->
     <div class="actionbar">
       <div class="what" id="sendWhat">
-        <span class="strong">Sending now:</span> message 1, from sam@ctd.ai to Nathan Pike. Dean is not contacted at this step.
+        <span class="strong">Sending now:</span> message 1 goes to Nathan Pike from sam@ctd.ai via CTD, which watches for his reply and closes this task when it lands.
       </div>
       <button class="btn btn-tertiary">Decline</button>
       <button class="btn btn-secondary">Wrong connector</button>
       <button class="btn btn-secondary">Snooze</button>
       <button class="btn btn-secondary">Save draft</button>
       <button class="btn btn-primary" id="sendBtn">
-        <svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M3 10h14M12 5l5 5-5 5"/></svg><span id="sendLbl">Send from your inbox</span>
+        <svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M3 10h14M12 5l5 5-5 5"/></svg><span id="sendLbl">Send through CTD</span>
       </button>
     </div>
   </div>
@@ -2741,12 +2741,12 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
     <!-- 3 · Delivery -->
     <div class="modal-body" id="w-3" hidden>
-      <p class="t-sm dim">Whose name should the ask to <span class="strong">Nathan Pike</span> go out under?</p>
+      <p class="t-sm dim">How should the ask reach <span class="strong">Nathan Pike</span>?</p>
       <div class="delivery">
         <button class="dopt on" data-dopt><span class="rad"></span>
-          <span><h5>Yours</h5><p>Sends from sam@ctd.ai. Fastest, and Nathan replies straight to you.</p></span></button>
+          <span><h5>Through CTD <span class="badge badge-blue badge-sq">Recommended</span></h5><p>CTD sends it under the requestor's name and watches for the reply, so the intro is counted and the task closes itself.</p></span></button>
         <button class="dopt" data-dopt><span class="rad"></span>
-          <span><h5>A colleague's <span class="badge badge-gray badge-sq">Ghost</span></h5><p>You write it, a more senior or better-connected colleague approves it in CTD, and it goes out under their name. Adds about a day.</p></span></button>
+          <span><h5>From their inbox</h5><p>The requestor sends it themselves. Nothing is tracked, and the task has to be closed by hand.</p></span></button>
       </div>
       <div class="banner">
         <svg class="icon icon-sm" style="color:var(--blue-700);margin-top:2px" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 6h.01"/></svg>
