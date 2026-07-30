@@ -398,6 +398,22 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .mtg-body.open{display:flex}
 .mtg-body h6{font-family:var(--font-label);font-size:11px;letter-spacing:.01em;text-transform:uppercase;font-weight:500;color:var(--gray-500);margin-bottom:var(--s4)}
 
+
+/* Play cards — the account's tasks, grouped by the play they belong to */
+.playcard{border:1px solid var(--gray-200);border-radius:var(--r-xl);background:#fff;box-shadow:var(--sh-sm);overflow:hidden}
+.playcard+.playcard{margin-top:var(--s6)}
+.playcard-head{padding:var(--s6) var(--s7);border-bottom:1px solid var(--gray-200);display:flex;align-items:center;gap:var(--s5);flex-wrap:wrap;background:var(--gray-25)}
+.playcard-head h3{font-size:15px;line-height:22px;font-weight:600;color:var(--gray-900)}
+.playcard.is-mine{border-color:var(--blue-300);box-shadow:0 0 0 3px var(--blue-50)}
+.pstep{display:flex;align-items:center;gap:var(--s5);padding:var(--s5) var(--s7);border-top:1px solid var(--gray-100)}
+.pstep:first-of-type{border-top:none}
+.pstep.now{background:var(--blue-25)}
+.pstep .pmark{width:22px;height:22px;flex:0 0 22px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:600;background:var(--gray-100);color:var(--gray-500)}
+.pstep.done .pmark{background:var(--success-50);color:var(--success-700)}
+.pstep.now .pmark{background:var(--blue-600);color:#fff}
+.pstep .pgrow{flex:1;min-width:0}
+.pstep.todo .pgrow .strong{color:var(--gray-500);font-weight:500}
+
 /* Design notes */
 .notes-toggle{position:fixed;right:var(--s8);bottom:var(--s8);z-index:60;background:var(--gray-900);color:#fff;border-radius:var(--r-2xl);height:44px;padding:0 var(--s7);display:inline-flex;align-items:center;gap:var(--s4);box-shadow:var(--sh-2xl);font-weight:500}
 .notes{position:fixed;top:0;right:0;bottom:0;width:470px;max-width:94vw;z-index:70;background:#fff;border-left:1px solid var(--gray-200);box-shadow:var(--sh-2xl);transform:translateX(100%);transition:transform .22s ease;display:flex;flex-direction:column}
@@ -1038,7 +1054,8 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     <div class="tabs" role="tablist">
       <button class="tab is-active" data-tab="brief">Brief</button>
       <button class="tab" data-tab="people">People <span class="count">4</span></button>
-      <button class="tab" data-tab="history">History <span class="count">8</span></button>
+      <button class="tab" data-tab="tasks">Tasks <span class="count">1</span></button>
+        <button class="tab" data-tab="history">History <span class="count">8</span></button>
     </div>
 
     <!-- ------------------------- BRIEF ------------------------- -->
@@ -1439,6 +1456,38 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       </div>
     </section>
 
+
+    <section id="tab-tasks" hidden>
+      <div class="between" style="margin-bottom:var(--s7);flex-wrap:wrap">
+        <div class="row" style="gap:var(--s5);flex-wrap:wrap"><span class="badge badge-blue"><span class="dot"></span>1 waiting on you</span><span class="badge badge-gray">0 done</span></div>
+        <button class="btn btn-primary"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12"/></svg>New task</button>
+      </div>
+      <div class="playcard is-mine">
+        <div class="playcard-head">
+          <span class="badge badge-sky badge-sq">Warm intro</span>
+          <h3>Reach Elena Roche via Alex Tanaka</h3>
+          <span class="badge badge-blue" style="margin-left:auto"><span class="dot"></span>Your turn</span>
+        </div>
+        <div class="pstep done"><span class="pmark"><svg class="icon icon-xs" viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg></span>
+          <div class="pgrow"><div class="strong t-sm">Path picked &amp; drafted</div><div class="t-xs muted">Marco Devlin · 12 Jun · chose Alex over 13 other connectors</div></div>
+          <span class="badge badge-gray">Done</span></div>
+        <div class="pstep now"><span class="pmark">2</span>
+          <div class="pgrow"><div class="strong t-sm">You send the ask to Alex</div><div class="t-xs muted">Waiting on you · 2 days</div></div>
+          <button class="btn btn-primary btn-sm" data-view="task">Open task</button></div>
+        <div class="pstep todo"><span class="pmark">3</span>
+          <div class="pgrow"><div class="strong t-sm">Alex intros you to Elena</div><div class="t-xs muted">Tracked once you send</div></div></div>
+      </div>
+
+      <div class="card" style="margin-top:var(--s6)">
+        <div class="empty" style="padding:var(--s8)">
+          <div class="ico"><svg class="icon" viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg></div>
+          <div class="t-sm strong" style="color:var(--gray-700)">Nothing completed yet</div>
+          <div class="t-sm">Six touches went out before CTD started tracking plays. None used a warm path.</div>
+        </div>
+      </div>
+      <p class="t-sm muted" style="margin-top:var(--s7)">Everything here also appears in <a href="#" data-view="tasks">Tasks</a>, alongside your other accounts. This view is the same work, scoped to one account.</p>
+    </section>
+
     <!-- ------------------------- HISTORY ------------------------- -->
     <section id="tab-history" hidden>
       <div class="grid g3" style="margin-bottom:var(--s7)">
@@ -1678,7 +1727,8 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     <div class="tabs" role="tablist">
       <button class="tab is-active" data-tab2="brief">Brief</button>
       <button class="tab" data-tab2="people">People <span class="count">10</span></button>
-      <button class="tab" data-tab2="history">History <span class="count">7</span></button>
+      <button class="tab" data-tab2="tasks">Tasks <span class="count">3</span></button>
+        <button class="tab" data-tab2="history">History <span class="count">7</span></button>
     </div>
 
     <!-- ---------------- BRIEF ---------------- -->
@@ -1860,6 +1910,66 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           </div>
         </div>
       </div>
+    </section>
+
+
+    <section id="tab2-tasks" hidden>
+      <div class="between" style="margin-bottom:var(--s7);flex-wrap:wrap">
+        <div class="row" style="gap:var(--s5);flex-wrap:wrap"><span class="badge badge-error"><span class="dot"></span>1 due Wednesday</span><span class="badge badge-warning"><span class="dot"></span>1 waiting on them</span><span class="badge badge-gray">1 held back · 1 done</span></div>
+        <button class="btn btn-primary"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12"/></svg>New task</button>
+      </div>
+      <div class="playcard is-mine">
+        <div class="playcard-head">
+          <span class="badge badge-sky badge-sq">Intro</span>
+          <h3>Get procurement moving via Cara Nunes</h3>
+          <span class="badge badge-error" style="margin-left:auto"><span class="dot"></span>Due Wednesday</span>
+        </div>
+        <div class="pstep done"><span class="pmark"><svg class="icon icon-xs" viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg></span>
+          <div class="pgrow"><div class="strong t-sm">Marcus asked for the procurement intro</div><div class="t-xs muted">20 Jul · in the pilot planning call</div></div>
+          <span class="badge badge-gray">Done</span></div>
+        <div class="pstep now"><span class="pmark">2</span>
+          <div class="pgrow"><div class="strong t-sm">Send the intro to Cara Nunes</div><div class="t-xs muted">Waiting on you · due Wednesday</div></div>
+          <button class="btn btn-primary btn-sm" data-view="task">Open task</button></div>
+        <div class="pstep todo"><span class="pmark">3</span>
+          <div class="pgrow"><div class="strong t-sm">MNDA opens</div><div class="t-xs muted">Unblocks the security review</div></div></div>
+      </div>
+
+      <div class="playcard">
+        <div class="playcard-head">
+          <span class="badge badge-gray badge-sq">Follow-up</span>
+          <h3>Lock the POC roster across three RVP teams</h3>
+          <span class="badge badge-warning" style="margin-left:auto"><span class="dot"></span>Waiting on Marcus</span>
+        </div>
+        <div class="pstep done"><span class="pmark"><svg class="icon icon-xs" viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg></span>
+          <div class="pgrow"><div class="strong t-sm">Asked Marcus to name the reps</div><div class="t-xs muted">Marco Devlin · 20 Jul</div></div>
+          <span class="badge badge-gray">Done</span></div>
+        <div class="pstep"><span class="pmark">2</span>
+          <div class="pgrow"><div class="strong t-sm">Marcus confirms names with Miles Hayden, Arno Vos and Ed Lentz</div><div class="t-xs muted">Waiting on them · 2 days · 3 of ~15 seats named</div></div>
+          <button class="btn btn-secondary btn-sm">Nudge</button></div>
+      </div>
+
+      <div class="playcard">
+        <div class="playcard-head">
+          <span class="badge badge-sky badge-sq">Warm intro</span>
+          <h3>Executive cover — Adam Kessler and Karl Egan</h3>
+          <span class="badge badge-gray" style="margin-left:auto"><span class="dot"></span>Held back</span>
+        </div>
+        <div class="pstep todo"><span class="pmark">1</span>
+          <div class="pgrow"><div class="strong t-sm">Ask Dana Sackett for the introduction</div><div class="t-xs muted">Deliberately deferred until the security review is underway</div></div>
+          <button class="btn btn-secondary btn-sm">Start anyway</button></div>
+      </div>
+
+      <div class="playcard">
+        <div class="playcard-head">
+          <span class="badge badge-gray badge-sq">Pricing</span>
+          <h3>Deliver budgetary pricing to unblock procurement</h3>
+          <span class="badge badge-success" style="margin-left:auto"><span class="dot"></span>Done</span>
+        </div>
+        <div class="pstep done"><span class="pmark"><svg class="icon icon-xs" viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg></span>
+          <div class="pgrow"><div class="strong t-sm">Sent same day it was requested</div><div class="t-xs muted">Marco Devlin · 20 Jul · $15k POC, $60k/yr</div></div>
+          <span class="badge badge-gray">Done</span></div>
+      </div>
+      <p class="t-sm muted" style="margin-top:var(--s7)">Everything here also appears in <a href="#" data-view="tasks">Tasks</a>, alongside your other accounts. This view is the same work, scoped to one account.</p>
     </section>
 
     <!-- ---------------- HISTORY ---------------- -->
@@ -2272,13 +2382,21 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     </div>
 
     <div class="note-block">
+      <h4>14 · Tasks, in two places on purpose</h4>
+      <p>The global <span class="strong">Tasks</span> queue answers "what should I do next across everything I own" — that is the morning workflow and it stays. The account's <span class="strong">Tasks</span> tab answers "what is in flight here" — that is the account-review workflow. Same records, two entry points, because those are two genuinely different jobs.</p>
+      <p style="margin-top:var(--s5)">Scoped to one account, tasks are grouped by the <span class="strong">play</span> they belong to rather than listed flat, which is what the old Progress tab was reaching for. Each play shows its steps with state, who is holding it, and how long it has been sitting. A play waiting on the prospect looks different from one waiting on you.</p>
+      <p style="margin-top:var(--s5)">That also absorbs the last orphan: Progress was a dense indented wall covering every account at once. Per-account it is legible, and the cross-account roll-up is what the Tasks queue already does.</p>
+    </div>
+
+    <div class="note-block">
       <h4>Where each old view went</h4>
       <div class="kv"><span class="k">Overview</span><span class="v">Brief — header, The call, Why</span></div>
       <div class="kv"><span class="k">Strategy → Summary</span><span class="v">Brief — The call</span></div>
       <div class="kv"><span class="k">Strategy → Diagnosis</span><span class="v">Brief — Why drawers</span></div>
       <div class="kv"><span class="k">Strategy → Triggers</span><span class="v">Brief — Your move, if/then</span></div>
       <div class="kv"><span class="k">Strategy → Playbook</span><span class="v">Brief — Your move</span></div>
-      <div class="kv"><span class="k">Strategy → Tasks</span><span class="v">Global Tasks + Next action</span></div>
+      <div class="kv"><span class="k">Strategy → Tasks</span><span class="v">Account → Tasks tab</span></div>
+      <div class="kv"><span class="k">Tasks → Progress</span><span class="v">Account → Tasks tab, by play</span></div>
       <div class="kv"><span class="k">Network Score</span><span class="v">People — stats + path explorer</span></div>
       <div class="kv"><span class="k">Activities → Summary</span><span class="v">Deleted (duplicate)</span></div>
       <div class="kv"><span class="k">Meetings</span><span class="v">History — Timeline, expandable</span></div>
@@ -2320,7 +2438,7 @@ document.querySelectorAll('#view-accounts tbody tr.rowlink').forEach(el=>{
 });
 
 /* ---------------- Account tabs ---------------- */
-const panes={brief:'tab-brief',people:'tab-people',history:'tab-history'};
+const panes={brief:'tab-brief',people:'tab-people',tasks:'tab-tasks',history:'tab-history'};
 function showTab(name){
   document.querySelectorAll('[data-tab]').forEach(t=>t.classList.toggle('is-active',t.dataset.tab===name));
   Object.entries(panes).forEach(([k,id])=>{document.getElementById(id).hidden = k!==name;});
@@ -2454,7 +2572,7 @@ nt.addEventListener('click',e=>{ if(e.target===nt) closeWizard(); });
 
 
 /* ---------------- Live-deal account: tabs and meeting expanders ---------------- */
-const panes2={brief:'tab2-brief',people:'tab2-people',history:'tab2-history'};
+const panes2={brief:'tab2-brief',people:'tab2-people',tasks:'tab2-tasks',history:'tab2-history'};
 function showTab2(name){
   document.querySelectorAll('[data-tab2]').forEach(t=>t.classList.toggle('is-active',t.dataset.tab2===name));
   Object.entries(panes2).forEach(([k,id])=>{document.getElementById(id).hidden = k!==name;});
