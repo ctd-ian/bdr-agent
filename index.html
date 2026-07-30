@@ -449,6 +449,15 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .helprow .k{width:150px;flex:0 0 150px;font-weight:600;color:var(--gray-900);font-size:14px}
 .helprow .v{color:var(--gray-600);font-size:14px;line-height:20px}
 
+
+/* Unlock estimate — how many unreachable accounts an invite would open up */
+.unlock{display:inline-flex;align-items:baseline;gap:var(--s3);white-space:nowrap}
+.unlock .n{font-family:var(--font-display);font-size:20px;line-height:26px;font-weight:600;color:var(--success-700);letter-spacing:-.02em}
+.unlock .u{font-size:12px;color:var(--gray-500)}
+.growrow{display:flex;align-items:center;gap:var(--s5);padding:var(--s5) var(--s7);border-top:1px solid var(--gray-100)}
+.growrow:first-of-type{border-top:none}
+.growrow .g{flex:1;min-width:0}
+
 /* Design notes */
 .notes-toggle{position:fixed;right:var(--s8);bottom:var(--s8);z-index:60;background:var(--gray-900);color:#fff;border-radius:var(--r-2xl);height:44px;padding:0 var(--s7);display:inline-flex;align-items:center;gap:var(--s4);box-shadow:var(--sh-2xl);font-weight:500}
 .notes{position:fixed;top:0;right:0;bottom:0;width:470px;max-width:94vw;z-index:70;background:#fff;border-left:1px solid var(--gray-200);box-shadow:var(--sh-2xl);transform:translateX(100%);transition:transform .22s ease;display:flex;flex-direction:column}
@@ -2432,7 +2441,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       <div class="card card-pad"><span class="label">Connectors</span><div class="d-md" style="margin-top:var(--s3)">14</div><div class="t-sm muted">Can reach 62 of your accounts</div></div>
       <div class="card card-pad"><span class="label">Asks in flight</span><div class="d-md" style="margin-top:var(--s3)">38</div><div class="t-sm muted">Oldest is 41 days</div></div>
       <div class="card card-pad"><span class="label">Intros made</span><div class="d-md" style="margin-top:var(--s3)">11</div><div class="t-sm muted">This quarter, all via 3 people</div></div>
-      <div class="card card-pad"><span class="label">Accounts with no path</span><div class="d-md" style="margin-top:var(--s3)">47</div><div class="t-sm muted">Of 109 you own</div></div>
+      <div class="card card-pad"><span class="label">Accounts with no path</span><div class="d-md" style="margin-top:var(--s3)">47</div><div class="t-sm muted">3 invites would reach 29 of them</div></div>
     </div>
 
     <div class="row" style="margin:var(--s8) 0 var(--s6)">
@@ -2541,35 +2550,94 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     </div>
 
     <div class="sec-title" style="margin-top:var(--s9)">
-      <h2>Accounts with no path</h2>
-      <span class="t-sm muted">47 of the 109 you own — nobody in your network reaches them</span>
-      <a href="#" style="margin-left:auto;font-weight:500;font-size:14px">See all 47</a>
+      <h2>47 accounts nobody can reach</h2>
+      <span class="t-sm muted">There is no path to find — the only fix is a bigger network</span>
     </div>
-    <div class="card">
+
+    <div class="grid g2">
+      <div class="card">
+        <div class="card-head">
+          <h3>Invite super-connectors</h3>
+          <span class="t-sm muted" style="margin-left:auto">Ranked by accounts unlocked</span>
+        </div>
+        <div class="growrow">
+          <span class="avatar">IS</span>
+          <div class="g"><div class="strong t-sm">Ivy Sorensen</div><div class="t-xs muted">Partner · Halcyon Fund · ~2,400 first-degree connections</div></div>
+          <span class="unlock" data-tip="Estimated from her public network overlap with your unreachable accounts. Confirmed once she connects an inbox."><span class="n">+14</span><span class="u">accounts</span></span>
+          <button class="btn btn-primary btn-sm">Invite</button>
+        </div>
+        <div class="growrow">
+          <span class="avatar">CS</span>
+          <div class="g"><div class="strong t-sm">Cal Stern</div><div class="t-xs muted">Advisor · sits on 4 boards · already introduced you to Marcus Webb</div></div>
+          <span class="unlock" data-tip="He has already made one intro for you without being on CTD. Adding his network is the lowest-friction ask on this list."><span class="n">+9</span><span class="u">accounts</span></span>
+          <button class="btn btn-primary btn-sm">Invite</button>
+        </div>
+        <div class="growrow">
+          <span class="avatar">RA</span>
+          <div class="g"><div class="strong t-sm">Renee Alvarez</div><div class="t-xs muted">Your team · has not connected an inbox yet</div></div>
+          <span class="unlock" data-tip="A colleague who is already licensed but has not synced. No invite needed — just a nudge."><span class="n">+6</span><span class="u">accounts</span></span>
+          <button class="btn btn-secondary btn-sm">Nudge</button>
+        </div>
+        <div class="card-foot"><span class="t-xs muted">A super-connector is someone whose network overlaps many of your unreachable accounts at once — usually investors, advisors and operators, not customers.</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h3>Ask your connectors to bring their people</h3>
+          <span class="t-sm muted" style="margin-left:auto">Second-degree growth</span>
+        </div>
+        <div class="growrow">
+          <span class="avatar">HW</span>
+          <div class="g"><div class="strong t-sm">Helen Ward</div><div class="t-xs muted">Her 5 colleagues at Fernwood Capital</div></div>
+          <span class="unlock" data-tip="Fernwood's other partners sit on boards you cannot currently reach. Helen is over-asked for intros, but this is a different kind of ask."><span class="n">+18</span><span class="u">accounts</span></span>
+          <button class="btn btn-primary btn-sm">Ask Helen</button>
+        </div>
+        <div class="growrow">
+          <span class="avatar">OB</span>
+          <div class="g"><div class="strong t-sm">Owen Brandt</div><div class="t-xs muted">Larkspur's platform team</div></div>
+          <span class="unlock" data-tip="Owen has gone quiet on intro requests. Asking him to invite colleagues costs him nothing and may re-engage him."><span class="n">+11</span><span class="u">accounts</span></span>
+          <button class="btn btn-secondary btn-sm">Ask Owen</button>
+        </div>
+        <div class="growrow">
+          <span class="avatar">DS</span>
+          <div class="g"><div class="strong t-sm">Dana Sackett</div><div class="t-xs muted">Her CxO peer group</div></div>
+          <span class="unlock" data-tip="Widest reach on the team already. Her peer network is the single biggest untapped source."><span class="n">+22</span><span class="u">accounts</span></span>
+          <button class="btn btn-primary btn-sm">Ask Dana</button>
+        </div>
+        <div class="card-foot"><span class="t-xs muted">Asking a connector to invite people is a smaller favour than asking for an intro, and it compounds — every person they bring extends the graph permanently.</span></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:var(--s7)">
+      <div class="card-head">
+        <h3>The accounts this would open</h3>
+        <span class="t-sm muted" style="margin-left:auto">Showing 3 of 47</span>
+        <a href="#" style="font-weight:500;font-size:14px">See all</a>
+      </div>
       <div style="overflow-x:auto">
       <table>
-        <thead><tr><th style="width:30%">Account</th><th>Fit</th><th>Signal</th><th>Closest miss</th><th></th></tr></thead>
+        <thead><tr><th style="width:28%">Account</th><th>Fit</th><th>Signal</th><th>Why there is no path</th><th>Would be unlocked by</th></tr></thead>
         <tbody>
           <tr class="rowlink">
             <td><div class="row" style="gap:var(--s5)"><span class="avatar avatar-co">Fo</span><div><div class="strong">Formwork</div><div class="t-xs muted">formwork.dev</div></div></div></td>
             <td><span class="strong num">89</span></td>
             <td><span class="badge badge-warning"><span class="dot"></span>Re-triggered</span></td>
-            <td class="t-sm dim">2 colleagues follow their VP Eng but have never messaged</td>
-            <td style="text-align:right"><button class="btn btn-secondary btn-sm">Find a path</button></td>
+            <td class="t-sm dim">Two colleagues follow their VP Eng but have never messaged — following is not a relationship</td>
+            <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm">IS</span><span class="t-sm dim nowrap">Ivy Sorensen</span></div></td>
           </tr>
           <tr class="rowlink">
             <td><div class="row" style="gap:var(--s5)"><span class="avatar avatar-co">Ca</span><div><div class="strong">Cascade Robotics</div><div class="t-xs muted">cascaderobotics.com</div></div></div></td>
             <td><span class="strong num">86</span></td>
             <td><span class="badge badge-success"><span class="dot"></span>Dancing</span></td>
-            <td class="t-sm dim">Nobody in the graph — try importing Renee's connections</td>
-            <td style="text-align:right"><button class="btn btn-secondary btn-sm">Find a path</button></td>
+            <td class="t-sm dim">Nobody in the graph reaches them at all</td>
+            <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm">RA</span><span class="t-sm dim nowrap">Renee Alvarez</span></div></td>
           </tr>
           <tr class="rowlink">
             <td><div class="row" style="gap:var(--s5)"><span class="avatar avatar-co">Ri</span><div><div class="strong">Ridgeline Ops</div><div class="t-xs muted">ridgelineops.com</div></div></div></td>
             <td><span class="strong num">78</span></td>
             <td><span class="badge badge-success"><span class="dot"></span>Dancing</span></td>
-            <td class="t-sm dim">Owen Brandt reaches their board, but not the buying group</td>
-            <td style="text-align:right"><button class="btn btn-secondary btn-sm">Find a path</button></td>
+            <td class="t-sm dim">Owen reaches their board, but nobody in the buying group</td>
+            <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm">HW</span><span class="t-sm dim nowrap">Fernwood partners</span></div></td>
           </tr>
         </tbody>
       </table>
@@ -2720,6 +2788,8 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           <div class="helprow"><span class="k">Over-asked</span><span class="v">More than four open asks, or three in the last thirty days. Give them a rest before asking again.</span></div>
           <div class="helprow"><span class="k">Gone quiet</span><span class="v">Asked more than fourteen days ago with no response. Nudge or route around them.</span></div>
           <div class="helprow"><span class="k">Unused</span><span class="v">A strong path that nobody has ever asked. The cheapest opportunity on the page.</span></div>
+          <div class="helprow"><span class="k">Would unlock</span><span class="v">An estimate of how many currently unreachable accounts this person's network would open up. Calculated from public network overlap, and confirmed once they connect an inbox.</span></div>
+          <div class="helprow"><span class="k">Super-connector</span><span class="v">Someone whose network overlaps many of your unreachable accounts at once — usually investors, advisors and operators rather than customers. Inviting one is worth more than a dozen ordinary connections.</span></div>
           <div class="helprow"><span class="k">Weak links only</span><span class="v">They appear in the graph but have no meaningful relationship — a first-degree connection with no history.</span></div>
       </div>
 
