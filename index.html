@@ -484,6 +484,12 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .failbody{padding:var(--s6) var(--s7);display:flex;flex-direction:column;gap:var(--s5)}
 .failfoot{padding:var(--s5) var(--s7);border-top:1px solid var(--gray-200);display:flex;align-items:center;gap:var(--s4);flex-wrap:wrap}
 
+
+/* Modal close */
+.modal-x{width:32px;height:32px;flex:0 0 32px;border-radius:var(--r-md);display:grid;place-items:center;color:var(--gray-500)}
+.modal-x:hover{background:var(--gray-100);color:var(--gray-800)}
+.modal-x:focus-visible{outline:none;box-shadow:var(--focus)}
+
 /* Design notes */
 .notes-toggle{position:fixed;right:var(--s8);bottom:var(--s8);z-index:60;background:var(--gray-900);color:#fff;border-radius:var(--r-2xl);height:44px;padding:0 var(--s7);display:inline-flex;align-items:center;gap:var(--s4);box-shadow:var(--sh-2xl);font-weight:500}
 .notes{position:fixed;top:0;right:0;bottom:0;width:470px;max-width:94vw;z-index:70;background:#fff;border-left:1px solid var(--gray-200);box-shadow:var(--sh-2xl);transform:translateX(100%);transition:transform .22s ease;display:flex;flex-direction:column}
@@ -2874,7 +2880,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           <span class="wstep" data-w="4"><span class="n">4</span>Requestor</span>
         </div>
       </div>
-      <button class="btn btn-tertiary btn-sm" data-close>Cancel</button>
+      <button class="modal-x" data-close aria-label="Close"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="m5 5 10 10M15 5 5 15"/></svg></button>
     </div>
 
     <!-- 1 · Play -->
@@ -2969,7 +2975,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <h3 id="fixName">Marta Quinn</h3>
         <div class="t-sm muted" id="fixRole">Connector · reaches 4 of your accounts</div>
       </div>
-      <button class="btn btn-tertiary btn-sm" data-fixclose>Cancel</button>
+      <button class="modal-x" data-fixclose aria-label="Close"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="m5 5 10 10M15 5 5 15"/></svg></button>
     </div>
 
     <div class="modal-body">
@@ -2984,22 +2990,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
       <div>
         <span class="label" id="fixSeenLbl">Other addresses CTD has seen</span>
-        <div style="display:flex;flex-direction:column;gap:var(--s5);margin-top:var(--s5)" id="fixOptions">
-          <button class="pick on">
-            <span class="rad" style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;border:5px solid var(--blue-600);margin-top:2px"></span>
-            <span style="flex:1;min-width:0">
-              <h5><span class="mono">m.quinn@brightpath-partners.com</span> <span class="badge badge-success"><span class="dot"></span>Active</span></h5>
-              <p>Seen in a thread with Alex Tanaka 3 weeks ago. Replied from it twice.</p>
-            </span>
-          </button>
-          <button class="pick">
-            <span class="rad" style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;border:1px solid var(--gray-300);margin-top:2px"></span>
-            <span style="flex:1;min-width:0">
-              <h5><span class="mono">marta@quinnadvisory.com</span> <span class="badge badge-gray">Unverified</span></h5>
-              <p>Listed on her LinkedIn profile. Never used, so delivery is unproven.</p>
-            </span>
-          </button>
-        </div>
+        <div style="display:flex;flex-direction:column;gap:var(--s5);margin-top:var(--s5)" id="fixOptions"></div>
       </div>
 
       <div>
@@ -3026,7 +3017,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
   <div class="modal" role="dialog" aria-label="What the columns mean">
     <div class="modal-head">
       <div style="flex:1;min-width:0"><h3 id="helpTitle">What the columns mean</h3></div>
-      <button class="btn btn-tertiary btn-sm" data-helpclose>Close</button>
+      <button class="modal-x" data-helpclose aria-label="Close"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="m5 5 10 10M15 5 5 15"/></svg></button>
     </div>
     <div class="modal-body" style="gap:0">
 
@@ -3501,15 +3492,31 @@ document.querySelectorAll('[data-send]').forEach(b=>{
 
 /* ---------------- Fix contact record ---------------- */
 const fixModal=document.getElementById('fixModal');
+const PICK=(on,addr,badge,note)=>`
+          <button class="pick${on?' on':''}">
+            <span class="rad" style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;border:${on?'5px solid var(--blue-600)':'1px solid var(--gray-300)'};margin-top:2px"></span>
+            <span style="flex:1;min-width:0">
+              <h5><span class="mono">${addr}</span> ${badge}</h5>
+              <p>${note}</p>
+            </span>
+          </button>`;
 const FIX={
   quinn:{av:'MQ',name:'Marta Quinn',role:'Connector · reaches 4 of your accounts',bad:true,
     seenLbl:'Other addresses CTD has seen',
+    options:PICK(true,'m.quinn@brightpath-partners.com','<span class="badge badge-success"><span class="dot"></span>Active</span>','Seen in a thread with Alex Tanaka 3 weeks ago. Replied from it twice.')
+           +PICK(false,'marta@quinnadvisory.com','<span class="badge badge-gray">Unverified</span>','Listed on her LinkedIn profile. Never used, so delivery is unproven.'),
     note:'Saving updates Marta everywhere she appears, not just this task. The intro then sends on its own, and you will see it move to Open.',
-    foot:'1 task waiting on this'},
+    foot:'1 task waiting on this', cta:'Save and retry'},
   ward:{av:'HW',name:'Helen Ward',role:'Connector · Board Observer, Fernwood Capital · reaches 9 of your accounts',bad:false,
     seenLbl:'Addresses CTD could find',
-    note:'Helen has no address on the record at all. Renee Alvarez has emailed her 4 times, so syncing Renee\'s inbox would fill this in automatically and close 6 other gaps at the same time.',
-    foot:'1 task waiting on this, sat 16 days'}
+    options:`<div class="empty" style="padding:var(--s8) var(--s7);border:1px dashed var(--gray-300);border-radius:var(--r-lg)">
+            <div class="ico"><svg class="icon" viewBox="0 0 20 20"><circle cx="9" cy="9" r="6"/><path d="m17 17-3.5-3.5"/></svg></div>
+            <div class="t-sm strong" style="color:var(--gray-700)">Nothing found</div>
+            <div class="t-sm">Renee Alvarez has emailed Helen 4 times, but her inbox is not connected, so CTD cannot see the address.</div>
+            <button class="btn btn-primary btn-sm" style="margin-top:var(--s6)">Ask Renee to connect her inbox</button>
+          </div>`,
+    note:'Asking Renee is the durable fix. It fills this in automatically and closes 6 other gaps at the same time. Typing an address below unblocks this one task now.',
+    foot:'1 task waiting on this, sat 16 days', cta:'Save and retry'}
 };
 document.querySelectorAll('[data-fix]').forEach(b=>{
   b.addEventListener('click',()=>{
@@ -3519,6 +3526,7 @@ document.querySelectorAll('[data-fix]').forEach(b=>{
     document.getElementById('fixRole').textContent=c.role;
     document.getElementById('fixBad').style.display=c.bad?'':'none';
     document.getElementById('fixSeenLbl').textContent=c.seenLbl;
+    document.getElementById('fixOptions').innerHTML=c.options;
     document.getElementById('fixNote').textContent=c.note;
     document.getElementById('fixFoot').textContent=c.foot;
     fixModal.classList.add('open');
