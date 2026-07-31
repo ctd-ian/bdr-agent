@@ -511,16 +511,20 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .today-grid{display:grid;grid-template-columns:minmax(0,1fr) 264px;gap:var(--s8);align-items:start}
 .today-side{position:sticky;top:var(--s8);display:flex;flex-direction:column;gap:var(--s5)}
 .today-side .head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s4)}
-.statcard{border:1px solid var(--gray-200);border-radius:var(--r-xl);background:#fff;box-shadow:var(--sh-sm);padding:var(--s6)}
-.statcard.alarm{border-color:var(--error-200);background:var(--error-50)}
-.statcard .r1{display:flex;align-items:baseline;gap:var(--s4);margin-top:var(--s3)}
-.statcard .n{font-family:var(--font-display);font-size:30px;line-height:34px;font-weight:600;letter-spacing:-.02em;color:var(--gray-900)}
-.statcard.alarm .n{color:var(--error-700)}
-.statcard .of{font-size:13px;color:var(--gray-500)}
+.statpanel{border:1px solid var(--gray-200);border-radius:var(--r-xl);background:#fff;box-shadow:var(--sh-sm);overflow:hidden}
+.statrow{padding:var(--s6);border-top:1px solid var(--gray-200)}
+.statrow:first-child{border-top:none}
+.statrow.alarm{background:var(--error-50)}
+.statrow .r1{display:flex;align-items:baseline;gap:var(--s4);margin-top:var(--s3)}
+.statrow .n{font-family:var(--font-display);font-size:28px;line-height:32px;font-weight:600;letter-spacing:-.02em;color:var(--gray-900)}
+.statrow.alarm .n{color:var(--error-700)}
+.statrow .of{font-size:13px;color:var(--gray-500)}
 .bar{height:6px;border-radius:3px;background:var(--gray-200);margin-top:var(--s5);overflow:hidden}
-.statcard.alarm .bar{background:#FBD5D3}
+.statrow.alarm .bar{background:#FBD5D3}
 .bar i{display:block;height:100%;border-radius:3px;background:var(--blue-600)}
-.statcard .pace{margin-top:var(--s4);font-size:12px;line-height:17px;display:flex;align-items:flex-start;gap:var(--s3)}
+.statrow .pace{margin-top:var(--s4);font-size:12px;line-height:17px;display:flex;align-items:flex-start;gap:var(--s3)}
+.today-main>.sec-title:first-child{margin-top:0}
+.today-side .head{min-height:24px}
 @media (max-width:1080px){.today-grid{grid-template-columns:1fr}.today-side{position:static}}
 
 /* Design notes */
@@ -691,29 +695,31 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <h2 style="font-size:16px;line-height:24px;font-weight:600;color:var(--gray-900)">This week</h2>
         <span class="t-xs muted">Day 4 of 5</span>
       </div>
-      <div class="statcard">
-        <span class="label">Intros requested</span>
-        <div class="r1"><span class="n">4</span><span class="of">of 10</span></div>
-        <div class="bar"><i style="width:40%;background:var(--blue-600)"></i></div>
-        <div class="pace" style="color:var(--error-700)"><svg class="icon icon-xs" style="flex:0 0 14px;margin-top:1px" viewBox="0 0 20 20"><path d="M10 5v10M6 11l4 4 4-4"/></svg><span>6 short with a day to go</span></div>
-      </div>
-      <div class="statcard alarm">
-        <span class="label">Intros sent</span>
-        <div class="r1"><span class="n">0</span><span class="of">of 5</span></div>
-        <div class="bar"><i style="width:0%;background:var(--error)"></i></div>
-        <div class="pace" style="color:var(--error-700)"><svg class="icon icon-xs" style="flex:0 0 14px;margin-top:1px" viewBox="0 0 20 20"><path d="M10 5v10M6 11l4 4 4-4"/></svg><span>5 behind, and none this quarter</span></div>
-      </div>
-      <div class="statcard">
-        <span class="label">Meetings held</span>
-        <div class="r1"><span class="n">3</span><span class="of">of 2</span></div>
-        <div class="bar"><i style="width:100%;background:var(--blue-600)"></i></div>
-        <div class="pace" style="color:var(--success-700)"><svg class="icon icon-xs" style="flex:0 0 14px;margin-top:1px" viewBox="0 0 20 20"><path d="M10 15V5M6 9l4-4 4 4"/></svg><span>1 ahead, all at Baseline Data</span></div>
-      </div>
-      <div class="statcard">
-        <span class="label">Tasks closed</span>
-        <div class="r1"><span class="n">6</span><span class="of">of 15</span></div>
-        <div class="bar"><i style="width:40%;background:var(--blue-600)"></i></div>
-        <div class="pace" style="color:var(--error-700)"><svg class="icon icon-xs" style="flex:0 0 14px;margin-top:1px" viewBox="0 0 20 20"><path d="M10 5v10M6 11l4 4 4-4"/></svg><span>9 short, and 2 were cancelled rather than completed</span></div>
+      <div class="statpanel">
+        <div class="statrow">
+          <span class="label">Intros requested</span>
+          <div class="r1"><span class="n">4</span><span class="of">of 10</span></div>
+          <div class="bar"><i style="width:40%;background:var(--blue-600)"></i></div>
+          <div class="pace" style="color:var(--error-700)"><svg class="icon icon-xs" style="flex:0 0 14px;margin-top:1px" viewBox="0 0 20 20"><path d="M10 5v10M6 11l4 4 4-4"/></svg><span>6 short with a day to go</span></div>
+        </div>
+        <div class="statrow alarm">
+          <span class="label">Intros sent</span>
+          <div class="r1"><span class="n">0</span><span class="of">of 5</span></div>
+          <div class="bar"><i style="width:0%;background:var(--error)"></i></div>
+          <div class="pace" style="color:var(--error-700)"><svg class="icon icon-xs" style="flex:0 0 14px;margin-top:1px" viewBox="0 0 20 20"><path d="M10 5v10M6 11l4 4 4-4"/></svg><span>5 behind, and none this quarter</span></div>
+        </div>
+        <div class="statrow">
+          <span class="label">Meetings held</span>
+          <div class="r1"><span class="n">3</span><span class="of">of 2</span></div>
+          <div class="bar"><i style="width:100%;background:var(--blue-600)"></i></div>
+          <div class="pace" style="color:var(--success-700)"><svg class="icon icon-xs" style="flex:0 0 14px;margin-top:1px" viewBox="0 0 20 20"><path d="M10 15V5M6 9l4-4 4 4"/></svg><span>1 ahead, all at Baseline Data</span></div>
+        </div>
+        <div class="statrow">
+          <span class="label">Tasks closed</span>
+          <div class="r1"><span class="n">6</span><span class="of">of 15</span></div>
+          <div class="bar"><i style="width:40%;background:var(--blue-600)"></i></div>
+          <div class="pace" style="color:var(--error-700)"><svg class="icon icon-xs" style="flex:0 0 14px;margin-top:1px" viewBox="0 0 20 20"><path d="M10 5v10M6 11l4 4 4-4"/></svg><span>9 short, and 2 were cancelled rather than completed</span></div>
+        </div>
       </div>
       <p class="t-xs muted" style="padding:0 var(--s2)">Targets are your team's weekly pace. They reset Monday.</p>
       </aside>
