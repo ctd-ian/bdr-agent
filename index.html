@@ -603,17 +603,13 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <svg class="icon" viewBox="0 0 20 20"><path d="M3 17V7l5-4 5 4v10"/><path d="M13 17V9h4v8"/><path d="M2 17h16"/></svg>
         Accounts <span class="count">502</span>
       </button>
-      <button class="nav-item" data-view="tasks">
-        <svg class="icon" viewBox="0 0 20 20"><path d="M7 4h9a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H7"/><path d="M3 6h4M3 10h4M3 14h4"/></svg>
-        Tasks <span class="count">5</span>
-      </button>
       <button class="nav-item" data-view="network">
         <svg class="icon" viewBox="0 0 20 20"><circle cx="10" cy="5" r="2.2"/><circle cx="5" cy="14" r="2.2"/><circle cx="15" cy="14" r="2.2"/><path d="M8.4 6.6 6.3 12M11.6 6.6 13.7 12M7.2 14h5.6"/></svg>
         My network
       </button>
       <button class="nav-item" data-view="intros">
         <svg class="icon" viewBox="0 0 20 20"><path d="M3 5h14v10H3z"/><path d="m3 6 7 5 7-5"/></svg>
-        Intros <span class="count">2</span>
+        Intros <span class="count">3</span>
       </button>
     </nav>
 
@@ -757,7 +753,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
             <div class="h">Three asks are sitting with connectors</div>
             <div class="w">Oldest is 16 days. Two are with Helen Ward, who is already over-asked.</div>
           </div>
-          <div class="act"><button class="btn btn-secondary btn-sm">See tasks</button></div>
+          <div class="act"><button class="btn btn-secondary btn-sm">See intros</button></div>
         </div>
     </div>
       </div>
@@ -998,291 +994,12 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
   </div>
 
   <!-- ==================================================================
-       VIEW: TASKS LIST
-       ================================================================== -->
-  <div class="page wide" id="view-tasks" hidden>
-    <div class="between" style="align-items:flex-start">
-      <div>
-        <h1 class="d-sm">Tasks</h1>
-        <p class="dim" style="margin-top:var(--s2)">Every intro request, follow-up and re-approach across your accounts</p>
-      </div>
-      <button class="btn btn-primary"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12"/></svg>New task</button>
-    </div>
-
-    <div class="tabs" role="tablist" style="margin-top:var(--s7)">
-      <button class="tab is-active" data-ttab="open">Open <span class="count">5</span></button>
-      <button class="tab" data-ttab="done">Done <span class="count">27</span></button>
-      <button class="tab" data-ttab="failed">Failed <span class="count">2</span></button>
-    </div>
-
-    <div class="card">
-      <div class="toolbar">
-        <label class="tb-search">
-          <svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="9" cy="9" r="6"/><path d="m17 17-3.5-3.5"/></svg>
-          <input placeholder="Search tasks…">
-        </label>
-        <button class="filt on" data-filt>Assignee <span class="n">You</span><svg class="icon icon-xs chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
-        <button class="filt" data-filt>Type<svg class="icon icon-xs chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
-        <button class="filt" data-filt>Funnel<svg class="icon icon-xs chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
-        <button class="btn btn-tertiary btn-sm">Clear</button>
-      </div>
-
-      <div id="tasks-open">
-        <div style="overflow-x:auto">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:38%">Task</th><th>Account</th><th>Type</th><th>Waiting on</th><th>Age</th><th>Assignee</th><th style="text-align:right">Rank</th><th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="rowlink">
-              <td><div class="strong">Warm introduction to the CEO</div><div class="t-xs muted">Via Helen Ward</div></td>
-              <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm avatar-co">Ve</span><span class="t-sm dim nowrap">Vesper Analytics</span></div></td>
-              <td><span class="badge badge-sky badge-sq">Warm intro</span></td>
-              <td><span class="badge badge-warning"><span class="dot"></span>Connector</span></td>
-              <td class="t-sm dim nowrap">4 days</td>
-              <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm">SE</span><span class="t-sm dim">You</span></div></td>
-              <td style="text-align:right"><span class="strong num">7,020</span></td>
-              <td style="text-align:right"><button class="btn btn-secondary btn-sm">Nudge</button></td>
-            </tr>
-            <tr class="rowlink">
-              <td><div class="strong">Warm introduction, anchored on the combined network</div><div class="t-xs muted">Via Nora Feld</div></td>
-              <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm avatar-co">Cp</span><span class="t-sm dim nowrap">Copperline</span></div></td>
-              <td><span class="badge badge-sky badge-sq">Warm intro</span></td>
-              <td><span class="badge badge-blue"><span class="dot"></span>You</span></td>
-              <td class="t-sm dim nowrap">2 days</td>
-              <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm">SE</span><span class="t-sm dim">You</span></div></td>
-              <td style="text-align:right"><span class="strong num">6,150</span></td>
-              <td style="text-align:right"><button class="btn btn-primary btn-sm">Draft intro</button></td>
-            </tr>
-            <tr class="rowlink">
-              <td><div class="strong">Warm introduction to the sales-team ICP</div><div class="t-xs muted">Via Marta Quinn</div></td>
-              <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm avatar-co">Br</span><span class="t-sm dim nowrap">Brightpath</span></div></td>
-              <td><span class="badge badge-sky badge-sq">Warm intro</span></td>
-              <td><span class="badge badge-warning"><span class="dot"></span>Connector</span></td>
-              <td class="t-sm dim nowrap">9 days</td>
-              <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm">SE</span><span class="t-sm dim">You</span></div></td>
-              <td style="text-align:right"><span class="strong num">3,660</span></td>
-              <td style="text-align:right"><button class="btn btn-secondary btn-sm">Nudge</button></td>
-            </tr>
-            <tr class="rowlink">
-              <td><div class="strong">Warm introduction to the CEO</div><div class="t-xs muted">Via Devin Cole</div></td>
-              <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm avatar-co">Ti</span><span class="t-sm dim nowrap">Tidewater AI</span></div></td>
-              <td><span class="badge badge-sky badge-sq">Warm intro</span></td>
-              <td><span class="badge badge-blue"><span class="dot"></span>You</span></td>
-              <td class="t-sm dim nowrap">1 day</td>
-              <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm">SE</span><span class="t-sm dim">You</span></div></td>
-              <td style="text-align:right"><span class="strong num">3,270</span></td>
-              <td style="text-align:right"><button class="btn btn-primary btn-sm">Draft intro</button></td>
-            </tr>
-            <tr class="rowlink">
-              <td><div class="strong">Warm introduction to a senior stakeholder</div><div class="t-xs muted">Via Helen Ward</div></td>
-              <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm avatar-co">Qu</span><span class="t-sm dim nowrap">Quarry Labs</span></div></td>
-              <td><span class="badge badge-sky badge-sq">Warm intro</span></td>
-              <td><span class="badge badge-warning"><span class="dot"></span>Connector</span></td>
-              <td class="t-sm dim nowrap">16 days</td>
-              <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm">SE</span><span class="t-sm dim">You</span></div></td>
-              <td style="text-align:right"><span class="strong num">2,180</span></td>
-              <td style="text-align:right"><button class="btn btn-secondary btn-sm">Nudge</button></td>
-            </tr>
-          </tbody>
-        </table>
-        </div>
-        <div class="card-foot">
-          <span class="t-sm muted">5 open tasks · 2 waiting on you</span>
-          <div class="pager"><span class="p on">1</span></div>
-        </div>
-      </div>
-
-      <div id="tasks-done" hidden>
-        <div class="empty">
-          <div class="ico"><svg class="icon" viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg></div>
-          <div class="t-sm strong" style="color:var(--gray-700)">27 completed tasks</div>
-          <div class="t-sm">Completed work is kept for 12 months. Filter by account to see a specific history.</div>
-        </div>
-      </div>
-
-      <div id="tasks-failed" hidden>
-        <div class="banner warn" style="margin:var(--s7);border-radius:var(--r-lg)">
-          <svg class="icon icon-sm" style="color:var(--warning-700);margin-top:2px" viewBox="0 0 20 20"><path d="M10 7v4M10 14h.01"/><circle cx="10" cy="10" r="7.5"/></svg>
-          <div><span class="strong">2 tasks could not be sent.</span> Both are contact record problems, not connector refusals. Fix the address and each one retries on its own.</div>
-        </div>
-
-        <div style="padding:0 var(--s7) var(--s7)">
-
-          <div class="failcard">
-            <div class="failcard-head">
-              <svg class="icon" style="color:var(--error-700);margin-top:1px" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 6.5v4M10 13.5h.01"/></svg>
-              <div class="g">
-                <div class="strong">Warm introduction to the sales-team ICP</div>
-                <div class="t-xs muted">Brightpath · via Marta Quinn · failed 2 days ago</div>
-              </div>
-              <span class="badge badge-error"><span class="dot"></span>Bounced</span>
-            </div>
-            <div class="failbody">
-              <div class="kv"><span class="k">What happened</span><span class="v" style="text-align:left">Hard bounce from the receiving server</span></div>
-              <div class="kv"><span class="k">Address used</span><span class="v" style="text-align:left"><span class="mono">marta.quinn@northgate.io</span></span></div>
-              <div class="kv"><span class="k">Server said</span><span class="v" style="text-align:left"><span class="mono t-xs">550 5.1.1 mailbox does not exist</span></span></div>
-              <p class="t-sm dim">She left Northgate in March. CTD has seen two other addresses for her since.</p>
-            </div>
-            <div class="failfoot">
-              <button class="btn btn-primary btn-sm" data-fix="quinn"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 13V16h3l8-8-3-3z"/></svg>Fix contact</button>
-              <button class="btn btn-secondary btn-sm">Change connector</button>
-              <button class="btn btn-tertiary btn-sm">Cancel task</button>
-              <span class="t-xs muted" style="margin-left:auto">Retries automatically once the address is fixed</span>
-            </div>
-          </div>
-
-          <div class="failcard">
-            <div class="failcard-head">
-              <svg class="icon" style="color:var(--error-700);margin-top:1px" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 6.5v4M10 13.5h.01"/></svg>
-              <div class="g">
-                <div class="strong">Warm introduction to a senior stakeholder</div>
-                <div class="t-xs muted">Quarry Labs · via Helen Ward · failed 16 days ago</div>
-              </div>
-              <span class="badge badge-error"><span class="dot"></span>No address</span>
-            </div>
-            <div class="failbody">
-              <div class="kv"><span class="k">What happened</span><span class="v" style="text-align:left">Nothing was sent. There is no email address on the contact record.</span></div>
-              <div class="kv"><span class="k">What CTD has</span><span class="v" style="text-align:left">A LinkedIn profile and a phone number</span></div>
-              <p class="t-sm dim">Renee Alvarez has exchanged 4 emails with Helen. Importing her inbox would fill this in, and 6 other gaps.</p>
-            </div>
-            <div class="failfoot">
-              <button class="btn btn-primary btn-sm" data-fix="ward"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 13V16h3l8-8-3-3z"/></svg>Fix contact</button>
-              <button class="btn btn-secondary btn-sm">Ask Renee to sync</button>
-              <button class="btn btn-tertiary btn-sm">Cancel task</button>
-              <span class="t-xs muted" style="margin-left:auto">Sat here 16 days. Nobody was told.</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================================================================
-       VIEW: TASKS LIST
-       ================================================================== -->
-  <div class="page wide" id="view-tasks" hidden>
-    <div class="between" style="align-items:flex-start">
-      <div>
-        <h1 class="d-sm">Tasks</h1>
-        <p class="dim" style="margin-top:var(--s2)">Every intro request, follow-up and re-approach across your accounts</p>
-      </div>
-      <button class="btn btn-primary"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12"/></svg>New task</button>
-    </div>
-
-    <div class="tabs" role="tablist" style="margin-top:var(--s7)">
-      <button class="tab is-active" data-ttab="open">Open <span class="count">5</span></button>
-      <button class="tab" data-ttab="done">Done <span class="count">27</span></button>
-      <button class="tab" data-ttab="failed">Failed <span class="count">2</span></button>
-    </div>
-
-    <div class="card">
-      <div class="toolbar">
-        <label class="tb-search">
-          <svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="9" cy="9" r="6"/><path d="m17 17-3.5-3.5"/></svg>
-          <input placeholder="Search tasks…">
-        </label>
-        <button class="filt on" data-filt>Assignee <span class="n">You</span><svg class="icon icon-xs chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
-        <button class="filt" data-filt>Type<svg class="icon icon-xs chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
-        <button class="filt" data-filt>Funnel<svg class="icon icon-xs chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
-        <button class="btn btn-tertiary btn-sm">Clear</button>
-      </div>
-
-      <div id="tasks-open">
-        <div style="overflow-x:auto">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:38%">Task</th><th>Account</th><th>Type</th><th>Waiting on</th><th>Age</th><th>Assignee</th><th style="text-align:right">Rank</th><th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="rowlink">
-              <td><div class="strong">Warm introduction to the CEO</div><div class="t-xs muted">Via Helen Ward</div></td>
-              <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm avatar-co">Ve</span><span class="t-sm dim nowrap">Vesper Analytics</span></div></td>
-              <td><span class="badge badge-sky badge-sq">Warm intro</span></td>
-              <td><span class="badge badge-warning"><span class="dot"></span>Connector</span></td>
-              <td class="t-sm dim nowrap">4 days</td>
-              <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm">SE</span><span class="t-sm dim">You</span></div></td>
-              <td style="text-align:right"><span class="strong num">7,020</span></td>
-              <td style="text-align:right"><button class="btn btn-secondary btn-sm">Nudge</button></td>
-            </tr>
-            <tr class="rowlink">
-              <td><div class="strong">Warm introduction, anchored on the combined network</div><div class="t-xs muted">Via Nora Feld</div></td>
-              <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm avatar-co">Cp</span><span class="t-sm dim nowrap">Copperline</span></div></td>
-              <td><span class="badge badge-sky badge-sq">Warm intro</span></td>
-              <td><span class="badge badge-blue"><span class="dot"></span>You</span></td>
-              <td class="t-sm dim nowrap">2 days</td>
-              <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm">SE</span><span class="t-sm dim">You</span></div></td>
-              <td style="text-align:right"><span class="strong num">6,150</span></td>
-              <td style="text-align:right"><button class="btn btn-primary btn-sm">Draft intro</button></td>
-            </tr>
-            <tr class="rowlink">
-              <td><div class="strong">Warm introduction to the sales-team ICP</div><div class="t-xs muted">Via Marta Quinn</div></td>
-              <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm avatar-co">Br</span><span class="t-sm dim nowrap">Brightpath</span></div></td>
-              <td><span class="badge badge-sky badge-sq">Warm intro</span></td>
-              <td><span class="badge badge-warning"><span class="dot"></span>Connector</span></td>
-              <td class="t-sm dim nowrap">9 days</td>
-              <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm">SE</span><span class="t-sm dim">You</span></div></td>
-              <td style="text-align:right"><span class="strong num">3,660</span></td>
-              <td style="text-align:right"><button class="btn btn-secondary btn-sm">Nudge</button></td>
-            </tr>
-            <tr class="rowlink">
-              <td><div class="strong">Warm introduction to the CEO</div><div class="t-xs muted">Via Devin Cole</div></td>
-              <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm avatar-co">Ti</span><span class="t-sm dim nowrap">Tidewater AI</span></div></td>
-              <td><span class="badge badge-sky badge-sq">Warm intro</span></td>
-              <td><span class="badge badge-blue"><span class="dot"></span>You</span></td>
-              <td class="t-sm dim nowrap">1 day</td>
-              <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm">SE</span><span class="t-sm dim">You</span></div></td>
-              <td style="text-align:right"><span class="strong num">3,270</span></td>
-              <td style="text-align:right"><button class="btn btn-primary btn-sm">Draft intro</button></td>
-            </tr>
-            <tr class="rowlink">
-              <td><div class="strong">Warm introduction to a senior stakeholder</div><div class="t-xs muted">Via Helen Ward</div></td>
-              <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm avatar-co">Qu</span><span class="t-sm dim nowrap">Quarry Labs</span></div></td>
-              <td><span class="badge badge-sky badge-sq">Warm intro</span></td>
-              <td><span class="badge badge-warning"><span class="dot"></span>Connector</span></td>
-              <td class="t-sm dim nowrap">16 days</td>
-              <td><div class="row" style="gap:var(--s4)"><span class="avatar avatar-sm">SE</span><span class="t-sm dim">You</span></div></td>
-              <td style="text-align:right"><span class="strong num">2,180</span></td>
-              <td style="text-align:right"><button class="btn btn-secondary btn-sm">Nudge</button></td>
-            </tr>
-          </tbody>
-        </table>
-        </div>
-        <div class="card-foot">
-          <span class="t-sm muted">5 open tasks · 2 waiting on you</span>
-          <div class="pager"><span class="p on">1</span></div>
-        </div>
-      </div>
-
-      <div id="tasks-done" hidden>
-        <div class="empty">
-          <div class="ico"><svg class="icon" viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg></div>
-          <div class="t-sm strong" style="color:var(--gray-700)">27 completed tasks</div>
-          <div class="t-sm">Completed work is kept for 12 months. Filter by account to see a specific history.</div>
-        </div>
-      </div>
-
-      <div id="tasks-failed" hidden>
-        <div class="banner warn" style="margin:var(--s7);border-radius:var(--r-lg)">
-          <svg class="icon icon-sm" style="color:var(--warning-700);margin-top:2px" viewBox="0 0 20 20"><path d="M10 7v4M10 14h.01"/><circle cx="10" cy="10" r="7.5"/></svg>
-          <div><span class="strong">2 tasks could not be sent.</span> Both hit a bounced address. Fix the contact record and they'll retry automatically.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================================================================
        VIEW: TASK, execute screen
        ================================================================== -->
   <div class="page" id="view-task" hidden>
 
     <div class="crumb">
-      <a href="#" data-view="tasks">Tasks</a><span class="sep">/</span>
+      <a href="#" data-view="intros">Tasks</a><span class="sep">/</span>
       <a href="#" data-view="account">Copperline</a><span class="sep">/</span>
       <span class="dim">Send intro</span>
     </div>
@@ -1953,7 +1670,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           <div class="t-sm">Six touches went out before CTD started tracking plays. None used a warm path.</div>
         </div>
       </div>
-      <p class="t-sm muted" style="margin-top:var(--s7)">Everything here also appears in <a href="#" data-view="tasks">Tasks</a>, alongside your other accounts. This view is the same work, scoped to one account.</p>
+      <p class="t-sm muted" style="margin-top:var(--s7)">Everything here also appears in <a href="#" data-view="intros">Tasks</a>, alongside your other accounts. This view is the same work, scoped to one account.</p>
     </section>
 
     <!-- ------------------------- HISTORY ------------------------- -->
@@ -2194,7 +1911,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           <div class="t-sm">Six touches went out before CTD started tracking plays. None used a warm path.</div>
         </div>
       </div>
-      <p class="t-sm muted" style="margin-top:var(--s7)">Everything here also appears in <a href="#" data-view="tasks">Tasks</a>, alongside your other accounts. This view is the same work, scoped to one account.</p>
+      <p class="t-sm muted" style="margin-top:var(--s7)">Everything here also appears in <a href="#" data-view="intros">Tasks</a>, alongside your other accounts. This view is the same work, scoped to one account.</p>
     </section>
 
     <!-- ------------------------- HISTORY ------------------------- -->
@@ -2657,7 +2374,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           <div class="pgrow"><div class="strong t-sm">Sent same day it was requested</div><div class="t-xs muted">Marco Devlin · 20 Jul · $15k POC, $60k/yr</div></div>
           <span class="badge badge-gray">Done</span></div>
       </div>
-      <p class="t-sm muted" style="margin-top:var(--s7)">Everything here also appears in <a href="#" data-view="tasks">Tasks</a>, alongside your other accounts. This view is the same work, scoped to one account.</p>
+      <p class="t-sm muted" style="margin-top:var(--s7)">Everything here also appears in <a href="#" data-view="intros">Tasks</a>, alongside your other accounts. This view is the same work, scoped to one account.</p>
     </section>
 
     <!-- ---------------- HISTORY ---------------- -->
@@ -3086,7 +2803,10 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <h1 class="d-sm">Intros</h1>
         <p class="dim" style="margin-top:var(--s2)">Every introduction, from asked to met. This is where you find out whether the network is working.</p>
       </div>
-      <button class="btn btn-secondary"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 3v10M6.5 9.5 10 13l3.5-3.5"/><path d="M4 16h12"/></svg>Export</button>
+      <div class="row" style="gap:var(--s4)">
+        <button class="btn btn-secondary"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 3v10M6.5 9.5 10 13l3.5-3.5"/><path d="M4 16h12"/></svg>Export</button>
+        <button class="btn btn-primary" data-newintro><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12"/></svg>New intro</button>
+      </div>
     </div>
 
     <div class="sec-title"><h2>This quarter</h2><span class="t-sm muted">38 asks have produced 3 meetings</span></div>
@@ -3101,11 +2821,11 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
     <div class="row" style="margin:var(--s8) 0 var(--s6)">
       <div class="seg">
-        <button class="is-active" data-seg="intro">All <span class="t-xs" style="opacity:.7">38</span></button>
-        <button data-seg="intro">Written for you <span class="t-xs" style="opacity:.7">2</span></button>
-        <button data-seg="intro">Shared with others <span class="t-xs" style="opacity:.7">12</span></button>
+        <button class="is-active" data-seg="intro">Needs you <span class="t-xs" style="opacity:.7">3</span></button>
+        <button data-seg="intro">Waiting on others <span class="t-xs" style="opacity:.7">12</span></button>
         <button data-seg="intro">Landed <span class="t-xs" style="opacity:.7">3</span></button>
         <button data-seg="intro">Stalled <span class="t-xs" style="opacity:.7">18</span></button>
+        <button data-seg="intro">All <span class="t-xs" style="opacity:.7">38</span></button>
       </div>
     </div>
 
@@ -3122,85 +2842,112 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       </div>
       <div style="overflow-x:auto">
       <table>
-        <thead><tr><th style="width:22%">Target</th><th>Account</th><th>Connector</th><th>Requestor</th><th>Progress</th><th>Stage</th><th>Age</th></tr></thead>
+        <thead><tr><th style="width:20%">Target</th><th>Account</th><th>Type</th><th>Connector</th><th>Requestor</th><th>Progress</th><th>Stage</th><th>Age</th><th></th></tr></thead>
         <tbody>
-          <tr class="rowlink">
+          <tr class="rowlink" data-open-intro>
             <td><div class="strong">Dean Whitlock</div><div class="t-xs muted">Marco wrote it. Waiting on you to send.</div></td>
             <td><span class="acct"><span class="avatar avatar-co">Cp</span>Copperline</span></td>
+            <td><span class="badge badge-sky badge-sq">Warm intro</span></td>
             <td class="t-sm dim nowrap">Nathan Pike</td>
             <td class="t-sm dim nowrap">You</td>
             <td><span class="pipe s1" data-tip="Asked, sent, replied, met."><i></i><i></i><i></i><i></i></span></td>
             <td><span class="badge badge-blue"><span class="dot"></span>Written for you</span></td>
             <td class="t-sm dim nowrap">2 days</td>
+            <td style="text-align:right"><button class="btn btn-primary btn-sm" data-view="task">Open</button></td>
           </tr>
-          <tr class="rowlink">
-            <td><div class="strong">Adam Kessler</div><div class="t-xs muted">Held back until the security review starts.</div></td>
-            <td><span class="acct"><span class="avatar avatar-co">Ba</span>Baseline Data</span></td>
-            <td class="t-sm dim nowrap">Dana Sackett</td>
-            <td class="t-sm dim nowrap">Marco Devlin</td>
-            <td><span class="pipe s1" data-tip="Asked, sent, replied, met."><i></i><i></i><i></i><i></i></span></td>
-            <td><span class="badge badge-blue"><span class="dot"></span>Written for you</span></td>
-            <td class="t-sm dim nowrap">1 day</td>
-          </tr>
-          <tr class="rowlink">
-            <td><div class="strong">Elena Roche</div><div class="t-xs muted">Sent to Alex. He has not passed it on yet.</div></td>
-            <td><span class="acct"><span class="avatar avatar-co">Ke</span>Kestrel Dynamics</span></td>
-            <td class="t-sm dim nowrap">Alex Tanaka</td>
-            <td class="t-sm dim nowrap">You</td>
-            <td><span class="pipe s1" data-tip="Asked, sent, replied, met."><i></i><i></i><i></i><i></i></span></td>
-            <td><span class="badge badge-gray"><span class="dot"></span>Shared with Alex</span></td>
-            <td class="t-sm dim nowrap">2 days</td>
-          </tr>
-          <tr class="rowlink">
-            <td><div class="strong">Priya Raman</div><div class="t-xs muted">Helen forwarded it. Nothing back.</div></td>
-            <td><span class="acct"><span class="avatar avatar-co">Ve</span>Vesper Analytics</span></td>
-            <td class="t-sm dim nowrap">Helen Ward</td>
-            <td class="t-sm dim nowrap">Marco Devlin</td>
-            <td><span class="pipe s2" data-tip="Asked, sent, replied, met."><i></i><i></i><i></i><i></i></span></td>
-            <td><span class="badge badge-warning"><span class="dot"></span>Sent, no reply</span></td>
-            <td class="t-sm dim nowrap">9 days</td>
-          </tr>
-          <tr class="rowlink">
+          <tr class="rowlink" data-open-intro>
             <td><div class="strong">Ruth Calder</div><div class="t-xs muted">No email address on Helen&#39;s record.</div></td>
             <td><span class="acct"><span class="avatar avatar-co">Qu</span>Quarry Labs</span></td>
+            <td><span class="badge badge-sky badge-sq">Warm intro</span></td>
             <td class="t-sm dim nowrap">Helen Ward</td>
             <td class="t-sm dim nowrap">You</td>
             <td><span class="pipe dead" data-tip="Asked, sent, replied, met."><i></i><i></i><i></i><i></i></span></td>
             <td><span class="badge badge-error"><span class="dot"></span>Could not send</span></td>
             <td class="t-sm dim nowrap">16 days</td>
+            <td style="text-align:right"><button class="btn btn-primary btn-sm" data-fix="ward">Fix contact</button></td>
           </tr>
-          <tr class="rowlink">
+          <tr class="rowlink" data-open-intro>
             <td><div class="strong">Victor Hale</div><div class="t-xs muted">Her address is dead. Two newer ones known.</div></td>
             <td><span class="acct"><span class="avatar avatar-co">Br</span>Brightpath</span></td>
+            <td><span class="badge badge-sky badge-sq">Warm intro</span></td>
             <td class="t-sm dim nowrap">Marta Quinn</td>
             <td class="t-sm dim nowrap">You</td>
             <td><span class="pipe dead" data-tip="Asked, sent, replied, met."><i></i><i></i><i></i><i></i></span></td>
             <td><span class="badge badge-error"><span class="dot"></span>Bounced</span></td>
             <td class="t-sm dim nowrap">2 days</td>
+            <td style="text-align:right"><button class="btn btn-primary btn-sm" data-fix="quinn">Fix contact</button></td>
           </tr>
-          <tr class="rowlink">
-            <td><div class="strong">Owen Vance</div><div class="t-xs muted">Asked 11 days ago, met yesterday.</div></td>
-            <td><span class="acct"><span class="avatar avatar-co">Ti</span>Tidewater AI</span></td>
-            <td class="t-sm dim nowrap">Devin Cole</td>
+          <tr class="rowlink" data-open-intro>
+            <td><div class="strong">Adam Kessler</div><div class="t-xs muted">Held back until the security review starts.</div></td>
+            <td><span class="acct"><span class="avatar avatar-co">Ba</span>Baseline Data</span></td>
+            <td><span class="badge badge-sky badge-sq">Warm intro</span></td>
+            <td class="t-sm dim nowrap">Dana Sackett</td>
+            <td class="t-sm dim nowrap">Marco Devlin</td>
+            <td><span class="pipe s1" data-tip="Asked, sent, replied, met."><i></i><i></i><i></i><i></i></span></td>
+            <td><span class="badge badge-gray"><span class="dot"></span>Held back</span></td>
+            <td class="t-sm dim nowrap">1 day</td>
+            <td style="text-align:right"><button class="btn btn-secondary btn-sm">Open</button></td>
+          </tr>
+          <tr class="rowlink" data-open-intro>
+            <td><div class="strong">Cara Nunes</div><div class="t-xs muted">Procurement intro Marcus asked for.</div></td>
+            <td><span class="acct"><span class="avatar avatar-co">Ba</span>Baseline Data</span></td>
+            <td><span class="badge badge-gray badge-sq">Direct</span></td>
+            <td class="t-sm dim nowrap">No connector</td>
             <td class="t-sm dim nowrap">You</td>
-            <td><span class="pipe s4" data-tip="Asked, sent, replied, met."><i></i><i></i><i></i><i></i></span></td>
-            <td><span class="badge badge-success"><span class="dot"></span>Meeting booked</span></td>
-            <td class="t-sm dim nowrap">11 days</td>
+            <td><span class="pipe s1" data-tip="Asked, sent, replied, met."><i></i><i></i><i></i><i></i></span></td>
+            <td><span class="badge badge-warning"><span class="dot"></span>Due Wednesday</span></td>
+            <td class="t-sm dim nowrap">2 days</td>
+            <td style="text-align:right"><button class="btn btn-secondary btn-sm" data-view="task">Open</button></td>
           </tr>
-          <tr class="rowlink">
+          <tr class="rowlink" data-open-intro>
+            <td><div class="strong">Elena Roche</div><div class="t-xs muted">Sent to Alex. He has not passed it on yet.</div></td>
+            <td><span class="acct"><span class="avatar avatar-co">Ke</span>Kestrel Dynamics</span></td>
+            <td><span class="badge badge-sky badge-sq">Warm intro</span></td>
+            <td class="t-sm dim nowrap">Alex Tanaka</td>
+            <td class="t-sm dim nowrap">You</td>
+            <td><span class="pipe s1" data-tip="Asked, sent, replied, met."><i></i><i></i><i></i><i></i></span></td>
+            <td><span class="badge badge-gray"><span class="dot"></span>Waiting on Alex</span></td>
+            <td class="t-sm dim nowrap">2 days</td>
+            <td style="text-align:right"><button class="btn btn-secondary btn-sm">Nudge</button></td>
+          </tr>
+          <tr class="rowlink" data-open-intro>
+            <td><div class="strong">Priya Raman</div><div class="t-xs muted">Helen forwarded it. Nothing back.</div></td>
+            <td><span class="acct"><span class="avatar avatar-co">Ve</span>Vesper Analytics</span></td>
+            <td><span class="badge badge-sky badge-sq">Warm intro</span></td>
+            <td class="t-sm dim nowrap">Helen Ward</td>
+            <td class="t-sm dim nowrap">Marco Devlin</td>
+            <td><span class="pipe s2" data-tip="Asked, sent, replied, met."><i></i><i></i><i></i><i></i></span></td>
+            <td><span class="badge badge-warning"><span class="dot"></span>Sent, no reply</span></td>
+            <td class="t-sm dim nowrap">9 days</td>
+            <td style="text-align:right"><button class="btn btn-secondary btn-sm">Nudge</button></td>
+          </tr>
+          <tr class="rowlink" data-open-intro>
             <td><div class="strong">Ingrid Sol</div><div class="t-xs muted">Warm reply. No meeting scheduled yet.</div></td>
             <td><span class="acct"><span class="avatar avatar-co">No</span>Northbeam HR</span></td>
+            <td><span class="badge badge-sky badge-sq">Warm intro</span></td>
             <td class="t-sm dim nowrap">Helen Ward</td>
             <td class="t-sm dim nowrap">Marco Devlin</td>
             <td><span class="pipe s3" data-tip="Asked, sent, replied, met."><i></i><i></i><i></i><i></i></span></td>
             <td><span class="badge badge-success"><span class="dot"></span>Replied</span></td>
             <td class="t-sm dim nowrap">5 days</td>
+            <td style="text-align:right"><button class="btn btn-secondary btn-sm">Book</button></td>
+          </tr>
+          <tr class="rowlink" data-open-intro>
+            <td><div class="strong">Owen Vance</div><div class="t-xs muted">Asked 11 days ago, met yesterday.</div></td>
+            <td><span class="acct"><span class="avatar avatar-co">Ti</span>Tidewater AI</span></td>
+            <td><span class="badge badge-sky badge-sq">Warm intro</span></td>
+            <td class="t-sm dim nowrap">Devin Cole</td>
+            <td class="t-sm dim nowrap">You</td>
+            <td><span class="pipe s4" data-tip="Asked, sent, replied, met."><i></i><i></i><i></i><i></i></span></td>
+            <td><span class="badge badge-success"><span class="dot"></span>Meeting booked</span></td>
+            <td class="t-sm dim nowrap">11 days</td>
+            <td style="text-align:right"><button class="btn btn-secondary btn-sm">View</button></td>
           </tr>
         </tbody>
       </table>
       </div>
       <div class="card-foot">
-        <span class="t-sm muted">Showing 8 of 38</span>
+        <span class="t-sm muted">Showing 9 of 38</span>
         <div class="pager"><span class="p on">1</span><span class="p">2</span><span class="p">3</span><button aria-label="Next"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="m8 5 5 5-5 5"/></svg></button></div>
       </div>
     </div>
@@ -3214,7 +2961,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
   <div class="modal" role="dialog" aria-label="Create a task">
     <div class="modal-head">
       <div style="flex:1;min-width:0">
-        <h3>New task · Copperline</h3>
+        <h3>New intro · Copperline</h3>
         <div class="wsteps" style="margin-top:var(--s5)">
           <span class="wstep ok" data-w="1"><span class="n"><svg class="icon icon-xs" viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg></span>Play</span>
           <span class="wsep"></span>
@@ -3421,6 +3168,8 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           <div class="helprow"><span class="k">Written for you</span><span class="v">Someone else authored it and you are the requestor. It goes out under your name once you send it.</span></div>
           <div class="helprow"><span class="k">Shared with others</span><span class="v">You authored it and handed it to someone else to send. You are waiting on them, not the connector.</span></div>
           <div class="helprow"><span class="k">Sent, no reply</span><span class="v">The connector forwarded it and the target has not responded. After about ten days this is worth a nudge or a different path.</span></div>
+          <div class="helprow"><span class="k">Needs you</span><span class="v">Written for you and unsent, failed and unfixed, or due today. This replaced the separate Tasks queue: an intro that needs work is just an intro at an early stage.</span></div>
+          <div class="helprow"><span class="k">Type</span><span class="v">Warm intro goes through a connector. Direct means no connector exists or none is needed, so you contact the target yourself.</span></div>
           <div class="helprow"><span class="k">Stalled</span><span class="v">Asked but never sent, or sent and long since silent. This is the largest group, and closing the gap between asked and sent is the single biggest lever on the funnel.</span></div>
           <div class="helprow"><span class="k">Age</span><span class="v">Time since the ask was created, not since the last change. An 16-day-old intro that failed on day one has still cost you sixteen days.</span></div>
       </div>
@@ -3648,6 +3397,14 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     </div>
 
     <div class="note-block">
+      <h4>19 · Tasks folded into Intros</h4>
+      <p>The strongest case for keeping both is tense. Tasks is a queue of work to do; Intros is a ledger of what happened. A task dies on completion, while an intro stays alive for weeks and its outcome matters long after. And the backend genuinely has non-intro types: <span class="mono">outreach_plan</span>, <span class="mono">decide_next_step</span>, <span class="mono">send_email</span>.</p>
+      <p style="margin-top:var(--s5)"><span class="strong">It does not hold.</span> Every one of those distinctions is invisible in the data. An intro row already carries its stage, and the stage <span class="strong">is</span> the task: "Written for you" means you have work, "Could not send" means it failed. Intros already contained Tasks. Keeping both would have reintroduced at nav level exactly the duplication this redesign spent its time removing, and Today already answers "what is next", which was the queue's real job.</p>
+      <p style="margin-top:var(--s5)">What survived the merge: <span class="strong">Needs you</span> is now the default filter and does the triage job, failed rows keep their Fix contact action, the create wizard became New intro, and a <span class="strong">Type</span> column distinguishes warm intro from direct so the one genuinely different play is still visible.</p>
+      <p style="margin-top:var(--s5)"><span class="strong">The account Tasks tab stays.</span> Scoped to one account the list is not homogenous: Baseline Data has an intro, a follow-up chasing the POC roster, a held-back executive play and a pricing task. Cross-account it is all intros, so the global nav says Intros. If that split reads as inconsistent, renaming the account tab is a one-line change.</p>
+    </div>
+
+    <div class="note-block">
       <h4>Where each old view went</h4>
       <div class="kv"><span class="k">Overview</span><span class="v">Brief, header, The call, Why</span></div>
       <div class="kv"><span class="k">Strategy → Summary</span><span class="v">Brief, The call</span></div>
@@ -3673,8 +3430,8 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
 <script>
 /* ---------------- View routing ---------------- */
-const views = ['today','accounts','tasks','task','account','account2','network','intros'];
-const NAV_OF = {account:'accounts', account2:'accounts', task:'tasks'};
+const views = ['today','accounts','task','account','account2','network','intros'];
+const NAV_OF = {account:'accounts', account2:'accounts', task:'intros'};
 function showView(name){
   views.forEach(v=>{
     const el=document.getElementById('view-'+v);
@@ -3706,14 +3463,6 @@ function showTab(name){
 }
 document.querySelectorAll('[data-tab]').forEach(t=>t.addEventListener('click',()=>showTab(t.dataset.tab)));
 document.querySelectorAll('[data-goto]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();showView('account');showTab(a.dataset.goto);}));
-
-/* ---------------- Tasks tabs ---------------- */
-document.querySelectorAll('[data-ttab]').forEach(t=>{
-  t.addEventListener('click',()=>{
-    document.querySelectorAll('[data-ttab]').forEach(x=>x.classList.toggle('is-active',x===t));
-    ['open','done','failed'].forEach(k=>{document.getElementById('tasks-'+k).hidden = k!==t.dataset.ttab;});
-  });
-});
 
 /* ---------------- History sub-views ---------------- */
 document.querySelectorAll('[data-hist]').forEach(b=>{
@@ -3815,7 +3564,7 @@ function renderWizard(){
   });
   document.getElementById('wcount').textContent = 'Step '+wstep+' of 4';
   document.querySelector('[data-wback]').disabled = wstep===1;
-  document.querySelector('[data-wnext]').textContent = wstep===4 ? 'Create task' : 'Continue';
+  document.querySelector('[data-wnext]').textContent = wstep===4 ? 'Create intro' : 'Continue';
 }
 function openWizard(){ wstep=1; renderWizard(); nt.classList.add('open'); }
 function closeWizard(){ nt.classList.remove('open'); }
@@ -3855,6 +3604,11 @@ document.querySelectorAll('[data-mtg]').forEach(b=>{
 });
 
 
+
+/* ---------------- Intro rows open the execute screen ---------------- */
+document.querySelectorAll('[data-open-intro]').forEach(tr=>{
+  tr.addEventListener('click',e=>{ if(e.target.closest('button')) return; showView('task'); });
+});
 
 /* ---------------- Delivery choice updates the confirmation ---------------- */
 const DELIVERY={
