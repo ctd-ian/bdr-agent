@@ -527,6 +527,19 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .today-side .head{min-height:24px}
 @media (max-width:1080px){.today-grid{grid-template-columns:1fr}.today-side{position:static}}
 
+
+/* Today rows: company chip anchors the row, priority ranks it */
+.tdrow .mline{display:flex;align-items:center;gap:var(--s4);flex-wrap:wrap;margin-bottom:var(--s3)}
+.tdrow .acct{display:inline-flex;align-items:center;gap:var(--s3);font-size:12px;line-height:18px;font-weight:600;
+  color:var(--gray-800);background:var(--gray-100);border:1px solid var(--gray-200);border-radius:var(--r-2xl);padding:2px 10px 2px 2px}
+.tdrow .acct .avatar{width:20px;height:20px;flex:0 0 20px;font-size:9px}
+.tdrow .scope{display:inline-flex;align-items:center;gap:var(--s3);font-size:12px;line-height:18px;font-weight:500;
+  color:var(--gray-600);background:var(--gray-100);border:1px solid var(--gray-200);border-radius:var(--r-2xl);padding:2px 10px}
+.prio{font-family:var(--font-label);font-size:10px;line-height:16px;font-weight:500;letter-spacing:.01em;text-transform:uppercase;
+  padding:1px 8px;border-radius:var(--r-2xl)}
+.prio.hi{background:var(--blue-600);color:#fff}
+.prio.md{background:var(--gray-200);color:var(--gray-700)}
+
 /* Design notes */
 .notes-toggle{position:fixed;right:var(--s8);bottom:var(--s8);z-index:60;background:var(--gray-900);color:#fff;border-radius:var(--r-2xl);height:44px;padding:0 var(--s7);display:inline-flex;align-items:center;gap:var(--s4);box-shadow:var(--sh-2xl);font-weight:500}
 .notes{position:fixed;top:0;right:0;bottom:0;width:470px;max-width:94vw;z-index:70;background:#fff;border-left:1px solid var(--gray-200);box-shadow:var(--sh-2xl);transform:translateX(100%);transition:transform .22s ease;display:flex;flex-direction:column}
@@ -612,7 +625,10 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <h1 class="d-sm">Today</h1>
         <p class="dim" style="margin-top:var(--s2)">Thursday 30 July. Three things need you, and one connector needs a rest.</p>
       </div>
-      <button class="btn btn-secondary">Dismiss all read</button>
+      <div class="row" style="gap:var(--s4)">
+        <button class="helpbtn" data-help="today" aria-label="How are these ranked?"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M8.2 7.8a1.9 1.9 0 1 1 2.3 2.4c-.4.2-.5.5-.5.9v.3"/><path d="M10 14.6h.01"/></svg></button>
+        <button class="btn btn-secondary">Dismiss all read</button>
+      </div>
     </div>
 
     <div class="today-grid">
@@ -620,38 +636,62 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     <div class="sec-title"><h2>Needs you now</h2><span class="badge badge-error"><span class="dot"></span>3</span></div>
     <div class="card tdblock">
         <div class="tdrow">
-          <span class="ic" style="background:var(--error-50);color:var(--error-700)"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 6.5v4M10 13.5h.01"/></svg></span>
-          <div class="g"><div class="h">Warm introduction to a senior stakeholder could not be sent</div><div class="w">Quarry Labs, via Helen Ward. No email address on her record, and it has sat 16 days without anyone being told.</div></div>
-          <div class="act"><button class="btn btn-tertiary btn-sm">Dismiss</button><button class="btn btn-primary btn-sm" data-fix="ward">Fix contact</button></div>
+          <span class="ic" style="background:var(--warning-50);color:var(--warning-700)"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7"/><path d="M10 6v4l3 2"/></svg></span>
+          <div class="g">
+            <div class="mline"><span class="acct"><span class="avatar avatar-co">Ba</span>Baseline Data</span><span class="prio hi" data-tip="Rank 9,780, a live deal with a deadline this week, and it blocks the MNDA.">High</span></div>
+            <div class="h">Introduce Cara Nunes to procurement, due Wednesday</div>
+            <div class="w">Marcus asked for this in the pilot call. It is the only thing standing between you and the MNDA.</div>
+          </div>
+          <div class="act"><button class="btn btn-primary btn-sm" data-view="task">Open task</button></div>
         </div>
         <div class="tdrow">
           <span class="ic" style="background:var(--error-50);color:var(--error-700)"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 6.5v4M10 13.5h.01"/></svg></span>
-          <div class="g"><div class="h">Warm introduction to the sales-team ICP bounced</div><div class="w">Brightpath, via Marta Quinn. She left Northgate in March, and CTD has two newer addresses for her.</div></div>
+          <div class="g">
+            <div class="mline"><span class="acct"><span class="avatar avatar-co">Br</span>Brightpath</span><span class="prio md" data-tip="Rank 3,660. The fix takes a minute and CTD already knows two working addresses.">Medium</span></div>
+            <div class="h">Warm introduction to the sales-team ICP bounced</div>
+            <div class="w">Via Marta Quinn, who left Northgate in March. CTD has two newer addresses for her.</div>
+          </div>
           <div class="act"><button class="btn btn-tertiary btn-sm">Dismiss</button><button class="btn btn-primary btn-sm" data-fix="quinn">Fix contact</button></div>
         </div>
         <div class="tdrow">
-          <span class="ic" style="background:var(--warning-50);color:var(--warning-700)"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7"/><path d="M10 6v4l3 2"/></svg></span>
-          <div class="g"><div class="h">Introduce Cara Nunes to procurement, due Wednesday</div><div class="w">Baseline Data. Marcus asked for this in the pilot call. It is the only thing standing between you and the MNDA.</div></div>
-          <div class="act"><button class="btn btn-primary btn-sm" data-view="task">Open task</button></div>
+          <span class="ic" style="background:var(--error-50);color:var(--error-700)"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 6.5v4M10 13.5h.01"/></svg></span>
+          <div class="g">
+            <div class="mline"><span class="acct"><span class="avatar avatar-co">Qu</span>Quarry Labs</span><span class="prio md" data-tip="Rank 2,180, but it has been stuck 16 days, which is the part worth fixing.">Medium</span></div>
+            <div class="h">Warm introduction to a senior stakeholder could not be sent</div>
+            <div class="w">Via Helen Ward, who has no email address on her record. It has sat 16 days without anyone being told.</div>
+          </div>
+          <div class="act"><button class="btn btn-tertiary btn-sm">Dismiss</button><button class="btn btn-primary btn-sm" data-fix="ward">Fix contact</button></div>
         </div>
     </div>
 
     <div class="sec-title"><h2>Your network</h2><span class="t-sm muted">Who to lean on, and who to leave alone</span></div>
     <div class="card tdblock">
         <div class="tdrow">
+          <span class="ic" style="background:var(--blue-50);color:var(--blue-700)"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 3v7M6.5 6.5 10 3l3.5 3.5"/><path d="M4 13v3h12v-3"/></svg></span>
+          <div class="g">
+            <div class="mline"><span class="acct"><span class="avatar avatar-co">Cp</span>Copperline</span><span class="prio hi" data-tip="Strong path, draft already written, and nothing is blocking it but you.">High</span></div>
+            <div class="h">Nathan Pike has never been asked</div>
+            <div class="w">A strong path to Dean Whitlock sitting unused. The draft is written and waiting on you.</div>
+          </div>
+          <div class="act"><button class="btn btn-primary btn-sm" data-view="task">Open task</button></div>
+        </div>
+        <div class="tdrow">
           <span class="ic" style="background:var(--error-50);color:var(--error-700)"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="7.5" cy="7" r="2.6"/><path d="M2.5 16.5c0-2.6 2.2-4.4 5-4.4s5 1.8 5 4.4"/><path d="M13.6 5c1.4 0 2.5 1.1 2.5 2.5S15 10 13.6 10M14.5 12.4c1.8.4 3 1.9 3 4.1"/></svg></span>
-          <div class="g"><div class="h">Stop asking Helen Ward for a fortnight</div><div class="w">Seven open asks, three of them sent in the last month. She has made 6 intros this quarter, so the relationship is worth protecting.</div></div>
-          <div class="act"><button class="btn btn-tertiary btn-sm">Dismiss</button><button class="btn btn-secondary btn-sm" data-view="network">See her asks</button></div>
+          <div class="g">
+            <div class="mline"><span class="scope">Reaches 9 accounts</span><span class="prio md" data-tip="Not urgent today, but asking again this fortnight risks a connector who has made 6 intros.">Medium</span></div>
+            <div class="h">Stop asking Helen Ward for a fortnight</div>
+            <div class="w">Seven open asks, three of them sent in the last month. She has made 6 intros this quarter, so the relationship is worth protecting.</div>
+          </div>
+          <div class="act"><button class="btn btn-tertiary btn-sm">Dismiss</button><button class="btn btn-secondary btn-sm">See her asks</button></div>
         </div>
         <div class="tdrow">
           <span class="ic" style="background:var(--warning-50);color:var(--warning-700)"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7"/><path d="M10 6v4l3 2"/></svg></span>
-          <div class="g"><div class="h">Owen Brandt has gone quiet</div><div class="w">Five asks outstanding, the oldest sent 41 days ago with no reply. Nudge him or route those five accounts another way.</div></div>
+          <div class="g">
+            <div class="mline"><span class="scope">Reaches 11 accounts</span><span class="prio md" data-tip="Five asks are frozen behind him, but none of the five accounts is time-critical.">Medium</span></div>
+            <div class="h">Owen Brandt has gone quiet</div>
+            <div class="w">Five asks outstanding, the oldest sent 41 days ago with no reply. Nudge him or route those five accounts another way.</div>
+          </div>
           <div class="act"><button class="btn btn-tertiary btn-sm">Dismiss</button><button class="btn btn-secondary btn-sm">Nudge</button></div>
-        </div>
-        <div class="tdrow">
-          <span class="ic" style="background:var(--blue-50);color:var(--blue-700)"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 3v7M6.5 6.5 10 3l3.5 3.5"/><path d="M4 13v3h12v-3"/></svg></span>
-          <div class="g"><div class="h">Nathan Pike has never been asked</div><div class="w">A strong path to Dean Whitlock at Copperline, sitting unused. The draft is already written and waiting on you.</div></div>
-          <div class="act"><button class="btn btn-primary btn-sm" data-view="task">Open task</button></div>
         </div>
     </div>
 
@@ -659,17 +699,29 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     <div class="card tdblock">
         <div class="tdrow">
           <span class="ic" style="background:var(--success-50);color:var(--success-700)"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 3v7M6.5 6.5 10 3l3.5 3.5"/><path d="M4 13v3h12v-3"/></svg></span>
-          <div class="g"><div class="h">Elena Roche was promoted to Head of Growth at Kestrel Dynamics</div><div class="w">Her new scope covers the partner motion, which is why she is now the right target and Tomas Berg never was.</div></div>
+          <div class="g">
+            <div class="mline"><span class="acct"><span class="avatar avatar-co">Ke</span>Kestrel Dynamics</span><span class="prio hi" data-tip="Rank 9,820 and your target just changed. Acting on the wrong person wastes the only warm path you have.">High</span></div>
+            <div class="h">Elena Roche was promoted to Head of Growth</div>
+            <div class="w">Her new scope covers the partner motion, which is why she is now the right target and Tomas Berg never was.</div>
+          </div>
           <div class="act"><button class="btn btn-tertiary btn-sm">Dismiss</button><button class="btn btn-secondary btn-sm">Open account</button></div>
         </div>
         <div class="tdrow">
           <span class="ic" style="background:var(--success-50);color:var(--success-700)"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 16V8M10 16V4M16 16v-6"/></svg></span>
-          <div class="g"><div class="h">Marcus Webb read the paths API documentation three times</div><div class="w">Baseline Data. Prospect-initiated and unprompted, two days before he asked for pricing.</div></div>
+          <div class="g">
+            <div class="mline"><span class="acct"><span class="avatar avatar-co">Ba</span>Baseline Data</span><span class="prio hi" data-tip="Prospect-initiated intent on a live deal two days before he asked for pricing.">High</span></div>
+            <div class="h">Marcus Webb read the paths API documentation three times</div>
+            <div class="w">Unprompted, and two days before he asked for pricing.</div>
+          </div>
           <div class="act"><button class="btn btn-tertiary btn-sm">Dismiss</button><button class="btn btn-secondary btn-sm">Open account</button></div>
         </div>
         <div class="tdrow">
           <span class="ic" style="background:var(--warning-50);color:var(--warning-700)"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 16V8M10 16V4M16 16v-6"/></svg></span>
-          <div class="g"><div class="h">Onyx Fleet raised a Series B</div><div class="w">Fit 84, and the signal moved to Warm watch. Nobody owns a path in yet.</div></div>
+          <div class="g">
+            <div class="mline"><span class="acct"><span class="avatar avatar-co">On</span>Onyx Fleet</span><span class="prio md" data-tip="Fit 84 and a fresh trigger, but nobody has a path in, so it needs work before it needs attention.">Medium</span></div>
+            <div class="h">Onyx Fleet raised a Series B</div>
+            <div class="w">The signal moved to Warm watch. Nobody owns a path in yet.</div>
+          </div>
           <div class="act"><button class="btn btn-tertiary btn-sm">Dismiss</button><button class="btn btn-secondary btn-sm">Open account</button></div>
         </div>
     </div>
@@ -677,17 +729,24 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     <div class="sec-title"><h2>Waiting on other people</h2><span class="t-sm muted">Nothing for you to do, but worth knowing</span></div>
     <div class="card tdblock">
         <div class="tdrow">
-          <span class="ic" style="background:var(--gray-100);color:var(--gray-600)"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M3 5h14v10H3z"/><path d="m3 6 7 5 7-5"/></svg></span>
-          <div class="g"><div class="h">Three asks are sitting with connectors</div><div class="w">Oldest is 16 days. Two are with Helen Ward, who is already over-asked.</div></div>
-          <div class="act"><button class="btn btn-secondary btn-sm" data-view="tasks">See tasks</button></div>
-        </div>
-        <div class="tdrow">
           <span class="ic" style="background:var(--gray-100);color:var(--gray-600)"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="7.5" cy="7" r="2.6"/><path d="M2.5 16.5c0-2.6 2.2-4.4 5-4.4s5 1.8 5 4.4"/><path d="M13.6 5c1.4 0 2.5 1.1 2.5 2.5S15 10 13.6 10M14.5 12.4c1.8.4 3 1.9 3 4.1"/></svg></span>
-          <div class="g"><div class="h">Marcus Webb is locking the POC roster at Baseline Data</div><div class="w">Three names of a target fifteen. Two days since you asked.</div></div>
+          <div class="g">
+            <div class="mline"><span class="acct"><span class="avatar avatar-co">Ba</span>Baseline Data</span><span class="prio hi" data-tip="The seat count is not real until the roster is locked, and the pilot scope depends on it.">High</span></div>
+            <div class="h">Marcus Webb is locking the POC roster</div>
+            <div class="w">Three names of a target fifteen. Two days since you asked.</div>
+          </div>
           <div class="act"><button class="btn btn-secondary btn-sm">Nudge</button></div>
         </div>
+        <div class="tdrow">
+          <span class="ic" style="background:var(--gray-100);color:var(--gray-600)"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M3 5h14v10H3z"/><path d="m3 6 7 5 7-5"/></svg></span>
+          <div class="g">
+            <div class="mline"><span class="scope">3 accounts</span><span class="prio md" data-tip="Aging, but the next move belongs to the connectors, not to you.">Medium</span></div>
+            <div class="h">Three asks are sitting with connectors</div>
+            <div class="w">Oldest is 16 days. Two are with Helen Ward, who is already over-asked.</div>
+          </div>
+          <div class="act"><button class="btn btn-secondary btn-sm">See tasks</button></div>
+        </div>
     </div>
-
       </div>
 
       <aside class="today-side">
@@ -3223,6 +3282,13 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           <div class="helprow"><span class="k">Message 1</span><span class="v">Requestor to sender, the ask. This is the one that gets sent when you click send.</span></div>
           <div class="helprow"><span class="k">Message 2</span><span class="v">Sender to target, the intro. Written for the sender to use, but sent by them, not by you.</span></div>
           <div class="helprow"><span class="k">Author and requestor</span><span class="v">Often the same person. They separate when the connector would take the ask more seriously from someone senior. That is what a ghost email is for.</span></div>
+      </div>
+
+      <div class="helppanel" data-helppanel="today">
+          <div class="helprow"><span class="k">Company chip</span><span class="v">The account each item belongs to. Some items are about your network rather than one account, and those show their reach instead, such as "Reaches 9 accounts".</span></div>
+          <div class="helprow"><span class="k">High</span><span class="v">Do this one first. A live deal, a deadline this week, or a change that makes your current plan wrong. Hover any priority to see why it was scored that way.</span></div>
+          <div class="helprow"><span class="k">Medium</span><span class="v">Worth doing, but nothing breaks if it waits a day. Rows are ordered by priority inside each block.</span></div>
+          <div class="helprow"><span class="k">Dismiss</span><span class="v">Clears the row. It comes back if the underlying situation changes, so dismissing is not the same as resolving.</span></div>
       </div>
 
       <div class="helppanel" data-helppanel="timeline">
