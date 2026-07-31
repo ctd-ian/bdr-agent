@@ -594,6 +594,14 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       <button class="btn btn-secondary">Dismiss all read</button>
     </div>
 
+    <div class="sec-title" style="margin-top:var(--s7)"><h2>This week</h2><span class="t-sm muted">Monday to today. Every number points at something below.</span></div>
+    <div class="weekbar" style="margin-bottom:var(--s9)">
+      <div class="c"><span class="label">Intros requested</span><div class="n">4</div><div class="t-xs muted">Across 3 connectors</div></div>
+      <div class="c"><span class="label">Intros sent</span><div class="n" style="color:var(--error-700)">0</div><div class="t-xs" style="color:var(--error-700)">None this quarter. One is drafted and waiting.</div></div>
+      <div class="c"><span class="label">Meetings held</span><div class="n">3</div><div class="t-xs muted">All at Baseline Data</div></div>
+      <div class="c"><span class="label">Tasks closed</span><div class="n">6</div><div class="t-xs muted">2 of them cancelled, not completed</div></div>
+    </div>
+
     <div class="sec-title"><h2>Needs you now</h2><span class="badge badge-error"><span class="dot"></span>3</span></div>
     <div class="card tdblock">
         <div class="tdrow">
@@ -665,13 +673,6 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         </div>
     </div>
 
-    <div class="sec-title"><h2>This week</h2><span class="t-sm muted">Monday to today</span></div>
-    <div class="weekbar">
-      <div class="c"><span class="label">Intros requested</span><div class="n">4</div><div class="t-xs muted">Across 3 connectors</div></div>
-      <div class="c"><span class="label">Intros sent</span><div class="n">0</div><div class="t-xs muted" style="color:var(--error-700)">None this quarter either</div></div>
-      <div class="c"><span class="label">Meetings held</span><div class="n">3</div><div class="t-xs muted">All at Baseline Data</div></div>
-      <div class="c"><span class="label">Tasks closed</span><div class="n">6</div><div class="t-xs muted">2 of them cancelled</div></div>
-    </div>
   </div>
 
   <div class="page wide" id="view-accounts" hidden>
@@ -3382,7 +3383,8 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       <p style="margin-top:var(--s5)"><span class="strong">The rule.</span> An item earns a place on Today only if it is actionable now, would otherwise go unnoticed, and disappears once handled. Anything permanent belongs on Accounts or Tasks. Dismissing a row removes it, and an emptied block collapses to "Nothing here". A good day should produce a nearly blank page.</p>
       <p style="margin-top:var(--s5)">That rule exists because dashboards rot into exactly the disease this redesign cured. Every stakeholder adds a widget, nothing is ever removed, and within a year it is the Overview tab again: everything visible, nothing decidable. Blocks are capped at three items for the same reason. If four things are genuinely urgent, the fourth is a ranking problem, not a space problem.</p>
       <p style="margin-top:var(--s5)"><span class="strong">Your network</span> is the block that justifies the page. "Stop asking Helen Ward for a fortnight" is neither an account fact nor a task fact, and it has a shelf life, so it fits nowhere else in the product. The same block surfaces the opposite case: Nathan Pike has a strong path that has never once been used, with the draft already written.</p>
-      <p style="margin-top:var(--s5)">This week is deliberately unflattering. Four intros requested, <span class="strong">zero sent</span>, six tasks closed of which two were cancelled. A progress strip that only reports good news teaches people to ignore it.</p>
+      <p style="margin-top:var(--s5)"><span class="strong">This week sits on top, which cuts against the rubric.</span> It is the one block you cannot act on, so leading with it risks turning a triage page into a scoreboard. It earns the position only by staying diagnostic: every number points at something below it. Four requested against zero sent is the reason the network block matters, and two of the six closed tasks were cancelled rather than completed. If it ever grows a chart, it should move back down.</p>
+      <p style="margin-top:var(--s5)">It is deliberately unflattering. Four intros requested, <span class="strong">zero sent</span>, six tasks closed of which two were cancelled. A progress strip that only reports good news teaches people to ignore it.</p>
     </div>
 
     <div class="note-block">
