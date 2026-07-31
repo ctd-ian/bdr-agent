@@ -506,6 +506,23 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .weekbar .c:last-child{border-right:none}
 .weekbar .c .n{font-family:var(--font-display);font-size:24px;line-height:30px;font-weight:600;letter-spacing:-.02em;color:var(--gray-900);margin-top:var(--s3)}
 
+
+/* Today: doing on the left, standing on the right and always in view */
+.today-grid{display:grid;grid-template-columns:minmax(0,1fr) 264px;gap:var(--s8);align-items:start}
+.today-side{position:sticky;top:var(--s8);display:flex;flex-direction:column;gap:var(--s5)}
+.today-side .head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s4)}
+.statcard{border:1px solid var(--gray-200);border-radius:var(--r-xl);background:#fff;box-shadow:var(--sh-sm);padding:var(--s6)}
+.statcard.alarm{border-color:var(--error-200);background:var(--error-50)}
+.statcard .r1{display:flex;align-items:baseline;gap:var(--s4);margin-top:var(--s3)}
+.statcard .n{font-family:var(--font-display);font-size:30px;line-height:34px;font-weight:600;letter-spacing:-.02em;color:var(--gray-900)}
+.statcard.alarm .n{color:var(--error-700)}
+.statcard .of{font-size:13px;color:var(--gray-500)}
+.bar{height:6px;border-radius:3px;background:var(--gray-200);margin-top:var(--s5);overflow:hidden}
+.statcard.alarm .bar{background:#FBD5D3}
+.bar i{display:block;height:100%;border-radius:3px;background:var(--blue-600)}
+.statcard .pace{margin-top:var(--s4);font-size:12px;line-height:17px;display:flex;align-items:flex-start;gap:var(--s3)}
+@media (max-width:1080px){.today-grid{grid-template-columns:1fr}.today-side{position:static}}
+
 /* Design notes */
 .notes-toggle{position:fixed;right:var(--s8);bottom:var(--s8);z-index:60;background:var(--gray-900);color:#fff;border-radius:var(--r-2xl);height:44px;padding:0 var(--s7);display:inline-flex;align-items:center;gap:var(--s4);box-shadow:var(--sh-2xl);font-weight:500}
 .notes{position:fixed;top:0;right:0;bottom:0;width:470px;max-width:94vw;z-index:70;background:#fff;border-left:1px solid var(--gray-200);box-shadow:var(--sh-2xl);transform:translateX(100%);transition:transform .22s ease;display:flex;flex-direction:column}
@@ -594,14 +611,8 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       <button class="btn btn-secondary">Dismiss all read</button>
     </div>
 
-    <div class="sec-title" style="margin-top:var(--s7)"><h2>This week</h2><span class="t-sm muted">Monday to today. Every number points at something below.</span></div>
-    <div class="weekbar" style="margin-bottom:var(--s9)">
-      <div class="c"><span class="label">Intros requested</span><div class="n">4</div><div class="t-xs muted">Across 3 connectors</div></div>
-      <div class="c"><span class="label">Intros sent</span><div class="n" style="color:var(--error-700)">0</div><div class="t-xs" style="color:var(--error-700)">None this quarter. One is drafted and waiting.</div></div>
-      <div class="c"><span class="label">Meetings held</span><div class="n">3</div><div class="t-xs muted">All at Baseline Data</div></div>
-      <div class="c"><span class="label">Tasks closed</span><div class="n">6</div><div class="t-xs muted">2 of them cancelled, not completed</div></div>
-    </div>
-
+    <div class="today-grid">
+      <div class="today-main">
     <div class="sec-title"><h2>Needs you now</h2><span class="badge badge-error"><span class="dot"></span>3</span></div>
     <div class="card tdblock">
         <div class="tdrow">
@@ -673,6 +684,40 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         </div>
     </div>
 
+      </div>
+
+      <aside class="today-side">
+      <div class="head">
+        <h2 style="font-size:16px;line-height:24px;font-weight:600;color:var(--gray-900)">This week</h2>
+        <span class="t-xs muted">Day 4 of 5</span>
+      </div>
+      <div class="statcard">
+        <span class="label">Intros requested</span>
+        <div class="r1"><span class="n">4</span><span class="of">of 10</span></div>
+        <div class="bar"><i style="width:40%;background:var(--blue-600)"></i></div>
+        <div class="pace" style="color:var(--error-700)"><svg class="icon icon-xs" style="flex:0 0 14px;margin-top:1px" viewBox="0 0 20 20"><path d="M10 5v10M6 11l4 4 4-4"/></svg><span>6 short with a day to go</span></div>
+      </div>
+      <div class="statcard alarm">
+        <span class="label">Intros sent</span>
+        <div class="r1"><span class="n">0</span><span class="of">of 5</span></div>
+        <div class="bar"><i style="width:0%;background:var(--error)"></i></div>
+        <div class="pace" style="color:var(--error-700)"><svg class="icon icon-xs" style="flex:0 0 14px;margin-top:1px" viewBox="0 0 20 20"><path d="M10 5v10M6 11l4 4 4-4"/></svg><span>5 behind, and none this quarter</span></div>
+      </div>
+      <div class="statcard">
+        <span class="label">Meetings held</span>
+        <div class="r1"><span class="n">3</span><span class="of">of 2</span></div>
+        <div class="bar"><i style="width:100%;background:var(--blue-600)"></i></div>
+        <div class="pace" style="color:var(--success-700)"><svg class="icon icon-xs" style="flex:0 0 14px;margin-top:1px" viewBox="0 0 20 20"><path d="M10 15V5M6 9l4-4 4 4"/></svg><span>1 ahead, all at Baseline Data</span></div>
+      </div>
+      <div class="statcard">
+        <span class="label">Tasks closed</span>
+        <div class="r1"><span class="n">6</span><span class="of">of 15</span></div>
+        <div class="bar"><i style="width:40%;background:var(--blue-600)"></i></div>
+        <div class="pace" style="color:var(--error-700)"><svg class="icon icon-xs" style="flex:0 0 14px;margin-top:1px" viewBox="0 0 20 20"><path d="M10 5v10M6 11l4 4 4-4"/></svg><span>9 short, and 2 were cancelled rather than completed</span></div>
+      </div>
+      <p class="t-xs muted" style="padding:0 var(--s2)">Targets are your team's weekly pace. They reset Monday.</p>
+      </aside>
+    </div>
   </div>
 
   <div class="page wide" id="view-accounts" hidden>
@@ -3383,8 +3428,9 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       <p style="margin-top:var(--s5)"><span class="strong">The rule.</span> An item earns a place on Today only if it is actionable now, would otherwise go unnoticed, and disappears once handled. Anything permanent belongs on Accounts or Tasks. Dismissing a row removes it, and an emptied block collapses to "Nothing here". A good day should produce a nearly blank page.</p>
       <p style="margin-top:var(--s5)">That rule exists because dashboards rot into exactly the disease this redesign cured. Every stakeholder adds a widget, nothing is ever removed, and within a year it is the Overview tab again: everything visible, nothing decidable. Blocks are capped at three items for the same reason. If four things are genuinely urgent, the fourth is a ranking problem, not a space problem.</p>
       <p style="margin-top:var(--s5)"><span class="strong">Your network</span> is the block that justifies the page. "Stop asking Helen Ward for a fortnight" is neither an account fact nor a task fact, and it has a shelf life, so it fits nowhere else in the product. The same block surfaces the opposite case: Nathan Pike has a strong path that has never once been used, with the draft already written.</p>
-      <p style="margin-top:var(--s5)"><span class="strong">This week sits on top, which cuts against the rubric.</span> It is the one block you cannot act on, so leading with it risks turning a triage page into a scoreboard. It earns the position only by staying diagnostic: every number points at something below it. Four requested against zero sent is the reason the network block matters, and two of the six closed tasks were cancelled rather than completed. If it ever grows a chart, it should move back down.</p>
-      <p style="margin-top:var(--s5)">It is deliberately unflattering. Four intros requested, <span class="strong">zero sent</span>, six tasks closed of which two were cancelled. A progress strip that only reports good news teaches people to ignore it.</p>
+      <p style="margin-top:var(--s5)"><span class="strong">Where the stats go was the hard part.</span> At the bottom they are never scrolled to. At the top they turn a triage page into a scoreboard. A sticky right-hand column resolves it: the wide left column is for doing, the narrow right column holds your standing and stays in view the whole way down. Impossible to avoid, impossible to mistake for the work.</p>
+      <p style="margin-top:var(--s5)"><span class="strong">Each stat carries its target.</span> A bare 0 is a fact; <span class="strong">0 of 5, five behind with a day to go</span> is a position. The bar shows pace, and "Day 4 of 5" calibrates whether behind is alarming or normal. Meetings sit ahead of target, because a column that is uniformly red gets tuned out.</p>
+      <p style="margin-top:var(--s5)">The numbers stay deliberately unflattering. Four intros requested, <span class="strong">zero sent</span>, six tasks closed of which two were cancelled. A progress strip that only reports good news teaches people to ignore it.</p>
     </div>
 
     <div class="note-block">
