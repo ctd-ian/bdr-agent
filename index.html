@@ -585,7 +585,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
   <!-- ==================================================================
        VIEW: ACCOUNTS LIST
        ================================================================== -->
-  <div class="page" id="view-today" hidden>
+  <div class="page" id="view-today">
     <div class="between" style="align-items:flex-start">
       <div>
         <h1 class="d-sm">Today</h1>
@@ -3421,6 +3421,7 @@ function showView(name){
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.toggle('is-active', n.dataset.view===target));
   window.scrollTo({top:0});
 }
+showView('today');
 document.querySelectorAll('[data-view]').forEach(el=>{
   el.addEventListener('click',e=>{e.preventDefault();showView(el.dataset.view);});
 });
