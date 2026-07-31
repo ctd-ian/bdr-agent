@@ -490,6 +490,22 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .modal-x:hover{background:var(--gray-100);color:var(--gray-800)}
 .modal-x:focus-visible{outline:none;box-shadow:var(--focus)}
 
+
+/* Today triage rows */
+.tdblock{margin-bottom:var(--s7)}
+.tdrow{display:flex;align-items:flex-start;gap:var(--s5);padding:var(--s6) var(--s7);border-top:1px solid var(--gray-100)}
+.tdrow:first-of-type{border-top:none}
+.tdrow:hover{background:var(--gray-50)}
+.tdrow .ic{width:32px;height:32px;flex:0 0 32px;border-radius:var(--r-md);display:grid;place-items:center}
+.tdrow .g{flex:1;min-width:0}
+.tdrow .g .h{font-size:14px;line-height:20px;font-weight:600;color:var(--gray-900)}
+.tdrow .g .w{font-size:13px;line-height:19px;color:var(--gray-600);margin-top:2px}
+.tdrow .act{display:flex;align-items:center;gap:var(--s4);flex-wrap:wrap}
+.weekbar{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--gray-200);border-radius:var(--r-xl);background:#fff;box-shadow:var(--sh-sm);overflow:hidden}
+.weekbar .c{padding:var(--s6) var(--s7);border-right:1px solid var(--gray-200)}
+.weekbar .c:last-child{border-right:none}
+.weekbar .c .n{font-family:var(--font-display);font-size:24px;line-height:30px;font-weight:600;letter-spacing:-.02em;color:var(--gray-900);margin-top:var(--s3)}
+
 /* Design notes */
 .notes-toggle{position:fixed;right:var(--s8);bottom:var(--s8);z-index:60;background:var(--gray-900);color:#fff;border-radius:var(--r-2xl);height:44px;padding:0 var(--s7);display:inline-flex;align-items:center;gap:var(--s4);box-shadow:var(--sh-2xl);font-weight:500}
 .notes{position:fixed;top:0;right:0;bottom:0;width:470px;max-width:94vw;z-index:70;background:#fff;border-left:1px solid var(--gray-200);box-shadow:var(--sh-2xl);transform:translateX(100%);transition:transform .22s ease;display:flex;flex-direction:column}
@@ -532,7 +548,11 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     </div>
 
     <nav class="nav">
-      <button class="nav-item is-active" data-view="accounts">
+      <button class="nav-item is-active" data-view="today">
+        <svg class="icon" viewBox="0 0 20 20"><path d="M3 8h14M5 4h10a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M7 2v3M13 2v3"/></svg>
+        Today <span class="count">3</span>
+      </button>
+      <button class="nav-item" data-view="accounts">
         <svg class="icon" viewBox="0 0 20 20"><path d="M3 17V7l5-4 5 4v10"/><path d="M13 17V9h4v8"/><path d="M2 17h16"/></svg>
         Accounts <span class="count">502</span>
       </button>
@@ -565,7 +585,96 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
   <!-- ==================================================================
        VIEW: ACCOUNTS LIST
        ================================================================== -->
-  <div class="page wide" id="view-accounts">
+  <div class="page" id="view-today" hidden>
+    <div class="between" style="align-items:flex-start">
+      <div>
+        <h1 class="d-sm">Today</h1>
+        <p class="dim" style="margin-top:var(--s2)">Thursday 30 July. Three things need you, and one connector needs a rest.</p>
+      </div>
+      <button class="btn btn-secondary">Dismiss all read</button>
+    </div>
+
+    <div class="sec-title"><h2>Needs you now</h2><span class="badge badge-error"><span class="dot"></span>3</span></div>
+    <div class="card tdblock">
+        <div class="tdrow">
+          <span class="ic" style="background:var(--error-50);color:var(--error-700)"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 6.5v4M10 13.5h.01"/></svg></span>
+          <div class="g"><div class="h">Warm introduction to a senior stakeholder could not be sent</div><div class="w">Quarry Labs, via Helen Ward. No email address on her record, and it has sat 16 days without anyone being told.</div></div>
+          <div class="act"><button class="btn btn-primary btn-sm" data-fix="ward">Fix contact</button><button class="btn btn-tertiary btn-sm">Dismiss</button></div>
+        </div>
+        <div class="tdrow">
+          <span class="ic" style="background:var(--error-50);color:var(--error-700)"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 6.5v4M10 13.5h.01"/></svg></span>
+          <div class="g"><div class="h">Warm introduction to the sales-team ICP bounced</div><div class="w">Brightpath, via Marta Quinn. She left Northgate in March, and CTD has two newer addresses for her.</div></div>
+          <div class="act"><button class="btn btn-primary btn-sm" data-fix="quinn">Fix contact</button><button class="btn btn-tertiary btn-sm">Dismiss</button></div>
+        </div>
+        <div class="tdrow">
+          <span class="ic" style="background:var(--warning-50);color:var(--warning-700)"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7"/><path d="M10 6v4l3 2"/></svg></span>
+          <div class="g"><div class="h">Introduce Cara Nunes to procurement, due Wednesday</div><div class="w">Baseline Data. Marcus asked for this in the pilot call. It is the only thing standing between you and the MNDA.</div></div>
+          <div class="act"><button class="btn btn-primary btn-sm" data-view="task">Open task</button></div>
+        </div>
+    </div>
+
+    <div class="sec-title"><h2>Your network</h2><span class="t-sm muted">Who to lean on, and who to leave alone</span></div>
+    <div class="card tdblock">
+        <div class="tdrow">
+          <span class="ic" style="background:var(--error-50);color:var(--error-700)"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="7.5" cy="7" r="2.6"/><path d="M2.5 16.5c0-2.6 2.2-4.4 5-4.4s5 1.8 5 4.4"/><path d="M13.6 5c1.4 0 2.5 1.1 2.5 2.5S15 10 13.6 10M14.5 12.4c1.8.4 3 1.9 3 4.1"/></svg></span>
+          <div class="g"><div class="h">Stop asking Helen Ward for a fortnight</div><div class="w">Seven open asks, three of them sent in the last month. She has made 6 intros this quarter, so the relationship is worth protecting.</div></div>
+          <div class="act"><button class="btn btn-secondary btn-sm" data-view="network">See her asks</button><button class="btn btn-tertiary btn-sm">Dismiss</button></div>
+        </div>
+        <div class="tdrow">
+          <span class="ic" style="background:var(--warning-50);color:var(--warning-700)"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7"/><path d="M10 6v4l3 2"/></svg></span>
+          <div class="g"><div class="h">Owen Brandt has gone quiet</div><div class="w">Five asks outstanding, the oldest sent 41 days ago with no reply. Nudge him or route those five accounts another way.</div></div>
+          <div class="act"><button class="btn btn-secondary btn-sm">Nudge</button><button class="btn btn-tertiary btn-sm">Dismiss</button></div>
+        </div>
+        <div class="tdrow">
+          <span class="ic" style="background:var(--blue-50);color:var(--blue-700)"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 3v7M6.5 6.5 10 3l3.5 3.5"/><path d="M4 13v3h12v-3"/></svg></span>
+          <div class="g"><div class="h">Nathan Pike has never been asked</div><div class="w">A strong path to Dean Whitlock at Copperline, sitting unused. The draft is already written and waiting on you.</div></div>
+          <div class="act"><button class="btn btn-primary btn-sm" data-view="task">Open task</button></div>
+        </div>
+    </div>
+
+    <div class="sec-title"><h2>Accounts that changed</h2><span class="t-sm muted">Since you last looked</span></div>
+    <div class="card tdblock">
+        <div class="tdrow">
+          <span class="ic" style="background:var(--success-50);color:var(--success-700)"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 3v7M6.5 6.5 10 3l3.5 3.5"/><path d="M4 13v3h12v-3"/></svg></span>
+          <div class="g"><div class="h">Elena Roche was promoted to Head of Growth at Kestrel Dynamics</div><div class="w">Her new scope covers the partner motion, which is why she is now the right target and Tomas Berg never was.</div></div>
+          <div class="act"><button class="btn btn-secondary btn-sm">Open account</button><button class="btn btn-tertiary btn-sm">Dismiss</button></div>
+        </div>
+        <div class="tdrow">
+          <span class="ic" style="background:var(--success-50);color:var(--success-700)"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 16V8M10 16V4M16 16v-6"/></svg></span>
+          <div class="g"><div class="h">Marcus Webb read the paths API documentation three times</div><div class="w">Baseline Data. Prospect-initiated and unprompted, two days before he asked for pricing.</div></div>
+          <div class="act"><button class="btn btn-secondary btn-sm">Open account</button><button class="btn btn-tertiary btn-sm">Dismiss</button></div>
+        </div>
+        <div class="tdrow">
+          <span class="ic" style="background:var(--warning-50);color:var(--warning-700)"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M4 16V8M10 16V4M16 16v-6"/></svg></span>
+          <div class="g"><div class="h">Onyx Fleet raised a Series B</div><div class="w">Fit 84, and the signal moved to Warm watch. Nobody owns a path in yet.</div></div>
+          <div class="act"><button class="btn btn-secondary btn-sm">Open account</button><button class="btn btn-tertiary btn-sm">Dismiss</button></div>
+        </div>
+    </div>
+
+    <div class="sec-title"><h2>Waiting on other people</h2><span class="t-sm muted">Nothing for you to do, but worth knowing</span></div>
+    <div class="card tdblock">
+        <div class="tdrow">
+          <span class="ic" style="background:var(--gray-100);color:var(--gray-600)"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M3 5h14v10H3z"/><path d="m3 6 7 5 7-5"/></svg></span>
+          <div class="g"><div class="h">Three asks are sitting with connectors</div><div class="w">Oldest is 16 days. Two are with Helen Ward, who is already over-asked.</div></div>
+          <div class="act"><button class="btn btn-secondary btn-sm" data-view="tasks">See tasks</button></div>
+        </div>
+        <div class="tdrow">
+          <span class="ic" style="background:var(--gray-100);color:var(--gray-600)"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="7.5" cy="7" r="2.6"/><path d="M2.5 16.5c0-2.6 2.2-4.4 5-4.4s5 1.8 5 4.4"/><path d="M13.6 5c1.4 0 2.5 1.1 2.5 2.5S15 10 13.6 10M14.5 12.4c1.8.4 3 1.9 3 4.1"/></svg></span>
+          <div class="g"><div class="h">Marcus Webb is locking the POC roster at Baseline Data</div><div class="w">Three names of a target fifteen. Two days since you asked.</div></div>
+          <div class="act"><button class="btn btn-secondary btn-sm">Nudge</button></div>
+        </div>
+    </div>
+
+    <div class="sec-title"><h2>This week</h2><span class="t-sm muted">Monday to today</span></div>
+    <div class="weekbar">
+      <div class="c"><span class="label">Intros requested</span><div class="n">4</div><div class="t-xs muted">Across 3 connectors</div></div>
+      <div class="c"><span class="label">Intros sent</span><div class="n">0</div><div class="t-xs muted" style="color:var(--error-700)">None this quarter either</div></div>
+      <div class="c"><span class="label">Meetings held</span><div class="n">3</div><div class="t-xs muted">All at Baseline Data</div></div>
+      <div class="c"><span class="label">Tasks closed</span><div class="n">6</div><div class="t-xs muted">2 of them cancelled</div></div>
+    </div>
+  </div>
+
+  <div class="page wide" id="view-accounts" hidden>
     <div class="between" style="align-items:flex-start">
       <div>
         <h1 class="d-sm">Accounts</h1>
@@ -3267,6 +3376,15 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     </div>
 
     <div class="note-block">
+      <h4>17 · Today, and the rule that keeps it useful</h4>
+      <p>The app used to open on a 502-row table sorted by rank, which is a list rather than a starting point. Worse, the things most likely to hurt you surfaced nowhere: two tasks failed and sat 16 days with nobody told, Helen Ward quietly accumulated seven open asks, Owen Brandt went silent 41 days ago, and Elena Roche was promoted into being the right target without anyone noticing.</p>
+      <p style="margin-top:var(--s5)"><span class="strong">The rule.</span> An item earns a place on Today only if it is actionable now, would otherwise go unnoticed, and disappears once handled. Anything permanent belongs on Accounts or Tasks. Dismissing a row removes it, and an emptied block collapses to "Nothing here". A good day should produce a nearly blank page.</p>
+      <p style="margin-top:var(--s5)">That rule exists because dashboards rot into exactly the disease this redesign cured. Every stakeholder adds a widget, nothing is ever removed, and within a year it is the Overview tab again: everything visible, nothing decidable. Blocks are capped at three items for the same reason. If four things are genuinely urgent, the fourth is a ranking problem, not a space problem.</p>
+      <p style="margin-top:var(--s5)"><span class="strong">Your network</span> is the block that justifies the page. "Stop asking Helen Ward for a fortnight" is neither an account fact nor a task fact, and it has a shelf life, so it fits nowhere else in the product. The same block surfaces the opposite case: Nathan Pike has a strong path that has never once been used, with the draft already written.</p>
+      <p style="margin-top:var(--s5)">This week is deliberately unflattering. Four intros requested, <span class="strong">zero sent</span>, six tasks closed of which two were cancelled. A progress strip that only reports good news teaches people to ignore it.</p>
+    </div>
+
+    <div class="note-block">
       <h4>Where each old view went</h4>
       <div class="kv"><span class="k">Overview</span><span class="v">Brief, header, The call, Why</span></div>
       <div class="kv"><span class="k">Strategy → Summary</span><span class="v">Brief, The call</span></div>
@@ -3292,7 +3410,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
 <script>
 /* ---------------- View routing ---------------- */
-const views = ['accounts','tasks','task','account','account2','network','inbox'];
+const views = ['today','accounts','tasks','task','account','account2','network','inbox'];
 const NAV_OF = {account:'accounts', account2:'accounts', task:'tasks'};
 function showView(name){
   views.forEach(v=>{
@@ -3489,6 +3607,23 @@ document.querySelectorAll('[data-send]').forEach(b=>{
   });
 });
 
+
+
+/* ---------------- Today: dismissing clears the page ---------------- */
+document.querySelectorAll('#view-today .tdrow .btn-tertiary').forEach(b=>{
+  if(b.textContent.trim()!=='Dismiss') return;
+  b.addEventListener('click',e=>{
+    e.stopPropagation();
+    const row=b.closest('.tdrow'), card=row.closest('.card');
+    row.remove();
+    if(!card.querySelector('.tdrow')){
+      card.innerHTML='<div class="empty" style="padding:var(--s8)"><div class="ico"><svg class="icon" viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg></div><div class="t-sm strong" style="color:var(--gray-700)">Nothing here</div><div class="t-sm">Cleared. It will come back if something changes.</div></div>';
+    }
+    const n=document.querySelectorAll('#view-today .tdrow').length;
+    const badge=document.querySelector('.nav-item[data-view="today"] .count');
+    if(badge) badge.textContent=n;
+  });
+});
 
 /* ---------------- Fix contact record ---------------- */
 const fixModal=document.getElementById('fixModal');
