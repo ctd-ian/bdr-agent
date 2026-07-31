@@ -540,6 +540,19 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .prio.hi{background:var(--blue-600);color:#fff}
 .prio.md{background:var(--gray-200);color:var(--gray-700)}
 
+
+/* Intro lifecycle */
+.funnel{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--gray-200);border-radius:var(--r-xl);background:#fff;box-shadow:var(--sh-sm);overflow:hidden}
+.funnel .st{padding:var(--s6) var(--s7);border-right:1px solid var(--gray-200);position:relative}
+.funnel .st:last-child{border-right:none}
+.funnel .st .n{font-family:var(--font-display);font-size:28px;line-height:32px;font-weight:600;letter-spacing:-.02em;color:var(--gray-900);margin-top:var(--s3)}
+.funnel .st .cv{font-size:12px;line-height:18px;color:var(--gray-500);margin-top:var(--s2)}
+.pipe{display:inline-flex;align-items:center;gap:3px}
+.pipe i{width:16px;height:5px;border-radius:2px;background:var(--gray-200);display:block}
+.pipe.s1 i:nth-child(1),.pipe.s2 i:nth-child(-n+2),.pipe.s3 i:nth-child(-n+3),.pipe.s4 i{background:var(--success)}
+.pipe.dead i{background:var(--gray-200)}
+.pipe.dead i:nth-child(1){background:var(--error)}
+
 /* Design notes */
 .notes-toggle{position:fixed;right:var(--s8);bottom:var(--s8);z-index:60;background:var(--gray-900);color:#fff;border-radius:var(--r-2xl);height:44px;padding:0 var(--s7);display:inline-flex;align-items:center;gap:var(--s4);box-shadow:var(--sh-2xl);font-weight:500}
 .notes{position:fixed;top:0;right:0;bottom:0;width:470px;max-width:94vw;z-index:70;background:#fff;border-left:1px solid var(--gray-200);box-shadow:var(--sh-2xl);transform:translateX(100%);transition:transform .22s ease;display:flex;flex-direction:column}
@@ -598,9 +611,9 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <svg class="icon" viewBox="0 0 20 20"><circle cx="10" cy="5" r="2.2"/><circle cx="5" cy="14" r="2.2"/><circle cx="15" cy="14" r="2.2"/><path d="M8.4 6.6 6.3 12M11.6 6.6 13.7 12M7.2 14h5.6"/></svg>
         My network
       </button>
-      <button class="nav-item" data-view="inbox">
+      <button class="nav-item" data-view="intros">
         <svg class="icon" viewBox="0 0 20 20"><path d="M3 5h14v10H3z"/><path d="m3 6 7 5 7-5"/></svg>
-        Inbox <span class="count">9</span>
+        Intros <span class="count">2</span>
       </button>
     </nav>
 
@@ -765,7 +778,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           <span class="label">Intros sent</span>
           <div class="r1"><span class="n">0</span><span class="of">of 5</span></div>
           <div class="bar"><i style="width:0%;background:var(--error)"></i></div>
-          <div class="pace" style="color:var(--error-700)"><svg class="icon icon-xs" style="flex:0 0 14px;margin-top:1px" viewBox="0 0 20 20"><path d="M10 5v10M6 11l4 4 4-4"/></svg><span>5 behind, and none this quarter</span></div>
+          <div class="pace" style="color:var(--error-700)"><svg class="icon icon-xs" style="flex:0 0 14px;margin-top:1px" viewBox="0 0 20 20"><path d="M10 5v10M6 11l4 4 4-4"/></svg><span>5 behind, and only 11 all quarter</span></div>
         </div>
         <div class="statrow">
           <span class="label">Meetings held</span>
@@ -3072,13 +3085,130 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     </div>
   </div>
 
-  <div class="page" id="view-inbox" hidden>
-    <h1 class="d-sm">Inbox</h1>
-    <div class="card" style="margin-top:var(--s7)"><div class="empty">
-      <div class="ico"><svg class="icon" viewBox="0 0 20 20"><path d="M3 5h14v10H3z"/><path d="m3 6 7 5 7-5"/></svg></div>
-      <div class="t-sm strong" style="color:var(--gray-700)">Out of scope for this prototype</div>
-      <div class="t-sm">This redesign covers Accounts, Tasks and the account detail page.</div>
-    </div></div>
+  <div class="page wide" id="view-intros" hidden>
+    <div class="between" style="align-items:flex-start">
+      <div>
+        <h1 class="d-sm">Intros</h1>
+        <p class="dim" style="margin-top:var(--s2)">Every introduction, from asked to met. This is where you find out whether the network is working.</p>
+      </div>
+      <button class="btn btn-secondary"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 3v10M6.5 9.5 10 13l3.5-3.5"/><path d="M4 16h12"/></svg>Export</button>
+    </div>
+
+    <div class="sec-title"><h2>This quarter</h2><span class="t-sm muted">38 asks have produced 3 meetings</span></div>
+    <div class="funnel">
+      <div class="st"><span class="label">Asked</span><div class="n">38</div><div class="cv">Across 14 connectors</div></div>
+      <div class="st"><span class="label">Sent</span><div class="n">11</div><div class="cv">29% of asks. Median 6 days to send.</div></div>
+      <div class="st"><span class="label">Replied</span><div class="n">6</div><div class="cv">55% of sent. Median 2 days to reply.</div></div>
+      <div class="st"><span class="label">Met</span><div class="n">3</div><div class="cv">8% of asks. Median 11 days end to end.</div></div>
+    </div>
+
+    <p class="t-sm dim" style="margin-top:var(--s5)">The drop is between <span class="strong">asked</span> and <span class="strong">sent</span>. Once a connector actually sends, more than half get a reply, and half of those become meetings.</p>
+
+    <div class="row" style="margin:var(--s8) 0 var(--s6)">
+      <div class="seg">
+        <button class="is-active" data-seg="intro">All <span class="t-xs" style="opacity:.7">38</span></button>
+        <button data-seg="intro">Written for you <span class="t-xs" style="opacity:.7">2</span></button>
+        <button data-seg="intro">Shared with others <span class="t-xs" style="opacity:.7">12</span></button>
+        <button data-seg="intro">Landed <span class="t-xs" style="opacity:.7">3</span></button>
+        <button data-seg="intro">Stalled <span class="t-xs" style="opacity:.7">18</span></button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="toolbar">
+        <label class="tb-search"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="9" cy="9" r="6"/><path d="m17 17-3.5-3.5"/></svg><input placeholder="Search by target, account or connector..."></label>
+        <button class="filt" data-filt>Connector<svg class="icon icon-xs chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
+        <button class="filt" data-filt>Stage<svg class="icon icon-xs chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
+        <div class="row" style="margin-left:auto;gap:var(--s4)">
+          <button class="helpbtn" data-help="intros" aria-label="What do these columns mean?"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M8.2 7.8a1.9 1.9 0 1 1 2.3 2.4c-.4.2-.5.5-.5.9v.3"/><path d="M10 14.6h.01"/></svg></button>
+          <span class="t-sm muted nowrap">Sort</span>
+          <button class="filt">Oldest first<svg class="icon icon-xs chev" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
+        </div>
+      </div>
+      <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th style="width:22%">Target</th><th>Account</th><th>Connector</th><th>Requestor</th><th>Progress</th><th>Stage</th><th>Age</th></tr></thead>
+        <tbody>
+          <tr class="rowlink">
+            <td><div class="strong">Dean Whitlock</div><div class="t-xs muted">Marco wrote it. Waiting on you to send.</div></td>
+            <td><span class="acct"><span class="avatar avatar-co">Cp</span>Copperline</span></td>
+            <td class="t-sm dim nowrap">Nathan Pike</td>
+            <td class="t-sm dim nowrap">You</td>
+            <td><span class="pipe s1" data-tip="Asked, sent, replied, met."><i></i><i></i><i></i><i></i></span></td>
+            <td><span class="badge badge-blue"><span class="dot"></span>Written for you</span></td>
+            <td class="t-sm dim nowrap">2 days</td>
+          </tr>
+          <tr class="rowlink">
+            <td><div class="strong">Adam Kessler</div><div class="t-xs muted">Held back until the security review starts.</div></td>
+            <td><span class="acct"><span class="avatar avatar-co">Ba</span>Baseline Data</span></td>
+            <td class="t-sm dim nowrap">Dana Sackett</td>
+            <td class="t-sm dim nowrap">Marco Devlin</td>
+            <td><span class="pipe s1" data-tip="Asked, sent, replied, met."><i></i><i></i><i></i><i></i></span></td>
+            <td><span class="badge badge-blue"><span class="dot"></span>Written for you</span></td>
+            <td class="t-sm dim nowrap">1 day</td>
+          </tr>
+          <tr class="rowlink">
+            <td><div class="strong">Elena Roche</div><div class="t-xs muted">Sent to Alex. He has not passed it on yet.</div></td>
+            <td><span class="acct"><span class="avatar avatar-co">Ke</span>Kestrel Dynamics</span></td>
+            <td class="t-sm dim nowrap">Alex Tanaka</td>
+            <td class="t-sm dim nowrap">You</td>
+            <td><span class="pipe s1" data-tip="Asked, sent, replied, met."><i></i><i></i><i></i><i></i></span></td>
+            <td><span class="badge badge-gray"><span class="dot"></span>Shared with Alex</span></td>
+            <td class="t-sm dim nowrap">2 days</td>
+          </tr>
+          <tr class="rowlink">
+            <td><div class="strong">Priya Raman</div><div class="t-xs muted">Helen forwarded it. Nothing back.</div></td>
+            <td><span class="acct"><span class="avatar avatar-co">Ve</span>Vesper Analytics</span></td>
+            <td class="t-sm dim nowrap">Helen Ward</td>
+            <td class="t-sm dim nowrap">Marco Devlin</td>
+            <td><span class="pipe s2" data-tip="Asked, sent, replied, met."><i></i><i></i><i></i><i></i></span></td>
+            <td><span class="badge badge-warning"><span class="dot"></span>Sent, no reply</span></td>
+            <td class="t-sm dim nowrap">9 days</td>
+          </tr>
+          <tr class="rowlink">
+            <td><div class="strong">Ruth Calder</div><div class="t-xs muted">No email address on Helen&#39;s record.</div></td>
+            <td><span class="acct"><span class="avatar avatar-co">Qu</span>Quarry Labs</span></td>
+            <td class="t-sm dim nowrap">Helen Ward</td>
+            <td class="t-sm dim nowrap">You</td>
+            <td><span class="pipe dead" data-tip="Asked, sent, replied, met."><i></i><i></i><i></i><i></i></span></td>
+            <td><span class="badge badge-error"><span class="dot"></span>Could not send</span></td>
+            <td class="t-sm dim nowrap">16 days</td>
+          </tr>
+          <tr class="rowlink">
+            <td><div class="strong">Victor Hale</div><div class="t-xs muted">Her address is dead. Two newer ones known.</div></td>
+            <td><span class="acct"><span class="avatar avatar-co">Br</span>Brightpath</span></td>
+            <td class="t-sm dim nowrap">Marta Quinn</td>
+            <td class="t-sm dim nowrap">You</td>
+            <td><span class="pipe dead" data-tip="Asked, sent, replied, met."><i></i><i></i><i></i><i></i></span></td>
+            <td><span class="badge badge-error"><span class="dot"></span>Bounced</span></td>
+            <td class="t-sm dim nowrap">2 days</td>
+          </tr>
+          <tr class="rowlink">
+            <td><div class="strong">Owen Vance</div><div class="t-xs muted">Asked 11 days ago, met yesterday.</div></td>
+            <td><span class="acct"><span class="avatar avatar-co">Ti</span>Tidewater AI</span></td>
+            <td class="t-sm dim nowrap">Devin Cole</td>
+            <td class="t-sm dim nowrap">You</td>
+            <td><span class="pipe s4" data-tip="Asked, sent, replied, met."><i></i><i></i><i></i><i></i></span></td>
+            <td><span class="badge badge-success"><span class="dot"></span>Meeting booked</span></td>
+            <td class="t-sm dim nowrap">11 days</td>
+          </tr>
+          <tr class="rowlink">
+            <td><div class="strong">Ingrid Sol</div><div class="t-xs muted">Warm reply. No meeting scheduled yet.</div></td>
+            <td><span class="acct"><span class="avatar avatar-co">No</span>Northbeam HR</span></td>
+            <td class="t-sm dim nowrap">Helen Ward</td>
+            <td class="t-sm dim nowrap">Marco Devlin</td>
+            <td><span class="pipe s3" data-tip="Asked, sent, replied, met."><i></i><i></i><i></i><i></i></span></td>
+            <td><span class="badge badge-success"><span class="dot"></span>Replied</span></td>
+            <td class="t-sm dim nowrap">5 days</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="card-foot">
+        <span class="t-sm muted">Showing 8 of 38</span>
+        <div class="pager"><span class="p on">1</span><span class="p">2</span><span class="p">3</span><button aria-label="Next"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="m8 5 5 5-5 5"/></svg></button></div>
+      </div>
+    </div>
   </div>
 
   </main>
@@ -3289,6 +3419,15 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
           <div class="helprow"><span class="k">High</span><span class="v">Do this one first. A live deal, a deadline this week, or a change that makes your current plan wrong. Hover any priority to see why it was scored that way.</span></div>
           <div class="helprow"><span class="k">Medium</span><span class="v">Worth doing, but nothing breaks if it waits a day. Rows are ordered by priority inside each block.</span></div>
           <div class="helprow"><span class="k">Dismiss</span><span class="v">Clears the row. It comes back if the underlying situation changes, so dismissing is not the same as resolving.</span></div>
+      </div>
+
+      <div class="helppanel" data-helppanel="intros">
+          <div class="helprow"><span class="k">Progress</span><span class="v">Four steps: asked, sent, replied, met. An intro only counts as sent once the connector actually forwards it, which is where most of them stop.</span></div>
+          <div class="helprow"><span class="k">Written for you</span><span class="v">Someone else authored it and you are the requestor. It goes out under your name once you send it.</span></div>
+          <div class="helprow"><span class="k">Shared with others</span><span class="v">You authored it and handed it to someone else to send. You are waiting on them, not the connector.</span></div>
+          <div class="helprow"><span class="k">Sent, no reply</span><span class="v">The connector forwarded it and the target has not responded. After about ten days this is worth a nudge or a different path.</span></div>
+          <div class="helprow"><span class="k">Stalled</span><span class="v">Asked but never sent, or sent and long since silent. This is the largest group, and closing the gap between asked and sent is the single biggest lever on the funnel.</span></div>
+          <div class="helprow"><span class="k">Age</span><span class="v">Time since the ask was created, not since the last change. An 16-day-old intro that failed on day one has still cost you sixteen days.</span></div>
       </div>
 
       <div class="helppanel" data-helppanel="timeline">
@@ -3506,6 +3645,14 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     </div>
 
     <div class="note-block">
+      <h4>18 · Intros, not an inbox</h4>
+      <p><span class="strong">Inbox was inherited, never designed.</span> It came from the CTD.ai design system's own web-app UI kit and sat as a placeholder. Building a comprehensive inbox would have been a mistake: it competes with Gmail and Outlook, which will always be better at it, and sending through CTD already puts replies in the AE's real mailbox.</p>
+      <p style="margin-top:var(--s5)">What is genuinely missing is <span class="strong">measurement</span>. The Baseline Data pilot notes name it precisely: reps act on relationships outside the ghost-email tracking, so nobody can prove the ROI. Intros is that measurement layer, and it exists to answer one question: does the network actually produce meetings?</p>
+      <p style="margin-top:var(--s5)">The funnel makes the answer uncomfortable and specific. 38 asked, 11 sent, 6 replied, 3 met. The collapse is between <span class="strong">asked and sent</span>, at 29 per cent. Once a connector actually forwards something, more than half get a reply. So the product problem is not persuasion or copy, it is getting connectors to act, which is what the over-asked and gone-quiet flags on Today and My network are for.</p>
+      <p style="margin-top:var(--s5)">Your existing <span class="strong">Written for me</span> and <span class="strong">Shared with others</span> tabs are folded in as filters rather than kept as a separate feature. They are two states of one pipeline: in the first you are the requestor and someone else authored, in the second you authored and are waiting on someone else. Same object, different seat.</p>
+    </div>
+
+    <div class="note-block">
       <h4>Where each old view went</h4>
       <div class="kv"><span class="k">Overview</span><span class="v">Brief, header, The call, Why</span></div>
       <div class="kv"><span class="k">Strategy → Summary</span><span class="v">Brief, The call</span></div>
@@ -3531,7 +3678,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
 <script>
 /* ---------------- View routing ---------------- */
-const views = ['today','accounts','tasks','task','account','account2','network','inbox'];
+const views = ['today','accounts','tasks','task','account','account2','network','intros'];
 const NAV_OF = {account:'accounts', account2:'accounts', task:'tasks'};
 function showView(name){
   views.forEach(v=>{
