@@ -3716,10 +3716,10 @@ const READY='<span class="badge badge-gray"><span class="dot"></span>Ready</span
 const NEVER='<span class="badge badge-blue"><span class="dot"></span>Never asked</span>';
 
 const ALTS_DEAN=[
- {on:false,init:'NP',name:'Nathan Pike',role:'Fractional Operating Partner · Meridian Advisory',score:'s4',strength:'Strong',
-  ev:'Overlapped with Dean at the C-level last year and messaged him three weeks ago.',status:NEVER,
-  facts:F(['Intros made','0'],['Asks in flight','1'],['Last asked','never'])},
- {on:true,init:'HW',name:'Helen Ward',role:'Board Observer · Fernwood Capital',score:'s3',strength:'Familiar',
+ {on:true,init:'DS',name:'Dana Sackett',role:'Co-Founder &amp; CEO · CTD',score:'s4',strength:'Strong',
+  ev:'Met Dean twice at industry events and traded email as recently as March.',status:READY,
+  facts:F(['Intros made','3'],['Asks in flight','1'],['Last asked','3 weeks ago'])},
+ {on:false,init:'HW',name:'Helen Ward',role:'Board Observer · Fernwood Capital',score:'s3',strength:'Familiar',
   ev:'Sat on a panel with Dean in 2024. Last emailed him five months ago.',status:BAD,
   facts:F(['Intros made','6'],['Asks in flight','7'],['Last asked','2 days ago'])},
  {on:false,init:'MD',name:'Marco Devlin',role:'Global Sales Director · CTD',score:'s2',strength:'Weak',
@@ -3738,17 +3738,36 @@ const ALTS_BULK=[
   facts:F(['Intros made','2'],['Asks in flight','2'],['Last asked','6 days ago'])}];
 
 const ASKS=[
- {t:'Dean Whitlock',a:'Copperline',mono:'Cp',alts:13},
- {t:'Priya Raman',a:'Vesper Analytics',mono:'Ve',alts:2},
- {t:'Ruth Calder',a:'Quarry Labs',mono:'Qu',alts:0},
- {t:'Ingrid Sol',a:'Northbeam HR',mono:'No',alts:0},
- {t:'Victor Hale',a:'Brightpath',mono:'Br',alts:0}];
+ {id:'dean',t:'Dean Whitlock',a:'Copperline',mono:'Cp',alts:13},
+ {id:'priya',t:'Priya Raman',a:'Vesper Analytics',mono:'Ve',alts:2},
+ {id:'ruth',t:'Ruth Calder',a:'Quarry Labs',mono:'Qu',alts:0},
+ {id:'ingrid',t:'Ingrid Sol',a:'Northbeam HR',mono:'No',alts:0},
+ {id:'victor',t:'Victor Hale',a:'Brightpath',mono:'Br',alts:0}];
+const ALTPICK={
+ dean:[
+  {on:true,init:'DS',name:'Dana Sackett',role:'Co-Founder &amp; CEO · CTD',score:'s4',strength:'Strong',
+   ev:'Met Dean twice at industry events and traded email as recently as March.',status:READY,
+   facts:F(['Intros made','3'],['Asks in flight','1'],['Last asked','3 weeks ago'])},
+  {on:false,init:'HW',name:'Helen Ward',role:'Board Observer · Fernwood Capital',score:'s3',strength:'Familiar',
+   ev:'Sat on a panel with Dean in 2024. Last emailed him five months ago.',status:BAD,
+   facts:F(['Intros made','6'],['Asks in flight','7'],['Last asked','2 days ago'])},
+  {on:false,init:'AT',name:'Alex Tanaka',role:'Director, Strategic Accounts · CTD',score:'s4',strength:'Strong',
+   ev:'Worked with Dean at his previous company and still speaks to him quarterly.',status:READY,
+   facts:F(['Intros made','2'],['Asks in flight','2'],['Last asked','6 days ago'])}],
+ priya:[
+  {on:true,init:'HW',name:'Helen Ward',role:'Board Observer · Fernwood Capital',score:'s3',strength:'Familiar',
+   ev:'Invested alongside Priya in 2023 and exchanged email in April.',status:BAD,
+   facts:F(['Intros made','6'],['Asks in flight','7'],['Last asked','2 days ago'])},
+  {on:false,init:'RA',name:'Renee Alvarez',role:'Advisor · Halden Partners',score:'s2',strength:'Weak',
+   ev:'First-degree on LinkedIn with no message history.',status:READY,
+   facts:F(['Intros made','1'],['Asks in flight','0'],['Last asked','never'])}]};
+let connPick=null;
 const askRow=(k)=>`
         <div class="askrow${k.alts?'':' blocked'}">
           <span class="avatar avatar-sm avatar-co">${k.mono}</span>
           <span class="g"><span class="t-sm strong" style="display:block">${k.t} <span class="muted" style="font-weight:400">${k.a}</span></span>
             <span class="t-xs muted">${k.alts?k.alts+' other connector'+(k.alts>1?'s':'')+' can reach them':'No other path. Owen is the only route CTD knows.'}</span></span>
-          ${k.alts?'<button class="btn btn-secondary btn-sm">Choose</button>':'<button class="btn btn-tertiary btn-sm">Nudge Owen</button>'}
+          ${k.alts?`<button class="btn btn-secondary btn-sm" data-pick="${k.id}">Choose</button>`:'<button class="btn btn-tertiary btn-sm">Nudge Owen</button>'}
         </div>`;
 
 function renderConn(ctx,mode){
@@ -3779,6 +3798,15 @@ function renderConn(ctx,mode){
         + ALTS_BULK.map(OPT).join('') + redraftNote();
       document.getElementById('connCta').textContent='Move 3 asks and redraft';
       document.getElementById('connFoot').textContent='Two asks would remain with Owen.';
+    } else if(connPick){
+      const k=ASKS.find(x=>x.id===connPick);
+      md.innerHTML='';
+      out.innerHTML=`<button class="btn btn-tertiary btn-sm" data-pickback style="align-self:flex-start">
+          <svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M12 5 7 10l5 5"/></svg>Back to the five asks</button>
+        <p class="t-sm dim" style="margin-top:var(--s5)">Replacing Owen on one ask only. Reaching <span class="strong">${k.t}</span>, ${k.a}. CTD found ${k.alts} other connectors.</p>`;
+      body.innerHTML=ALTPICK[connPick].map(OPT).join('')+redraftNote();
+      document.getElementById('connCta').textContent='Change and redraft';
+      document.getElementById('connFoot').textContent='The other four asks stay with Owen.';
     } else {
       body.innerHTML=`<div><span class="label">The five asks</span><div style="margin-top:var(--s5)">${ASKS.map(askRow).join('')}</div></div>`
         + `<div class="banner warn"><svg class="icon icon-sm" style="color:var(--warning-700);margin-top:2px" viewBox="0 0 20 20"><path d="M10 7v4M10 14h.01"/><circle cx="10" cy="10" r="7.5"/></svg>
@@ -3818,13 +3846,19 @@ function wireConnPicks(){
     document.querySelectorAll('#connModal .connopt').forEach(x=>x.classList.toggle('on',x===b));
   }));
   document.querySelectorAll('#connModal [data-connmode]').forEach(b=>b.addEventListener('click',()=>{
-    connMode=b.dataset.connmode; renderConn(connCtx,connMode);
+    connMode=b.dataset.connmode; connPick=null; renderConn(connCtx,connMode);
+  }));
+  document.querySelectorAll('#connModal [data-pick]').forEach(b=>b.addEventListener('click',()=>{
+    connPick=b.dataset.pick; renderConn(connCtx,connMode);
+  }));
+  document.querySelectorAll('#connModal [data-pickback]').forEach(b=>b.addEventListener('click',()=>{
+    connPick=null; renderConn(connCtx,connMode);
   }));
 }
 document.querySelectorAll('[data-conn]').forEach(b=>{
   b.addEventListener('click',e=>{
     e.preventDefault();
-    connCtx=b.dataset.conn; connMode='each';
+    connCtx=b.dataset.conn; connMode='each'; connPick=null;
     renderConn(connCtx,connMode);
     connModal.classList.add('open');
   });
