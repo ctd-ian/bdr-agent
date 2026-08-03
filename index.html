@@ -557,7 +557,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
 /* Connector options: can they open the door, and will they */
 .connopt{display:flex;gap:var(--s5);padding:var(--s6);border:1px solid var(--gray-300);border-radius:var(--r-lg);background:#fff;text-align:left;width:100%;align-items:flex-start}
-.connopt+.connopt{margin-top:var(--s5)}
+#connBody{display:flex;flex-direction:column;gap:var(--s6)}
 .connopt:hover{background:var(--gray-50)}
 .connopt.on{border-color:var(--blue-600);background:var(--blue-25);box-shadow:0 0 0 3px var(--blue-50)}
 .connopt.current{border-color:var(--gray-300);background:var(--gray-50)}
@@ -571,6 +571,15 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .connopt .ev{font-size:13px;line-height:19px;color:var(--gray-600)}
 .connopt .facts{display:flex;gap:var(--s5);margin-top:var(--s4);flex-wrap:wrap;font-size:12px;line-height:18px;color:var(--gray-500)}
 .connopt .facts b{color:var(--gray-800);font-weight:600}
+
+/* The connector being replaced, and the per-ask list */
+.connout{border:1px solid var(--warning-200);background:var(--warning-50);border-radius:var(--r-lg);padding:var(--s6);display:flex;gap:var(--s5);align-items:flex-start}
+.connout.plain{border-color:var(--gray-200);background:var(--gray-50)}
+.connout .body{flex:1;min-width:0}
+.askrow{display:flex;align-items:center;gap:var(--s5);padding:var(--s5) var(--s6);border:1px solid var(--gray-200);border-radius:var(--r-lg);background:#fff}
+.askrow+.askrow{margin-top:var(--s4)}
+.askrow .g{flex:1;min-width:0}
+.askrow.blocked{background:var(--gray-25)}
 
 /* Design notes */
 .notes-toggle{position:fixed;right:var(--s8);bottom:var(--s8);z-index:60;background:var(--gray-900);color:#fff;border-radius:var(--r-2xl);height:44px;padding:0 var(--s7);display:inline-flex;align-items:center;gap:var(--s4);box-shadow:var(--sh-2xl);font-weight:500}
@@ -3086,88 +3095,15 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     </div>
 
     <div class="modal-body">
-      <div id="connBanner"></div>
-        <button class="connopt current">
-          <span class="rad"></span>
-          <span class="body">
-            <span class="r1">
-              <span class="avatar avatar-sm">NP</span>
-              <span class="nm">Nathan Pike</span>
-              <span class="rl">Fractional Operating Partner · Meridian Advisory</span>
-              <span class="badge badge-gray">Current</span>
-              <span style="margin-left:auto"><span class="badge badge-blue"><span class="dot"></span>Never asked</span></span>
-            </span>
-            <span class="r2">
-              <span class="score s4"><i></i><i></i><i></i></span>
-              <span class="ev"><span class="strong">Strong</span>. Overlapped with Dean at the C-level last year and messaged him three weeks ago.</span>
-            </span>
-            <span class="facts"><span>Intros made <b>0</b></span><span>Asks in flight <b>1</b></span><span>Last asked <b>never</b></span></span>
-          </span>
-        </button>
-        <button class="connopt on">
-          <span class="rad"></span>
-          <span class="body">
-            <span class="r1">
-              <span class="avatar avatar-sm">HW</span>
-              <span class="nm">Helen Ward</span>
-              <span class="rl">Board Observer · Fernwood Capital</span>
-              
-              <span style="margin-left:auto"><span class="badge badge-error"><span class="dot"></span>Over-asked</span></span>
-            </span>
-            <span class="r2">
-              <span class="score s3"><i></i><i></i><i></i></span>
-              <span class="ev"><span class="strong">Familiar</span>. Sat on a panel with Dean in 2024. Last emailed him five months ago.</span>
-            </span>
-            <span class="facts"><span>Intros made <b>6</b></span><span>Asks in flight <b>7</b></span><span>Last asked <b>2 days ago</b></span></span>
-          </span>
-        </button>
-        <button class="connopt">
-          <span class="rad"></span>
-          <span class="body">
-            <span class="r1">
-              <span class="avatar avatar-sm">OB</span>
-              <span class="nm">Owen Brandt</span>
-              <span class="rl">EIR · Larkspur Ventures</span>
-              
-              <span style="margin-left:auto"><span class="badge badge-warning"><span class="dot"></span>Gone quiet</span></span>
-            </span>
-            <span class="r2">
-              <span class="score s3"><i></i><i></i><i></i></span>
-              <span class="ev"><span class="strong">Familiar</span>. Shares a board seat with Dean at a portfolio company.</span>
-            </span>
-            <span class="facts"><span>Intros made <b>2</b></span><span>Asks in flight <b>5</b></span><span>Last asked <b>41 days ago</b></span></span>
-          </span>
-        </button>
-        <button class="connopt">
-          <span class="rad"></span>
-          <span class="body">
-            <span class="r1">
-              <span class="avatar avatar-sm">MD</span>
-              <span class="nm">Marco Devlin</span>
-              <span class="rl">Global Sales Director · CTD</span>
-              
-              <span style="margin-left:auto"><span class="badge badge-gray"><span class="dot"></span>Ready</span></span>
-            </span>
-            <span class="r2">
-              <span class="score s2"><i></i><i></i><i></i></span>
-              <span class="ev"><span class="strong">Weak</span>. First-degree on LinkedIn with no message history. Unlikely to carry weight.</span>
-            </span>
-            <span class="facts"><span>Intros made <b>0</b></span><span>Asks in flight <b>0</b></span><span>Last asked <b>never</b></span></span>
-          </span>
-        </button>
-
-      <button class="btn btn-tertiary btn-sm" style="align-self:flex-start">Show all 14 connectors<svg class="icon icon-sm" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
-
-      <div class="banner warn">
-        <svg class="icon icon-sm" style="color:var(--warning-700);margin-top:2px" viewBox="0 0 20 20"><path d="M10 7v4M10 14h.01"/><circle cx="10" cy="10" r="7.5"/></svg>
-        <div><span class="strong">Both messages get rewritten.</span> They reference how the connector knows Dean, so Marco's draft is discarded and CTD writes a new pair. You will review them before anything sends.</div>
-      </div>
+      <div id="connOut"></div>
+      <div id="connMode"></div>
+      <div id="connBody"></div>
     </div>
 
     <div class="modal-foot">
       <button class="btn btn-tertiary" data-connclose>Cancel</button>
-      <span class="t-xs muted">Strength says whether they can open the door. Load says whether they will.</span>
-      <button class="btn btn-primary" style="margin-left:auto" data-connclose>Change and redraft</button>
+      <span class="t-xs muted" id="connFoot">Strength says whether they can open the door. Load says whether they will.</span>
+      <button class="btn btn-primary" style="margin-left:auto" data-connclose id="connCta">Change and redraft</button>
     </div>
   </div>
 </div>
@@ -3760,27 +3696,141 @@ document.querySelectorAll('#view-today .tdrow .btn-tertiary').forEach(b=>{
 
 /* ---------------- Change connector ---------------- */
 const connModal=document.getElementById('connModal');
-const CONN={
-  dean:{sub:'Reaching Dean Whitlock, CEO at Copperline. CTD found 14 paths to him.',banner:''},
-  owen:{sub:'Owen Brandt is holding five asks. This one reaches Dean Whitlock at Copperline.',
-        banner:'<div class="banner"><svg class="icon icon-sm" style="color:var(--blue-700);margin-top:2px" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 6h.01"/></svg><div><span class="strong">Ask 1 of 5 with Owen.</span> Reroute this one and CTD will offer you the next. Two of the five have a second path already; three do not.</div></div>'}
-};
+const OPT=(o)=>`
+        <button class="connopt${o.on?' on':''}">
+          <span class="rad"></span>
+          <span class="body">
+            <span class="r1">
+              <span class="avatar avatar-sm">${o.init}</span><span class="nm">${o.name}</span><span class="rl">${o.role}</span>
+              <span style="margin-left:auto">${o.status}</span>
+            </span>
+            <span class="r2"><span class="score ${o.score}"><i></i><i></i><i></i></span>
+              <span class="ev"><span class="strong">${o.strength}</span>. ${o.ev}</span></span>
+            <span class="facts">${o.facts}</span>
+          </span>
+        </button>`;
+const F=(...p)=>p.map(([k,v])=>`<span>${k} <b>${v}</b></span>`).join('');
+const BAD='<span class="badge badge-error"><span class="dot"></span>Over-asked</span>';
+const QUIET='<span class="badge badge-warning"><span class="dot"></span>Gone quiet</span>';
+const READY='<span class="badge badge-gray"><span class="dot"></span>Ready</span>';
+const NEVER='<span class="badge badge-blue"><span class="dot"></span>Never asked</span>';
+
+const ALTS_DEAN=[
+ {on:false,init:'NP',name:'Nathan Pike',role:'Fractional Operating Partner · Meridian Advisory',score:'s4',strength:'Strong',
+  ev:'Overlapped with Dean at the C-level last year and messaged him three weeks ago.',status:NEVER,
+  facts:F(['Intros made','0'],['Asks in flight','1'],['Last asked','never'])},
+ {on:true,init:'HW',name:'Helen Ward',role:'Board Observer · Fernwood Capital',score:'s3',strength:'Familiar',
+  ev:'Sat on a panel with Dean in 2024. Last emailed him five months ago.',status:BAD,
+  facts:F(['Intros made','6'],['Asks in flight','7'],['Last asked','2 days ago'])},
+ {on:false,init:'MD',name:'Marco Devlin',role:'Global Sales Director · CTD',score:'s2',strength:'Weak',
+  ev:'First-degree on LinkedIn with no message history. Unlikely to carry weight.',status:READY,
+  facts:F(['Intros made','0'],['Asks in flight','0'],['Last asked','never'])}];
+
+const ALTS_BULK=[
+ {on:true,init:'HW',name:'Helen Ward',role:'Board Observer · Fernwood Capital',score:'s3',strength:'Reaches 3 of the 5',
+  ev:'Dean Whitlock, Priya Raman and Victor Hale. No path to the other two.',status:BAD,
+  facts:F(['Intros made','6'],['Asks in flight','7'],['Last asked','2 days ago'])},
+ {on:false,init:'DS',name:'Dana Sackett',role:'Co-Founder &amp; CEO · CTD',score:'s4',strength:'Reaches 2 of the 5',
+  ev:'Dean Whitlock and Ingrid Sol, both through direct relationships.',status:READY,
+  facts:F(['Intros made','3'],['Asks in flight','1'],['Last asked','3 weeks ago'])},
+ {on:false,init:'AT',name:'Alex Tanaka',role:'Director, Strategic Accounts · CTD',score:'s4',strength:'Reaches 1 of the 5',
+  ev:'Dean Whitlock only. The rest are outside his network.',status:READY,
+  facts:F(['Intros made','2'],['Asks in flight','2'],['Last asked','6 days ago'])}];
+
+const ASKS=[
+ {t:'Dean Whitlock',a:'Copperline',mono:'Cp',alts:13},
+ {t:'Priya Raman',a:'Vesper Analytics',mono:'Ve',alts:2},
+ {t:'Ruth Calder',a:'Quarry Labs',mono:'Qu',alts:0},
+ {t:'Ingrid Sol',a:'Northbeam HR',mono:'No',alts:0},
+ {t:'Victor Hale',a:'Brightpath',mono:'Br',alts:0}];
+const askRow=(k)=>`
+        <div class="askrow${k.alts?'':' blocked'}">
+          <span class="avatar avatar-sm avatar-co">${k.mono}</span>
+          <span class="g"><span class="t-sm strong" style="display:block">${k.t} <span class="muted" style="font-weight:400">${k.a}</span></span>
+            <span class="t-xs muted">${k.alts?k.alts+' other connector'+(k.alts>1?'s':'')+' can reach them':'No other path. Owen is the only route CTD knows.'}</span></span>
+          ${k.alts?'<button class="btn btn-secondary btn-sm">Choose</button>':'<button class="btn btn-tertiary btn-sm">Nudge Owen</button>'}
+        </div>`;
+
+function renderConn(ctx,mode){
+  const out=document.getElementById('connOut'), md=document.getElementById('connMode'), body=document.getElementById('connBody');
+  if(ctx==='owen'){
+    document.getElementById('connSub').textContent='Owen Brandt is holding five asks and has not replied in 41 days.';
+    out.innerHTML=`<div class="connout">
+        <svg class="icon" style="color:var(--warning-700);margin-top:1px" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 6.5v4M10 13.5h.01"/></svg>
+        <div class="body">
+          <div class="r1" style="display:flex;align-items:center;gap:var(--s4);flex-wrap:wrap">
+            <span class="avatar avatar-sm">OB</span><span class="nm" style="font-weight:600">Owen Brandt</span>
+            <span class="t-xs muted">EIR · Larkspur Ventures</span>
+            <span style="margin-left:auto">${QUIET}</span>
+          </div>
+          <p class="t-sm dim" style="margin-top:var(--s4)">Five asks outstanding, the oldest sent 41 days ago. He has made 2 intros before, so this is a change in behaviour rather than a cold connector.</p>
+        </div>
+      </div>`;
+    md.innerHTML=`<div><span class="label">How do you want to handle the five?</span>
+      <div class="delivery" style="margin-top:var(--s5)">
+        <button class="dopt${mode==='all'?' on':''}" data-connmode="all"><span class="rad"></span>
+          <span><h5>Move them all to one connector</h5><p>Simplest, but no single person reaches all five.</p></span></button>
+        <button class="dopt${mode==='each'?' on':''}" data-connmode="each"><span class="rad"></span>
+          <span><h5>Choose per ask</h5><p>Slower, and the only way to place all five.</p></span></button>
+      </div></div>`;
+    if(mode==='all'){
+      body.innerHTML=`<div class="banner warn"><svg class="icon icon-sm" style="color:var(--warning-700);margin-top:2px" viewBox="0 0 20 20"><path d="M10 7v4M10 14h.01"/><circle cx="10" cy="10" r="7.5"/></svg>
+        <div><span class="strong">No single connector reaches all five.</span> The best available covers three, and the remaining two would stay with Owen.</div></div>`
+        + ALTS_BULK.map(OPT).join('') + redraftNote();
+      document.getElementById('connCta').textContent='Move 3 asks and redraft';
+      document.getElementById('connFoot').textContent='Two asks would remain with Owen.';
+    } else {
+      body.innerHTML=`<div><span class="label">The five asks</span><div style="margin-top:var(--s5)">${ASKS.map(askRow).join('')}</div></div>`
+        + `<div class="banner warn"><svg class="icon icon-sm" style="color:var(--warning-700);margin-top:2px" viewBox="0 0 20 20"><path d="M10 7v4M10 14h.01"/><circle cx="10" cy="10" r="7.5"/></svg>
+           <div><span class="strong">Three of the five have no alternative.</span> Owen is the only route CTD knows to those targets, so the choice there is nudging him or growing the network.</div></div>`;
+      document.getElementById('connCta').textContent='Done';
+      document.getElementById('connFoot').textContent='Two can be rerouted now. Three cannot.';
+    }
+  } else {
+    document.getElementById('connSub').textContent='Reaching Dean Whitlock, CEO at Copperline. CTD found 14 paths to him.';
+    out.innerHTML=`<div class="connout plain">
+        <div class="body">
+          <div style="display:flex;align-items:center;gap:var(--s4);flex-wrap:wrap">
+            <span class="avatar avatar-sm">NP</span><span class="nm" style="font-weight:600">Nathan Pike</span>
+            <span class="t-xs muted">Fractional Operating Partner · Meridian Advisory</span>
+            <span class="badge badge-gray">Currently chosen</span>
+            <span style="margin-left:auto">${NEVER}</span>
+          </div>
+          <p class="t-sm dim" style="margin-top:var(--s4)">Strong path, messaged Dean three weeks ago, and nothing is wrong with him. Change only if you want a different angle.</p>
+        </div>
+      </div>`;
+    md.innerHTML='';
+    body.innerHTML=ALTS_DEAN.map(OPT).join('')
+      + '<button class="btn btn-tertiary btn-sm" style="align-self:flex-start">Show all 14 connectors<svg class="icon icon-sm" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>'
+      + redraftNote();
+    document.getElementById('connCta').textContent='Change and redraft';
+    document.getElementById('connFoot').textContent='Strength says whether they can open the door. Load says whether they will.';
+  }
+  wireConnPicks();
+}
+function redraftNote(){
+  return `<div class="banner warn"><svg class="icon icon-sm" style="color:var(--warning-700);margin-top:2px" viewBox="0 0 20 20"><path d="M10 7v4M10 14h.01"/><circle cx="10" cy="10" r="7.5"/></svg>
+    <div><span class="strong">Both messages get rewritten.</span> They reference how the connector knows the target, so the current draft is discarded and CTD writes a new pair. You will review them before anything sends.</div></div>`;
+}
+let connCtx='dean', connMode='each';
+function wireConnPicks(){
+  document.querySelectorAll('#connModal .connopt').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('#connModal .connopt').forEach(x=>x.classList.toggle('on',x===b));
+  }));
+  document.querySelectorAll('#connModal [data-connmode]').forEach(b=>b.addEventListener('click',()=>{
+    connMode=b.dataset.connmode; renderConn(connCtx,connMode);
+  }));
+}
 document.querySelectorAll('[data-conn]').forEach(b=>{
   b.addEventListener('click',e=>{
     e.preventDefault();
-    const c=CONN[b.dataset.conn]||CONN.dean;
-    document.getElementById('connSub').textContent=c.sub;
-    document.getElementById('connBanner').innerHTML=c.banner;
+    connCtx=b.dataset.conn; connMode='each';
+    renderConn(connCtx,connMode);
     connModal.classList.add('open');
   });
 });
 document.querySelectorAll('[data-connclose]').forEach(b=>b.addEventListener('click',()=>connModal.classList.remove('open')));
 connModal.addEventListener('click',e=>{if(e.target===connModal)connModal.classList.remove('open');});
-document.querySelectorAll('#connModal .connopt').forEach(b=>{
-  b.addEventListener('click',()=>{
-    document.querySelectorAll('#connModal .connopt').forEach(x=>x.classList.toggle('on',x===b));
-  });
-});
 
 /* ---------------- Fix contact record ---------------- */
 const fixModal=document.getElementById('fixModal');
