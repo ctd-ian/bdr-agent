@@ -508,7 +508,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
 
 /* Today: doing on the left, standing on the right and always in view */
-.today-grid{display:grid;grid-template-columns:minmax(0,1fr) 264px;gap:var(--s8);align-items:start}
+.today-grid{display:grid;grid-template-columns:minmax(0,1fr) 264px;gap:var(--s8);align-items:start;margin-top:var(--s6)}
 .today-side{position:sticky;top:var(--s8);display:flex;flex-direction:column;gap:var(--s5)}
 .today-side .head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s4)}
 .statpanel{border:1px solid var(--gray-200);border-radius:var(--r-xl);background:#fff;box-shadow:var(--sh-sm);overflow:hidden}
@@ -523,8 +523,9 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .statrow.alarm .n{color:var(--error-700)}
 .bar{height:3px;border-radius:2px;background:var(--gray-200);margin-top:var(--s4);overflow:hidden}
 .bar i{display:block;height:100%;border-radius:2px;background:var(--blue-600)}
-.today-main>.sec-title:first-child{margin-top:0}
-.today-side .head{min-height:24px}
+.today-main>.sec-title:first-child{margin-top:0;align-items:center;min-height:32px}
+.today-side .head{align-items:center;min-height:32px}
+
 @media (max-width:1080px){.today-grid{grid-template-columns:1fr}.today-side{position:static}}
 
 
@@ -552,6 +553,24 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .pipe.s1 i:nth-child(1),.pipe.s2 i:nth-child(-n+2),.pipe.s3 i:nth-child(-n+3),.pipe.s4 i{background:var(--success)}
 .pipe.dead i{background:var(--gray-200)}
 .pipe.dead i:nth-child(1){background:var(--error)}
+
+
+/* Connector options: can they open the door, and will they */
+.connopt{display:flex;gap:var(--s5);padding:var(--s6);border:1px solid var(--gray-300);border-radius:var(--r-lg);background:#fff;text-align:left;width:100%;align-items:flex-start}
+.connopt+.connopt{margin-top:var(--s5)}
+.connopt:hover{background:var(--gray-50)}
+.connopt.on{border-color:var(--blue-600);background:var(--blue-25);box-shadow:0 0 0 3px var(--blue-50)}
+.connopt.current{border-color:var(--gray-300);background:var(--gray-50)}
+.connopt .rad{width:18px;height:18px;flex:0 0 18px;border-radius:50%;border:1px solid var(--gray-300);background:#fff;margin-top:2px}
+.connopt.on .rad{border-color:var(--blue-600);border-width:5px}
+.connopt .body{flex:1;min-width:0}
+.connopt .r1{display:flex;align-items:center;gap:var(--s4);flex-wrap:wrap}
+.connopt .nm{font-size:14px;line-height:20px;font-weight:600;color:var(--gray-900)}
+.connopt .rl{font-size:12px;line-height:18px;color:var(--gray-500)}
+.connopt .r2{display:flex;align-items:center;gap:var(--s4);margin-top:var(--s4);flex-wrap:wrap}
+.connopt .ev{font-size:13px;line-height:19px;color:var(--gray-600)}
+.connopt .facts{display:flex;gap:var(--s5);margin-top:var(--s4);flex-wrap:wrap;font-size:12px;line-height:18px;color:var(--gray-500)}
+.connopt .facts b{color:var(--gray-800);font-weight:600}
 
 /* Design notes */
 .notes-toggle{position:fixed;right:var(--s8);bottom:var(--s8);z-index:60;background:var(--gray-900);color:#fff;border-radius:var(--r-2xl);height:44px;padding:0 var(--s7);display:inline-flex;align-items:center;gap:var(--s4);box-shadow:var(--sh-2xl);font-weight:500}
@@ -634,15 +653,17 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <h1 class="d-sm">Today</h1>
         <p class="dim" style="margin-top:var(--s2)">Thursday 30 July. Three things need you, and one connector needs a rest.</p>
       </div>
-      <div class="row" style="gap:var(--s4)">
-        <button class="helpbtn" data-help="today" aria-label="How are these ranked?"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M8.2 7.8a1.9 1.9 0 1 1 2.3 2.4c-.4.2-.5.5-.5.9v.3"/><path d="M10 14.6h.01"/></svg></button>
-        <button class="btn btn-secondary">Dismiss all read</button>
-      </div>
     </div>
 
     <div class="today-grid">
       <div class="today-main">
-    <div class="sec-title"><h2>Needs you now</h2><span class="badge badge-error"><span class="dot"></span>3</span></div>
+    <div class="sec-title">
+      <h2>Needs you now</h2><span class="badge badge-error"><span class="dot"></span>3</span>
+      <div class="row" style="margin-left:auto;gap:var(--s4)">
+        <button class="helpbtn" data-help="today" aria-label="How are these ranked?"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M8.2 7.8a1.9 1.9 0 1 1 2.3 2.4c-.4.2-.5.5-.5.9v.3"/><path d="M10 14.6h.01"/></svg></button>
+        <button class="btn btn-secondary btn-sm">Dismiss all read</button>
+      </div>
+    </div>
     <div class="card tdblock">
         <div class="tdrow">
           <span class="ic" style="background:var(--warning-50);color:var(--warning-700)"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7"/><path d="M10 6v4l3 2"/></svg></span>
@@ -700,7 +721,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
             <div class="h">Owen Brandt has gone quiet</div>
             <div class="w">Five asks outstanding, the oldest sent 41 days ago with no reply. Nudge him, or hand those five accounts to someone else.</div>
           </div>
-          <div class="act"><button class="btn btn-tertiary btn-sm">Dismiss</button><button class="btn btn-secondary btn-sm" data-tip="Opens the five asks so you can pick a different connector for each. Two of them have a second path already.">Change connector</button><button class="btn btn-secondary btn-sm">Nudge</button></div>
+          <div class="act"><button class="btn btn-tertiary btn-sm">Dismiss</button><button class="btn btn-secondary btn-sm" data-conn="owen" data-tip="Opens the five asks so you can pick a different connector for each. Two of them have a second path already.">Change connector</button><button class="btn btn-secondary btn-sm">Nudge</button></div>
         </div>
     </div>
 
@@ -1074,7 +1095,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
       <h2>Warm intro path</h2>
       <span class="t-sm muted">Dean Whitlock via Nathan Pike</span>
       <button class="helpbtn" data-help="roles" aria-label="What do these roles mean?"><svg class="icon icon-sm" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M8.2 7.8a1.9 1.9 0 1 1 2.3 2.4c-.4.2-.5.5-.5.9v.3"/><path d="M10 14.6h.01"/></svg></button>
-      <a href="#" style="margin-left:auto;font-weight:500;font-size:14px">Change connector</a>
+      <a href="#" style="margin-left:auto;font-weight:500;font-size:14px" data-conn="dean">Change connector</a>
     </div>
 
     <div class="card">
@@ -1645,7 +1666,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     <section id="tab-tasks" hidden>
       <div class="between" style="margin-bottom:var(--s7);flex-wrap:wrap">
         <div class="row" style="gap:var(--s5);flex-wrap:wrap"><span class="badge badge-blue"><span class="dot"></span>1 waiting on you</span><span class="badge badge-gray">0 done</span></div>
-        <button class="btn btn-primary"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12"/></svg>New task</button>
+        <button class="btn btn-primary" data-newintro><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12"/></svg>New intro</button>
       </div>
       <div class="playcard is-mine">
         <div class="playcard-head">
@@ -1886,7 +1907,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     <section id="tab-tasks" hidden>
       <div class="between" style="margin-bottom:var(--s7);flex-wrap:wrap">
         <div class="row" style="gap:var(--s5);flex-wrap:wrap"><span class="badge badge-blue"><span class="dot"></span>1 waiting on you</span><span class="badge badge-gray">0 done</span></div>
-        <button class="btn btn-primary"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12"/></svg>New task</button>
+        <button class="btn btn-primary" data-newintro><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12"/></svg>New intro</button>
       </div>
       <div class="playcard is-mine">
         <div class="playcard-head">
@@ -2321,7 +2342,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
     <section id="tab2-tasks" hidden>
       <div class="between" style="margin-bottom:var(--s7);flex-wrap:wrap">
         <div class="row" style="gap:var(--s5);flex-wrap:wrap"><span class="badge badge-error"><span class="dot"></span>1 due Wednesday</span><span class="badge badge-warning"><span class="dot"></span>1 waiting on them</span><span class="badge badge-gray">1 held back · 1 done</span></div>
-        <button class="btn btn-primary"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12"/></svg>New task</button>
+        <button class="btn btn-primary" data-newintro><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12"/></svg>New intro</button>
       </div>
       <div class="playcard is-mine">
         <div class="playcard-head">
@@ -2803,10 +2824,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <h1 class="d-sm">Intros</h1>
         <p class="dim" style="margin-top:var(--s2)">Every introduction, from asked to met. This is where you find out whether the network is working.</p>
       </div>
-      <div class="row" style="gap:var(--s4)">
-        <button class="btn btn-secondary"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 3v10M6.5 9.5 10 13l3.5-3.5"/><path d="M4 16h12"/></svg>Export</button>
-        <button class="btn btn-primary" data-newintro><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12"/></svg>New intro</button>
-      </div>
+      <button class="btn btn-secondary"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="M10 3v10M6.5 9.5 10 13l3.5-3.5"/><path d="M4 16h12"/></svg>Export</button>
     </div>
 
     <div class="sec-title"><h2>This quarter</h2><span class="t-sm muted">38 asks have produced 3 meetings</span></div>
@@ -3052,6 +3070,104 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
         <button class="btn btn-tertiary" data-close>Cancel</button>
         <button class="btn btn-primary" data-wnext>Continue</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== Change connector ==================== -->
+<div class="scrim" id="connModal">
+  <div class="modal" style="max-width:780px" role="dialog" aria-label="Change connector">
+    <div class="modal-head">
+      <div style="flex:1;min-width:0">
+        <h3>Change connector</h3>
+        <div class="t-sm muted" id="connSub">Reaching Dean Whitlock, CEO at Copperline. CTD found 14 paths to him.</div>
+      </div>
+      <button class="modal-x" data-connclose aria-label="Close"><svg class="icon icon-sm" viewBox="0 0 20 20"><path d="m5 5 10 10M15 5 5 15"/></svg></button>
+    </div>
+
+    <div class="modal-body">
+      <div id="connBanner"></div>
+        <button class="connopt current">
+          <span class="rad"></span>
+          <span class="body">
+            <span class="r1">
+              <span class="avatar avatar-sm">NP</span>
+              <span class="nm">Nathan Pike</span>
+              <span class="rl">Fractional Operating Partner · Meridian Advisory</span>
+              <span class="badge badge-gray">Current</span>
+              <span style="margin-left:auto"><span class="badge badge-blue"><span class="dot"></span>Never asked</span></span>
+            </span>
+            <span class="r2">
+              <span class="score s4"><i></i><i></i><i></i></span>
+              <span class="ev"><span class="strong">Strong</span>. Overlapped with Dean at the C-level last year and messaged him three weeks ago.</span>
+            </span>
+            <span class="facts"><span>Intros made <b>0</b></span><span>Asks in flight <b>1</b></span><span>Last asked <b>never</b></span></span>
+          </span>
+        </button>
+        <button class="connopt on">
+          <span class="rad"></span>
+          <span class="body">
+            <span class="r1">
+              <span class="avatar avatar-sm">HW</span>
+              <span class="nm">Helen Ward</span>
+              <span class="rl">Board Observer · Fernwood Capital</span>
+              
+              <span style="margin-left:auto"><span class="badge badge-error"><span class="dot"></span>Over-asked</span></span>
+            </span>
+            <span class="r2">
+              <span class="score s3"><i></i><i></i><i></i></span>
+              <span class="ev"><span class="strong">Familiar</span>. Sat on a panel with Dean in 2024. Last emailed him five months ago.</span>
+            </span>
+            <span class="facts"><span>Intros made <b>6</b></span><span>Asks in flight <b>7</b></span><span>Last asked <b>2 days ago</b></span></span>
+          </span>
+        </button>
+        <button class="connopt">
+          <span class="rad"></span>
+          <span class="body">
+            <span class="r1">
+              <span class="avatar avatar-sm">OB</span>
+              <span class="nm">Owen Brandt</span>
+              <span class="rl">EIR · Larkspur Ventures</span>
+              
+              <span style="margin-left:auto"><span class="badge badge-warning"><span class="dot"></span>Gone quiet</span></span>
+            </span>
+            <span class="r2">
+              <span class="score s3"><i></i><i></i><i></i></span>
+              <span class="ev"><span class="strong">Familiar</span>. Shares a board seat with Dean at a portfolio company.</span>
+            </span>
+            <span class="facts"><span>Intros made <b>2</b></span><span>Asks in flight <b>5</b></span><span>Last asked <b>41 days ago</b></span></span>
+          </span>
+        </button>
+        <button class="connopt">
+          <span class="rad"></span>
+          <span class="body">
+            <span class="r1">
+              <span class="avatar avatar-sm">MD</span>
+              <span class="nm">Marco Devlin</span>
+              <span class="rl">Global Sales Director · CTD</span>
+              
+              <span style="margin-left:auto"><span class="badge badge-gray"><span class="dot"></span>Ready</span></span>
+            </span>
+            <span class="r2">
+              <span class="score s2"><i></i><i></i><i></i></span>
+              <span class="ev"><span class="strong">Weak</span>. First-degree on LinkedIn with no message history. Unlikely to carry weight.</span>
+            </span>
+            <span class="facts"><span>Intros made <b>0</b></span><span>Asks in flight <b>0</b></span><span>Last asked <b>never</b></span></span>
+          </span>
+        </button>
+
+      <button class="btn btn-tertiary btn-sm" style="align-self:flex-start">Show all 14 connectors<svg class="icon icon-sm" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>
+
+      <div class="banner warn">
+        <svg class="icon icon-sm" style="color:var(--warning-700);margin-top:2px" viewBox="0 0 20 20"><path d="M10 7v4M10 14h.01"/><circle cx="10" cy="10" r="7.5"/></svg>
+        <div><span class="strong">Both messages get rewritten.</span> They reference how the connector knows Dean, so Marco's draft is discarded and CTD writes a new pair. You will review them before anything sends.</div>
+      </div>
+    </div>
+
+    <div class="modal-foot">
+      <button class="btn btn-tertiary" data-connclose>Cancel</button>
+      <span class="t-xs muted">Strength says whether they can open the door. Load says whether they will.</span>
+      <button class="btn btn-primary" style="margin-left:auto" data-connclose>Change and redraft</button>
     </div>
   </div>
 </div>
@@ -3641,6 +3757,31 @@ document.querySelectorAll('#view-today .tdrow .btn-tertiary').forEach(b=>{
   });
 });
 
+
+/* ---------------- Change connector ---------------- */
+const connModal=document.getElementById('connModal');
+const CONN={
+  dean:{sub:'Reaching Dean Whitlock, CEO at Copperline. CTD found 14 paths to him.',banner:''},
+  owen:{sub:'Owen Brandt is holding five asks. This one reaches Dean Whitlock at Copperline.',
+        banner:'<div class="banner"><svg class="icon icon-sm" style="color:var(--blue-700);margin-top:2px" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 6h.01"/></svg><div><span class="strong">Ask 1 of 5 with Owen.</span> Reroute this one and CTD will offer you the next. Two of the five have a second path already; three do not.</div></div>'}
+};
+document.querySelectorAll('[data-conn]').forEach(b=>{
+  b.addEventListener('click',e=>{
+    e.preventDefault();
+    const c=CONN[b.dataset.conn]||CONN.dean;
+    document.getElementById('connSub').textContent=c.sub;
+    document.getElementById('connBanner').innerHTML=c.banner;
+    connModal.classList.add('open');
+  });
+});
+document.querySelectorAll('[data-connclose]').forEach(b=>b.addEventListener('click',()=>connModal.classList.remove('open')));
+connModal.addEventListener('click',e=>{if(e.target===connModal)connModal.classList.remove('open');});
+document.querySelectorAll('#connModal .connopt').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('#connModal .connopt').forEach(x=>x.classList.toggle('on',x===b));
+  });
+});
+
 /* ---------------- Fix contact record ---------------- */
 const fixModal=document.getElementById('fixModal');
 const PICK=(on,addr,badge,note)=>`
@@ -3730,7 +3871,7 @@ window.addEventListener('scroll',()=>{tipFor=null;tipbox.classList.remove('on');
 const panel=document.getElementById('notesPanel');
 document.getElementById('notesToggle').addEventListener('click',()=>panel.classList.toggle('open'));
 document.getElementById('notesClose').addEventListener('click',()=>panel.classList.remove('open'));
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){panel.classList.remove('open');closeWizard();helpModal.classList.remove('open');fixModal.classList.remove('open');}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){panel.classList.remove('open');closeWizard();helpModal.classList.remove('open');fixModal.classList.remove('open');connModal.classList.remove('open');}});
 </script>
 </body>
 </html>
