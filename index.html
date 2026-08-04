@@ -3787,10 +3787,10 @@ function renderConn(ctx,mode){
       </div>`;
     md.innerHTML=`<div><span class="label">How do you want to handle the five?</span>
       <div class="delivery" style="margin-top:var(--s5)">
+        <button class="dopt${mode==='each'?' on':''}" data-connmode="each"><span class="rad"></span>
+          <span><h5>Choose per ask <span class="badge badge-blue badge-sq">Recommended</span></h5><p>Slower, and the only way to place all five.</p></span></button>
         <button class="dopt${mode==='all'?' on':''}" data-connmode="all"><span class="rad"></span>
           <span><h5>Move them all to one connector</h5><p>Simplest, but no single person reaches all five.</p></span></button>
-        <button class="dopt${mode==='each'?' on':''}" data-connmode="each"><span class="rad"></span>
-          <span><h5>Choose per ask</h5><p>Slower, and the only way to place all five.</p></span></button>
       </div></div>`;
     if(mode==='all'){
       body.innerHTML=`<div class="banner warn"><svg class="icon icon-sm" style="color:var(--warning-700);margin-top:2px" viewBox="0 0 20 20"><path d="M10 7v4M10 14h.01"/><circle cx="10" cy="10" r="7.5"/></svg>
