@@ -3846,8 +3846,8 @@ function bulkCta(){
   const sel=document.querySelector('#connBody .connopt.on');
   const n=sel?Number(sel.dataset.reach||0):0;
   document.getElementById('connCta').textContent=`Move ${n} ask${n===1?'':'s'} and redraft`;
-  const left=5-n;
-  document.getElementById('connFoot').textContent=`${left===1?'One ask':left+' asks'} would remain with Owen.`;
+  const W=['No','One','Two','Three','Four','Five'], left=5-n;
+  document.getElementById('connFoot').textContent=`${W[left]} ask${left===1?'':'s'} would remain with Owen.`;
 }
 function redraftNote(){
   return `<div class="banner warn"><svg class="icon icon-sm" style="color:var(--warning-700);margin-top:2px" viewBox="0 0 20 20"><path d="M10 7v4M10 14h.01"/><circle cx="10" cy="10" r="7.5"/></svg>
