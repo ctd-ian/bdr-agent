@@ -3744,9 +3744,9 @@ const SW={s4:3,s3:2,s2:1,s1:0}, LW={'Ready':2,'Never asked':1,'Gone quiet':-1,'O
    through before. Load is a penalty, because someone holding seven asks will not act on an eighth. */
 const REL={s4:40,s3:26,s2:12,s0:0};
 const ENG=n=>n>=3?10:n>=1?4:-6;   /* have they ever actually made an intro */
-const cscore=o=>Math.max(0,Math.min(99,
-  Math.round(REL[o.toYou]*0.3 + REL[o.score]*0.5 + ENG(o.intros)
-             + {'Ready':6,'Never asked':2,'Gone quiet':-14,'Over-asked':-16}[o.load]) + 32));
+const cscore=o=>Math.max(1,Math.min(99, Math.round(
+  (REL[o.toYou]*0.3 + REL[o.score]*0.5 + ENG(o.intros)
+   + {'Ready':6,'Never asked':2,'Gone quiet':-14,'Over-asked':-16}[o.load]) * 1.95)));
 const tier=n=>n>=70?'Likely':n>=45?'Possible':'Unlikely';
 const tclass=n=>n>=70?'hi':n>=45?'mid':'lo';
 const OWEN_CS=cscore({toYou:'s4',score:'s4',intros:2,load:'Gone quiet'});
@@ -3801,9 +3801,9 @@ const ALTPICK={
 /* Each ask carries the connector score of the best alternative CTD can offer for that target. */
 const ASKS=[
  {id:'dean',t:'Dean Whitlock',a:'Copperline',mono:'Cp',alts:13,cs:ALTPICK.dean[0].cs,
-  best:'Dana Sackett knows you well, knows Dean well, and has made 3 intros.'},
+  best:'Dana Sackett knows you well, knows Dean well, and has made 3 intros before.'},
  {id:'priya',t:'Priya Raman',a:'Vesper Analytics',mono:'Ve',alts:2,cs:ALTPICK.priya[0].cs,
-  best:'Helen Ward knows you a little, knows Priya a little, and is holding 7 asks.'},
+  best:'Renee Alvarez barely knows either of you. Helen Ward knows Priya but is over-asked.'},
  {id:'ruth',t:'Ruth Calder',a:'Quarry Labs',mono:'Qu',alts:0,cs:null},
  {id:'ingrid',t:'Ingrid Sol',a:'Northbeam HR',mono:'No',alts:0,cs:null},
  {id:'victor',t:'Victor Hale',a:'Brightpath',mono:'Br',alts:0,cs:null}]
