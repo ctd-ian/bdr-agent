@@ -3697,12 +3697,12 @@ document.querySelectorAll('#view-today .tdrow .btn-tertiary').forEach(b=>{
 /* ---------------- Change connector ---------------- */
 const connModal=document.getElementById('connModal');
 const OPT=(o)=>`
-        <button class="connopt${o.on?' on':''}">
+        <button class="connopt${o.on?' on':''}"${o.reach?` data-reach="${o.reach}"`:''}>
           <span class="rad"></span>
           <span class="body">
             <span class="r1">
               <span class="avatar avatar-sm">${o.init}</span><span class="nm">${o.name}</span><span class="rl">${o.role}</span>
-              <span style="margin-left:auto">${o.status}</span>
+              <span style="margin-left:auto">${BADGE[o.load]}</span>
             </span>
             <span class="r2"><span class="score ${o.score}"><i></i><i></i><i></i></span>
               <span class="ev"><span class="strong">${o.strength}</span>. ${o.ev}</span></span>
@@ -3714,28 +3714,35 @@ const BAD='<span class="badge badge-error"><span class="dot"></span>Over-asked</
 const QUIET='<span class="badge badge-warning"><span class="dot"></span>Gone quiet</span>';
 const READY='<span class="badge badge-gray"><span class="dot"></span>Ready</span>';
 const NEVER='<span class="badge badge-blue"><span class="dot"></span>Never asked</span>';
+const BADGE={'Ready':READY,'Never asked':NEVER,'Over-asked':BAD,'Gone quiet':QUIET};
+/* Sort every option list the same way: can they open the door, then will they.
+   Reach only breaks ties, so a connector who is over-asked never outranks one who is ready. */
+const SW={s4:3,s3:2,s2:1,s1:0}, LW={'Ready':2,'Never asked':1,'Gone quiet':-1,'Over-asked':-2};
+const rank=o=>SW[o.score]*10+LW[o.load];
+const sortOpts=a=>a.slice().sort((x,y)=>rank(y)-rank(x)||(y.reach||0)-(x.reach||0))
+                        .map((o,i)=>Object.assign({},o,{on:i===0}));
 
-const ALTS_DEAN=[
- {on:true,init:'DS',name:'Dana Sackett',role:'Co-Founder &amp; CEO · CTD',score:'s4',strength:'Strong',
-  ev:'Met Dean twice at industry events and traded email as recently as March.',status:READY,
+const ALTS_DEAN=sortOpts([
+ {init:'DS',name:'Dana Sackett',role:'Co-Founder &amp; CEO · CTD',score:'s4',strength:'Strong',load:'Ready',
+  ev:'Met Dean twice at industry events and traded email as recently as March.',
   facts:F(['Intros made','3'],['Asks in flight','1'],['Last asked','3 weeks ago'])},
- {on:false,init:'HW',name:'Helen Ward',role:'Board Observer · Fernwood Capital',score:'s3',strength:'Familiar',
-  ev:'Sat on a panel with Dean in 2024. Last emailed him five months ago.',status:BAD,
+ {init:'HW',name:'Helen Ward',role:'Board Observer · Fernwood Capital',score:'s3',strength:'Familiar',load:'Over-asked',
+  ev:'Sat on a panel with Dean in 2024. Last emailed him five months ago.',
   facts:F(['Intros made','6'],['Asks in flight','7'],['Last asked','2 days ago'])},
- {on:false,init:'MD',name:'Marco Devlin',role:'Global Sales Director · CTD',score:'s2',strength:'Weak',
-  ev:'First-degree on LinkedIn with no message history. Unlikely to carry weight.',status:READY,
-  facts:F(['Intros made','0'],['Asks in flight','0'],['Last asked','never'])}];
+ {init:'MD',name:'Marco Devlin',role:'Global Sales Director · CTD',score:'s2',strength:'Weak',load:'Ready',
+  ev:'First-degree on LinkedIn with no message history. Unlikely to carry weight.',
+  facts:F(['Intros made','0'],['Asks in flight','0'],['Last asked','never'])}]);
 
-const ALTS_BULK=[
- {on:true,init:'HW',name:'Helen Ward',role:'Board Observer · Fernwood Capital',score:'s3',strength:'Reaches 3 of the 5',
-  ev:'Dean Whitlock, Priya Raman and Victor Hale. No path to the other two.',status:BAD,
+const ALTS_BULK=sortOpts([
+ {init:'HW',name:'Helen Ward',role:'Board Observer · Fernwood Capital',score:'s3',reach:3,strength:'Reaches 3 of the 5',load:'Over-asked',
+  ev:'Dean Whitlock, Priya Raman and Victor Hale. No path to the other two.',
   facts:F(['Intros made','6'],['Asks in flight','7'],['Last asked','2 days ago'])},
- {on:false,init:'DS',name:'Dana Sackett',role:'Co-Founder &amp; CEO · CTD',score:'s4',strength:'Reaches 2 of the 5',
-  ev:'Dean Whitlock and Ingrid Sol, both through direct relationships.',status:READY,
+ {init:'DS',name:'Dana Sackett',role:'Co-Founder &amp; CEO · CTD',score:'s4',reach:2,strength:'Reaches 2 of the 5',load:'Ready',
+  ev:'Dean Whitlock and Ingrid Sol, both through direct relationships.',
   facts:F(['Intros made','3'],['Asks in flight','1'],['Last asked','3 weeks ago'])},
- {on:false,init:'AT',name:'Alex Tanaka',role:'Director, Strategic Accounts · CTD',score:'s4',strength:'Reaches 1 of the 5',
-  ev:'Dean Whitlock only. The rest are outside his network.',status:READY,
-  facts:F(['Intros made','2'],['Asks in flight','2'],['Last asked','6 days ago'])}];
+ {init:'AT',name:'Alex Tanaka',role:'Director, Strategic Accounts · CTD',score:'s4',reach:1,strength:'Reaches 1 of the 5',load:'Ready',
+  ev:'Dean Whitlock only. The rest are outside his network.',
+  facts:F(['Intros made','2'],['Asks in flight','2'],['Last asked','6 days ago'])}]);
 
 const ASKS=[
  {id:'dean',t:'Dean Whitlock',a:'Copperline',mono:'Cp',alts:13},
@@ -3744,23 +3751,23 @@ const ASKS=[
  {id:'ingrid',t:'Ingrid Sol',a:'Northbeam HR',mono:'No',alts:0},
  {id:'victor',t:'Victor Hale',a:'Brightpath',mono:'Br',alts:0}];
 const ALTPICK={
- dean:[
-  {on:true,init:'DS',name:'Dana Sackett',role:'Co-Founder &amp; CEO · CTD',score:'s4',strength:'Strong',
-   ev:'Met Dean twice at industry events and traded email as recently as March.',status:READY,
+ dean:sortOpts([
+  {init:'DS',name:'Dana Sackett',role:'Co-Founder &amp; CEO · CTD',score:'s4',strength:'Strong',load:'Ready',
+   ev:'Met Dean twice at industry events and traded email as recently as March.',
    facts:F(['Intros made','3'],['Asks in flight','1'],['Last asked','3 weeks ago'])},
-  {on:false,init:'HW',name:'Helen Ward',role:'Board Observer · Fernwood Capital',score:'s3',strength:'Familiar',
-   ev:'Sat on a panel with Dean in 2024. Last emailed him five months ago.',status:BAD,
+  {init:'HW',name:'Helen Ward',role:'Board Observer · Fernwood Capital',score:'s3',strength:'Familiar',load:'Over-asked',
+   ev:'Sat on a panel with Dean in 2024. Last emailed him five months ago.',
    facts:F(['Intros made','6'],['Asks in flight','7'],['Last asked','2 days ago'])},
-  {on:false,init:'AT',name:'Alex Tanaka',role:'Director, Strategic Accounts · CTD',score:'s4',strength:'Strong',
-   ev:'Worked with Dean at his previous company and still speaks to him quarterly.',status:READY,
-   facts:F(['Intros made','2'],['Asks in flight','2'],['Last asked','6 days ago'])}],
- priya:[
-  {on:true,init:'HW',name:'Helen Ward',role:'Board Observer · Fernwood Capital',score:'s3',strength:'Familiar',
-   ev:'Invested alongside Priya in 2023 and exchanged email in April.',status:BAD,
+  {init:'AT',name:'Alex Tanaka',role:'Director, Strategic Accounts · CTD',score:'s4',strength:'Strong',load:'Ready',
+   ev:'Worked with Dean at his previous company and still speaks to him quarterly.',
+   facts:F(['Intros made','2'],['Asks in flight','2'],['Last asked','6 days ago'])}]),
+ priya:sortOpts([
+  {init:'HW',name:'Helen Ward',role:'Board Observer · Fernwood Capital',score:'s3',strength:'Familiar',load:'Over-asked',
+   ev:'Invested alongside Priya in 2023 and exchanged email in April.',
    facts:F(['Intros made','6'],['Asks in flight','7'],['Last asked','2 days ago'])},
-  {on:false,init:'RA',name:'Renee Alvarez',role:'Advisor · Halden Partners',score:'s2',strength:'Weak',
-   ev:'First-degree on LinkedIn with no message history.',status:READY,
-   facts:F(['Intros made','1'],['Asks in flight','0'],['Last asked','never'])}]};
+  {init:'RA',name:'Renee Alvarez',role:'Advisor · Halden Partners',score:'s2',strength:'Weak',load:'Ready',
+   ev:'First-degree on LinkedIn with no message history.',
+   facts:F(['Intros made','1'],['Asks in flight','0'],['Last asked','never'])}])};
 let connPick=null;
 const askRow=(k)=>`
         <div class="askrow${k.alts?'':' blocked'}">
@@ -3794,10 +3801,9 @@ function renderConn(ctx,mode){
       </div></div>`;
     if(mode==='all'){
       body.innerHTML=`<div class="banner warn"><svg class="icon icon-sm" style="color:var(--warning-700);margin-top:2px" viewBox="0 0 20 20"><path d="M10 7v4M10 14h.01"/><circle cx="10" cy="10" r="7.5"/></svg>
-        <div><span class="strong">No single connector reaches all five.</span> The best available covers three, and the remaining two would stay with Owen.</div></div>`
+        <div><span class="strong">No single connector reaches all five.</span> The one with the widest reach is also the most over-asked, so whichever you pick, some asks stay with Owen.</div></div>`
         + ALTS_BULK.map(OPT).join('') + redraftNote();
-      document.getElementById('connCta').textContent='Move 3 asks and redraft';
-      document.getElementById('connFoot').textContent='Two asks would remain with Owen.';
+      bulkCta();
     } else if(connPick){
       const k=ASKS.find(x=>x.id===connPick);
       md.innerHTML='';
@@ -3836,6 +3842,13 @@ function renderConn(ctx,mode){
   }
   wireConnPicks();
 }
+function bulkCta(){
+  const sel=document.querySelector('#connBody .connopt.on');
+  const n=sel?Number(sel.dataset.reach||0):0;
+  document.getElementById('connCta').textContent=`Move ${n} ask${n===1?'':'s'} and redraft`;
+  const left=5-n;
+  document.getElementById('connFoot').textContent=`${left===1?'One ask':left+' asks'} would remain with Owen.`;
+}
 function redraftNote(){
   return `<div class="banner warn"><svg class="icon icon-sm" style="color:var(--warning-700);margin-top:2px" viewBox="0 0 20 20"><path d="M10 7v4M10 14h.01"/><circle cx="10" cy="10" r="7.5"/></svg>
     <div><span class="strong">Both messages get rewritten.</span> They reference how the connector knows the target, so the current draft is discarded and CTD writes a new pair. You will review them before anything sends.</div></div>`;
@@ -3844,6 +3857,7 @@ let connCtx='dean', connMode='each';
 function wireConnPicks(){
   document.querySelectorAll('#connModal .connopt').forEach(b=>b.addEventListener('click',()=>{
     document.querySelectorAll('#connModal .connopt').forEach(x=>x.classList.toggle('on',x===b));
+    if(connCtx==='owen'&&connMode==='all'&&!connPick) bulkCta();
   }));
   document.querySelectorAll('#connModal [data-connmode]').forEach(b=>b.addEventListener('click',()=>{
     connMode=b.dataset.connmode; connPick=null; renderConn(connCtx,connMode);
