@@ -3120,7 +3120,7 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 
     <div class="modal-foot">
       <button class="btn btn-tertiary" data-connclose>Cancel</button>
-      <span class="t-xs muted" id="connFoot">Strength says whether they can open the door. Load says whether they will.</span>
+      <span class="t-xs muted" id="connFoot">The score blends how well they know you, how well they know the target, and whether they follow through.</span>
       <button class="btn btn-primary" style="margin-left:auto" data-connclose id="connCta">Change and redraft</button>
     </div>
   </div>
@@ -3884,7 +3884,7 @@ function renderConn(ctx,mode){
       + '<button class="btn btn-tertiary btn-sm" style="align-self:flex-start">Show all 14 connectors<svg class="icon icon-sm" viewBox="0 0 20 20"><path d="m5 8 5 5 5-5"/></svg></button>'
       + redraftNote();
     document.getElementById('connCta').textContent='Change and redraft';
-    document.getElementById('connFoot').textContent='Strength says whether they can open the door. Load says whether they will.';
+    document.getElementById('connFoot').textContent='The score blends how well they know you, how well they know the target, and whether they follow through.';
   }
   wireConnPicks();
 }
