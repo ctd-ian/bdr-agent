@@ -578,7 +578,9 @@ tbody tr.rowlink:hover{background:var(--gray-50);cursor:pointer}
 .connout .body{flex:1;min-width:0}
 .askrow{display:flex;align-items:center;gap:var(--s5);padding:var(--s5) var(--s6);border:1px solid var(--gray-200);border-radius:var(--r-lg);background:#fff}
 .askrow+.askrow{margin-top:var(--s4)}
-.askrow .g{flex:1;min-width:0}
+.askrow .pot{display:flex;align-items:center;gap:var(--s4);flex:0 0 96px;justify-content:flex-end;
+  font-size:12px;line-height:18px;font-weight:600;color:var(--gray-700)}
+.askrow .pot.none{color:var(--gray-400);font-weight:500}
 .askrow.blocked{background:var(--gray-25)}
 
 /* Design notes */
@@ -3744,12 +3746,17 @@ const ALTS_BULK=sortOpts([
   ev:'Dean Whitlock only. The rest are outside his network.',
   facts:F(['Intros made','2'],['Asks in flight','2'],['Last asked','6 days ago'])}]);
 
+/* Potential is the best alternative CTD can actually offer for this ask, not a guess.
+   It is the strongest available connector, discounted if that person is over-asked. */
 const ASKS=[
- {id:'dean',t:'Dean Whitlock',a:'Copperline',mono:'Cp',alts:13},
- {id:'priya',t:'Priya Raman',a:'Vesper Analytics',mono:'Ve',alts:2},
- {id:'ruth',t:'Ruth Calder',a:'Quarry Labs',mono:'Qu',alts:0},
- {id:'ingrid',t:'Ingrid Sol',a:'Northbeam HR',mono:'No',alts:0},
- {id:'victor',t:'Victor Hale',a:'Brightpath',mono:'Br',alts:0}];
+ {id:'dean',t:'Dean Whitlock',a:'Copperline',mono:'Cp',alts:13,pot:'s4',potw:'Strong',
+  best:'Dana Sackett is strong on Dean and ready to be asked.'},
+ {id:'priya',t:'Priya Raman',a:'Vesper Analytics',mono:'Ve',alts:2,pot:'s3',potw:'Familiar',
+  best:'Helen Ward is familiar with Priya but already over-asked.'},
+ {id:'ruth',t:'Ruth Calder',a:'Quarry Labs',mono:'Qu',alts:0,pot:'s0',potw:'No path'},
+ {id:'ingrid',t:'Ingrid Sol',a:'Northbeam HR',mono:'No',alts:0,pot:'s0',potw:'No path'},
+ {id:'victor',t:'Victor Hale',a:'Brightpath',mono:'Br',alts:0,pot:'s0',potw:'No path'}]
+ .sort((x,y)=>SW[y.pot]-SW[x.pot]||y.alts-x.alts);
 const ALTPICK={
  dean:sortOpts([
   {init:'DS',name:'Dana Sackett',role:'Co-Founder &amp; CEO · CTD',score:'s4',strength:'Strong',load:'Ready',
@@ -3773,7 +3780,8 @@ const askRow=(k)=>`
         <div class="askrow${k.alts?'':' blocked'}">
           <span class="avatar avatar-sm avatar-co">${k.mono}</span>
           <span class="g"><span class="t-sm strong" style="display:block">${k.t} <span class="muted" style="font-weight:400">${k.a}</span></span>
-            <span class="t-xs muted">${k.alts?k.alts+' other connector'+(k.alts>1?'s':'')+' can reach them':'No other path. Owen is the only route CTD knows.'}</span></span>
+            <span class="t-xs muted">${k.alts?k.best+' '+k.alts+' other connector'+(k.alts>1?'s':'')+' in all.':'No other path. Owen is the only route CTD knows.'}</span></span>
+          <span class="pot${k.alts?'':' none'}"><span class="score ${k.pot}"><i></i><i></i><i></i></span>${k.potw}</span>
           ${k.alts?`<button class="btn btn-secondary btn-sm" data-pick="${k.id}">Choose</button>`:'<button class="btn btn-tertiary btn-sm">Nudge Owen</button>'}
         </div>`;
 
@@ -3814,7 +3822,9 @@ function renderConn(ctx,mode){
       document.getElementById('connCta').textContent='Change and redraft';
       document.getElementById('connFoot').textContent='The other four asks stay with Owen.';
     } else {
-      body.innerHTML=`<div><span class="label">The five asks</span><div style="margin-top:var(--s5)">${ASKS.map(askRow).join('')}</div></div>`
+      body.innerHTML=`<div><span class="label">The five asks</span>
+        <p class="t-xs muted" style="margin-top:var(--s3)">Potential is the best alternative connector CTD can offer, strongest first.</p>
+        <div style="margin-top:var(--s5)">${ASKS.map(askRow).join('')}</div></div>`
         + `<div class="banner warn"><svg class="icon icon-sm" style="color:var(--warning-700);margin-top:2px" viewBox="0 0 20 20"><path d="M10 7v4M10 14h.01"/><circle cx="10" cy="10" r="7.5"/></svg>
            <div><span class="strong">Three of the five have no alternative.</span> Owen is the only route CTD knows to those targets, so the choice there is nudging him or growing the network.</div></div>`;
       document.getElementById('connCta').textContent='Done';
